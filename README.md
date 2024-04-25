@@ -3,7 +3,7 @@
 ## Descrição
 Projeto Integrado Multidisciplinar elaborado como parte das exigências para a conclusão do semestre 01/2024 do curso de Análise e Desenvolvimento de Sistemas pela Universidade Paulista, campus de Ribeirão Preto.
 
-Com base no tema proposto “levantamento e análise de requisitos de um sistema de controle de uma fazenda urbana de uma startup focada em garantir inovação para área de segurança alimentar”, o projeto apresenta o cenário de uma startup, representada pelos autores, encarregada do desenvolvimento de um sistema para uma fazenda urbana, a partir de um cenário de aumento da insegurança alimentar no Brasil, seguindo os objetivos de desenvolvimento sustentável delineados pela ONU.
+Com base no tema proposto *“levantamento e análise de requisitos de um sistema de controle de uma fazenda urbana de uma startup focada em garantir inovação para área de segurança alimentar”*, o projeto apresenta o cenário de uma startup, representada pelos autores, encarregada do desenvolvimento de um sistema para uma fazenda urbana, a partir de um cenário de aumento da insegurança alimentar no Brasil, seguindo os objetivos de desenvolvimento sustentável delineados pela ONU.
 
 #### O sistema inclui:
 - Cadastro de usuários
