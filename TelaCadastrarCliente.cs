@@ -109,7 +109,7 @@ namespace PIM_FazendaUrbana
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar cliente. Verifique se o CNPJ já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao cadastrar cliente. Verifique se o cliente já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -283,11 +283,6 @@ namespace PIM_FazendaUrbana
                 TextBoxCEP.ForeColor = Color.Black;
                 cepvalido = true;
             }
-        }
-
-        private void TextBoxCNPJ_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
         }
     }
 }

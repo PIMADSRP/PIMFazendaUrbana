@@ -5,7 +5,6 @@ using MySqlX.XDevAPI;
 
 namespace PIM_FazendaUrbana
 {
-    // atualizado 26/04
     public class FornecedorDAO // Classe DAO (Data Access Object) para manipulação de dados de fornecedores no banco de dados
     {
         private string connectionString;

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace PIM_FazendaUrbana
 {
-    // atualizado 26/04
     public class FornecedorService // A classe FornecedorService é responsável por implementar a lógica de negócio relacionada a fornecedores
     {
         private FornecedorDAO fornecedorDAO; // Campo privado para armazenar uma instância de FornecedorDAO

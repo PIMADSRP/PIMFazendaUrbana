@@ -5,7 +5,6 @@ using MySqlX.XDevAPI;
 
 namespace PIM_FazendaUrbana
 {
-    // atualizado 26/04
     public class ClienteDAO // Classe DAO (Data Access Object) para manipulação de dados de clientes no banco de dados
     {
         private string connectionString;
@@ -32,7 +31,7 @@ namespace PIM_FazendaUrbana
                         // ********** ||||||| DADOS CLASSE Cliente ||||||| **********
                         // ********** VVVVVVV                      VVVVVVV **********
 
-                        string insertClienteQuery = "INSERT INTO Cliente (nome_cliente, email_cliente, CNPJ_cliente, ativo_cliente) VALUES (@nome, @email, @cnpj, @status)"; // Define a consulta SQL para inserir os dados do cliente
+                        string insertClienteQuery = "INSERT INTO cliente (nome_cliente, email_cliente, CNPJ_cliente, ativo_cliente) VALUES (@nome, @email, @cnpj, @status)"; // Define a consulta SQL para inserir os dados do cliente
 
                         using (MySqlCommand insertClienteCommand = new MySqlCommand(insertClienteQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
                         {
@@ -53,7 +52,7 @@ namespace PIM_FazendaUrbana
                             // ********** VVVVVVV                       VVVVVVV **********
 
                             EnderecoCliente endereco = cliente.Endereco; // Instancia um objeto EnderecoCliente com os dados do endereço do cliente
-                            string insertEnderecoQuery = "INSERT INTO EnderecoCliente (id_cliente, logradouro_endcliente, numero_endcliente, complemento_endcliente, bairro_endcliente, cidade_endcliente, uf_endcliente, cep_endcliente, ativo_endcliente) VALUES (@clienteId, @logradouro, @numero, @complemento, @bairro, @cidade, @uf, @cep, @status)"; // Define a consulta SQL para cadastrar o endereço do cliente
+                            string insertEnderecoQuery = "INSERT INTO endereco_cliente (id_cliente, logradouro_endcliente, numero_endcliente, complemento_endcliente, bairro_endcliente, cidade_endcliente, uf_endcliente, cep_endcliente, ativo_endcliente) VALUES (@clienteId, @logradouro, @numero, @complemento, @bairro, @cidade, @uf, @cep, @status)"; // Define a consulta SQL para cadastrar o endereço do cliente
 
                             using (MySqlCommand insertEnderecoCommand = new MySqlCommand(insertEnderecoQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
                             {
@@ -78,7 +77,7 @@ namespace PIM_FazendaUrbana
                             // ********** VVVVVVV                       VVVVVVV **********
 
                             TelefoneCliente telefone = cliente.Telefone; // Instancia um objeto TelefoneCliente com os dados do telefone do cliente
-                            string insertTelefoneQuery = "INSERT INTO TelefoneCliente (id_cliente, ddd_telcliente, numero_telcliente, ativo_telcliente) VALUES (@clienteId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do cliente
+                            string insertTelefoneQuery = "INSERT INTO telefone_cliente (id_cliente, ddd_telcliente, numero_telcliente, ativo_telcliente) VALUES (@clienteId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do cliente
 
                             using (MySqlCommand insertTelefoneCommand = new MySqlCommand(insertTelefoneQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
                             {

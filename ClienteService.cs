@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace PIM_FazendaUrbana
 {
-    // atualizado 26/04
     public class ClienteService // A classe ClienteService é responsável por implementar a lógica de negócio relacionada a clientes
     {
         private ClienteDAO clienteDAO; // Campo privado para armazenar uma instância de ClienteDAO

@@ -36,7 +36,7 @@
             BotaoOK = new Button();
             BotaoVoltar = new Button();
             TextBoxCNPJ = new MaskedTextBox();
-            TextBoxDDD = new TextBox();
+            TextBoxDDD = new MaskedTextBox();
             TextBoxTelefone = new TextBox();
             LabelDDD = new Label();
             LabelTelefone = new Label();
@@ -127,12 +127,12 @@
             TextBoxCNPJ.Name = "TextBoxCNPJ";
             TextBoxCNPJ.Size = new Size(115, 23);
             TextBoxCNPJ.TabIndex = 2;
-            TextBoxCNPJ.MaskInputRejected += TextBoxCNPJ_MaskInputRejected;
             TextBoxCNPJ.Validating += TextBoxCNPJ_Validating;
             // 
             // TextBoxDDD
             // 
             TextBoxDDD.Location = new Point(71, 264);
+            TextBoxDDD.Mask = "00";
             TextBoxDDD.Name = "TextBoxDDD";
             TextBoxDDD.Size = new Size(31, 23);
             TextBoxDDD.TabIndex = 4;
@@ -275,7 +275,7 @@
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(453, 289);
+            LabelCEP.Location = new Point(408, 289);
             LabelCEP.Name = "LabelCEP";
             LabelCEP.Size = new Size(28, 15);
             LabelCEP.TabIndex = 25;
@@ -329,7 +329,7 @@
         private Button BotaoOK;
         private Button BotaoVoltar;
         private MaskedTextBox TextBoxCNPJ;
-        private TextBox TextBoxDDD;
+        private MaskedTextBox TextBoxDDD;
         private TextBox TextBoxTelefone;
         private Label LabelDDD;
         private Label LabelTelefone;

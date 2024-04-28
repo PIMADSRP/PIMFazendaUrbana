@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace PIM_FazendaUrbana
 {
-    // atualizado 26/04
     public class EnderecoCliente
     {
         public int ID { get; set; }
