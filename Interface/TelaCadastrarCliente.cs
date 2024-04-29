@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace PIM_FazendaUrbana
+namespace PIMFazendaUrbana
 {
     public partial class TelaCadastrarCliente : Form
     {
@@ -88,7 +80,7 @@ namespace PIM_FazendaUrbana
 
                 cliente1.Endereco = new EnderecoCliente();
                 cliente1.Endereco.Logradouro = TextBoxLogradouro.Text;
-                cliente1.Endereco.Numero = Convert.ToInt32(TextBoxNumero.Text);
+                cliente1.Endereco.Numero = TextBoxNumero.Text;
                 cliente1.Endereco.Complemento = TextBoxComplemento.Text;
                 cliente1.Endereco.Bairro = TextBoxBairro.Text;
                 cliente1.Endereco.Cidade = TextBoxCidade.Text;

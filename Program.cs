@@ -1,6 +1,4 @@
-using PIM_1Sem_2024;
-
-namespace PIM_FazendaUrbana
+namespace PIMFazendaUrbana
 {
     internal static class Program
     {

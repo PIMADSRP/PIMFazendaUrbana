@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace PIM_FazendaUrbana
+﻿namespace PIMFazendaUrbana
 {
-    public class Cliente
+    public class Fornecedor
     {
         // Atributos/Propriedades
         public int ID { get; set; }
@@ -11,7 +8,7 @@ namespace PIM_FazendaUrbana
         public string Email { get; set; }
         public string CNPJ { get; set; }
         public bool StatusAtivo { get; set; }
-        public EnderecoCliente Endereco { get; set; }
-        public TelefoneCliente Telefone { get; set; }
+        public EnderecoFornecedor Endereco { get; set; }
+        public TelefoneFornecedor Telefone { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace PIM_FazendaUrbana
+﻿namespace PIMFazendaUrbana
 {
     partial class TelaCadastrarCliente
     {

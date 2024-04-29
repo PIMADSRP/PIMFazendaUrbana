@@ -1,6 +1,4 @@
-using PIM_FazendaUrbana;
-
-namespace PIM_1Sem_2024
+namespace PIMFazendaUrbana
 {
     public partial class MenuPrincipal : Form
     {
