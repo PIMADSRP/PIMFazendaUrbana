@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             BotaoCadastrarCliente = new Button();
+            button1 = new Button();
             SuspendLayout();
             // 
             // BotaoCadastrarCliente
@@ -42,11 +43,23 @@
             BotaoCadastrarCliente.UseVisualStyleBackColor = true;
             BotaoCadastrarCliente.Click += button1_Click;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.Location = new Point(629, 244);
+            button1.Name = "button1";
+            button1.Size = new Size(211, 75);
+            button1.TabIndex = 1;
+            button1.Text = "Listar Clientes";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1300, 677);
+            Controls.Add(button1);
             Controls.Add(BotaoCadastrarCliente);
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
@@ -59,5 +72,6 @@
         #endregion
 
         private Button BotaoCadastrarCliente;
+        private Button button1;
     }
 }

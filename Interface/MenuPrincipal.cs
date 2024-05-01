@@ -25,5 +25,14 @@ namespace PIMFazendaUrbana
         {
             this.WindowState = FormWindowState.Maximized;
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // Criar uma instância do segundo formulário
+            TelaListarClientes telaListarClientes = new TelaListarClientes();
+
+            // Exibir o segundo formulário
+            telaListarClientes.Show();
+        }
     }
 }

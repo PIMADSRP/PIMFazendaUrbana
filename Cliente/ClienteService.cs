@@ -108,31 +108,20 @@
         // 4- Listagem
         // 4.1- Listar Clientes Ativos
         // O método ListarClientesAtivos é responsável por obter a lista de todos os clientes com a flag "ativo_cliente = true" cadastrados no banco de dados e exibir esses dados na tela.
-        public bool ListarClientesAtivos()
+        public List<Cliente> ListarClientesAtivos()
         {
             try
             {
-                List<Cliente> clientes = clienteDAO.ListarClientesAtivos_DAO(); // Chama o método ListarClientesAtivos da classe ClienteDAO para obter uma lista de clientes
-
-                /*
-                // Exibição em console
-                Console.WriteLine("Lista de clientes:");
-                foreach (var cliente in clientes)
-                {
-                    // Para cada cliente na lista, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {cliente.ID}, Nome: {cliente.Nome}, Email: {cliente.Email}, CNPJ: {cliente.CNPJ}, Status: {cliente.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {cliente.Endereco.Logradouro}, {cliente.Endereco.Numero}, {cliente.Endereco.Complemento}, {cliente.Endereco.Bairro}, {cliente.Endereco.Cidade}, {cliente.Endereco.UF}, {cliente.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({cliente.Telefone.DDD}) {cliente.Telefone.Numero}");
-                }
-                */
-
-                return true; // Retorna true para indicar que a listagem foi bem-sucedida
+                List<Cliente> clientes = clienteDAO.ListarClientesAtivos_DAO();
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return clientes; // Retorna a lista de clientes quando tudo corre bem
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao listar clientes: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a listagem
-
-                return false; // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar clientes ativos
+                throw new Exception("Erro ao listar clientes ativos.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Cliente>(); // Retorna uma lista vazia
             }
         }
 
