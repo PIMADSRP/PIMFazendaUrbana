@@ -327,7 +327,7 @@ namespace PIMFazendaUrbana
         }
 
         // 5- Consulta
-        // 5.1- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR ID
+        // 5.1- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR ID (somente fornecedores ativos)
         // ********** NÃO TESTADO **********
         public Fornecedor ConsultarFornecedorID_DAO(int fornecedorId)
         {
@@ -344,7 +344,7 @@ namespace PIMFazendaUrbana
                                             FROM fornecedor f
                                             LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
                                             LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.id_fornecedor = @id";
+                                            WHERE f.id_fornecedor = @id AND ativo_funcionario = 1";
 
                 using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
                 {
@@ -389,7 +389,7 @@ namespace PIMFazendaUrbana
             return fornecedor;
         }
 
-        // 5.2- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR NOME
+        // 5.2- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR NOME (somente fornecedores ativos)
         // ********** NÃO TESTADO **********
         public Fornecedor ConsultarFornecedorNome_DAO(string fornecedorNome)
         {
@@ -406,7 +406,7 @@ namespace PIMFazendaUrbana
                                             FROM fornecedor f
                                             LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
                                             LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.nome_fornecedor = @nome";
+                                            WHERE f.nome_fornecedor = @nome AND ativo_funcionario = 1";
 
                 using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
                 {
@@ -451,7 +451,7 @@ namespace PIMFazendaUrbana
             return fornecedor;
         }
 
-        // 5.3- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR CNPJ
+        // 5.3- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR CNPJ (somente fornecedores ativos)
         // ********** NÃO TESTADO **********
         public Fornecedor ConsultarFornecedorCNPJ_DAO(string fornecedorCNPJ)
         {
@@ -468,7 +468,7 @@ namespace PIMFazendaUrbana
                                             FROM fornecedor f
                                             LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
                                             LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.cnpj_fornecedor = @cnpj";
+                                            WHERE f.cnpj_fornecedor = @cnpj AND ativo_funcionario = 1";
 
                 using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
                 {

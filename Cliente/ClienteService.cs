@@ -127,134 +127,69 @@
 
         // 4.2- Listar Todos os Clientes
         // O método ListarTodosClientes é responsável por obter a lista de todos os clientes cadastrados no banco de dados e exibir esses dados na tela, independente se estão definidos como ativos ou inativos.
-        public bool ListarTodosClientes()
+        public List<Cliente> ListarTodosClientes()
         {
             try
             {
-                List<Cliente> clientes = clienteDAO.ListarTodosClientes_DAO(); // Chama o método ListarTodosClientes da classe ClienteDAO para obter uma lista de clientes
-
-                /*
-                // Exibição em console
-                Console.WriteLine("Lista de clientes:");
-                foreach (var cliente in clientes)
-                {
-                    // Para cada cliente na lista, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {cliente.ID}, Nome: {cliente.Nome}, Email: {cliente.Email}, CNPJ: {cliente.CNPJ}, Status: {cliente.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {cliente.Endereco.Logradouro}, {cliente.Endereco.Numero}, {cliente.Endereco.Complemento}, {cliente.Endereco.Bairro}, {cliente.Endereco.Cidade}, {cliente.Endereco.UF}, {cliente.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({cliente.Telefone.DDD}) {cliente.Telefone.Numero}");
-                }
-                */
-
-                return true; // Retorna true para indicar que a listagem foi bem-sucedida
+                List<Cliente> clientes = clienteDAO.ListarTodosClientes_DAO();
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return clientes; // Retorna a lista de clientes quando tudo corre bem
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao listar clientes: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a listagem
-
-                return false; // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar clientes
+                throw new Exception("Erro ao listar clientes.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Cliente>(); // Retorna uma lista vazia
             }
         }
 
         // 5- Consulta
         // 5.1 - Consultar Cliente por ID
         // O método ConsultarClienteID é responsável por consultar um cliente pelo ID e exibir seus dados na tela.
-        public string ConsultarClienteID(int clienteId)
+        public Cliente ConsultarClienteID(int clienteId)
         {
             try
             {
                 Cliente cliente = clienteDAO.ConsultarClienteID_DAO(clienteId); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo ID
-                if (cliente != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o cliente for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {cliente.ID}, Nome: {cliente.Nome}, Email: {cliente.Email}, CNPJ: {cliente.CNPJ}, Status: {cliente.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {cliente.Endereco.Logradouro}, {cliente.Endereco.Numero}, {cliente.Endereco.Complemento}, {cliente.Endereco.Bairro}, {cliente.Endereco.Cidade}, {cliente.Endereco.UF}, {cliente.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({cliente.Telefone.DDD}) {cliente.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o cliente foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Cliente não encontrado."); // Exibe uma mensagem caso o cliente não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o cliente não foi encontrado
-                }
+                return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar cliente: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
         // 5.2 - Consultar Cliente por nome
         // O método ConsultarClienteNome é responsável por consultar um cliente pelo nome e exibir seus dados na tela.
-        public string ConsultarClienteNome(string clienteNome)
+        public Cliente ConsultarClienteNome(string clienteNome)
         {
             try
             {
                 Cliente cliente = clienteDAO.ConsultarClienteNome_DAO(clienteNome); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo nome
-                if (cliente != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o cliente for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {cliente.ID}, Nome: {cliente.Nome}, Email: {cliente.Email}, CNPJ: {cliente.CNPJ}, Status: {cliente.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {cliente.Endereco.Logradouro}, {cliente.Endereco.Numero}, {cliente.Endereco.Complemento}, {cliente.Endereco.Bairro}, {cliente.Endereco.Cidade}, {cliente.Endereco.UF}, {cliente.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({cliente.Telefone.DDD}) {cliente.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o cliente foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Cliente não encontrado."); // Exibe uma mensagem caso o cliente não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o cliente não foi encontrado
-                }
+                return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar cliente: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
         // 5.3 - Consultar Cliente por CNPJ
         // O método ConsultarClienteCNPJ é responsável por consultar um cliente pelo cnpj e exibir seus dados na tela.
-        public string ConsultarClienteCNPJ(string clienteCNPJ)
+        public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
         {
             try
             {
                 Cliente cliente = clienteDAO.ConsultarClienteCNPJ_DAO(clienteCNPJ); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo cnpj
-                if (cliente != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o cliente for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {cliente.ID}, Nome: {cliente.Nome}, Email: {cliente.Email}, CNPJ: {cliente.CNPJ}, Status: {cliente.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {cliente.Endereco.Logradouro}, {cliente.Endereco.Numero}, {cliente.Endereco.Complemento}, {cliente.Endereco.Bairro}, {cliente.Endereco.Cidade}, {cliente.Endereco.UF}, {cliente.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({cliente.Telefone.DDD}) {cliente.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o cliente foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Cliente não encontrado."); // Exibe uma mensagem caso o cliente não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o cliente não foi encontrado
-                }
+                return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar cliente: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 

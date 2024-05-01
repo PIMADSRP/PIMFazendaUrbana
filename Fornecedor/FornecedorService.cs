@@ -108,164 +108,88 @@
         // 4- Listagem
         // 4.1- Listar Fornecedores Ativos
         // O método ListarFornecedoresAtivos é responsável por obter a lista de todos os fornecedores com a flag "ativo_fornecedor = true" cadastrados no banco de dados e exibir esses dados na tela.
-        public bool ListarFornecedoresAtivos()
+        public List<Fornecedor> ListarFornecedoresAtivos()
         {
             try
             {
-                List<Fornecedor> fornecedores = fornecedorDAO.ListarFornecedoresAtivos_DAO(); // Chama o método ListarFornecedoresAtivos da classe FornecedorDAO para obter uma lista de fornecedores
-
-                /*
-                // Exibição em console
-                Console.WriteLine("Lista de fornecedores:");
-                foreach (var fornecedor in fornecedores)
-                {
-                    // Para cada fornecedor na lista, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {fornecedor.ID}, Nome: {fornecedor.Nome}, Email: {fornecedor.Email}, CNPJ: {fornecedor.CNPJ}, Status: {fornecedor.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {fornecedor.Endereco.Logradouro}, {fornecedor.Endereco.Numero}, {fornecedor.Endereco.Complemento}, {fornecedor.Endereco.Bairro}, {fornecedor.Endereco.Cidade}, {fornecedor.Endereco.UF}, {fornecedor.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({fornecedor.Telefone.DDD}) {fornecedor.Telefone.Numero}");
-                }
-                */
-
-                return true; // Retorna true para indicar que a listagem foi bem-sucedida
+                List<Fornecedor> fornecedores = fornecedorDAO.ListarFornecedoresAtivos_DAO();
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return fornecedores; // Retorna a lista de fornecedores quando tudo corre bem
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao listar fornecedores: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a listagem
-
-                return false; // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores ativos
+                throw new Exception("Erro ao listar fornecedores ativos.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Fornecedor>(); // Retorna uma lista vazia
             }
         }
 
         // 4.2- Listar Todos os Fornecedores
         // O método ListarTodosFornecedores é responsável por obter a lista de todos os fornecedores cadastrados no banco de dados e exibir esses dados na tela, independente se estão definidos como ativos ou inativos.
-        public bool ListarTodosFornecedores()
+        public List<Fornecedor> ListarTodosFornecedores()
         {
             try
             {
-                List<Fornecedor> fornecedores = fornecedorDAO.ListarTodosFornecedores_DAO(); // Chama o método ListarTodosFornecedores da classe FornecedorDAO para obter uma lista de fornecedores
-
-                /*
-                // Exibição em console
-                Console.WriteLine("Lista de fornecedores:");
-                foreach (var fornecedor in fornecedores)
-                {
-                    // Para cada fornecedor na lista, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {fornecedor.ID}, Nome: {fornecedor.Nome}, Email: {fornecedor.Email}, CNPJ: {fornecedor.CNPJ}, Status: {fornecedor.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {fornecedor.Endereco.Logradouro}, {fornecedor.Endereco.Numero}, {fornecedor.Endereco.Complemento}, {fornecedor.Endereco.Bairro}, {fornecedor.Endereco.Cidade}, {fornecedor.Endereco.UF}, {fornecedor.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({fornecedor.Telefone.DDD}) {fornecedor.Telefone.Numero}");
-                }
-                */
-
-                return true; // Retorna true para indicar que a listagem foi bem-sucedida
+                List<Fornecedor> fornecedores = fornecedorDAO.ListarTodosFornecedores_DAO();
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return fornecedores; // Retorna a lista de fornecedores quando tudo corre bem
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao listar fornecedores: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a listagem
-
-                return false; // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores
+                throw new Exception("Erro ao listar fornecedores.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Fornecedor>(); // Retorna uma lista vazia
             }
         }
 
         // 5- Consulta
         // 5.1 - Consultar Fornecedor por ID
         // O método ConsultarFornecedorID é responsável por consultar um fornecedor pelo ID e exibir seus dados na tela.
-        public string ConsultarFornecedorID(int fornecedorId)
+        public Fornecedor ConsultarFornecedorID(int fornecedorId)
         {
             try
             {
                 Fornecedor fornecedor = fornecedorDAO.ConsultarFornecedorID_DAO(fornecedorId); // Chama o método ConsultarFornecedor da classe FornecedorDAO para obter os dados de um fornecedor pelo ID
-                if (fornecedor != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o fornecedor for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {fornecedor.ID}, Nome: {fornecedor.Nome}, Email: {fornecedor.Email}, CNPJ: {fornecedor.CNPJ}, Status: {fornecedor.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {fornecedor.Endereco.Logradouro}, {fornecedor.Endereco.Numero}, {fornecedor.Endereco.Complemento}, {fornecedor.Endereco.Bairro}, {fornecedor.Endereco.Cidade}, {fornecedor.Endereco.UF}, {fornecedor.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({fornecedor.Telefone.DDD}) {fornecedor.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o fornecedor foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Fornecedor não encontrado."); // Exibe uma mensagem caso o fornecedor não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o fornecedor não foi encontrado
-                }
+                return fornecedor;
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar fornecedor: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
         // 5.2 - Consultar Fornecedor por nome
         // O método ConsultarFornecedorNome é responsável por consultar um fornecedor pelo nome e exibir seus dados na tela.
-        public string ConsultarFornecedorNome(string fornecedorNome)
+        public Fornecedor ConsultarFornecedorNome(string fornecedorNome)
         {
             try
             {
                 Fornecedor fornecedor = fornecedorDAO.ConsultarFornecedorNome_DAO(fornecedorNome); // Chama o método ConsultarFornecedor da classe FornecedorDAO para obter os dados de um fornecedor pelo nome
-                if (fornecedor != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o fornecedor for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {fornecedor.ID}, Nome: {fornecedor.Nome}, Email: {fornecedor.Email}, CNPJ: {fornecedor.CNPJ}, Status: {fornecedor.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {fornecedor.Endereco.Logradouro}, {fornecedor.Endereco.Numero}, {fornecedor.Endereco.Complemento}, {fornecedor.Endereco.Bairro}, {fornecedor.Endereco.Cidade}, {fornecedor.Endereco.UF}, {fornecedor.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({fornecedor.Telefone.DDD}) {fornecedor.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o fornecedor foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Fornecedor não encontrado."); // Exibe uma mensagem caso o fornecedor não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o fornecedor não foi encontrado
-                }
+                return fornecedor;
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar fornecedor: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
         // 5.3 - Consultar Fornecedor por CNPJ
         // O método ConsultarFornecedorCNPJ é responsável por consultar um fornecedor pelo cnpj e exibir seus dados na tela.
-        public string ConsultarFornecedorCNPJ(string fornecedorCNPJ)
+        public Fornecedor ConsultarFornecedorCNPJ(string fornecedorCNPJ)
         {
             try
             {
                 Fornecedor fornecedor = fornecedorDAO.ConsultarFornecedorCNPJ_DAO(fornecedorCNPJ); // Chama o método ConsultarFornecedor da classe FornecedorDAO para obter os dados de um fornecedor pelo cnpj
-                if (fornecedor != null)
-                {
-                    /*
-                    // Exibição em console
-                    // Se o fornecedor for encontrado, exibe seus dados básicos (ID, nome, cnpj, email e status), endereço e telefone
-                    Console.WriteLine($"ID: {fornecedor.ID}, Nome: {fornecedor.Nome}, Email: {fornecedor.Email}, CNPJ: {fornecedor.CNPJ}, Status: {fornecedor.StatusAtivo}");
-                    Console.WriteLine($"Endereço: {fornecedor.Endereco.Logradouro}, {fornecedor.Endereco.Numero}, {fornecedor.Endereco.Complemento}, {fornecedor.Endereco.Bairro}, {fornecedor.Endereco.Cidade}, {fornecedor.Endereco.UF}, {fornecedor.Endereco.CEP}");
-                    Console.WriteLine($"Telefone: ({fornecedor.Telefone.DDD}) {fornecedor.Telefone.Numero}");
-                    */
-
-                    return "encontrado"; // Retorna uma string para indicar que o fornecedor foi encontrado
-                }
-                else
-                {
-                    //Console.WriteLine("Fornecedor não encontrado."); // Exibe uma mensagem caso o fornecedor não seja encontrado
-
-                    return "naoencontrado"; // Retorna uma string para indicar que o fornecedor não foi encontrado
-                }
+                return fornecedor;
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao consultar fornecedor: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a consulta
-
-                return "erro"; // Retorna uma string para indicar que ocorreu um erro na consulta
+                MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 

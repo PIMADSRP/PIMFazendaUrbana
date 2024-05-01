@@ -33,7 +33,31 @@
             }
         }
 
-        // 2- Método para verificar se um nome de usuário já está em uso
+        // 2- Método para autenticar funcionário
+        public string AutenticarGerente(string usuario)
+        {
+            try
+            {
+                if (funcionarioDAO.AutenticarGerente_DAO(usuario) == true)
+                {
+                    // Aqui você pode fazer algo com os dados do funcionário autenticado.
+
+                    return "gerente"; // Retorna "gerente" para indicar que o funcionário foi autenticado como gerente
+                }
+                else
+                {
+                    // Aqui você pode lidar com o caso em que o funcionário não é autenticado.
+
+                    return "naogerente"; // Retorna "naogerente" para indicar que o funcionário não foi autenticado como gerente
+                }
+            }
+            catch (Exception ex)
+            {
+                return "erro"; // Retorna "erro" para indicar que houve um erro ao autenticar o funcionário como gerente
+            }
+        }
+
+        // 3- Método para verificar se um nome de usuário já está em uso
         public string VerificarUsuarioDisponivel(string usuario)
         {
             try
@@ -53,8 +77,8 @@
             }
         }
 
-        // 3- Método para alterar senha do funcionário
-        public bool AlterarSenhaFuncionario(int usuario, string novaSenha)
+        // 4- Método para alterar senha do funcionário
+        public bool AlterarSenhaFuncionario(string usuario, string novaSenha)
         {
             try
             {
@@ -68,7 +92,7 @@
             }
         }
 
-        // 4- Método para cadastrar novo funcionário
+        // 5- Método para cadastrar novo funcionário
         public bool CadastrarFuncionario(Funcionario funcionario)
         {
             try
@@ -85,7 +109,7 @@
             }
         }
 
-        // 5- Método para alterar dados do funcionário
+        // 6- Método para alterar dados do funcionário
         public bool AlterarFuncionario(Funcionario funcionario)
         {
             try
@@ -100,7 +124,7 @@
             }
         }
 
-        // 6- Método para excluir (desativar) funcionário
+        // 7- Método para excluir (desativar) funcionário
         public bool ExcluirFuncionario(int funcionarioId)
         {
             try
@@ -115,114 +139,86 @@
             }
         }
 
-        // 7 - Listagem
-        // 7.1- Método para listar funcionários ativos
-        public bool ListarFuncionariosAtivos()
+        // 8 - Listagem
+        // 8.1- Método para listar funcionários ativos
+        public List<Funcionario> ListarFuncionariosAtivos()
         {
             try
             {
                 List<Funcionario> funcionarios = funcionarioDAO.ListarFuncionariosAtivos_DAO();
-
-                // Aqui você pode fazer algo com a lista de funcionários, como exibir em uma interface gráfica ou console.
-
-                return true; // Retorna true para indicar que a listagem foi bem-sucedida
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios ativos
+                throw new Exception("Erro ao listar funcionários ativos.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Funcionario>(); // Retorna uma lista vazia
             }
         }
 
-        // 7.2- Método para listar todos os funcionários
-        public bool ListarTodosFuncionarios()
+        // 8.2- Método para listar todos os funcionários
+        public List<Funcionario> ListarTodosFuncionarios()
         {
             try
             {
                 List<Funcionario> funcionarios = funcionarioDAO.ListarTodosFuncionarios_DAO();
-                
-                // Aqui você pode fazer algo com a lista de funcionários, como exibir em uma interface gráfica ou console.
-
-                return true;  // Retorna true para indicar que a listagem foi bem-sucedida
+                // Aqui você pode adicionar qualquer lógica adicional, se necessário
+                return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)
             {
-                return false;  // Retorna false para indicar que a listagem falhou
+                // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios
+                throw new Exception("Erro ao listar funcionários.", ex);
+                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
+                // return new List<Funcionario>(); // Retorna uma lista vazia
             }
         }
 
-        // 8 - Consulta
-        // 8.1- Método para consultar funcionário por ID
-        public string ConsultarFuncionarioID(int funcionarioId)
+        // 9 - Consulta
+        // 9.1- Método para consultar funcionário por ID
+        public Funcionario ConsultarFuncionarioID(int funcionarioId)
         {
             try
             {
                 Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioID_DAO(funcionarioId);
-                if (funcionario != null)
-                {
-                    // Aqui você pode fazer algo com os dados do funcionário encontrado.
-
-                    return "encontrado"; // Retorna "encontrado" para indicar que o funcionário foi encontrado
-                }
-                else
-                {
-                    // Aqui você pode lidar com o caso em que o funcionário não é encontrado.
-
-                    return "naoencontrado"; // Retorna "naoencontrado" para indicar que o funcionário não foi encontrado
-                }
+                return funcionario;
             }
             catch (Exception ex)
             {
-                return "erro"; // Retorna "erro" para indicar que houve um erro ao consultar o funcionário
+                MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
-        // 8.2- Método para consultar funcionário por nome
-        public string ConsultarFuncionarioNome(string funcionarioNome)
+        // 9.2- Método para consultar funcionário por nome
+        public Funcionario ConsultarFuncionarioNome(string funcionarioNome)
         {
             try
             {
                 Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioNome_DAO(funcionarioNome);
-                if (funcionario != null)
-                {
-                    // Aqui você pode fazer algo com os dados do funcionário encontrado.
-
-                    return "encontrado"; // Retorna "encontrado" para indicar que o funcionário foi encontrado
-                }
-                else
-                {
-                    // Aqui você pode lidar com o caso em que o funcionário não é encontrado.
-
-                    return "naoencontrado"; // Retorna "naoencontrado" para indicar que o funcionário não foi encontrado
-                }
+                return funcionario;
             }
             catch (Exception ex)
             {
-                return "erro"; // Retorna "erro" para indicar que houve um erro ao consultar o funcionário
+                MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 
-        // 8.3- Método para consultar funcionário por nome de usuário
-        public string ConsultarFuncionarioUsuario(string funcionarioUsuario)
+        // 9.3- Método para consultar funcionário por nome de usuário
+        public Funcionario ConsultarFuncionarioUsuario(string funcionarioUsuario)
         {
             try
             {
                 Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioUsuario_DAO(funcionarioUsuario);
-                if (funcionario != null)
-                {
-                    // Aqui você pode fazer algo com os dados do funcionário encontrado.
-
-                    return "encontrado"; // Retorna "encontrado" para indicar que o funcionário foi encontrado
-                }
-                else
-                {
-                    // Aqui você pode lidar com o caso em que o funcionário não é encontrado.
-
-                    return "naoencontrado"; // Retorna "naoencontrado" para indicar que o funcionário não foi encontrado
-                }
+                return funcionario;
             }
             catch (Exception ex)
             {
-                return "erro"; // Retorna "erro" para indicar que houve um erro ao consultar o funcionário
+                MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
         }
 

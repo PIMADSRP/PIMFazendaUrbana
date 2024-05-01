@@ -204,7 +204,7 @@ namespace PIMFazendaUrbana
 
         // 4- Listagem
         // 4.1- MÉTODO LISTAR APENAS CLIENTES ATIVOS DO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public List<Cliente> ListarClientesAtivos_DAO()
         {
             List<Cliente> clientes = new List<Cliente>();
@@ -327,7 +327,7 @@ namespace PIMFazendaUrbana
         }
 
         // 5- Consulta
-        // 5.1- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR ID
+        // 5.1- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR ID (somente clientes ativos)
         // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteID_DAO(int clienteId)
         {
@@ -390,7 +390,7 @@ namespace PIMFazendaUrbana
             return cliente; // Retorna o objeto cliente consultado
         }
 
-        // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME
+        // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME (somente clientes ativos)
         // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteNome_DAO(string clienteNome)
         {
@@ -452,7 +452,7 @@ namespace PIMFazendaUrbana
             return cliente; // Retorna o objeto cliente consultado
         }
 
-        // ********** 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ **********
+        // 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ (somente clientes ativos)
         // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteCNPJ_DAO(string clienteCNPJ)
         {

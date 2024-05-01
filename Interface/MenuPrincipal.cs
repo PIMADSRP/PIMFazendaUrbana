@@ -34,5 +34,14 @@ namespace PIMFazendaUrbana
             // Exibir o segundo formulário
             telaListarClientes.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Criar uma instância do segundo formulário
+            TelaTeste telaTeste = new TelaTeste();
+
+            // Exibir o segundo formulário
+            telaTeste.Show();
+        }
     }
 }
