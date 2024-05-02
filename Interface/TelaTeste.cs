@@ -20,28 +20,23 @@
         // ********** FUNCIONAL **********
         private void BotaoAutenticarFuncionario_Click(object sender, EventArgs e)
         {
+            /*
+
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
 
-            /*
-            string usuario = "nomedeusuarioteste";
-            string senha = "Novasenhateste1_";
-            */
-
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
+
+            */
         }
 
         // Autenticar um funcionário como gerente
         // ********** FUNCIONAL **********
         private void BotaoAutenticarGerente_Click(object sender, EventArgs e)
         {
+            /*
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
-            
-            /*
-            string usuario = "nomedeusuarioteste";
-            string senha = "Novasenhateste1_";
-            */
 
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
             if (autenticado == true)
@@ -70,17 +65,16 @@
             {
                 return;
             }
+
+            */
         }
 
         // Verificar se um nome de usuário já está em uso
         // ********** DANDO ERRO **********
         private void BotaoVerificarUsuarioDisponivel_Click(object sender, EventArgs e)
         {
-            string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
-
             /*
-            string usuario = "nomedeusuarioteste";
-            */
+            string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
 
             string verificarUsuarioDisponivel = funcionarioService.VerificarUsuarioDisponivel(usuario); // Chamando o método VerificarUsuarioDisponivel da instância funcionarioService
             if (verificarUsuarioDisponivel == "disponivel")
@@ -95,19 +89,16 @@
             {
                 MessageBox.Show("Erro ao verificar disponibilidade do nome de usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         // Alterar senha de um funcionário
         // ********** FUNCIONAL **********
         private void BotaoAlterarSenhaFuncionario_Click(object sender, EventArgs e)
         {
+            /*
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
-
-            /*
-            string usuario = "nomedeusuarioteste";
-            string senha = "Novasenhateste1_";
-            */
 
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
 
@@ -119,11 +110,6 @@
             {
                 string novasenha1 = CampoNovaSenha1.Text; // Obtendo o valor do campo de texto da nova senha
                 string novasenha2 = CampoNovaSenha2.Text; // Obtendo o valor do campo de texto da nova senha
-
-                /*
-                string novasenha1 = "Novasenhateste2_";
-                string novasenha2 = "Novasenhateste2_";
-                */
 
                 bool senhasiguais = false;
 
@@ -165,18 +151,15 @@
                     }
                 }
             }
-
+            */
         }
 
         // Excluir (desativar) funcionário
         // ********** FUNCIONAL **********
         private void BotaoExcluirFuncionario_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
-
             /*
-            int id = 1;
-            */
+            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
 
                 bool excluirFuncionario = funcionarioService.ExcluirFuncionario(id); // Chamando o método ExcluirFuncionario da instância funcionarioService
             if (excluirFuncionario == true)
@@ -187,17 +170,15 @@
             {
                 MessageBox.Show("Erro ao excluir funcionário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         // Consultar funcionário por ID
         // ********** FUNCIONAL **********
         private void BotaoConsultarFuncionarioID_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
-
             /*
-            int id = 1;
-            */
+            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
 
             Funcionario funcionario = funcionarioService.ConsultarFuncionarioID(id); // Chamando o método ConsultarFuncionarioID da instância funcionarioService
             if (funcionario != null)
@@ -207,18 +188,16 @@
             else
             {
                 MessageBox.Show("Funcionário não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
+            */
         }
 
         // Consultar funcionário por nome
         // ********** FUNCIONAL **********
         private void BotaoConsultarFuncionarioNome_Click(object sender, EventArgs e)
         {
-            string nome = CampoNome.Text; // Obtendo o valor do campo de texto do nome
-
             /*
-            string nome = "nomefuncionarioteste";
-            */
+            string nome = CampoNome.Text; // Obtendo o valor do campo de texto do nome
 
             Funcionario funcionario = funcionarioService.ConsultarFuncionarioNome(nome); // Chamando o método ConsultarFuncionarioNome da instância funcionarioService
             if (funcionario != null)
@@ -229,17 +208,15 @@
             {
                 MessageBox.Show("Funcionário não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         // Consultar funcionário por nome de usuário
         // ********** FUNCIONAL **********
         private void BotaoConsultarFuncionarioUsuario_Click(object sender, EventArgs e)
         {
-            string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
-
             /*
-            string usuario = "nomedeusuarioteste";
-            */
+            string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
 
             Funcionario funcionario = funcionarioService.ConsultarFuncionarioUsuario(usuario); // Chamando o método ConsultarFuncionarioUsuario da instância funcionarioService
             if (funcionario != null)
@@ -250,6 +227,7 @@
             {
                 MessageBox.Show("Funcionário não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            */
         }
 
         // Método dedicado para autenticar login do funcionário

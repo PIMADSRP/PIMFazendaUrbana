@@ -45,7 +45,6 @@
             TextBoxComplemento = new TextBox();
             TextBoxBairro = new TextBox();
             TextBoxCidade = new TextBox();
-            TextBoxUF = new TextBox();
             TextBoxCEP = new MaskedTextBox();
             LabelLogradouro = new Label();
             LabelNumero = new Label();
@@ -54,13 +53,14 @@
             LabelCidade = new Label();
             LabelUF = new Label();
             LabelCEP = new Label();
+            ComboBoxUF = new ComboBox();
             SuspendLayout();
             // 
             // TextBoxNome
             // 
             TextBoxNome.Location = new Point(71, 56);
             TextBoxNome.Name = "TextBoxNome";
-            TextBoxNome.Size = new Size(190, 23);
+            TextBoxNome.Size = new Size(223, 23);
             TextBoxNome.TabIndex = 0;
             TextBoxNome.Validating += TextBoxNome_Validating;
             // 
@@ -68,7 +68,7 @@
             // 
             TextBoxEmail.Location = new Point(71, 192);
             TextBoxEmail.Name = "TextBoxEmail";
-            TextBoxEmail.Size = new Size(190, 23);
+            TextBoxEmail.Size = new Size(223, 23);
             TextBoxEmail.TabIndex = 3;
             TextBoxEmail.Validating += TextBoxEmail_Validating;
             // 
@@ -168,8 +168,9 @@
             // 
             TextBoxLogradouro.Location = new Point(347, 56);
             TextBoxLogradouro.Name = "TextBoxLogradouro";
-            TextBoxLogradouro.Size = new Size(200, 23);
+            TextBoxLogradouro.Size = new Size(240, 23);
             TextBoxLogradouro.TabIndex = 6;
+            TextBoxLogradouro.Validating += TextBoxLogradouro_Validating; 
             // 
             // TextBoxNumero
             // 
@@ -183,30 +184,24 @@
             // 
             TextBoxComplemento.Location = new Point(408, 117);
             TextBoxComplemento.Name = "TextBoxComplemento";
-            TextBoxComplemento.Size = new Size(139, 23);
+            TextBoxComplemento.Size = new Size(179, 23);
             TextBoxComplemento.TabIndex = 8;
             // 
             // TextBoxBairro
             // 
             TextBoxBairro.Location = new Point(347, 181);
             TextBoxBairro.Name = "TextBoxBairro";
-            TextBoxBairro.Size = new Size(139, 23);
+            TextBoxBairro.Size = new Size(157, 23);
             TextBoxBairro.TabIndex = 9;
+            TextBoxBairro.Validating += TextBoxBairro_Validating;
             // 
             // TextBoxCidade
             // 
             TextBoxCidade.Location = new Point(347, 243);
             TextBoxCidade.Name = "TextBoxCidade";
-            TextBoxCidade.Size = new Size(200, 23);
+            TextBoxCidade.Size = new Size(240, 23);
             TextBoxCidade.TabIndex = 10;
-            // 
-            // TextBoxUF
-            // 
-            TextBoxUF.Location = new Point(347, 307);
-            TextBoxUF.Name = "TextBoxUF";
-            TextBoxUF.Size = new Size(44, 23);
-            TextBoxUF.TabIndex = 11;
-            TextBoxUF.Validating += TextBoxUF_Validating;
+            TextBoxCidade.Validating += TextBoxCidade_Validating;
             // 
             // TextBoxCEP
             // 
@@ -281,11 +276,22 @@
             LabelCEP.TabIndex = 25;
             LabelCEP.Text = "CEP";
             // 
+            // ComboBoxUF
+            // 
+            ComboBoxUF.FormattingEnabled = true;
+            ComboBoxUF.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
+            ComboBoxUF.Location = new Point(347, 307);
+            ComboBoxUF.Name = "ComboBoxUF";
+            ComboBoxUF.Size = new Size(55, 23);
+            ComboBoxUF.TabIndex = 49;
+            ComboBoxUF.Validating += ComboBoxUF_Validating;
+            // 
             // TelaCadastrarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(ComboBoxUF);
             Controls.Add(LabelCEP);
             Controls.Add(LabelUF);
             Controls.Add(LabelCidade);
@@ -294,7 +300,6 @@
             Controls.Add(LabelNumero);
             Controls.Add(LabelLogradouro);
             Controls.Add(TextBoxCEP);
-            Controls.Add(TextBoxUF);
             Controls.Add(TextBoxCidade);
             Controls.Add(TextBoxBairro);
             Controls.Add(TextBoxComplemento);
@@ -314,7 +319,6 @@
             Controls.Add(TextBoxNome);
             Name = "TelaCadastrarCliente";
             Text = "CadastrarCliente";
-            Load += TelaCadastrarCliente_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -338,7 +342,6 @@
         private TextBox TextBoxComplemento;
         private TextBox TextBoxBairro;
         private TextBox TextBoxCidade;
-        private TextBox TextBoxUF;
         private MaskedTextBox TextBoxCEP;
         private Label LabelLogradouro;
         private Label LabelNumero;
@@ -347,5 +350,6 @@
         private Label LabelCidade;
         private Label LabelUF;
         private Label LabelCEP;
+        private ComboBox ComboBoxUF;
     }
 }

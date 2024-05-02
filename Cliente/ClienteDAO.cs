@@ -154,7 +154,7 @@ namespace PIMFazendaUrbana
         }
 
         // 3- MÉTODO EXCLUIR (DESATIVAR) CLIENTE DO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public void ExcluirCliente_DAO(int clienteId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -266,7 +266,7 @@ namespace PIMFazendaUrbana
         }
 
         // 4.2- MÉTODO LISTAR TODOS OS CLIENTES DO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public List<Cliente> ListarTodosClientes_DAO()
         {
             List<Cliente> clientes = new List<Cliente>();

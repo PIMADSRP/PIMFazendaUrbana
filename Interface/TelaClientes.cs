@@ -1,11 +1,11 @@
 ﻿namespace PIMFazendaUrbana
 {
-    public partial class TelaListarClientes : Form
+    public partial class TelaClientes : Form
     {
         ClienteDAO clienteDAO; // Declaração de uma instância de ClienteDAO
         ClienteService clienteService; // Declaração de uma instância de ClienteService
 
-        public TelaListarClientes()
+        public TelaClientes()
         {
             InitializeComponent();
             string connectionString = "Server=localhost;Database=testepim;Uid=root;Pwd=marcelogomesrp;"; // Substitua pelos valores reais da conexão com o banco de dados
@@ -14,28 +14,30 @@
             clienteService = new ClienteService(clienteDAO); // Cria uma instância de ClienteService passando o clienteDAO como parâmetro
 
             // Define AutoGenerateColumns como false para evitar a geração automática de colunas
-            dataGridViewListaClientes.AutoGenerateColumns = false;
+            DataGridViewListaClientes.AutoGenerateColumns = false;
 
             // Adicione manualmente as colunas necessárias
-            dataGridViewListaClientes.Columns.Add("IDColumn", "ID");
-            dataGridViewListaClientes.Columns.Add("NomeColumn", "Nome");
-            dataGridViewListaClientes.Columns.Add("EmailColumn", "Email");
-            dataGridViewListaClientes.Columns.Add("CNPJColumn", "CNPJ");
-            dataGridViewListaClientes.Columns.Add("TelefoneColumn", "Telefone");
-            dataGridViewListaClientes.Columns.Add("EnderecoColumn", "Endereço");
-            dataGridViewListaClientes.Columns.Add("CEPColumn", "CEP");
+            DataGridViewListaClientes.Columns.Add("IDColumn", "ID");
+            DataGridViewListaClientes.Columns.Add("NomeColumn", "Nome");
+            DataGridViewListaClientes.Columns.Add("EmailColumn", "Email");
+            DataGridViewListaClientes.Columns.Add("CNPJColumn", "CNPJ");
+
+            DataGridViewListaClientes.Columns.Add("TelefoneColumn", "Telefone");
+            DataGridViewListaClientes.Columns.Add("EnderecoColumn", "Endereço");
+            DataGridViewListaClientes.Columns.Add("CEPColumn", "CEP");
 
             // Configurar as propriedades DataPropertyName das colunas
-            dataGridViewListaClientes.Columns["IDColumn"].DataPropertyName = "ID";
-            dataGridViewListaClientes.Columns["NomeColumn"].DataPropertyName = "Nome";
-            dataGridViewListaClientes.Columns["EmailColumn"].DataPropertyName = "Email";
-            dataGridViewListaClientes.Columns["CNPJColumn"].DataPropertyName = "CNPJ";
-            dataGridViewListaClientes.Columns["TelefoneColumn"].DataPropertyName = "Telefone"; // Aqui você deve configurar a propriedade do Telefone
-            dataGridViewListaClientes.Columns["EnderecoColumn"].DataPropertyName = "Endereco"; // Aqui você deve configurar a propriedade do Endereco
-            dataGridViewListaClientes.Columns["CEPColumn"].DataPropertyName = "CEP"; // Aqui você deve configurar a propriedade do Endereco
+            DataGridViewListaClientes.Columns["IDColumn"].DataPropertyName = "ID";
+            DataGridViewListaClientes.Columns["NomeColumn"].DataPropertyName = "Nome";
+            DataGridViewListaClientes.Columns["EmailColumn"].DataPropertyName = "Email";
+            DataGridViewListaClientes.Columns["CNPJColumn"].DataPropertyName = "CNPJ";
+
+            DataGridViewListaClientes.Columns["TelefoneColumn"].DataPropertyName = "Telefone";
+            DataGridViewListaClientes.Columns["EnderecoColumn"].DataPropertyName = "Endereco";
+            DataGridViewListaClientes.Columns["CEPColumn"].DataPropertyName = "CEP";
 
             // Configurar o modo de redimensionamento das colunas
-            foreach (DataGridViewColumn column in dataGridViewListaClientes.Columns)
+            foreach (DataGridViewColumn column in DataGridViewListaClientes.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
@@ -68,7 +70,7 @@
                     }).ToList();
 
                     // Preencher o DataGridView com os dados formatados
-                    dataGridViewListaClientes.DataSource = data;
+                    DataGridViewListaClientes.DataSource = data;
                 }
                 else
                 {
@@ -146,6 +148,35 @@
             return cnpjFormatado;
         }
 
+        private void PictureBoxIncluir_Click(object sender, EventArgs e)
+        {
+            // Criar uma instância do segundo formulário
+            TelaCadastrarCliente telaCadastrarCliente = new TelaCadastrarCliente();
 
+            // Exibir o segundo formulário
+            telaCadastrarCliente.Show();
+        }
+
+        private void PictureBoxAtualizar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            TelaClientes tela = new TelaClientes();
+            tela.ShowDialog();
+        }
+
+        private void PictureBoxEditar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxDeletar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxHome_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

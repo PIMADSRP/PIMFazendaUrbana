@@ -1,8 +1,8 @@
 namespace PIMFazendaUrbana
 {
-    public partial class MenuPrincipal : Form
+    public partial class MenuPrincipalTeste : Form
     {
-        public MenuPrincipal()
+        public MenuPrincipalTeste()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace PIMFazendaUrbana
         private void button1_Click_1(object sender, EventArgs e)
         {
             // Criar uma instância do segundo formulário
-            TelaListarClientes telaListarClientes = new TelaListarClientes();
+            TelaClientes telaListarClientes = new TelaClientes();
 
             // Exibir o segundo formulário
             telaListarClientes.Show();

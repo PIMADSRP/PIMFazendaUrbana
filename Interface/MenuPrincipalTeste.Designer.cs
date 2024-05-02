@@ -1,6 +1,6 @@
 ﻿namespace PIMFazendaUrbana
 {
-    partial class MenuPrincipal
+    partial class MenuPrincipalTeste
     {
         /// <summary>
         ///  Required designer variable.
