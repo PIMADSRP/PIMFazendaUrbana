@@ -57,9 +57,10 @@
             // 
             // PanelFooter
             // 
-            PanelFooter.BackColor = Color.LightGoldenrodYellow;
+            PanelFooter.BackColor = Color.FromArgb(120, 220, 120);
             PanelFooter.Controls.Add(label1);
             PanelFooter.Dock = DockStyle.Bottom;
+            PanelFooter.ForeColor = Color.White;
             PanelFooter.Location = new Point(0, 714);
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
@@ -103,7 +104,7 @@
             DataGridViewListaFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewListaFuncionarios.Location = new Point(120, 126);
             DataGridViewListaFuncionarios.Name = "DataGridViewListaFuncionarios";
-            DataGridViewListaFuncionarios.Size = new Size(1235, 580);
+            DataGridViewListaFuncionarios.Size = new Size(1235, 565);
             DataGridViewListaFuncionarios.TabIndex = 33;
             // 
             // PictureBoxEditar
@@ -168,7 +169,7 @@
             // 
             // PanelHeader
             // 
-            PanelHeader.BackColor = Color.ForestGreen;
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
             PanelHeader.Dock = DockStyle.Top;

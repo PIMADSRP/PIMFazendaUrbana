@@ -71,20 +71,20 @@
             // 
             // PanelHeader
             // 
-            PanelHeader.BackColor = Color.ForestGreen;
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
             PanelHeader.Controls.Add(LabelCadastrarUsuarios);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(433, 41);
+            PanelHeader.Size = new Size(434, 41);
             PanelHeader.TabIndex = 0;
             // 
             // LabelCadastrarUsuarios
             // 
             LabelCadastrarUsuarios.AutoSize = true;
             LabelCadastrarUsuarios.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelCadastrarUsuarios.ForeColor = SystemColors.ControlText;
-            LabelCadastrarUsuarios.Location = new Point(141, 9);
+            LabelCadastrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
+            LabelCadastrarUsuarios.Location = new Point(127, 7);
             LabelCadastrarUsuarios.Name = "LabelCadastrarUsuarios";
             LabelCadastrarUsuarios.Size = new Size(171, 25);
             LabelCadastrarUsuarios.TabIndex = 0;
@@ -93,7 +93,7 @@
             // LabelNome
             // 
             LabelNome.AutoSize = true;
-            LabelNome.Location = new Point(65, 86);
+            LabelNome.Location = new Point(74, 86);
             LabelNome.Name = "LabelNome";
             LabelNome.Size = new Size(46, 15);
             LabelNome.TabIndex = 1;
@@ -102,7 +102,7 @@
             // LabelEmail
             // 
             LabelEmail.AutoSize = true;
-            LabelEmail.Location = new Point(64, 115);
+            LabelEmail.Location = new Point(74, 115);
             LabelEmail.Name = "LabelEmail";
             LabelEmail.Size = new Size(47, 15);
             LabelEmail.TabIndex = 3;
@@ -110,7 +110,7 @@
             // 
             // TextBoxUsuario
             // 
-            TextBoxUsuario.Location = new Point(112, 140);
+            TextBoxUsuario.Location = new Point(127, 140);
             TextBoxUsuario.Name = "TextBoxUsuario";
             TextBoxUsuario.Size = new Size(200, 23);
             TextBoxUsuario.TabIndex = 4;
@@ -119,7 +119,7 @@
             // LabelUsuario
             // 
             LabelUsuario.AutoSize = true;
-            LabelUsuario.Location = new Point(59, 144);
+            LabelUsuario.Location = new Point(68, 144);
             LabelUsuario.Name = "LabelUsuario";
             LabelUsuario.Size = new Size(53, 15);
             LabelUsuario.TabIndex = 5;
@@ -127,7 +127,7 @@
             // 
             // TextBoxSenha1
             // 
-            TextBoxSenha1.Location = new Point(112, 170);
+            TextBoxSenha1.Location = new Point(127, 170);
             TextBoxSenha1.Name = "TextBoxSenha1";
             TextBoxSenha1.Size = new Size(139, 23);
             TextBoxSenha1.TabIndex = 5;
@@ -135,7 +135,7 @@
             // LabelSenha
             // 
             LabelSenha.AutoSize = true;
-            LabelSenha.Location = new Point(67, 173);
+            LabelSenha.Location = new Point(77, 173);
             LabelSenha.Name = "LabelSenha";
             LabelSenha.Size = new Size(45, 15);
             LabelSenha.TabIndex = 7;
@@ -144,16 +144,16 @@
             // LabelContato
             // 
             LabelContato.AutoSize = true;
-            LabelContato.Location = new Point(146, 289);
+            LabelContato.Location = new Point(164, 289);
             LabelContato.Name = "LabelContato";
-            LabelContato.Size = new Size(57, 15);
+            LabelContato.Size = new Size(54, 15);
             LabelContato.TabIndex = 9;
-            LabelContato.Text = "Telefone: ";
+            LabelContato.Text = "Telefone:";
             // 
             // LabelUF
             // 
             LabelUF.AutoSize = true;
-            LabelUF.Location = new Point(86, 461);
+            LabelUF.Location = new Point(95, 461);
             LabelUF.Name = "LabelUF";
             LabelUF.Size = new Size(27, 15);
             LabelUF.TabIndex = 11;
@@ -162,7 +162,7 @@
             // TextBoxCodigo
             // 
             TextBoxCodigo.Enabled = false;
-            TextBoxCodigo.Location = new Point(112, 53);
+            TextBoxCodigo.Location = new Point(127, 53);
             TextBoxCodigo.Name = "TextBoxCodigo";
             TextBoxCodigo.Size = new Size(55, 23);
             TextBoxCodigo.TabIndex = 1;
@@ -170,7 +170,7 @@
             // LabelCodigo
             // 
             LabelCodigo.AutoSize = true;
-            LabelCodigo.Location = new Point(59, 57);
+            LabelCodigo.Location = new Point(68, 57);
             LabelCodigo.Name = "LabelCodigo";
             LabelCodigo.Size = new Size(52, 15);
             LabelCodigo.TabIndex = 13;
@@ -179,7 +179,7 @@
             // LabelCidade
             // 
             LabelCidade.AutoSize = true;
-            LabelCidade.Location = new Point(63, 432);
+            LabelCidade.Location = new Point(73, 432);
             LabelCidade.Name = "LabelCidade";
             LabelCidade.Size = new Size(50, 15);
             LabelCidade.TabIndex = 15;
@@ -188,7 +188,7 @@
             // LabelLogradouro
             // 
             LabelLogradouro.AutoSize = true;
-            LabelLogradouro.Location = new Point(38, 317);
+            LabelLogradouro.Location = new Point(47, 317);
             LabelLogradouro.Name = "LabelLogradouro";
             LabelLogradouro.Size = new Size(75, 15);
             LabelLogradouro.TabIndex = 17;
@@ -197,7 +197,7 @@
             // LabelNumero
             // 
             LabelNumero.AutoSize = true;
-            LabelNumero.Location = new Point(55, 346);
+            LabelNumero.Location = new Point(65, 346);
             LabelNumero.Name = "LabelNumero";
             LabelNumero.Size = new Size(57, 15);
             LabelNumero.TabIndex = 19;
@@ -206,7 +206,7 @@
             // LabelComplemento
             // 
             LabelComplemento.AutoSize = true;
-            LabelComplemento.Location = new Point(23, 375);
+            LabelComplemento.Location = new Point(32, 375);
             LabelComplemento.Name = "LabelComplemento";
             LabelComplemento.Size = new Size(90, 15);
             LabelComplemento.TabIndex = 21;
@@ -215,7 +215,7 @@
             // LabelSexo
             // 
             LabelSexo.AutoSize = true;
-            LabelSexo.Location = new Point(75, 230);
+            LabelSexo.Location = new Point(85, 230);
             LabelSexo.Name = "LabelSexo";
             LabelSexo.Size = new Size(38, 15);
             LabelSexo.TabIndex = 23;
@@ -225,7 +225,7 @@
             // 
             ComboBoxSexo.FormattingEnabled = true;
             ComboBoxSexo.Items.AddRange(new object[] { "M", "F", "-" });
-            ComboBoxSexo.Location = new Point(112, 227);
+            ComboBoxSexo.Location = new Point(127, 227);
             ComboBoxSexo.Name = "ComboBoxSexo";
             ComboBoxSexo.Size = new Size(55, 23);
             ComboBoxSexo.TabIndex = 7;
@@ -235,7 +235,7 @@
             // 
             ComboBoxCargo.FormattingEnabled = true;
             ComboBoxCargo.Items.AddRange(new object[] { "Funcionário", "Gerente" });
-            ComboBoxCargo.Location = new Point(112, 256);
+            ComboBoxCargo.Location = new Point(127, 256);
             ComboBoxCargo.Name = "ComboBoxCargo";
             ComboBoxCargo.Size = new Size(121, 23);
             ComboBoxCargo.TabIndex = 8;
@@ -244,7 +244,7 @@
             // LabelCargo
             // 
             LabelCargo.AutoSize = true;
-            LabelCargo.Location = new Point(25, 261);
+            LabelCargo.Location = new Point(35, 261);
             LabelCargo.Name = "LabelCargo";
             LabelCargo.Size = new Size(88, 15);
             LabelCargo.TabIndex = 25;
@@ -253,7 +253,7 @@
             // LabelBairro
             // 
             LabelBairro.AutoSize = true;
-            LabelBairro.Location = new Point(68, 403);
+            LabelBairro.Location = new Point(78, 403);
             LabelBairro.Name = "LabelBairro";
             LabelBairro.Size = new Size(44, 15);
             LabelBairro.TabIndex = 40;
@@ -262,7 +262,7 @@
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(79, 491);
+            LabelCEP.Location = new Point(88, 491);
             LabelCEP.Name = "LabelCEP";
             LabelCEP.Size = new Size(34, 15);
             LabelCEP.TabIndex = 42;
@@ -271,7 +271,7 @@
             // LabelDDD
             // 
             LabelDDD.AutoSize = true;
-            LabelDDD.Location = new Point(74, 290);
+            LabelDDD.Location = new Point(84, 290);
             LabelDDD.Name = "LabelDDD";
             LabelDDD.Size = new Size(37, 15);
             LabelDDD.TabIndex = 45;
@@ -279,12 +279,12 @@
             // 
             // BotaoConfirmar
             // 
-            BotaoConfirmar.BackColor = Color.ForestGreen;
-            BotaoConfirmar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoConfirmar.ForeColor = SystemColors.ControlText;
-            BotaoConfirmar.Location = new Point(109, 529);
+            BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
+            BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoConfirmar.ForeColor = Color.White;
+            BotaoConfirmar.Location = new Point(76, 530);
             BotaoConfirmar.Name = "BotaoConfirmar";
-            BotaoConfirmar.Size = new Size(96, 37);
+            BotaoConfirmar.Size = new Size(90, 30);
             BotaoConfirmar.TabIndex = 18;
             BotaoConfirmar.Text = "Confirmar";
             BotaoConfirmar.UseVisualStyleBackColor = false;
@@ -292,11 +292,12 @@
             // 
             // BotaoCancelar
             // 
-            BotaoCancelar.BackColor = Color.Yellow;
-            BotaoCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoCancelar.Location = new Point(279, 529);
+            BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoCancelar.ForeColor = Color.White;
+            BotaoCancelar.Location = new Point(282, 530);
             BotaoCancelar.Name = "BotaoCancelar";
-            BotaoCancelar.Size = new Size(96, 37);
+            BotaoCancelar.Size = new Size(80, 30);
             BotaoCancelar.TabIndex = 19;
             BotaoCancelar.Text = "Cancelar";
             BotaoCancelar.UseVisualStyleBackColor = false;
@@ -304,7 +305,7 @@
             // 
             // TextBoxNome
             // 
-            TextBoxNome.Location = new Point(112, 82);
+            TextBoxNome.Location = new Point(127, 82);
             TextBoxNome.Name = "TextBoxNome";
             TextBoxNome.Size = new Size(263, 23);
             TextBoxNome.TabIndex = 2;
@@ -312,7 +313,7 @@
             // 
             // TextBoxEmail
             // 
-            TextBoxEmail.Location = new Point(112, 112);
+            TextBoxEmail.Location = new Point(127, 112);
             TextBoxEmail.Name = "TextBoxEmail";
             TextBoxEmail.Size = new Size(262, 23);
             TextBoxEmail.TabIndex = 3;
@@ -320,7 +321,7 @@
             // 
             // TextBoxDDD
             // 
-            TextBoxDDD.Location = new Point(112, 285);
+            TextBoxDDD.Location = new Point(127, 285);
             TextBoxDDD.Mask = "00";
             TextBoxDDD.Name = "TextBoxDDD";
             TextBoxDDD.Size = new Size(31, 23);
@@ -329,7 +330,7 @@
             // 
             // TextBoxTelefone
             // 
-            TextBoxTelefone.Location = new Point(201, 285);
+            TextBoxTelefone.Location = new Point(230, 286);
             TextBoxTelefone.Name = "TextBoxTelefone";
             TextBoxTelefone.Size = new Size(111, 23);
             TextBoxTelefone.TabIndex = 10;
@@ -337,7 +338,7 @@
             // 
             // TextBoxLogradouro
             // 
-            TextBoxLogradouro.Location = new Point(112, 314);
+            TextBoxLogradouro.Location = new Point(127, 314);
             TextBoxLogradouro.Name = "TextBoxLogradouro";
             TextBoxLogradouro.Size = new Size(262, 23);
             TextBoxLogradouro.TabIndex = 11;
@@ -345,7 +346,7 @@
             // 
             // TextBoxNumero
             // 
-            TextBoxNumero.Location = new Point(112, 343);
+            TextBoxNumero.Location = new Point(127, 343);
             TextBoxNumero.Name = "TextBoxNumero";
             TextBoxNumero.Size = new Size(55, 23);
             TextBoxNumero.TabIndex = 12;
@@ -353,14 +354,14 @@
             // 
             // TextBoxComplemento
             // 
-            TextBoxComplemento.Location = new Point(112, 372);
+            TextBoxComplemento.Location = new Point(127, 372);
             TextBoxComplemento.Name = "TextBoxComplemento";
             TextBoxComplemento.Size = new Size(139, 23);
             TextBoxComplemento.TabIndex = 13;
             // 
             // TextBoxBairro
             // 
-            TextBoxBairro.Location = new Point(112, 400);
+            TextBoxBairro.Location = new Point(127, 400);
             TextBoxBairro.Name = "TextBoxBairro";
             TextBoxBairro.Size = new Size(139, 23);
             TextBoxBairro.TabIndex = 14;
@@ -368,7 +369,7 @@
             // 
             // TextBoxCidade
             // 
-            TextBoxCidade.Location = new Point(112, 429);
+            TextBoxCidade.Location = new Point(127, 429);
             TextBoxCidade.Name = "TextBoxCidade";
             TextBoxCidade.Size = new Size(262, 23);
             TextBoxCidade.TabIndex = 15;
@@ -377,7 +378,7 @@
             // TextBoxCEP
             // 
             TextBoxCEP.Culture = new System.Globalization.CultureInfo("");
-            TextBoxCEP.Location = new Point(112, 488);
+            TextBoxCEP.Location = new Point(127, 488);
             TextBoxCEP.Mask = "00000-000";
             TextBoxCEP.Name = "TextBoxCEP";
             TextBoxCEP.Size = new Size(96, 23);
@@ -386,7 +387,7 @@
             // 
             // TextBoxSenha2
             // 
-            TextBoxSenha2.Location = new Point(112, 198);
+            TextBoxSenha2.Location = new Point(127, 198);
             TextBoxSenha2.Name = "TextBoxSenha2";
             TextBoxSenha2.Size = new Size(139, 23);
             TextBoxSenha2.TabIndex = 6;
@@ -395,17 +396,17 @@
             // LabelSenha2
             // 
             LabelSenha2.AutoSize = true;
-            LabelSenha2.Location = new Point(6, 201);
+            LabelSenha2.Location = new Point(10, 200);
             LabelSenha2.Name = "LabelSenha2";
-            LabelSenha2.Size = new Size(106, 15);
+            LabelSenha2.Size = new Size(103, 15);
             LabelSenha2.TabIndex = 47;
-            LabelSenha2.Text = "Confirme a senha: ";
+            LabelSenha2.Text = "Confirme a senha:";
             // 
             // ComboBoxUF
             // 
             ComboBoxUF.FormattingEnabled = true;
             ComboBoxUF.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
-            ComboBoxUF.Location = new Point(112, 458);
+            ComboBoxUF.Location = new Point(127, 458);
             ComboBoxUF.Name = "ComboBoxUF";
             ComboBoxUF.Size = new Size(55, 23);
             ComboBoxUF.TabIndex = 16;
@@ -416,8 +417,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            BackColor = SystemColors.ControlLight;
-            ClientSize = new Size(433, 575);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(434, 575);
             Controls.Add(ComboBoxUF);
             Controls.Add(LabelSenha2);
             Controls.Add(TextBoxSenha2);

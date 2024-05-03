@@ -45,6 +45,8 @@
             LabelHome = new Label();
             TextBoxPesquisar = new TextBox();
             LabelPesquisarClientes = new Label();
+            PanelFooter = new Panel();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)clienteServiceBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
@@ -53,6 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
+            PanelFooter.SuspendLayout();
             SuspendLayout();
             // 
             // DataGridViewListaClientes
@@ -61,10 +64,10 @@
             DataGridViewListaClientes.AllowUserToDeleteRows = false;
             DataGridViewListaClientes.BackgroundColor = SystemColors.Menu;
             DataGridViewListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaClientes.Location = new Point(122, 133);
+            DataGridViewListaClientes.Location = new Point(120, 126);
             DataGridViewListaClientes.Name = "DataGridViewListaClientes";
             DataGridViewListaClientes.ReadOnly = true;
-            DataGridViewListaClientes.Size = new Size(1235, 580);
+            DataGridViewListaClientes.Size = new Size(1235, 565);
             DataGridViewListaClientes.TabIndex = 0;
             DataGridViewListaClientes.VirtualMode = true;
             // 
@@ -154,7 +157,7 @@
             // 
             // PanelHeader
             // 
-            PanelHeader.BackColor = Color.ForestGreen;
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
             PanelHeader.Dock = DockStyle.Top;
@@ -205,11 +208,36 @@
             LabelPesquisarClientes.TabIndex = 53;
             LabelPesquisarClientes.Text = "Pesquisar Clientes:";
             // 
+            // PanelFooter
+            // 
+            PanelFooter.BackColor = Color.FromArgb(120, 220, 120);
+            PanelFooter.Controls.Add(label1);
+            PanelFooter.Dock = DockStyle.Bottom;
+            PanelFooter.ForeColor = Color.White;
+            PanelFooter.Location = new Point(0, 714);
+            PanelFooter.Margin = new Padding(5);
+            PanelFooter.Name = "PanelFooter";
+            PanelFooter.Size = new Size(1370, 35);
+            PanelFooter.TabIndex = 55;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(606, 5);
+            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(263, 25);
+            label1.TabIndex = 0;
+            label1.Text = "FARM SYSTEM | VERSÃO 1.0";
+            label1.TextAlign = ContentAlignment.BottomCenter;
+            // 
             // TelaClientes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1370, 749);
+            Controls.Add(PanelFooter);
             Controls.Add(TextBoxPesquisar);
             Controls.Add(LabelPesquisarClientes);
             Controls.Add(PanelHeader);
@@ -236,6 +264,8 @@
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
+            PanelFooter.ResumeLayout(false);
+            PanelFooter.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,5 +287,7 @@
         private Label LabelHome;
         private TextBox TextBoxPesquisar;
         private Label LabelPesquisarClientes;
+        private Panel PanelFooter;
+        private Label label1;
     }
 }

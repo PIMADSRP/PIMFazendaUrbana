@@ -33,8 +33,8 @@
             LabelNome = new Label();
             LabelCNPJ = new Label();
             LabelEmail = new Label();
-            BotaoOK = new Button();
-            BotaoVoltar = new Button();
+            BotaoConfirmar = new Button();
+            BotaoCancelar = new Button();
             TextBoxCNPJ = new MaskedTextBox();
             TextBoxDDD = new MaskedTextBox();
             TextBoxTelefone = new TextBox();
@@ -54,75 +54,84 @@
             LabelUF = new Label();
             LabelCEP = new Label();
             ComboBoxUF = new ComboBox();
+            LabelCadastrarUsuarios = new Label();
+            PanelHeader = new Panel();
+            PanelHeader.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxNome
             // 
-            TextBoxNome.Location = new Point(71, 56);
+            TextBoxNome.Location = new Point(104, 70);
             TextBoxNome.Name = "TextBoxNome";
-            TextBoxNome.Size = new Size(223, 23);
+            TextBoxNome.Size = new Size(258, 23);
             TextBoxNome.TabIndex = 0;
             TextBoxNome.Validating += TextBoxNome_Validating;
             // 
             // TextBoxEmail
             // 
-            TextBoxEmail.Location = new Point(71, 192);
+            TextBoxEmail.Location = new Point(104, 135);
             TextBoxEmail.Name = "TextBoxEmail";
-            TextBoxEmail.Size = new Size(223, 23);
+            TextBoxEmail.Size = new Size(258, 23);
             TextBoxEmail.TabIndex = 3;
             TextBoxEmail.Validating += TextBoxEmail_Validating;
             // 
             // LabelNome
             // 
             LabelNome.AutoSize = true;
-            LabelNome.Location = new Point(71, 38);
+            LabelNome.Location = new Point(55, 72);
             LabelNome.Name = "LabelNome";
-            LabelNome.Size = new Size(40, 15);
+            LabelNome.Size = new Size(43, 15);
             LabelNome.TabIndex = 3;
-            LabelNome.Text = "Nome";
+            LabelNome.Text = "Nome:";
             // 
             // LabelCNPJ
             // 
             LabelCNPJ.AutoSize = true;
-            LabelCNPJ.Location = new Point(71, 108);
+            LabelCNPJ.Location = new Point(63, 107);
             LabelCNPJ.Name = "LabelCNPJ";
-            LabelCNPJ.Size = new Size(34, 15);
+            LabelCNPJ.Size = new Size(37, 15);
             LabelCNPJ.TabIndex = 4;
-            LabelCNPJ.Text = "CNPJ";
+            LabelCNPJ.Text = "CNPJ:";
             // 
             // LabelEmail
             // 
             LabelEmail.AutoSize = true;
-            LabelEmail.Location = new Point(71, 174);
+            LabelEmail.Location = new Point(53, 140);
             LabelEmail.Name = "LabelEmail";
-            LabelEmail.Size = new Size(41, 15);
+            LabelEmail.Size = new Size(44, 15);
             LabelEmail.TabIndex = 5;
-            LabelEmail.Text = "E-mail";
+            LabelEmail.Text = "E-mail:";
             // 
-            // BotaoOK
+            // BotaoConfirmar
             // 
-            BotaoOK.Location = new Point(617, 381);
-            BotaoOK.Name = "BotaoOK";
-            BotaoOK.Size = new Size(75, 23);
-            BotaoOK.TabIndex = 14;
-            BotaoOK.Text = "OK";
-            BotaoOK.UseVisualStyleBackColor = true;
-            BotaoOK.Click += BotaoOK_Click;
+            BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
+            BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoConfirmar.ForeColor = Color.White;
+            BotaoConfirmar.Location = new Point(76, 430);
+            BotaoConfirmar.Name = "BotaoConfirmar";
+            BotaoConfirmar.Size = new Size(90, 30);
+            BotaoConfirmar.TabIndex = 14;
+            BotaoConfirmar.Text = "Confirmar";
+            BotaoConfirmar.UseVisualStyleBackColor = false;
+            BotaoConfirmar.Click += BotaoOK_Click;
             // 
-            // BotaoVoltar
+            // BotaoCancelar
             // 
-            BotaoVoltar.Location = new Point(71, 381);
-            BotaoVoltar.Name = "BotaoVoltar";
-            BotaoVoltar.Size = new Size(75, 23);
-            BotaoVoltar.TabIndex = 13;
-            BotaoVoltar.Text = "Voltar";
-            BotaoVoltar.UseVisualStyleBackColor = true;
-            BotaoVoltar.Click += BotaoVoltar_Click;
+            BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoCancelar.ForeColor = Color.White;
+            BotaoCancelar.Location = new Point(282, 430);
+            BotaoCancelar.Name = "BotaoCancelar";
+            BotaoCancelar.Size = new Size(80, 30);
+            BotaoCancelar.TabIndex = 13;
+            BotaoCancelar.Text = "Cancelar";
+            BotaoCancelar.UseVisualStyleBackColor = false;
+            BotaoCancelar.Click += BotaoVoltar_Click;
             // 
             // TextBoxCNPJ
             // 
             TextBoxCNPJ.Culture = new System.Globalization.CultureInfo("");
-            TextBoxCNPJ.Location = new Point(71, 126);
+            TextBoxCNPJ.Location = new Point(104, 102);
             TextBoxCNPJ.Mask = "00.000.000/0000-00";
             TextBoxCNPJ.Name = "TextBoxCNPJ";
             TextBoxCNPJ.Size = new Size(115, 23);
@@ -131,7 +140,7 @@
             // 
             // TextBoxDDD
             // 
-            TextBoxDDD.Location = new Point(71, 264);
+            TextBoxDDD.Location = new Point(104, 170);
             TextBoxDDD.Mask = "00";
             TextBoxDDD.Name = "TextBoxDDD";
             TextBoxDDD.Size = new Size(31, 23);
@@ -140,41 +149,41 @@
             // 
             // TextBoxTelefone
             // 
-            TextBoxTelefone.Location = new Point(108, 264);
+            TextBoxTelefone.Location = new Point(206, 170);
             TextBoxTelefone.Name = "TextBoxTelefone";
-            TextBoxTelefone.Size = new Size(111, 23);
+            TextBoxTelefone.Size = new Size(156, 23);
             TextBoxTelefone.TabIndex = 5;
             TextBoxTelefone.Validating += TextBoxTelefone_Validating;
             // 
             // LabelDDD
             // 
             LabelDDD.AutoSize = true;
-            LabelDDD.Location = new Point(71, 246);
+            LabelDDD.Location = new Point(62, 172);
             LabelDDD.Name = "LabelDDD";
-            LabelDDD.Size = new Size(31, 15);
+            LabelDDD.Size = new Size(34, 15);
             LabelDDD.TabIndex = 10;
-            LabelDDD.Text = "DDD";
+            LabelDDD.Text = "DDD:";
             // 
             // LabelTelefone
             // 
             LabelTelefone.AutoSize = true;
-            LabelTelefone.Location = new Point(108, 246);
+            LabelTelefone.Location = new Point(140, 172);
             LabelTelefone.Name = "LabelTelefone";
-            LabelTelefone.Size = new Size(51, 15);
+            LabelTelefone.Size = new Size(54, 15);
             LabelTelefone.TabIndex = 11;
-            LabelTelefone.Text = "Telefone";
+            LabelTelefone.Text = "Telefone:";
             // 
             // TextBoxLogradouro
             // 
-            TextBoxLogradouro.Location = new Point(347, 56);
+            TextBoxLogradouro.Location = new Point(104, 202);
             TextBoxLogradouro.Name = "TextBoxLogradouro";
-            TextBoxLogradouro.Size = new Size(240, 23);
+            TextBoxLogradouro.Size = new Size(258, 23);
             TextBoxLogradouro.TabIndex = 6;
-            TextBoxLogradouro.Validating += TextBoxLogradouro_Validating; 
+            TextBoxLogradouro.Validating += TextBoxLogradouro_Validating;
             // 
             // TextBoxNumero
             // 
-            TextBoxNumero.Location = new Point(347, 117);
+            TextBoxNumero.Location = new Point(104, 236);
             TextBoxNumero.Name = "TextBoxNumero";
             TextBoxNumero.Size = new Size(55, 23);
             TextBoxNumero.TabIndex = 7;
@@ -182,31 +191,31 @@
             // 
             // TextBoxComplemento
             // 
-            TextBoxComplemento.Location = new Point(408, 117);
+            TextBoxComplemento.Location = new Point(104, 268);
             TextBoxComplemento.Name = "TextBoxComplemento";
-            TextBoxComplemento.Size = new Size(179, 23);
+            TextBoxComplemento.Size = new Size(258, 23);
             TextBoxComplemento.TabIndex = 8;
             // 
             // TextBoxBairro
             // 
-            TextBoxBairro.Location = new Point(347, 181);
+            TextBoxBairro.Location = new Point(104, 302);
             TextBoxBairro.Name = "TextBoxBairro";
-            TextBoxBairro.Size = new Size(157, 23);
+            TextBoxBairro.Size = new Size(258, 23);
             TextBoxBairro.TabIndex = 9;
             TextBoxBairro.Validating += TextBoxBairro_Validating;
             // 
             // TextBoxCidade
             // 
-            TextBoxCidade.Location = new Point(347, 243);
+            TextBoxCidade.Location = new Point(104, 334);
             TextBoxCidade.Name = "TextBoxCidade";
-            TextBoxCidade.Size = new Size(240, 23);
+            TextBoxCidade.Size = new Size(258, 23);
             TextBoxCidade.TabIndex = 10;
             TextBoxCidade.Validating += TextBoxCidade_Validating;
             // 
             // TextBoxCEP
             // 
             TextBoxCEP.Culture = new System.Globalization.CultureInfo("");
-            TextBoxCEP.Location = new Point(408, 307);
+            TextBoxCEP.Location = new Point(206, 368);
             TextBoxCEP.Mask = "00000-000";
             TextBoxCEP.Name = "TextBoxCEP";
             TextBoxCEP.Size = new Size(96, 23);
@@ -216,81 +225,104 @@
             // LabelLogradouro
             // 
             LabelLogradouro.AutoSize = true;
-            LabelLogradouro.Location = new Point(347, 38);
+            LabelLogradouro.Location = new Point(23, 205);
             LabelLogradouro.Name = "LabelLogradouro";
-            LabelLogradouro.Size = new Size(69, 15);
+            LabelLogradouro.Size = new Size(72, 15);
             LabelLogradouro.TabIndex = 19;
-            LabelLogradouro.Text = "Logradouro";
+            LabelLogradouro.Text = "Logradouro:";
             // 
             // LabelNumero
             // 
             LabelNumero.AutoSize = true;
-            LabelNumero.Location = new Point(347, 99);
+            LabelNumero.Location = new Point(44, 238);
             LabelNumero.Name = "LabelNumero";
-            LabelNumero.Size = new Size(51, 15);
+            LabelNumero.Size = new Size(54, 15);
             LabelNumero.TabIndex = 20;
-            LabelNumero.Text = "Número";
+            LabelNumero.Text = "Número:";
             // 
             // LabelComplemento
             // 
             LabelComplemento.AutoSize = true;
-            LabelComplemento.Location = new Point(408, 99);
+            LabelComplemento.Location = new Point(8, 271);
             LabelComplemento.Name = "LabelComplemento";
-            LabelComplemento.Size = new Size(84, 15);
+            LabelComplemento.Size = new Size(87, 15);
             LabelComplemento.TabIndex = 21;
-            LabelComplemento.Text = "Complemento";
+            LabelComplemento.Text = "Complemento:";
             // 
             // LabelBairro
             // 
             LabelBairro.AutoSize = true;
-            LabelBairro.Location = new Point(347, 163);
+            LabelBairro.Location = new Point(56, 304);
             LabelBairro.Name = "LabelBairro";
-            LabelBairro.Size = new Size(38, 15);
+            LabelBairro.Size = new Size(41, 15);
             LabelBairro.TabIndex = 22;
-            LabelBairro.Text = "Bairro";
+            LabelBairro.Text = "Bairro:";
             // 
             // LabelCidade
             // 
             LabelCidade.AutoSize = true;
-            LabelCidade.Location = new Point(347, 225);
+            LabelCidade.Location = new Point(50, 337);
             LabelCidade.Name = "LabelCidade";
-            LabelCidade.Size = new Size(44, 15);
+            LabelCidade.Size = new Size(47, 15);
             LabelCidade.TabIndex = 23;
-            LabelCidade.Text = "Cidade";
+            LabelCidade.Text = "Cidade:";
             // 
             // LabelUF
             // 
             LabelUF.AutoSize = true;
-            LabelUF.Location = new Point(347, 287);
+            LabelUF.Location = new Point(76, 370);
             LabelUF.Name = "LabelUF";
-            LabelUF.Size = new Size(21, 15);
+            LabelUF.Size = new Size(24, 15);
             LabelUF.TabIndex = 24;
-            LabelUF.Text = "UF";
+            LabelUF.Text = "UF:";
             // 
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(408, 289);
+            LabelCEP.Location = new Point(168, 370);
             LabelCEP.Name = "LabelCEP";
-            LabelCEP.Size = new Size(28, 15);
+            LabelCEP.Size = new Size(31, 15);
             LabelCEP.TabIndex = 25;
-            LabelCEP.Text = "CEP";
+            LabelCEP.Text = "CEP:";
             // 
             // ComboBoxUF
             // 
             ComboBoxUF.FormattingEnabled = true;
             ComboBoxUF.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
-            ComboBoxUF.Location = new Point(347, 307);
+            ComboBoxUF.Location = new Point(104, 368);
             ComboBoxUF.Name = "ComboBoxUF";
             ComboBoxUF.Size = new Size(55, 23);
             ComboBoxUF.TabIndex = 49;
             ComboBoxUF.Validating += ComboBoxUF_Validating;
             // 
+            // LabelCadastrarUsuarios
+            // 
+            LabelCadastrarUsuarios.AutoSize = true;
+            LabelCadastrarUsuarios.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelCadastrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
+            LabelCadastrarUsuarios.Location = new Point(127, 7);
+            LabelCadastrarUsuarios.Name = "LabelCadastrarUsuarios";
+            LabelCadastrarUsuarios.Size = new Size(163, 25);
+            LabelCadastrarUsuarios.TabIndex = 0;
+            LabelCadastrarUsuarios.Text = "Cadastrar Cliente";
+            // 
+            // PanelHeader
+            // 
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(LabelCadastrarUsuarios);
+            PanelHeader.Dock = DockStyle.Top;
+            PanelHeader.Location = new Point(0, 0);
+            PanelHeader.Name = "PanelHeader";
+            PanelHeader.Size = new Size(434, 41);
+            PanelHeader.TabIndex = 50;
+            // 
             // TelaCadastrarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(434, 478);
+            Controls.Add(PanelHeader);
             Controls.Add(ComboBoxUF);
             Controls.Add(LabelCEP);
             Controls.Add(LabelUF);
@@ -310,8 +342,8 @@
             Controls.Add(TextBoxTelefone);
             Controls.Add(TextBoxDDD);
             Controls.Add(TextBoxCNPJ);
-            Controls.Add(BotaoVoltar);
-            Controls.Add(BotaoOK);
+            Controls.Add(BotaoCancelar);
+            Controls.Add(BotaoConfirmar);
             Controls.Add(LabelNome);
             Controls.Add(LabelCNPJ);
             Controls.Add(LabelEmail);
@@ -319,6 +351,8 @@
             Controls.Add(TextBoxNome);
             Name = "TelaCadastrarCliente";
             Text = "CadastrarCliente";
+            PanelHeader.ResumeLayout(false);
+            PanelHeader.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -330,8 +364,8 @@
         private Label LabelNome;
         private Label LabelCNPJ;
         private Label LabelEmail;
-        private Button BotaoOK;
-        private Button BotaoVoltar;
+        private Button BotaoConfirmar;
+        private Button BotaoCancelar;
         private MaskedTextBox TextBoxCNPJ;
         private MaskedTextBox TextBoxDDD;
         private TextBox TextBoxTelefone;
@@ -351,5 +385,7 @@
         private Label LabelUF;
         private Label LabelCEP;
         private ComboBox ComboBoxUF;
+        private Label LabelCadastrarUsuarios;
+        private Panel PanelHeader;
     }
 }

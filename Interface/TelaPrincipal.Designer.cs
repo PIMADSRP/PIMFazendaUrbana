@@ -72,13 +72,14 @@
             // 
             // pnlFooter
             // 
-            pnlFooter.BackColor = Color.LightGoldenrodYellow;
+            pnlFooter.BackColor = Color.FromArgb(120, 220, 120);
             pnlFooter.Controls.Add(label1);
             pnlFooter.Dock = DockStyle.Bottom;
+            pnlFooter.ForeColor = Color.White;
             pnlFooter.Location = new Point(0, 714);
             pnlFooter.Margin = new Padding(5);
             pnlFooter.Name = "pnlFooter";
-            pnlFooter.Size = new Size(922, 35);
+            pnlFooter.Size = new Size(1106, 35);
             pnlFooter.TabIndex = 0;
             pnlFooter.Paint += panel1_Paint;
             // 
@@ -98,7 +99,7 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = SystemColors.ControlLightLight;
-            label10.Location = new Point(272, 44);
+            label10.Location = new Point(275, 44);
             label10.Name = "label10";
             label10.Size = new Size(77, 13);
             label10.TabIndex = 15;
@@ -209,7 +210,7 @@
             // Fornecedores
             // 
             Fornecedores.Image = (Image)resources.GetObject("Fornecedores.Image");
-            Fornecedores.Location = new Point(292, 4);
+            Fornecedores.Location = new Point(293, 4);
             Fornecedores.Name = "Fornecedores";
             Fornecedores.Size = new Size(40, 37);
             Fornecedores.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -223,7 +224,7 @@
             Usuarios.AccessibleName = "Usuarios";
             Usuarios.AccessibleRole = AccessibleRole.TitleBar;
             Usuarios.Image = (Image)resources.GetObject("Usuarios.Image");
-            Usuarios.Location = new Point(118, 4);
+            Usuarios.Location = new Point(119, 4);
             Usuarios.Name = "Usuarios";
             Usuarios.Size = new Size(40, 37);
             Usuarios.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -234,7 +235,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.ForestGreen;
+            panel1.BackColor = Color.FromArgb(55, 185, 65);
             panel1.Controls.Add(lb_sair);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label7);
@@ -254,12 +255,13 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(922, 60);
+            panel1.Size = new Size(1106, 65);
             panel1.TabIndex = 1;
             // 
             // lb_sair
             // 
             lb_sair.AutoSize = true;
+            lb_sair.BackColor = Color.FromArgb(62, 181, 68);
             lb_sair.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lb_sair.ForeColor = SystemColors.ActiveCaptionText;
             lb_sair.Location = new Point(34, 43);
@@ -301,14 +303,14 @@
             label4.Name = "label4";
             label4.Size = new Size(74, 13);
             label4.TabIndex = 2;
-            label4.Text = "Funcionarios";
+            label4.Text = "Funcionários";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(606, 248);
+            pictureBox2.Location = new Point(562, 125);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(248, 183);
+            pictureBox2.Size = new Size(380, 575);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
@@ -317,7 +319,7 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(922, 749);
+            ClientSize = new Size(1106, 749);
             Controls.Add(pictureBox2);
             Controls.Add(pnlFooter);
             Controls.Add(panel1);
@@ -369,8 +371,8 @@
         private Panel panel1;
         private Label label9;
         private Label label4;
-        private PictureBox pictureBox2;
         private Label lb_sair;
         private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }

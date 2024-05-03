@@ -547,5 +547,6 @@ namespace PIMFazendaUrbana
             return true;
             //MessageBox.Show("Senha forte.", "Senha Forte", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
     }
 }
