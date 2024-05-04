@@ -30,13 +30,13 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
-            pnlFooter = new Panel();
-            label1 = new Label();
-            label10 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            lb_funcionarios = new Label();
+            PanelFooter = new Panel();
+            LabelFarmSystem = new Label();
+            LabelFornecedores = new Label();
+            LabelTransacoes = new Label();
+            LabelInventario = new Label();
+            LabelProdutos = new Label();
+            LabelCategorias = new Label();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
             toolTip3 = new ToolTip(components);
@@ -51,13 +51,13 @@
             Clientes = new PictureBox();
             Fornecedores = new PictureBox();
             Usuarios = new PictureBox();
-            panel1 = new Panel();
-            lb_sair = new Label();
-            pictureBox1 = new PictureBox();
-            label9 = new Label();
-            label4 = new Label();
-            pictureBox2 = new PictureBox();
-            pnlFooter.SuspendLayout();
+            PanelHeader = new Panel();
+            LabelSair = new Label();
+            PictureBoxSair = new PictureBox();
+            LabelClientes = new Label();
+            LabelFuncionarios = new Label();
+            PictureBoxLogoFundo = new PictureBox();
+            PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Transacoes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Inventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Produtos).BeginInit();
@@ -65,90 +65,88 @@
             ((System.ComponentModel.ISupportInitialize)Clientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Fornecedores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Usuarios).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxSair).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).BeginInit();
             SuspendLayout();
             // 
-            // pnlFooter
+            // PanelFooter
             // 
-            pnlFooter.BackColor = Color.FromArgb(120, 220, 120);
-            pnlFooter.Controls.Add(label1);
-            pnlFooter.Dock = DockStyle.Bottom;
-            pnlFooter.ForeColor = Color.White;
-            pnlFooter.Location = new Point(0, 714);
-            pnlFooter.Margin = new Padding(5);
-            pnlFooter.Name = "pnlFooter";
-            pnlFooter.Size = new Size(1106, 35);
-            pnlFooter.TabIndex = 0;
-            pnlFooter.Paint += panel1_Paint;
+            PanelFooter.BackColor = Color.FromArgb(120, 220, 120);
+            PanelFooter.Controls.Add(LabelFarmSystem);
+            PanelFooter.Dock = DockStyle.Bottom;
+            PanelFooter.ForeColor = Color.White;
+            PanelFooter.Location = new Point(0, 714);
+            PanelFooter.Margin = new Padding(5);
+            PanelFooter.Name = "PanelFooter";
+            PanelFooter.Size = new Size(1106, 35);
+            PanelFooter.TabIndex = 0;
             // 
-            // label1
+            // LabelFarmSystem
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(606, 5);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(263, 25);
-            label1.TabIndex = 0;
-            label1.Text = "FARM SYSTEM | VERSÃO 1.0";
+            LabelFarmSystem.AutoSize = true;
+            LabelFarmSystem.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelFarmSystem.Location = new Point(606, 5);
+            LabelFarmSystem.Margin = new Padding(5, 0, 5, 0);
+            LabelFarmSystem.Name = "LabelFarmSystem";
+            LabelFarmSystem.Size = new Size(263, 25);
+            LabelFarmSystem.TabIndex = 0;
+            LabelFarmSystem.Text = "FARM SYSTEM | VERSÃO 1.0";
             // 
-            // label10
+            // LabelFornecedores
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = SystemColors.ControlLightLight;
-            label10.Location = new Point(275, 44);
-            label10.Name = "label10";
-            label10.Size = new Size(77, 13);
-            label10.TabIndex = 15;
-            label10.Text = "Fornecedores";
+            LabelFornecedores.AutoSize = true;
+            LabelFornecedores.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelFornecedores.ForeColor = SystemColors.ControlLightLight;
+            LabelFornecedores.Location = new Point(275, 44);
+            LabelFornecedores.Name = "LabelFornecedores";
+            LabelFornecedores.Size = new Size(77, 13);
+            LabelFornecedores.TabIndex = 15;
+            LabelFornecedores.Text = "Fornecedores";
             // 
-            // label7
+            // LabelTransacoes
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = SystemColors.ControlLightLight;
-            label7.Location = new Point(626, 42);
-            label7.Name = "label7";
-            label7.Size = new Size(67, 15);
-            label7.TabIndex = 13;
-            label7.Text = "Transações";
-            label7.Click += label7_Click;
+            LabelTransacoes.AutoSize = true;
+            LabelTransacoes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelTransacoes.ForeColor = SystemColors.ControlLightLight;
+            LabelTransacoes.Location = new Point(626, 42);
+            LabelTransacoes.Name = "LabelTransacoes";
+            LabelTransacoes.Size = new Size(67, 15);
+            LabelTransacoes.TabIndex = 13;
+            LabelTransacoes.Text = "Transações";
             // 
-            // label6
+            // LabelInventario
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ControlLightLight;
-            label6.Location = new Point(542, 43);
-            label6.Name = "label6";
-            label6.Size = new Size(65, 15);
-            label6.TabIndex = 12;
-            label6.Text = "Inventário";
+            LabelInventario.AutoSize = true;
+            LabelInventario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelInventario.ForeColor = SystemColors.ControlLightLight;
+            LabelInventario.Location = new Point(542, 43);
+            LabelInventario.Name = "LabelInventario";
+            LabelInventario.Size = new Size(65, 15);
+            LabelInventario.TabIndex = 12;
+            LabelInventario.Text = "Inventário";
             // 
-            // label5
+            // LabelProdutos
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = SystemColors.ControlLightLight;
-            label5.Location = new Point(458, 43);
-            label5.Name = "label5";
-            label5.Size = new Size(57, 15);
-            label5.TabIndex = 11;
-            label5.Text = "Produtos";
+            LabelProdutos.AutoSize = true;
+            LabelProdutos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelProdutos.ForeColor = SystemColors.ControlLightLight;
+            LabelProdutos.Location = new Point(458, 43);
+            LabelProdutos.Name = "LabelProdutos";
+            LabelProdutos.Size = new Size(57, 15);
+            LabelProdutos.TabIndex = 11;
+            LabelProdutos.Text = "Produtos";
             // 
-            // lb_funcionarios
+            // LabelCategorias
             // 
-            lb_funcionarios.AutoSize = true;
-            lb_funcionarios.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_funcionarios.ForeColor = SystemColors.ControlLightLight;
-            lb_funcionarios.Location = new Point(368, 44);
-            lb_funcionarios.Name = "lb_funcionarios";
-            lb_funcionarios.Size = new Size(62, 13);
-            lb_funcionarios.TabIndex = 10;
-            lb_funcionarios.Text = "Categorias";
+            LabelCategorias.AutoSize = true;
+            LabelCategorias.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelCategorias.ForeColor = SystemColors.ControlLightLight;
+            LabelCategorias.Location = new Point(368, 44);
+            LabelCategorias.Name = "LabelCategorias";
+            LabelCategorias.Size = new Size(62, 13);
+            LabelCategorias.TabIndex = 10;
+            LabelCategorias.Text = "Categorias";
             // 
             // Transacoes
             // 
@@ -181,7 +179,6 @@
             Produtos.SizeMode = PictureBoxSizeMode.StretchImage;
             Produtos.TabIndex = 3;
             Produtos.TabStop = false;
-            Produtos.Click += Produtos_Click;
             Produtos.MouseHover += Produtos_MouseHover;
             // 
             // Categorias
@@ -233,104 +230,105 @@
             Usuarios.Click += Usuarios_Click;
             Usuarios.MouseHover += Usuarios_MouseHover;
             // 
-            // panel1
+            // PanelHeader
             // 
-            panel1.BackColor = Color.FromArgb(55, 185, 65);
-            panel1.Controls.Add(lb_sair);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(Transacoes);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(Inventario);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(Produtos);
-            panel1.Controls.Add(lb_funcionarios);
-            panel1.Controls.Add(Categorias);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(Fornecedores);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(Clientes);
-            panel1.Controls.Add(Usuarios);
-            panel1.Controls.Add(label4);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1106, 65);
-            panel1.TabIndex = 1;
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(LabelSair);
+            PanelHeader.Controls.Add(PictureBoxSair);
+            PanelHeader.Controls.Add(LabelTransacoes);
+            PanelHeader.Controls.Add(Transacoes);
+            PanelHeader.Controls.Add(LabelInventario);
+            PanelHeader.Controls.Add(Inventario);
+            PanelHeader.Controls.Add(LabelProdutos);
+            PanelHeader.Controls.Add(Produtos);
+            PanelHeader.Controls.Add(LabelCategorias);
+            PanelHeader.Controls.Add(Categorias);
+            PanelHeader.Controls.Add(LabelFornecedores);
+            PanelHeader.Controls.Add(Fornecedores);
+            PanelHeader.Controls.Add(LabelClientes);
+            PanelHeader.Controls.Add(Clientes);
+            PanelHeader.Controls.Add(Usuarios);
+            PanelHeader.Controls.Add(LabelFuncionarios);
+            PanelHeader.Dock = DockStyle.Top;
+            PanelHeader.Location = new Point(0, 0);
+            PanelHeader.Name = "PanelHeader";
+            PanelHeader.Size = new Size(1106, 65);
+            PanelHeader.TabIndex = 1;
             // 
-            // lb_sair
+            // LabelSair
             // 
-            lb_sair.AutoSize = true;
-            lb_sair.BackColor = Color.FromArgb(62, 181, 68);
-            lb_sair.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_sair.ForeColor = SystemColors.ActiveCaptionText;
-            lb_sair.Location = new Point(34, 43);
-            lb_sair.Name = "lb_sair";
-            lb_sair.Size = new Size(26, 13);
-            lb_sair.TabIndex = 18;
-            lb_sair.Text = "Sair";
+            LabelSair.AutoSize = true;
+            LabelSair.BackColor = Color.FromArgb(62, 181, 68);
+            LabelSair.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelSair.ForeColor = SystemColors.ActiveCaptionText;
+            LabelSair.Location = new Point(34, 43);
+            LabelSair.Name = "LabelSair";
+            LabelSair.Size = new Size(26, 13);
+            LabelSair.TabIndex = 18;
+            LabelSair.Text = "Sair";
             // 
-            // pictureBox1
+            // PictureBoxSair
             // 
-            pictureBox1.AccessibleDescription = "Usuarios";
-            pictureBox1.AccessibleName = "Usuarios";
-            pictureBox1.AccessibleRole = AccessibleRole.TitleBar;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(26, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(40, 37);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 16;
-            pictureBox1.TabStop = false;
+            PictureBoxSair.AccessibleDescription = "Usuarios";
+            PictureBoxSair.AccessibleName = "Usuarios";
+            PictureBoxSair.AccessibleRole = AccessibleRole.TitleBar;
+            PictureBoxSair.Image = (Image)resources.GetObject("PictureBoxSair.Image");
+            PictureBoxSair.Location = new Point(26, 4);
+            PictureBoxSair.Name = "PictureBoxSair";
+            PictureBoxSair.Size = new Size(40, 37);
+            PictureBoxSair.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxSair.TabIndex = 16;
+            PictureBoxSair.TabStop = false;
+            PictureBoxSair.Click += PictureBoxSair_Click;
             // 
-            // label9
+            // LabelClientes
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = SystemColors.ControlLightLight;
-            label9.Location = new Point(201, 44);
-            label9.Name = "label9";
-            label9.Size = new Size(48, 13);
-            label9.TabIndex = 14;
-            label9.Text = "Clientes";
+            LabelClientes.AutoSize = true;
+            LabelClientes.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelClientes.ForeColor = SystemColors.ControlLightLight;
+            LabelClientes.Location = new Point(201, 44);
+            LabelClientes.Name = "LabelClientes";
+            LabelClientes.Size = new Size(48, 13);
+            LabelClientes.TabIndex = 14;
+            LabelClientes.Text = "Clientes";
             // 
-            // label4
+            // LabelFuncionarios
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = SystemColors.ControlLightLight;
-            label4.Location = new Point(102, 44);
-            label4.Name = "label4";
-            label4.Size = new Size(74, 13);
-            label4.TabIndex = 2;
-            label4.Text = "Funcionários";
+            LabelFuncionarios.AutoSize = true;
+            LabelFuncionarios.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelFuncionarios.ForeColor = SystemColors.ControlLightLight;
+            LabelFuncionarios.Location = new Point(102, 44);
+            LabelFuncionarios.Name = "LabelFuncionarios";
+            LabelFuncionarios.Size = new Size(74, 13);
+            LabelFuncionarios.TabIndex = 2;
+            LabelFuncionarios.Text = "Funcionários";
             // 
-            // pictureBox2
+            // PictureBoxLogoFundo
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(562, 125);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(380, 575);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 2;
-            pictureBox2.TabStop = false;
+            PictureBoxLogoFundo.Image = (Image)resources.GetObject("PictureBoxLogoFundo.Image");
+            PictureBoxLogoFundo.Location = new Point(562, 125);
+            PictureBoxLogoFundo.Name = "PictureBoxLogoFundo";
+            PictureBoxLogoFundo.Size = new Size(380, 575);
+            PictureBoxLogoFundo.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxLogoFundo.TabIndex = 2;
+            PictureBoxLogoFundo.TabStop = false;
             // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1106, 749);
-            Controls.Add(pictureBox2);
-            Controls.Add(pnlFooter);
-            Controls.Add(panel1);
+            Controls.Add(PictureBoxLogoFundo);
+            Controls.Add(PanelFooter);
+            Controls.Add(PanelHeader);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Margin = new Padding(5);
             Name = "TelaPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Farm System";
             WindowState = FormWindowState.Maximized;
-            pnlFooter.ResumeLayout(false);
-            pnlFooter.PerformLayout();
+            PanelFooter.ResumeLayout(false);
+            PanelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Transacoes).EndInit();
             ((System.ComponentModel.ISupportInitialize)Inventario).EndInit();
             ((System.ComponentModel.ISupportInitialize)Produtos).EndInit();
@@ -338,17 +336,17 @@
             ((System.ComponentModel.ISupportInitialize)Clientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)Fornecedores).EndInit();
             ((System.ComponentModel.ISupportInitialize)Usuarios).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            PanelHeader.ResumeLayout(false);
+            PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxSair).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel pnlFooter;
-        private Label label1;
+        private Panel PanelFooter;
+        private Label LabelFarmSystem;
         private ToolTip toolTip1;
         private ToolTip toolTip2;
         private ToolTip toolTip3;
@@ -356,11 +354,11 @@
         private ToolTip toolTip5;
         private ToolTip toolTip6;
         private ToolTip toolTip7;
-        private Label label5;
-        private Label lb_funcionarios;
-        private Label label10;
-        private Label label7;
-        private Label label6;
+        private Label LabelProdutos;
+        private Label LabelCategorias;
+        private Label LabelFornecedores;
+        private Label LabelTransacoes;
+        private Label LabelInventario;
         private PictureBox Transacoes;
         private PictureBox Inventario;
         private PictureBox Produtos;
@@ -368,11 +366,11 @@
         private PictureBox Clientes;
         private PictureBox Fornecedores;
         private PictureBox Usuarios;
-        private Panel panel1;
-        private Label label9;
-        private Label label4;
-        private Label lb_sair;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+        private Panel PanelHeader;
+        private Label LabelClientes;
+        private Label LabelFuncionarios;
+        private Label LabelSair;
+        private PictureBox PictureBoxSair;
+        private PictureBox PictureBoxLogoFundo;
     }
 }

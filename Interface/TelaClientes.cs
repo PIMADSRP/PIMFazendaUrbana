@@ -41,9 +41,22 @@
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+
         }
 
         private void TelaListarClientes_Load(object sender, EventArgs e)
+        {
+            ListarClientesAtivosDataGrid();
+        }
+
+        // Manipulador de eventos para o evento ClienteCadastradoSucesso
+        private void TelaCadastrarCliente_ClienteCadastradoSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
+        // Método para atualizar o DataGridView
+        private void AtualizarDataGridView()
         {
             ListarClientesAtivosDataGrid();
         }
@@ -155,6 +168,8 @@
 
             // Exibir o segundo formulário
             telaCadastrarCliente.Show();
+
+            telaCadastrarCliente.ClienteCadastradoSucesso += TelaCadastrarCliente_ClienteCadastradoSucesso;
         }
 
         private void PictureBoxAtualizar_Click(object sender, EventArgs e)

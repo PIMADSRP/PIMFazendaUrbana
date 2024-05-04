@@ -6,28 +6,11 @@ namespace PIMFazendaUrbana
         {
             InitializeComponent();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void fornecedoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
             TelaFuncionarios telaUser = new TelaFuncionarios();
             telaUser.ShowDialog();
-
-
         }
-
-
 
         private void Usuarios_Click(object sender, EventArgs e)
         {
@@ -35,12 +18,6 @@ namespace PIMFazendaUrbana
             // frm.ShowDialog();
             TelaFuncionarios telaUser = new TelaFuncionarios();
             telaUser.ShowDialog();
-
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
         }
 
         private void Usuarios_MouseHover(object sender, EventArgs e)
@@ -78,26 +55,6 @@ namespace PIMFazendaUrbana
             toolTip7.SetToolTip(Fornecedores, "Fornecedores");
         }
 
-        private void Produtos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void inventarioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Clientes_Click(object sender, EventArgs e)
         {
             // Criar uma instância do segundo formulário
@@ -105,6 +62,11 @@ namespace PIMFazendaUrbana
 
             // Exibir o segundo formulário
             telaListarClientes.Show();
+        }
+
+        private void PictureBoxSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

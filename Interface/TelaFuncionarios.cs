@@ -51,6 +51,18 @@
             ListarFuncionariosAtivosDataGrid();
         }
 
+        // Manipulador de eventos para o evento FuncionarioCadastradoSucesso
+        private void TelaCadastrarFuncionario_FuncionarioCadastradoSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
+        // Método para atualizar o DataGridView
+        private void AtualizarDataGridView()
+        {
+            ListarFuncionariosAtivosDataGrid();
+        }
+
         private void ListarFuncionariosAtivosDataGrid()
         {
             try
@@ -147,6 +159,8 @@
 
             // Exibir o segundo formulário
             telaCadastrarFuncionario.Show();
+
+            telaCadastrarFuncionario.FuncionarioCadastradoSucesso += TelaCadastrarFuncionario_FuncionarioCadastradoSucesso;
         }
         private void DataGridViewListaFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

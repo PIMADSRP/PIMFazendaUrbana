@@ -34,54 +34,73 @@ namespace PIMFazendaUrbana
             clienteService = new ClienteService(clienteDAO); // Cria uma instância de ClienteService passando o clienteDAO como parâmetro
         }
 
-        private void BotaoOK_Click(object sender, EventArgs e)
+        private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
             if (nomevalido == false)
             {
                 MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
                 return;
             }
             else if (cnpjvalido == false)
             {
                 MessageBox.Show("Preencha o campo CNPJ corretamente. O CNPJ deve ter 14 números", "CNPJ Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxCNPJ; // Define o foco para o TextBoxCNPJ
                 return;
             }
             else if (emailvalido == false)
             {
                 MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
                 return;
             }
             else if (dddvalido == false)
             {
                 MessageBox.Show("Preencha o campo DDD corretamente. O DDD deve ter 2 números", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxDDD; // Define o foco para o TextBoxDDD
+                return;
             }
             else if (telefonevalido == false)
             {
                 MessageBox.Show("Preencha o campo Telefone corretamente. O telefone deve ter 8 ou 9 números", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxTelefone; // Define o foco para o TextBoxTelefone
+                return;
             }
             else if (logradourovalido == false)
             {
                 MessageBox.Show("Preencha o campo Logradouro corretamente. O logradouro deve ter ao menos 3 caracteres", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxLogradouro; // Define o foco para o TextBoxLogradouro
+                return;
             }
             else if (numerocasavalido == false)
             {
                 MessageBox.Show("Preencha o campo Número corretamente. O número deve ter apenas caracteres numéricos", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxNumero; // Define o foco para o TextBoxNumero
+                return;
             }
             else if (bairrovalido == false)
             {
                 MessageBox.Show("Preencha o campo Bairro corretamente. O bairro deve ter ao menos 3 caracteres", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxBairro; // Define o foco para o TextBoxBairro
+                return;
             }
             else if (cidadevalida == false)
             {
                 MessageBox.Show("Preencha o campo Cidade corretamente. A cidade deve ter ao menos 3 caracteres", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxCidade; // Define o foco para o TextBoxCidade
+                return;
             }
             else if (ufvalido == false)
             {
                 MessageBox.Show("Preencha o campo UF corretamente. A UF não pode ser vazia", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = ComboBoxUF; // Define o foco para o ComboBoxUF
+                return;
             }
             else if (cepvalido == false)
             {
                 MessageBox.Show("Preencha o campo CEP corretamente. O CEP deve ter 8 números", "CEP Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxCEP; // Define o foco para o TextBoxCEP
+                return;
             }
             else
             {
@@ -109,6 +128,7 @@ namespace PIMFazendaUrbana
                 if (sucesso == true)
                 {
                     MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClienteCadastradoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
                 else
@@ -118,7 +138,11 @@ namespace PIMFazendaUrbana
                 }
             }
         }
-        private void BotaoVoltar_Click(object sender, EventArgs e)
+
+        // Definir um evento para notificar o cadastro bem-sucedido do cliente
+        public event EventHandler ClienteCadastradoSucesso;
+
+        private void BotaoCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -135,6 +159,7 @@ namespace PIMFazendaUrbana
                 MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 nomevalido = false;
+                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
             }
             else
             {
@@ -156,6 +181,7 @@ namespace PIMFazendaUrbana
                 MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 emailvalido = false;
+                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
             }
             else
             {
@@ -179,6 +205,7 @@ namespace PIMFazendaUrbana
                 MessageBox.Show("Preencha o campo CNPJ corretamente. O CNPJ deve conter 14 números.", "CNPJ Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 cnpjvalido = false;
+                this.ActiveControl = TextBoxCNPJ; // Define o foco para o TextBoxCNPJ
             }
             else
             {
@@ -199,6 +226,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("O DDD deve conter exatamente 2 caracteres numéricos.", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 dddvalido = false;
+                this.ActiveControl = TextBoxDDD;
             }
             else
             {
@@ -218,6 +246,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("O número de telefone deve conter 8 ou 9 caracteres numéricos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 telefonevalido = false;
+                this.ActiveControl = TextBoxTelefone;
             }
             else
             {
@@ -237,6 +266,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("O logradouro deve conter ao menos 3 caracteres.", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 logradourovalido = false;
+                this.ActiveControl = TextBoxLogradouro; // Define o foco para o TextBoxLogradouro
             }
             else
             {
@@ -256,6 +286,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("O número deve conter apenas caracteres numéricos.", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 numerocasavalido = false;
+                this.ActiveControl = TextBoxNumero; // Define o foco para o TextBoxNumero
             }
             else
             {
@@ -275,6 +306,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("O bairro deve conter ao menos 3 caracteres.", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 bairrovalido = false;
+                this.ActiveControl = TextBoxBairro; // Define o foco para o TextBoxBairro
             }
             else
             {
@@ -294,6 +326,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("A cidade deve conter ao menos 3 caracteres.", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cidadevalida = false;
+                this.ActiveControl = TextBoxCidade; // Define o foco para o TextBoxCidade
             }
             else
             {
@@ -313,6 +346,7 @@ namespace PIMFazendaUrbana
 
                 MessageBox.Show("Selecione uma UF válida.", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ufvalido = false;
+                this.ActiveControl = ComboBoxUF; // Define o foco para o ComboBoxUF
             }
             else
             {
@@ -337,6 +371,7 @@ namespace PIMFazendaUrbana
                 MessageBox.Show("Preencha o campo CEP corretamente. O CEP deve conter 8 números.", "CEP Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 cepvalido = false;
+                this.ActiveControl = TextBoxCEP; // Define o foco para o TextBoxCEP
             }
             else
             {
@@ -345,7 +380,6 @@ namespace PIMFazendaUrbana
                 cepvalido = true;
             }
         }
-
 
 
     }

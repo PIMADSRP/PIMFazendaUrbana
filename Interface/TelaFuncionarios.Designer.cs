@@ -112,7 +112,7 @@
             PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
             PictureBoxEditar.Location = new Point(628, 79);
             PictureBoxEditar.Name = "PictureBoxEditar";
-            PictureBoxEditar.Size = new Size(27, 23);
+            PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxEditar.TabIndex = 35;
             PictureBoxEditar.TabStop = false;
@@ -123,7 +123,7 @@
             PictureBoxDeletar.Image = (Image)resources.GetObject("PictureBoxDeletar.Image");
             PictureBoxDeletar.Location = new Point(682, 79);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
-            PictureBoxDeletar.Size = new Size(27, 23);
+            PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxDeletar.TabIndex = 36;
             PictureBoxDeletar.TabStop = false;
@@ -134,7 +134,7 @@
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
             PictureBoxIncluir.Location = new Point(574, 79);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
-            PictureBoxIncluir.Size = new Size(27, 23);
+            PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxIncluir.TabIndex = 37;
             PictureBoxIncluir.TabStop = false;
@@ -217,7 +217,7 @@
             PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
             PictureBoxAtualizar.Location = new Point(736, 79);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
-            PictureBoxAtualizar.Size = new Size(27, 23);
+            PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxAtualizar.TabIndex = 43;
             PictureBoxAtualizar.TabStop = false;

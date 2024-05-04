@@ -110,10 +110,10 @@
             BotaoConfirmar.Location = new Point(76, 430);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
-            BotaoConfirmar.TabIndex = 14;
+            BotaoConfirmar.TabIndex = 13;
             BotaoConfirmar.Text = "Confirmar";
             BotaoConfirmar.UseVisualStyleBackColor = false;
-            BotaoConfirmar.Click += BotaoOK_Click;
+            BotaoConfirmar.Click += BotaoConfirmar_Click;
             // 
             // BotaoCancelar
             // 
@@ -123,10 +123,10 @@
             BotaoCancelar.Location = new Point(282, 430);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
-            BotaoCancelar.TabIndex = 13;
+            BotaoCancelar.TabIndex = 14;
             BotaoCancelar.Text = "Cancelar";
             BotaoCancelar.UseVisualStyleBackColor = false;
-            BotaoCancelar.Click += BotaoVoltar_Click;
+            BotaoCancelar.Click += BotaoCancelar_Click;
             // 
             // TextBoxCNPJ
             // 
@@ -134,7 +134,7 @@
             TextBoxCNPJ.Location = new Point(104, 102);
             TextBoxCNPJ.Mask = "00.000.000/0000-00";
             TextBoxCNPJ.Name = "TextBoxCNPJ";
-            TextBoxCNPJ.Size = new Size(115, 23);
+            TextBoxCNPJ.Size = new Size(127, 23);
             TextBoxCNPJ.TabIndex = 2;
             TextBoxCNPJ.Validating += TextBoxCNPJ_Validating;
             // 
@@ -292,7 +292,7 @@
             ComboBoxUF.Location = new Point(104, 368);
             ComboBoxUF.Name = "ComboBoxUF";
             ComboBoxUF.Size = new Size(55, 23);
-            ComboBoxUF.TabIndex = 49;
+            ComboBoxUF.TabIndex = 11;
             ComboBoxUF.Validating += ComboBoxUF_Validating;
             // 
             // LabelCadastrarUsuarios

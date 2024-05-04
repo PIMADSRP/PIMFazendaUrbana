@@ -80,7 +80,7 @@
             PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
             PictureBoxAtualizar.Location = new Point(735, 78);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
-            PictureBoxAtualizar.Size = new Size(27, 23);
+            PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxAtualizar.TabIndex = 51;
             PictureBoxAtualizar.TabStop = false;
@@ -127,7 +127,7 @@
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
             PictureBoxIncluir.Location = new Point(573, 78);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
-            PictureBoxIncluir.Size = new Size(27, 23);
+            PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxIncluir.TabIndex = 46;
             PictureBoxIncluir.TabStop = false;
@@ -138,7 +138,7 @@
             PictureBoxDeletar.Image = (Image)resources.GetObject("PictureBoxDeletar.Image");
             PictureBoxDeletar.Location = new Point(681, 78);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
-            PictureBoxDeletar.Size = new Size(27, 23);
+            PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxDeletar.TabIndex = 45;
             PictureBoxDeletar.TabStop = false;
@@ -149,7 +149,7 @@
             PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
             PictureBoxEditar.Location = new Point(627, 78);
             PictureBoxEditar.Name = "PictureBoxEditar";
-            PictureBoxEditar.Size = new Size(27, 23);
+            PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxEditar.TabIndex = 44;
             PictureBoxEditar.TabStop = false;
