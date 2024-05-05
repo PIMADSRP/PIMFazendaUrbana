@@ -80,7 +80,7 @@
             LabelEditarUsuarios.AutoSize = true;
             LabelEditarUsuarios.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelEditarUsuarios.ForeColor = SystemColors.ButtonHighlight;
-            LabelEditarUsuarios.Location = new Point(127, 7);
+            LabelEditarUsuarios.Location = new Point(153, 7);
             LabelEditarUsuarios.Name = "LabelEditarUsuarios";
             LabelEditarUsuarios.Size = new Size(138, 25);
             LabelEditarUsuarios.TabIndex = 0;

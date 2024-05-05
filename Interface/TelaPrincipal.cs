@@ -5,62 +5,76 @@ namespace PIMFazendaUrbana
         public TelaPrincipal()
         {
             InitializeComponent();
+
+            // Abre a tela principal
+            this.Show();
+
+            // Desabilita todos os controles da tela principal
+            foreach (Control control in this.Controls)
+            {
+                control.Enabled = false;
+            }
+
+            // Abre a tela de login
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.FormClosed += (sender, e) =>
+            {
+                // Habilita todos os controles da tela principal quando a tela de login for fechada
+                foreach (Control control in this.Controls)
+                {
+                    control.Enabled = true;
+                }
+            };
+            telaLogin.Show();
+
+            // Define o foco para a TelaLogin (aparecer por cima da TelaPrincipal)
+            telaLogin.Activate();
         }
-        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void PictureBoxFuncionarios_Click(object sender, EventArgs e)
         {
             TelaFuncionarios telaUser = new TelaFuncionarios();
             telaUser.ShowDialog();
         }
 
-        private void Usuarios_Click(object sender, EventArgs e)
+        private void PictureBoxFuncionarios_MouseHover(object sender, EventArgs e)
         {
-            //frmUsuarios frm = new frmUsuarios();
-            // frm.ShowDialog();
-            TelaFuncionarios telaUser = new TelaFuncionarios();
-            telaUser.ShowDialog();
+            toolTip1.SetToolTip(PictureBoxFuncionarios, "Usuarios");
         }
 
-        private void Usuarios_MouseHover(object sender, EventArgs e)
+        private void PictureBoxCategorias_MouseHover(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(Usuarios, "Usuarios");
+            toolTip2.SetToolTip(PictureBoxCategorias, "Categorias");
         }
 
-        private void Categorias_MouseHover(object sender, EventArgs e)
+        private void PictureBoxProdutos_MouseHover(object sender, EventArgs e)
         {
-            toolTip2.SetToolTip(Categorias, "Categorias");
+            toolTip3.SetToolTip(PictureBoxProdutos, "Produtos");
         }
 
-        private void Produtos_MouseHover(object sender, EventArgs e)
+        private void PictureBoxInventario_MouseHover(object sender, EventArgs e)
         {
-            toolTip3.SetToolTip(Produtos, "Produtos");
+            toolTip4.SetToolTip(PictureBoxInventario, "Inventario");
         }
 
-        private void Inventario_MouseHover(object sender, EventArgs e)
+        private void PictureBoxTransacoes_MouseHover(object sender, EventArgs e)
         {
-            toolTip4.SetToolTip(Inventario, "Inventario");
+            toolTip5.SetToolTip(PictureBoxTransacoes, "Transacoes");
         }
 
-        private void Transacoes_MouseHover(object sender, EventArgs e)
+        private void PictureBoxClientes_MouseHover(object sender, EventArgs e)
         {
-            toolTip5.SetToolTip(Transacoes, "Transacoes");
+            toolTip6.SetToolTip(PictureBoxClientes, "Clientes");
         }
 
-        private void Clientes_MouseHover(object sender, EventArgs e)
+        private void PictureBoxFornecedores_MouseHover(object sender, EventArgs e)
         {
-            toolTip6.SetToolTip(Clientes, "Clientes");
+            toolTip7.SetToolTip(PictureBoxFornecedores, "Fornecedores");
         }
 
-        private void Fornecedores_MouseHover(object sender, EventArgs e)
+        private void PictureBoxClientes_Click(object sender, EventArgs e)
         {
-            toolTip7.SetToolTip(Fornecedores, "Fornecedores");
-        }
-
-        private void Clientes_Click(object sender, EventArgs e)
-        {
-            // Criar uma instância do segundo formulário
             TelaClientes telaListarClientes = new TelaClientes();
-
-            // Exibir o segundo formulário
             telaListarClientes.Show();
         }
 
@@ -69,13 +83,47 @@ namespace PIMFazendaUrbana
             this.Close();
         }
 
-        private void Produtos_Click(object sender, EventArgs e)
+        private void PictureBoxProdutos_Click(object sender, EventArgs e)
         {
-            // Criar uma instância do segundo formulário
-            TelaIndicarPlantio telaIndicarPlantio = new TelaIndicarPlantio();
 
-            // Exibir o segundo formulário
+        }
+
+        private void PictureBoxCategorias_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxFornecedores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxInventario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBoxTransacoes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BotaoTesteRecomendacoes_Click(object sender, EventArgs e)
+        {
+            TelaIndicarPlantio telaIndicarPlantio = new TelaIndicarPlantio();
             telaIndicarPlantio.Show();
+        }
+
+        private void BotaoLogin_Click(object sender, EventArgs e)
+        {
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.Show();
+        }
+
+        private void BotaoAbrirTelaDeTeste_Click(object sender, EventArgs e)
+        {
+            TelaTeste telaTeste = new TelaTeste();
+            telaTeste.Show();
         }
     }
 }

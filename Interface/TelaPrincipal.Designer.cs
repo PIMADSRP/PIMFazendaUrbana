@@ -44,27 +44,30 @@
             toolTip5 = new ToolTip(components);
             toolTip6 = new ToolTip(components);
             toolTip7 = new ToolTip(components);
-            Transacoes = new PictureBox();
-            Inventario = new PictureBox();
-            Produtos = new PictureBox();
-            Categorias = new PictureBox();
-            Clientes = new PictureBox();
-            Fornecedores = new PictureBox();
-            Usuarios = new PictureBox();
+            PictureBoxTransacoes = new PictureBox();
+            PictureBoxInventario = new PictureBox();
+            PictureBoxProdutos = new PictureBox();
+            PictureBoxCategorias = new PictureBox();
+            PictureBoxClientes = new PictureBox();
+            PictureBoxFornecedores = new PictureBox();
+            PictureBoxFuncionarios = new PictureBox();
             PanelHeader = new Panel();
+            BotaoTesteRecomendacoes = new Button();
+            BotaoLogin = new Button();
+            BotaoAbrirTelaDeTeste = new Button();
             LabelSair = new Label();
             PictureBoxSair = new PictureBox();
             LabelClientes = new Label();
             LabelFuncionarios = new Label();
             PictureBoxLogoFundo = new PictureBox();
             PanelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Transacoes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Inventario).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Produtos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Categorias).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Clientes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Fornecedores).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Usuarios).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCategorias).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSair).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).BeginInit();
@@ -148,113 +151,152 @@
             LabelCategorias.TabIndex = 10;
             LabelCategorias.Text = "Categorias";
             // 
-            // Transacoes
+            // PictureBoxTransacoes
             // 
-            Transacoes.Image = (Image)resources.GetObject("Transacoes.Image");
-            Transacoes.Location = new Point(640, 4);
-            Transacoes.Name = "Transacoes";
-            Transacoes.Size = new Size(40, 37);
-            Transacoes.SizeMode = PictureBoxSizeMode.StretchImage;
-            Transacoes.TabIndex = 5;
-            Transacoes.TabStop = false;
-            Transacoes.MouseHover += Transacoes_MouseHover;
+            PictureBoxTransacoes.Image = (Image)resources.GetObject("PictureBoxTransacoes.Image");
+            PictureBoxTransacoes.Location = new Point(640, 4);
+            PictureBoxTransacoes.Name = "PictureBoxTransacoes";
+            PictureBoxTransacoes.Size = new Size(40, 37);
+            PictureBoxTransacoes.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxTransacoes.TabIndex = 5;
+            PictureBoxTransacoes.TabStop = false;
+            PictureBoxTransacoes.Click += PictureBoxTransacoes_Click;
+            PictureBoxTransacoes.MouseHover += PictureBoxTransacoes_MouseHover;
             // 
-            // Inventario
+            // PictureBoxInventario
             // 
-            Inventario.Image = (Image)resources.GetObject("Inventario.Image");
-            Inventario.Location = new Point(553, 4);
-            Inventario.Name = "Inventario";
-            Inventario.Size = new Size(40, 37);
-            Inventario.SizeMode = PictureBoxSizeMode.StretchImage;
-            Inventario.TabIndex = 4;
-            Inventario.TabStop = false;
-            Inventario.MouseHover += Inventario_MouseHover;
+            PictureBoxInventario.Image = (Image)resources.GetObject("PictureBoxInventario.Image");
+            PictureBoxInventario.Location = new Point(553, 4);
+            PictureBoxInventario.Name = "PictureBoxInventario";
+            PictureBoxInventario.Size = new Size(40, 37);
+            PictureBoxInventario.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxInventario.TabIndex = 4;
+            PictureBoxInventario.TabStop = false;
+            PictureBoxInventario.Click += PictureBoxInventario_Click;
+            PictureBoxInventario.MouseHover += PictureBoxInventario_MouseHover;
             // 
-            // Produtos
+            // PictureBoxProdutos
             // 
-            Produtos.Image = (Image)resources.GetObject("Produtos.Image");
-            Produtos.Location = new Point(466, 4);
-            Produtos.Name = "Produtos";
-            Produtos.Size = new Size(40, 37);
-            Produtos.SizeMode = PictureBoxSizeMode.StretchImage;
-            Produtos.TabIndex = 3;
-            Produtos.TabStop = false;
-            Produtos.Click += Produtos_Click;
-            Produtos.MouseHover += Produtos_MouseHover;
+            PictureBoxProdutos.Image = (Image)resources.GetObject("PictureBoxProdutos.Image");
+            PictureBoxProdutos.Location = new Point(466, 4);
+            PictureBoxProdutos.Name = "PictureBoxProdutos";
+            PictureBoxProdutos.Size = new Size(40, 37);
+            PictureBoxProdutos.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxProdutos.TabIndex = 3;
+            PictureBoxProdutos.TabStop = false;
+            PictureBoxProdutos.Click += PictureBoxProdutos_Click;
+            PictureBoxProdutos.MouseHover += PictureBoxProdutos_MouseHover;
             // 
-            // Categorias
+            // PictureBoxCategorias
             // 
-            Categorias.Image = (Image)resources.GetObject("Categorias.Image");
-            Categorias.Location = new Point(379, 4);
-            Categorias.Name = "Categorias";
-            Categorias.Size = new Size(40, 37);
-            Categorias.SizeMode = PictureBoxSizeMode.StretchImage;
-            Categorias.TabIndex = 7;
-            Categorias.TabStop = false;
-            Categorias.MouseHover += Categorias_MouseHover;
+            PictureBoxCategorias.Image = (Image)resources.GetObject("PictureBoxCategorias.Image");
+            PictureBoxCategorias.Location = new Point(379, 4);
+            PictureBoxCategorias.Name = "PictureBoxCategorias";
+            PictureBoxCategorias.Size = new Size(40, 37);
+            PictureBoxCategorias.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxCategorias.TabIndex = 7;
+            PictureBoxCategorias.TabStop = false;
+            PictureBoxCategorias.Click += PictureBoxCategorias_Click;
+            PictureBoxCategorias.MouseHover += PictureBoxCategorias_MouseHover;
             // 
-            // Clientes
+            // PictureBoxClientes
             // 
-            Clientes.Image = (Image)resources.GetObject("Clientes.Image");
-            Clientes.Location = new Point(205, 4);
-            Clientes.Name = "Clientes";
-            Clientes.Size = new Size(40, 37);
-            Clientes.SizeMode = PictureBoxSizeMode.StretchImage;
-            Clientes.TabIndex = 2;
-            Clientes.TabStop = false;
-            Clientes.Click += Clientes_Click;
-            Clientes.MouseHover += Clientes_MouseHover;
+            PictureBoxClientes.Image = (Image)resources.GetObject("PictureBoxClientes.Image");
+            PictureBoxClientes.Location = new Point(205, 4);
+            PictureBoxClientes.Name = "PictureBoxClientes";
+            PictureBoxClientes.Size = new Size(40, 37);
+            PictureBoxClientes.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxClientes.TabIndex = 2;
+            PictureBoxClientes.TabStop = false;
+            PictureBoxClientes.Click += PictureBoxClientes_Click;
+            PictureBoxClientes.MouseHover += PictureBoxClientes_MouseHover;
             // 
-            // Fornecedores
+            // PictureBoxFornecedores
             // 
-            Fornecedores.Image = (Image)resources.GetObject("Fornecedores.Image");
-            Fornecedores.Location = new Point(293, 4);
-            Fornecedores.Name = "Fornecedores";
-            Fornecedores.Size = new Size(40, 37);
-            Fornecedores.SizeMode = PictureBoxSizeMode.StretchImage;
-            Fornecedores.TabIndex = 8;
-            Fornecedores.TabStop = false;
-            Fornecedores.MouseHover += Fornecedores_MouseHover;
+            PictureBoxFornecedores.Image = (Image)resources.GetObject("PictureBoxFornecedores.Image");
+            PictureBoxFornecedores.Location = new Point(293, 4);
+            PictureBoxFornecedores.Name = "PictureBoxFornecedores";
+            PictureBoxFornecedores.Size = new Size(40, 37);
+            PictureBoxFornecedores.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxFornecedores.TabIndex = 8;
+            PictureBoxFornecedores.TabStop = false;
+            PictureBoxFornecedores.Click += PictureBoxFornecedores_Click;
+            PictureBoxFornecedores.MouseHover += PictureBoxFornecedores_MouseHover;
             // 
-            // Usuarios
+            // PictureBoxFuncionarios
             // 
-            Usuarios.AccessibleDescription = "Usuarios";
-            Usuarios.AccessibleName = "Usuarios";
-            Usuarios.AccessibleRole = AccessibleRole.TitleBar;
-            Usuarios.Image = (Image)resources.GetObject("Usuarios.Image");
-            Usuarios.Location = new Point(119, 4);
-            Usuarios.Name = "Usuarios";
-            Usuarios.Size = new Size(40, 37);
-            Usuarios.SizeMode = PictureBoxSizeMode.StretchImage;
-            Usuarios.TabIndex = 2;
-            Usuarios.TabStop = false;
-            Usuarios.Click += Usuarios_Click;
-            Usuarios.MouseHover += Usuarios_MouseHover;
+            PictureBoxFuncionarios.AccessibleDescription = "Usuarios";
+            PictureBoxFuncionarios.AccessibleName = "Usuarios";
+            PictureBoxFuncionarios.AccessibleRole = AccessibleRole.TitleBar;
+            PictureBoxFuncionarios.Image = (Image)resources.GetObject("PictureBoxFuncionarios.Image");
+            PictureBoxFuncionarios.Location = new Point(119, 4);
+            PictureBoxFuncionarios.Name = "PictureBoxFuncionarios";
+            PictureBoxFuncionarios.Size = new Size(40, 37);
+            PictureBoxFuncionarios.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxFuncionarios.TabIndex = 2;
+            PictureBoxFuncionarios.TabStop = false;
+            PictureBoxFuncionarios.Click += PictureBoxFuncionarios_Click;
+            PictureBoxFuncionarios.MouseHover += PictureBoxFuncionarios_MouseHover;
             // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(BotaoTesteRecomendacoes);
+            PanelHeader.Controls.Add(BotaoLogin);
+            PanelHeader.Controls.Add(BotaoAbrirTelaDeTeste);
             PanelHeader.Controls.Add(LabelSair);
             PanelHeader.Controls.Add(PictureBoxSair);
             PanelHeader.Controls.Add(LabelTransacoes);
-            PanelHeader.Controls.Add(Transacoes);
+            PanelHeader.Controls.Add(PictureBoxTransacoes);
             PanelHeader.Controls.Add(LabelInventario);
-            PanelHeader.Controls.Add(Inventario);
+            PanelHeader.Controls.Add(PictureBoxInventario);
             PanelHeader.Controls.Add(LabelProdutos);
-            PanelHeader.Controls.Add(Produtos);
+            PanelHeader.Controls.Add(PictureBoxProdutos);
             PanelHeader.Controls.Add(LabelCategorias);
-            PanelHeader.Controls.Add(Categorias);
+            PanelHeader.Controls.Add(PictureBoxCategorias);
             PanelHeader.Controls.Add(LabelFornecedores);
-            PanelHeader.Controls.Add(Fornecedores);
+            PanelHeader.Controls.Add(PictureBoxFornecedores);
             PanelHeader.Controls.Add(LabelClientes);
-            PanelHeader.Controls.Add(Clientes);
-            PanelHeader.Controls.Add(Usuarios);
+            PanelHeader.Controls.Add(PictureBoxClientes);
+            PanelHeader.Controls.Add(PictureBoxFuncionarios);
             PanelHeader.Controls.Add(LabelFuncionarios);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1106, 65);
             PanelHeader.TabIndex = 1;
+            // 
+            // BotaoTesteRecomendacoes
+            // 
+            BotaoTesteRecomendacoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoTesteRecomendacoes.Location = new Point(723, 34);
+            BotaoTesteRecomendacoes.Name = "BotaoTesteRecomendacoes";
+            BotaoTesteRecomendacoes.Size = new Size(183, 28);
+            BotaoTesteRecomendacoes.TabIndex = 21;
+            BotaoTesteRecomendacoes.Text = "Recomendações de plantio";
+            BotaoTesteRecomendacoes.UseVisualStyleBackColor = true;
+            BotaoTesteRecomendacoes.Click += BotaoTesteRecomendacoes_Click;
+            // 
+            // BotaoLogin
+            // 
+            BotaoLogin.Location = new Point(966, 12);
+            BotaoLogin.Name = "BotaoLogin";
+            BotaoLogin.Size = new Size(102, 33);
+            BotaoLogin.TabIndex = 20;
+            BotaoLogin.Text = "Login";
+            BotaoLogin.UseVisualStyleBackColor = true;
+            BotaoLogin.Click += BotaoLogin_Click;
+            // 
+            // BotaoAbrirTelaDeTeste
+            // 
+            BotaoAbrirTelaDeTeste.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoAbrirTelaDeTeste.Location = new Point(723, 4);
+            BotaoAbrirTelaDeTeste.Name = "BotaoAbrirTelaDeTeste";
+            BotaoAbrirTelaDeTeste.Size = new Size(138, 29);
+            BotaoAbrirTelaDeTeste.TabIndex = 19;
+            BotaoAbrirTelaDeTeste.Text = "Abrir Tela de Teste";
+            BotaoAbrirTelaDeTeste.UseVisualStyleBackColor = true;
+            BotaoAbrirTelaDeTeste.Click += BotaoAbrirTelaDeTeste_Click;
             // 
             // LabelSair
             // 
@@ -330,13 +372,13 @@
             WindowState = FormWindowState.Maximized;
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)Transacoes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Inventario).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Produtos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Categorias).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Clientes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Fornecedores).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Usuarios).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCategorias).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSair).EndInit();
@@ -360,18 +402,21 @@
         private Label LabelFornecedores;
         private Label LabelTransacoes;
         private Label LabelInventario;
-        private PictureBox Transacoes;
-        private PictureBox Inventario;
-        private PictureBox Produtos;
-        private PictureBox Categorias;
-        private PictureBox Clientes;
-        private PictureBox Fornecedores;
-        private PictureBox Usuarios;
+        private PictureBox PictureBoxTransacoes;
+        private PictureBox PictureBoxInventario;
+        private PictureBox PictureBoxProdutos;
+        private PictureBox PictureBoxCategorias;
+        private PictureBox PictureBoxClientes;
+        private PictureBox PictureBoxFornecedores;
+        private PictureBox PictureBoxFuncionarios;
         private Panel PanelHeader;
         private Label LabelClientes;
         private Label LabelFuncionarios;
         private Label LabelSair;
         private PictureBox PictureBoxSair;
         private PictureBox PictureBoxLogoFundo;
+        private Button BotaoAbrirTelaDeTeste;
+        private Button BotaoLogin;
+        private Button BotaoTesteRecomendacoes;
     }
 }

@@ -10,7 +10,7 @@
         {
             InitializeComponent();
 
-            string connectionString = "Server=localhost;Database=testepim;Uid=root;Pwd=marcelogomesrp;"; // Substitua pelos valores reais da conexão com o banco de dados
+            string connectionString = ConnectionString.GetConnectionString(); // Obter a string de conexão do método GetConnectionString da classe ConnectionString
 
             funcionarioDAO = new FuncionarioDAO(connectionString); // Cria uma instância de FuncionarioDAO passando a string de conexão como parâmetro
             funcionarioService = new FuncionarioService(funcionarioDAO); // Cria uma instância de FuncionarioService passando o funcionarioDAO como parâmetro
@@ -20,23 +20,70 @@
         // ********** FUNCIONAL **********
         private void BotaoAutenticarFuncionario_Click(object sender, EventArgs e)
         {
-            /*
 
+            string usuario = "igor123";
+            string senha = "SenhaIgor1!";
+
+            /*
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
+            */
 
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
+        }
 
-            */
+        // Método dedicado para autenticar login do funcionário
+        // ********** FUNCIONAL **********
+        private bool AutenticarFuncionario(string usuario, string senha)
+        {
+            string autenticarfuncionario = funcionarioService.AutenticarFuncionario(usuario, senha); // Chamando o método AutenticarFuncionario da instância funcionarioService
+            if (autenticarfuncionario == "autenticado")
+            {
+                MessageBox.Show("Acesso permitido, usuário autenticado.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            else if (autenticarfuncionario == "naoautenticado")
+            {
+                MessageBox.Show("Acesso negado, usuário não autenticado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (autenticarfuncionario == "inativo")
+            {
+                MessageBox.Show("Acesso negado, usuário inativo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (autenticarfuncionario == "naoexiste")
+            {
+                MessageBox.Show("Acesso negado, usuário não existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (autenticarfuncionario == "erro")
+            {
+                MessageBox.Show("Erro ao autenticar usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if (autenticarfuncionario == "errodesconhecido")
+            {
+                MessageBox.Show("Erro desconhecido ao autenticar usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Autenticar um funcionário como gerente
         // ********** FUNCIONAL **********
         private void BotaoAutenticarGerente_Click(object sender, EventArgs e)
         {
+            string usuario = "caiqueuser";
+            string senha = "CaiqueSenha1@";
+
             /*
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
+            */
 
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
             if (autenticado == true)
@@ -65,40 +112,19 @@
             {
                 return;
             }
-
-            */
-        }
-
-        // Verificar se um nome de usuário já está em uso
-        // ********** DANDO ERRO **********
-        private void BotaoVerificarUsuarioDisponivel_Click(object sender, EventArgs e)
-        {
-            /*
-            string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
-
-            string verificarUsuarioDisponivel = funcionarioService.VerificarUsuarioDisponivel(usuario); // Chamando o método VerificarUsuarioDisponivel da instância funcionarioService
-            if (verificarUsuarioDisponivel == "disponivel")
-            {
-                MessageBox.Show("Nome de usuário disponível.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (verificarUsuarioDisponivel == "indisponivel")
-            {
-                MessageBox.Show("Nome de usuário indisponível.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (verificarUsuarioDisponivel == "erro")
-            {
-                MessageBox.Show("Erro ao verificar disponibilidade do nome de usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
         }
 
         // Alterar senha de um funcionário
         // ********** FUNCIONAL **********
         private void BotaoAlterarSenhaFuncionario_Click(object sender, EventArgs e)
         {
+            string usuario = "igor123";
+            string senha = "SenhaIgor1!";
+
             /*
             string usuario = CampoUsuario.Text; // Obtendo o valor do campo de texto do usuário
             string senha = CampoSenha.Text; // Obtendo o valor do campo de texto da senha
+            */
 
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario daqui dessa classe TelaTeste
 
@@ -108,8 +134,13 @@
             }
             else
             {
+                /*
                 string novasenha1 = CampoNovaSenha1.Text; // Obtendo o valor do campo de texto da nova senha
                 string novasenha2 = CampoNovaSenha2.Text; // Obtendo o valor do campo de texto da nova senha
+                */
+
+                string novasenha1 = "NovaSenha1!";
+                string novasenha2 = "NovaSenha1!";
 
                 bool senhasiguais = false;
 
@@ -151,49 +182,91 @@
                     }
                 }
             }
-            */
         }
 
-        // Excluir (desativar) funcionário
+        // Método dedicado para verificar se a senha é forte o suficiente
         // ********** FUNCIONAL **********
-        private void BotaoExcluirFuncionario_Click(object sender, EventArgs e)
+        public bool VerificarSenhaForte(string senha)
         {
-            /*
-            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
+            // Verifica se a senha tem pelo menos 8 caracteres
+            if (senha.Length < 8)
+            {
+                MessageBox.Show("A senha deve conter no mínimo 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                bool excluirFuncionario = funcionarioService.ExcluirFuncionario(id); // Chamando o método ExcluirFuncionario da instância funcionarioService
-            if (excluirFuncionario == true)
-            {
-                MessageBox.Show("Funcionário excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
-            else
-            {
-                MessageBox.Show("Erro ao excluir funcionário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            */
-        }
 
-        // Consultar funcionário por ID
-        // ********** FUNCIONAL **********
-        private void BotaoConsultarFuncionarioID_Click(object sender, EventArgs e)
-        {
-            /*
-            int id = Convert.ToInt32(CampoID.Text); // Obtendo o valor do campo de texto do ID
+            // Verifica se a senha contém pelo menos um número
+            bool contemNumero = false;
+            foreach (char c in senha)
+            {
+                if (char.IsDigit(c))
+                {
+                    contemNumero = true;
+                    break;
+                }
+            }
+            if (!contemNumero)
+            {
+                MessageBox.Show("A senha deve conter pelo menos um número.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-            Funcionario funcionario = funcionarioService.ConsultarFuncionarioID(id); // Chamando o método ConsultarFuncionarioID da instância funcionarioService
-            if (funcionario != null)
+            // Verifica se a senha contém pelo menos uma letra maiúscula
+            bool contemMaiuscula = false;
+            foreach (char c in senha)
             {
-                MessageBox.Show($"Funcionário encontrado: {funcionario.Nome}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (char.IsUpper(c))
+                {
+                    contemMaiuscula = true;
+                    break;
+                }
             }
-            else
+            if (!contemMaiuscula)
             {
-                MessageBox.Show("Funcionário não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A senha deve conter pelo menos uma letra maiúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
-            */
+
+            // Verifica se a senha contém pelo menos uma letra minúscula
+            bool contemMinuscula = false;
+            foreach (char c in senha)
+            {
+                if (char.IsLower(c))
+                {
+                    contemMinuscula = true;
+                    break;
+                }
+            }
+            if (!contemMinuscula)
+            {
+                MessageBox.Show("A senha deve conter pelo menos uma letra minúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Verifica se a senha contém pelo menos um caractere especial
+            bool contemEspecial = false;
+            foreach (char c in senha)
+            {
+                if (!char.IsLetterOrDigit(c))
+                {
+                    contemEspecial = true;
+                    break;
+                }
+            }
+            if (!contemEspecial)
+            {
+                MessageBox.Show("A senha deve conter pelo menos um caractere especial.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Se a senha passar por todas as verificações, é considerada forte
+            MessageBox.Show("Senha forte.", "Senha Forte", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
         // Consultar funcionário por nome
-        // ********** FUNCIONAL **********
+        // ********** NÃO TESTADO **********
         private void BotaoConsultarFuncionarioNome_Click(object sender, EventArgs e)
         {
             /*
@@ -212,7 +285,7 @@
         }
 
         // Consultar funcionário por nome de usuário
-        // ********** FUNCIONAL **********
+        // ********** NÃO TESTADO **********
         private void BotaoConsultarFuncionarioUsuario_Click(object sender, EventArgs e)
         {
             /*
@@ -230,111 +303,7 @@
             */
         }
 
-        // Método dedicado para autenticar login do funcionário
-        // ********** FUNCIONAL **********
-        private bool AutenticarFuncionario(string usuario, string senha)
-        {
-            string autenticarfuncionario = funcionarioService.AutenticarFuncionario(usuario, senha); // Chamando o método AutenticarFuncionario da instância funcionarioService
-            if (autenticarfuncionario == "autenticado")
-            {
-                MessageBox.Show("Acesso permitido, usuário autenticado.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
-            }
-            else if (autenticarfuncionario == "naoautenticado")
-            {
-                MessageBox.Show("Acesso negado, usuário não autenticado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if (autenticarfuncionario == "erro")
-            {
-                MessageBox.Show("Erro ao autenticar usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
-        // Método dedicado para verificar se a senha é forte o suficiente
-        // ********** FUNCIONAL **********
-        public bool VerificarSenhaForte(string novaSenha)
-        {
-            // Verifica se a senha tem pelo menos 8 caracteres
-            if (novaSenha.Length < 8)
-            {
-                MessageBox.Show("A senha deve conter no mínimo 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos um número
-            bool contemNumero = false;
-            foreach (char c in novaSenha)
-            {
-                if (char.IsDigit(c))
-                {
-                    contemNumero = true;
-                    break;
-                }
-            }
-            if (!contemNumero)
-            {
-                MessageBox.Show("A senha deve conter pelo menos um número.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos uma letra maiúscula
-            bool contemMaiuscula = false;
-            foreach (char c in novaSenha)
-            {
-                if (char.IsUpper(c))
-                {
-                    contemMaiuscula = true;
-                    break;
-                }
-            }
-            if (!contemMaiuscula)
-            {
-                MessageBox.Show("A senha deve conter pelo menos uma letra maiúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos uma letra minúscula
-            bool contemMinuscula = false;
-            foreach (char c in novaSenha)
-            {
-                if (char.IsLower(c))
-                {
-                    contemMinuscula = true;
-                    break;
-                }
-            }
-            if (!contemMinuscula)
-            {
-                MessageBox.Show("A senha deve conter pelo menos uma letra minúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos um caractere especial
-            bool contemEspecial = false;
-            foreach (char c in novaSenha)
-            {
-                if (!char.IsLetterOrDigit(c))
-                {
-                    contemEspecial = true;
-                    break;
-                }
-            }
-            if (!contemEspecial)
-            {
-                MessageBox.Show("A senha deve conter pelo menos um caractere especial.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Se a senha passar por todas as verificações, é considerada forte
-            return true;
-            //MessageBox.Show("Senha forte.", "Senha Forte", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
     }
 }

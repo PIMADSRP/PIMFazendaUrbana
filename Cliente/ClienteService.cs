@@ -73,15 +73,12 @@
         {
             try
             {
-                clienteDAO.AlterarCliente_DAO(cliente); // Chama o método AlterarCliente da classe ClienteDAO, passando o objeto cliente como argumento
-                //Console.WriteLine("Cliente alterado com sucesso."); // Exibe uma mensagem de sucesso após a alteração
+                clienteDAO.AlterarCliente_DAO(cliente);
 
                 return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
             {
-                //Console.WriteLine($"Erro ao alterar cliente: {ex.Message}"); // Exibe uma mensagem de erro caso ocorra uma exceção durante a alteração
-
                 return false; // Retorna false para indicar que a alteração falhou
             }
         }
@@ -146,7 +143,6 @@
 
         // 5- Consulta
         // 5.1 - Consultar Cliente por ID
-        // O método ConsultarClienteID é responsável por consultar um cliente pelo ID e exibir seus dados na tela.
         public Cliente ConsultarClienteID(int clienteId)
         {
             try
@@ -162,7 +158,6 @@
         }
 
         // 5.2 - Consultar Cliente por nome
-        // O método ConsultarClienteNome é responsável por consultar um cliente pelo nome e exibir seus dados na tela.
         public Cliente ConsultarClienteNome(string clienteNome)
         {
             try
@@ -178,7 +173,6 @@
         }
 
         // 5.3 - Consultar Cliente por CNPJ
-        // O método ConsultarClienteCNPJ é responsável por consultar um cliente pelo cnpj e exibir seus dados na tela.
         public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
         {
             try

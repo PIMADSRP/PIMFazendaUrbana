@@ -85,7 +85,7 @@ namespace PIMFazendaUrbana
         }
 
         // 2- MÉTODO ALTERAR CLIENTE NO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public void AlterarCliente_DAO(Cliente cliente)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -95,50 +95,58 @@ namespace PIMFazendaUrbana
                 {
                     try
                     {
-                        string updateClienteQuery = @"UPDATE cliente SET nome_cliente = @nome, email_cliente = @email, 
-                                                    cnpj_cliente = @cnpj, ativo_cliente = @status WHERE id_cliente = @clienteId";
+                        string updateClienteQuery = @"UPDATE cliente SET 
+                                                nome_cliente = @Nome,
+                                                cnpj_cliente = @Cnpj,
+                                                email_cliente = @Email
+                                                WHERE id_cliente = @ClienteId";
 
                         using (MySqlCommand updateClienteCommand = new MySqlCommand(updateClienteQuery, connection, transaction))
                         {
-                            updateClienteCommand.Parameters.AddWithValue("@nome", cliente.Nome);
-                            updateClienteCommand.Parameters.AddWithValue("@email", cliente.Email);
-                            updateClienteCommand.Parameters.AddWithValue("@cnpj", cliente.CNPJ);
-                            updateClienteCommand.Parameters.AddWithValue("@status", cliente.StatusAtivo);
-                            updateClienteCommand.Parameters.AddWithValue("@clienteId", cliente.ID);
+                            updateClienteCommand.Parameters.AddWithValue("@ClienteId", cliente.ID);
+                            updateClienteCommand.Parameters.AddWithValue("@Nome", cliente.Nome);
+                            updateClienteCommand.Parameters.AddWithValue("@Email", cliente.Email);
+                            updateClienteCommand.Parameters.AddWithValue("@Cnpj", cliente.CNPJ);
                             updateClienteCommand.ExecuteNonQuery();
                         }
 
                         EnderecoCliente endereco = cliente.Endereco;
 
-                        string updateEnderecoQuery = @"UPDATE endereco_cliente SET logradouro_endcliente = @logradouro, numero_endcliente = @numero, 
-                                                    complemento_endcliente = @complemento, bairro_endcliente = @bairro, cidade_endcliente = @cidade, 
-                                                    uf_endcliente = @uf, cep_endcliente = @cep, ativo_endcliente = @status WHERE id_cliente = @clienteId";
+                        string updateEnderecoQuery = @"UPDATE endereco_cliente SET 
+                                                logradouro_endcliente = @Logradouro,
+                                                numero_endcliente = @Numero,
+                                                complemento_endcliente = @Complemento,
+                                                bairro_endcliente = @Bairro,
+                                                cidade_endcliente = @Cidade,
+                                                uf_endcliente = @UF,
+                                                cep_endcliente = @CEP
+                                                WHERE id_cliente = @ClienteId";
 
                         using (MySqlCommand updateEnderecoCommand = new MySqlCommand(updateEnderecoQuery, connection, transaction))
                         {
-                            updateEnderecoCommand.Parameters.AddWithValue("@logradouro", endereco.Logradouro);
-                            updateEnderecoCommand.Parameters.AddWithValue("@numero", endereco.Numero);
-                            updateEnderecoCommand.Parameters.AddWithValue("@complemento", endereco.Complemento);
-                            updateEnderecoCommand.Parameters.AddWithValue("@bairro", endereco.Bairro);
-                            updateEnderecoCommand.Parameters.AddWithValue("@cidade", endereco.Cidade);
-                            updateEnderecoCommand.Parameters.AddWithValue("@uf", endereco.UF);
-                            updateEnderecoCommand.Parameters.AddWithValue("@cep", endereco.CEP);
-                            updateEnderecoCommand.Parameters.AddWithValue("@status", endereco.StatusAtivo);
-                            updateEnderecoCommand.Parameters.AddWithValue("@clienteId", cliente.ID);
+                            updateEnderecoCommand.Parameters.AddWithValue("@ClienteId", cliente.ID);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Logradouro", endereco.Logradouro);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Numero", endereco.Numero);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Complemento", endereco.Complemento);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Bairro", endereco.Bairro);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Cidade", endereco.Cidade);
+                            updateEnderecoCommand.Parameters.AddWithValue("@UF", endereco.UF);
+                            updateEnderecoCommand.Parameters.AddWithValue("@CEP", endereco.CEP);
                             updateEnderecoCommand.ExecuteNonQuery();
                         }
 
                         TelefoneCliente telefone = cliente.Telefone;
 
-                        string updateTelefoneQuery = @"UPDATE telefone_cliente SET ddd_telcliente = @ddd, numero_telcliente = @numero, 
-                                                    ativo_telcliente = @status WHERE id_cliente = @clienteId";
+                        string updateTelefoneQuery = @"UPDATE telefone_cliente SET 
+                                                ddd_telcliente = @DDD,
+                                                numero_telcliente = @Numero
+                                                WHERE id_cliente = @ClienteId";
 
                         using (MySqlCommand updateTelefoneCommand = new MySqlCommand(updateTelefoneQuery, connection, transaction))
                         {
-                            updateTelefoneCommand.Parameters.AddWithValue("@ddd", telefone.DDD);
-                            updateTelefoneCommand.Parameters.AddWithValue("@numero", telefone.Numero);
-                            updateTelefoneCommand.Parameters.AddWithValue("@status", telefone.StatusAtivo);
-                            updateTelefoneCommand.Parameters.AddWithValue("@clienteId", cliente.ID);
+                            updateTelefoneCommand.Parameters.AddWithValue("@ClienteId", cliente.ID);
+                            updateTelefoneCommand.Parameters.AddWithValue("@DDD", telefone.DDD);
+                            updateTelefoneCommand.Parameters.AddWithValue("@Numero", telefone.Numero);
                             updateTelefoneCommand.ExecuteNonQuery();
                         }
 
@@ -255,13 +263,11 @@ namespace PIMFazendaUrbana
                                     StatusAtivo = reader.GetBoolean("ativo_endcliente")
                                 }
                             };
-
                             clientes.Add(cliente);
                         }
                     }
                 }
             }
-
             return clientes;
         }
 
@@ -281,7 +287,8 @@ namespace PIMFazendaUrbana
                                 e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
                                 FROM cliente c
                                 LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
-                                LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente";
+                                LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
+                                ";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -316,203 +323,184 @@ namespace PIMFazendaUrbana
                                     StatusAtivo = reader.GetBoolean("ativo_endcliente")
                                 }
                             };
-
                             clientes.Add(cliente);
                         }
                     }
                 }
             }
-
             return clientes;
         }
 
         // 5- Consulta
         // 5.1- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR ID (somente clientes ativos)
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public Cliente ConsultarClienteID_DAO(int clienteId)
         {
-            Cliente cliente = null; // Inicializa o objeto cliente como nulo
+            Cliente cliente = null;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma conexão com o banco de dados
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open(); // Abre a conexão com o banco de dados
+                string query = @"SELECT c.id_cliente, c.nome_cliente, c.cnpj_cliente, c.email_cliente,
+                                c.ativo_cliente, 
+                                t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
+                                e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
+                                e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
+                                FROM cliente c
+                                LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
+                                LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
+                                WHERE c.id_cliente = @Id";
 
-                // Define a consulta SQL para selecionar um cliente com base no ID fornecido
-                string selectClienteQuery = @"SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente,
-                                            e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente,
-                                            e.bairro_endcliente, e.cidade_endcliente, e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente,
-                                            t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente
-                                            FROM cliente c
-                                            LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
-                                            LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
-                                            WHERE c.id_cliente = @id";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Id", clienteId);
 
-                using (MySqlCommand selectClienteCommand = new MySqlCommand(selectClienteQuery, connection)) // Cria um comando MySqlCommand com a consulta SQL e a conexão
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectClienteCommand.Parameters.AddWithValue("@id", clienteId); // Adiciona o parâmetro @id ao comando com o valor do clienteId
-
-                    using (MySqlDataReader reader = selectClienteCommand.ExecuteReader()) // Executa a consulta SQL e obtém os resultados usando um MySqlDataReader
+                    if (reader.Read())
                     {
-                        if (reader.Read()) // Verifica se há uma linha de resultado
+                        cliente = new Cliente
                         {
-                            cliente = new Cliente // Inicializa um novo objeto Cliente com os dados do resultado da consulta
+                            ID = clienteId,
+                            Nome = reader.GetString("nome_cliente"),
+                            CNPJ = reader.GetString("cnpj_cliente"),
+                            Email = reader.GetString("email_cliente"),
+                            StatusAtivo = reader.GetBoolean("ativo_cliente"),
+                            Telefone = new TelefoneCliente
                             {
-                                ID = reader.GetInt32("id_cliente"),
-                                Nome = reader.GetString("nome_cliente"),
-                                Email = reader.GetString("email_cliente"),
-                                CNPJ = reader.GetString("cnpj_cliente"),
-                                StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                                
-                                Endereco = new EnderecoCliente // Inicializa os objetos Endereco e Telefone do cliente
-                                {
-                                    Logradouro = reader.GetString("logradouro_endcliente"),
-                                    Numero = reader.GetString("numero_endcliente"),
-                                    Complemento = reader.GetString("complemento_endcliente"),
-                                    Bairro = reader.GetString("bairro_endcliente"),
-                                    Cidade = reader.GetString("cidade_endcliente"),
-                                    UF = reader.GetString("uf_endcliente"),
-                                    CEP = reader.GetString("cep_endcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endcliente")
-                                },
-
-                                Telefone = new TelefoneCliente
-                                {
-                                    DDD = reader.GetString("ddd_telcliente"),
-                                    Numero = reader.GetString("numero_telcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telcliente")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telcliente"),
+                                Numero = reader.GetString("numero_telcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_telcliente")
+                            },
+                            Endereco = new EnderecoCliente
+                            {
+                                Logradouro = reader.GetString("logradouro_endcliente"),
+                                Numero = reader.GetString("numero_endcliente"),
+                                Complemento = reader.IsDBNull("complemento_endcliente") ? null : reader.GetString("complemento_endcliente"),
+                                Bairro = reader.GetString("bairro_endcliente"),
+                                Cidade = reader.GetString("cidade_endcliente"),
+                                UF = reader.GetString("uf_endcliente"),
+                                CEP = reader.GetString("cep_endcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_endcliente")
+                            }
+                        };
                     }
+                    return cliente;
                 }
             }
-
-            return cliente; // Retorna o objeto cliente consultado
         }
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME (somente clientes ativos)
         // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteNome_DAO(string clienteNome)
         {
-            Cliente cliente = null; // Inicializa o objeto cliente como nulo
+            Cliente cliente = null;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma conexão com o banco de dados
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open(); // Abre a conexão com o banco de dados
+                string query = @"SELECT c.id_cliente, c.nome_cliente, c.cnpj_cliente, c.email_cliente, 
+                                c.ativo_cliente, 
+                                t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
+                                e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
+                                e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
+                                FROM cliente c
+                                LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
+                                LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
+                                WHERE c.nome_cliente = @Nome";
 
-                // Define a consulta SQL para selecionar um cliente com base no nome fornecido
-                string selectClienteQuery = @"SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente, 
-                                            e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, 
-                                            e.bairro_endcliente, e.cidade_endcliente, e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente, 
-                                            t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente
-                                            FROM cliente c
-                                            LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
-                                            LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
-                                            WHERE c.nome_cliente = @nome";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Nome", clienteNome);
 
-                using (MySqlCommand selectClienteCommand = new MySqlCommand(selectClienteQuery, connection)) // Cria um comando MySqlCommand com a consulta SQL e a conexão
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectClienteCommand.Parameters.AddWithValue("@nome", clienteNome); // Adiciona o parâmetro @nome ao comando com o valor do clienteNome
-
-                    using (MySqlDataReader reader = selectClienteCommand.ExecuteReader()) // Executa a consulta SQL e obtém os resultados usando um MySqlDataReader
+                    if (reader.Read())
                     {
-                        if (reader.Read()) // Verifica se há uma linha de resultado
+                        cliente = new Cliente
                         {
-                            cliente = new Cliente // Inicializa um novo objeto Cliente com os dados do resultado da consulta
+                            ID = reader.GetInt32("id_cliente"),
+                            Nome = clienteNome,
+                            CNPJ = reader.GetString("cnpj_cliente"),
+                            Email = reader.GetString("email_cliente"),
+                            StatusAtivo = reader.GetBoolean("ativo_cliente"),
+                            Telefone = new TelefoneCliente
                             {
-                                ID = reader.GetInt32("id_cliente"),
-                                Nome = reader.GetString("nome_cliente"),
-                                Email = reader.GetString("email_cliente"),
-                                CNPJ = reader.GetString("cnpj_cliente"),
-                                StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                                
-                                Endereco = new EnderecoCliente // Inicializa os objetos Endereco e Telefone do cliente
-                                {
-                                    Logradouro = reader.GetString("logradouro_endcliente"),
-                                    Numero = reader.GetString("numero_endcliente"),
-                                    Complemento = reader.GetString("complemento_endcliente"),
-                                    Bairro = reader.GetString("bairro_endcliente"),
-                                    Cidade = reader.GetString("cidade_endcliente"),
-                                    UF = reader.GetString("uf_endcliente"),
-                                    CEP = reader.GetString("cep_endcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endcliente")
-                                },
-                                Telefone = new TelefoneCliente
-                                {
-                                    DDD = reader.GetString("ddd_telcliente"),
-                                    Numero = reader.GetString("numero_telcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telcliente")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telcliente"),
+                                Numero = reader.GetString("numero_telcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_telcliente")
+                            },
+                            Endereco = new EnderecoCliente
+                            {
+                                Logradouro = reader.GetString("logradouro_endcliente"),
+                                Numero = reader.GetString("numero_endcliente"),
+                                Complemento = reader.IsDBNull("complemento_endcliente") ? null : reader.GetString("complemento_endcliente"),
+                                Bairro = reader.GetString("bairro_endcliente"),
+                                Cidade = reader.GetString("cidade_endcliente"),
+                                UF = reader.GetString("uf_endcliente"),
+                                CEP = reader.GetString("cep_endcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_endcliente")
+                            }
+                        };
                     }
+                    return cliente;
                 }
             }
-
-            return cliente; // Retorna o objeto cliente consultado
         }
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ (somente clientes ativos)
         // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteCNPJ_DAO(string clienteCNPJ)
         {
-            Cliente cliente = null; // Inicializa o objeto cliente como nulo
+            Cliente cliente = null;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma conexão com o banco de dados
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                connection.Open(); // Abre a conexão com o banco de dados
+                string query = @"SELECT c.id_cliente, c.nome_cliente, c.cnpj_cliente, c.email_cliente, 
+                                c.ativo_cliente, 
+                                t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
+                                e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
+                                e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
+                                FROM cliente c
+                                LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
+                                LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
+                                WHERE c.cnpj_cliente = @CNPJ";
 
-                // Define a consulta SQL para selecionar um cliente com base no CNPJ fornecido
-                string selectClienteQuery = @"SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente, 
-                                            e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, 
-                                            e.bairro_endcliente, e.cidade_endcliente, e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente, 
-                                            t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente
-                                            FROM Cliente c
-                                            LEFT JOIN endereco_cliente e ON c.id_cliente = e.id_cliente
-                                            LEFT JOIN telefone_cliente t ON c.id_cliente = t.id_cliente
-                                            WHERE c.cnpj_cliente = @cnpj";
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CNPJ", clienteCNPJ);
 
-                using (MySqlCommand selectClienteCommand = new MySqlCommand(selectClienteQuery, connection)) // Cria um comando MySqlCommand com a consulta SQL e a conexão
+                connection.Open();
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectClienteCommand.Parameters.AddWithValue("@cnpj", clienteCNPJ); // Adiciona o parâmetro @cnpj ao comando com o valor do clienteCNPJ
-
-                    using (MySqlDataReader reader = selectClienteCommand.ExecuteReader()) // Executa a consulta SQL e obtém os resultados usando um MySqlDataReader
+                    if (reader.Read())
                     {
-                        if (reader.Read()) // Verifica se há uma linha de resultado
+                        cliente = new Cliente
                         {
-                            cliente = new Cliente // Inicializa um novo objeto Cliente com os dados do resultado da consulta
+                            ID = reader.GetInt32("id_cliente"),
+                            Nome = reader.GetString("nome_cliente"),
+                            CNPJ = clienteCNPJ,
+                            Email = reader.GetString("email_cliente"),
+                            StatusAtivo = reader.GetBoolean("ativo_cliente"),
+                            Telefone = new TelefoneCliente
                             {
-                                ID = reader.GetInt32("id_cliente"),
-                                Nome = reader.GetString("nome_cliente"),
-                                Email = reader.GetString("email_cliente"),
-                                CNPJ = reader.GetString("CNPJ_cliente"),
-                                StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                                
-                                Endereco = new EnderecoCliente // Inicializa o objeto Endereco do cliente
-                                {
-                                    Logradouro = reader.GetString("logradouro_endcliente"),
-                                    Numero = reader.GetString("numero_endcliente"),
-                                    Complemento = reader.GetString("complemento_endcliente"),
-                                    Bairro = reader.GetString("bairro_endcliente"),
-                                    Cidade = reader.GetString("cidade_endcliente"),
-                                    UF = reader.GetString("uf_endcliente"),
-                                    CEP = reader.GetString("cep_endcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endcliente")
-                                },
-
-                                Telefone = new TelefoneCliente // Inicializa o objeto Telefone do cliente
-                                {
-                                    DDD = reader.GetString("ddd_telcliente"),
-                                    Numero = reader.GetString("numero_telcliente"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telcliente")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telcliente"),
+                                Numero = reader.GetString("numero_telcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_telcliente")
+                            },
+                            Endereco = new EnderecoCliente
+                            {
+                                Logradouro = reader.GetString("logradouro_endcliente"),
+                                Numero = reader.GetString("numero_endcliente"),
+                                Complemento = reader.IsDBNull("complemento_endcliente") ? null : reader.GetString("complemento_endcliente"),
+                                Bairro = reader.GetString("bairro_endcliente"),
+                                Cidade = reader.GetString("cidade_endcliente"),
+                                UF = reader.GetString("uf_endcliente"),
+                                CEP = reader.GetString("cep_endcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_endcliente")
+                            }
+                        };
                     }
+                    return cliente;
                 }
             }
-
-            return cliente; // Retorna o objeto cliente consultado
         }
 
     }

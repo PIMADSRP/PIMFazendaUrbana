@@ -9,7 +9,8 @@ namespace PIMFazendaUrbana
         public TelaFuncionarios()
         {
             InitializeComponent();
-            string connectionString = "Server=localhost;Database=testepim;Uid=root;Pwd=marcelogomesrp;"; // Substitua pelos valores reais da conexão com o banco de dados
+
+            string connectionString = ConnectionString.GetConnectionString(); // Obter a string de conexão do método GetConnectionString da classe ConnectionString
 
             funcionarioDAO = new FuncionarioDAO(connectionString); // Cria uma instância de FuncionarioDAO passando a string de conexão como parâmetro
             funcionarioService = new FuncionarioService(funcionarioDAO); // Cria uma instância de funcionarioService passando o funcionarioDAO como parâmetro

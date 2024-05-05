@@ -8,7 +8,8 @@
         public TelaClientes()
         {
             InitializeComponent();
-            string connectionString = "Server=localhost;Database=testepim;Uid=root;Pwd=marcelogomesrp;"; // Substitua pelos valores reais da conexão com o banco de dados
+
+            string connectionString = ConnectionString.GetConnectionString(); // Obter a string de conexão do método GetConnectionString da classe ConnectionString
 
             clienteDAO = new ClienteDAO(connectionString); // Cria uma instância de ClienteDAO passando a string de conexão como parâmetro
             clienteService = new ClienteService(clienteDAO); // Cria uma instância de ClienteService passando o clienteDAO como parâmetro
@@ -51,6 +52,12 @@
 
         // Manipulador de eventos para o evento ClienteCadastradoSucesso
         private void TelaCadastrarCliente_ClienteCadastradoSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
+        // Manipulador de eventos para o evento ClienteEditadoSucesso
+        private void TelaEditarCliente_ClienteEditadoSucesso(object sender, EventArgs e)
         {
             AtualizarDataGridView();
         }
@@ -180,7 +187,31 @@
 
         private void PictureBoxEditar_Click(object sender, EventArgs e)
         {
+            // Verificar se alguma linha está selecionada no DataGridView
+            if (DataGridViewListaClientes.SelectedRows.Count == 1)
+            {
+                // Obter o índice da linha selecionada
+                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index;
 
+                // Obter o ID do cliente selecionado
+                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value;
+
+                // Criar uma instância do segundo formulário
+                TelaEditarCliente telaEditarCliente = new TelaEditarCliente(clienteID);
+
+                // Exibir o segundo formulário
+                telaEditarCliente.Show();
+
+                telaEditarCliente.ClienteEditadoSucesso += TelaEditarCliente_ClienteEditadoSucesso;
+            }
+            else if (DataGridViewListaClientes.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, selecione um cliente para editar (botão '>' à esquerda do ID do cliente).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione apenas um cliente para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void PictureBoxDeletar_Click(object sender, EventArgs e)

@@ -1,6 +1,6 @@
 ﻿namespace PIMFazendaUrbana
 {
-    partial class TelaCadastrarCliente
+    partial class TelaEditarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -56,12 +56,14 @@
             ComboBoxUF = new ComboBox();
             LabelCadastrarUsuarios = new Label();
             PanelHeader = new Panel();
+            TextBoxCodigo = new TextBox();
+            LabelCodigo = new Label();
             PanelHeader.SuspendLayout();
             SuspendLayout();
             // 
             // TextBoxNome
             // 
-            TextBoxNome.Location = new Point(104, 58);
+            TextBoxNome.Location = new Point(104, 89);
             TextBoxNome.Name = "TextBoxNome";
             TextBoxNome.Size = new Size(258, 23);
             TextBoxNome.TabIndex = 0;
@@ -69,7 +71,7 @@
             // 
             // TextBoxEmail
             // 
-            TextBoxEmail.Location = new Point(104, 123);
+            TextBoxEmail.Location = new Point(104, 154);
             TextBoxEmail.Name = "TextBoxEmail";
             TextBoxEmail.Size = new Size(258, 23);
             TextBoxEmail.TabIndex = 3;
@@ -78,7 +80,7 @@
             // LabelNome
             // 
             LabelNome.AutoSize = true;
-            LabelNome.Location = new Point(55, 60);
+            LabelNome.Location = new Point(55, 91);
             LabelNome.Name = "LabelNome";
             LabelNome.Size = new Size(43, 15);
             LabelNome.TabIndex = 3;
@@ -87,7 +89,7 @@
             // LabelCNPJ
             // 
             LabelCNPJ.AutoSize = true;
-            LabelCNPJ.Location = new Point(63, 95);
+            LabelCNPJ.Location = new Point(63, 126);
             LabelCNPJ.Name = "LabelCNPJ";
             LabelCNPJ.Size = new Size(37, 15);
             LabelCNPJ.TabIndex = 4;
@@ -96,7 +98,7 @@
             // LabelEmail
             // 
             LabelEmail.AutoSize = true;
-            LabelEmail.Location = new Point(53, 128);
+            LabelEmail.Location = new Point(53, 159);
             LabelEmail.Name = "LabelEmail";
             LabelEmail.Size = new Size(44, 15);
             LabelEmail.TabIndex = 5;
@@ -107,7 +109,7 @@
             BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
             BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoConfirmar.ForeColor = Color.White;
-            BotaoConfirmar.Location = new Point(76, 404);
+            BotaoConfirmar.Location = new Point(76, 430);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
             BotaoConfirmar.TabIndex = 13;
@@ -120,7 +122,7 @@
             BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
-            BotaoCancelar.Location = new Point(282, 404);
+            BotaoCancelar.Location = new Point(282, 430);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
             BotaoCancelar.TabIndex = 14;
@@ -131,7 +133,7 @@
             // TextBoxCNPJ
             // 
             TextBoxCNPJ.Culture = new System.Globalization.CultureInfo("");
-            TextBoxCNPJ.Location = new Point(104, 90);
+            TextBoxCNPJ.Location = new Point(104, 121);
             TextBoxCNPJ.Mask = "00.000.000/0000-00";
             TextBoxCNPJ.Name = "TextBoxCNPJ";
             TextBoxCNPJ.Size = new Size(127, 23);
@@ -140,7 +142,7 @@
             // 
             // TextBoxDDD
             // 
-            TextBoxDDD.Location = new Point(104, 158);
+            TextBoxDDD.Location = new Point(104, 189);
             TextBoxDDD.Mask = "00";
             TextBoxDDD.Name = "TextBoxDDD";
             TextBoxDDD.Size = new Size(31, 23);
@@ -149,7 +151,7 @@
             // 
             // TextBoxTelefone
             // 
-            TextBoxTelefone.Location = new Point(206, 158);
+            TextBoxTelefone.Location = new Point(206, 189);
             TextBoxTelefone.Name = "TextBoxTelefone";
             TextBoxTelefone.Size = new Size(156, 23);
             TextBoxTelefone.TabIndex = 5;
@@ -159,7 +161,7 @@
             // LabelDDD
             // 
             LabelDDD.AutoSize = true;
-            LabelDDD.Location = new Point(62, 160);
+            LabelDDD.Location = new Point(62, 191);
             LabelDDD.Name = "LabelDDD";
             LabelDDD.Size = new Size(34, 15);
             LabelDDD.TabIndex = 10;
@@ -168,7 +170,7 @@
             // LabelTelefone
             // 
             LabelTelefone.AutoSize = true;
-            LabelTelefone.Location = new Point(140, 160);
+            LabelTelefone.Location = new Point(140, 191);
             LabelTelefone.Name = "LabelTelefone";
             LabelTelefone.Size = new Size(54, 15);
             LabelTelefone.TabIndex = 11;
@@ -176,7 +178,7 @@
             // 
             // TextBoxLogradouro
             // 
-            TextBoxLogradouro.Location = new Point(104, 190);
+            TextBoxLogradouro.Location = new Point(104, 221);
             TextBoxLogradouro.Name = "TextBoxLogradouro";
             TextBoxLogradouro.Size = new Size(258, 23);
             TextBoxLogradouro.TabIndex = 6;
@@ -184,7 +186,7 @@
             // 
             // TextBoxNumero
             // 
-            TextBoxNumero.Location = new Point(104, 224);
+            TextBoxNumero.Location = new Point(104, 255);
             TextBoxNumero.Name = "TextBoxNumero";
             TextBoxNumero.Size = new Size(55, 23);
             TextBoxNumero.TabIndex = 7;
@@ -192,14 +194,14 @@
             // 
             // TextBoxComplemento
             // 
-            TextBoxComplemento.Location = new Point(104, 256);
+            TextBoxComplemento.Location = new Point(104, 287);
             TextBoxComplemento.Name = "TextBoxComplemento";
             TextBoxComplemento.Size = new Size(258, 23);
             TextBoxComplemento.TabIndex = 8;
             // 
             // TextBoxBairro
             // 
-            TextBoxBairro.Location = new Point(104, 290);
+            TextBoxBairro.Location = new Point(104, 321);
             TextBoxBairro.Name = "TextBoxBairro";
             TextBoxBairro.Size = new Size(258, 23);
             TextBoxBairro.TabIndex = 9;
@@ -207,7 +209,7 @@
             // 
             // TextBoxCidade
             // 
-            TextBoxCidade.Location = new Point(104, 322);
+            TextBoxCidade.Location = new Point(104, 353);
             TextBoxCidade.Name = "TextBoxCidade";
             TextBoxCidade.Size = new Size(258, 23);
             TextBoxCidade.TabIndex = 10;
@@ -216,7 +218,7 @@
             // TextBoxCEP
             // 
             TextBoxCEP.Culture = new System.Globalization.CultureInfo("");
-            TextBoxCEP.Location = new Point(206, 356);
+            TextBoxCEP.Location = new Point(206, 387);
             TextBoxCEP.Mask = "00000-000";
             TextBoxCEP.Name = "TextBoxCEP";
             TextBoxCEP.Size = new Size(96, 23);
@@ -226,7 +228,7 @@
             // LabelLogradouro
             // 
             LabelLogradouro.AutoSize = true;
-            LabelLogradouro.Location = new Point(23, 193);
+            LabelLogradouro.Location = new Point(23, 224);
             LabelLogradouro.Name = "LabelLogradouro";
             LabelLogradouro.Size = new Size(72, 15);
             LabelLogradouro.TabIndex = 19;
@@ -235,7 +237,7 @@
             // LabelNumero
             // 
             LabelNumero.AutoSize = true;
-            LabelNumero.Location = new Point(44, 226);
+            LabelNumero.Location = new Point(44, 257);
             LabelNumero.Name = "LabelNumero";
             LabelNumero.Size = new Size(54, 15);
             LabelNumero.TabIndex = 20;
@@ -244,7 +246,7 @@
             // LabelComplemento
             // 
             LabelComplemento.AutoSize = true;
-            LabelComplemento.Location = new Point(8, 259);
+            LabelComplemento.Location = new Point(8, 290);
             LabelComplemento.Name = "LabelComplemento";
             LabelComplemento.Size = new Size(87, 15);
             LabelComplemento.TabIndex = 21;
@@ -253,7 +255,7 @@
             // LabelBairro
             // 
             LabelBairro.AutoSize = true;
-            LabelBairro.Location = new Point(56, 292);
+            LabelBairro.Location = new Point(56, 323);
             LabelBairro.Name = "LabelBairro";
             LabelBairro.Size = new Size(41, 15);
             LabelBairro.TabIndex = 22;
@@ -262,7 +264,7 @@
             // LabelCidade
             // 
             LabelCidade.AutoSize = true;
-            LabelCidade.Location = new Point(50, 325);
+            LabelCidade.Location = new Point(50, 356);
             LabelCidade.Name = "LabelCidade";
             LabelCidade.Size = new Size(47, 15);
             LabelCidade.TabIndex = 23;
@@ -271,7 +273,7 @@
             // LabelUF
             // 
             LabelUF.AutoSize = true;
-            LabelUF.Location = new Point(76, 358);
+            LabelUF.Location = new Point(76, 389);
             LabelUF.Name = "LabelUF";
             LabelUF.Size = new Size(24, 15);
             LabelUF.TabIndex = 24;
@@ -280,7 +282,7 @@
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(168, 358);
+            LabelCEP.Location = new Point(168, 389);
             LabelCEP.Name = "LabelCEP";
             LabelCEP.Size = new Size(31, 15);
             LabelCEP.TabIndex = 25;
@@ -290,7 +292,7 @@
             // 
             ComboBoxUF.FormattingEnabled = true;
             ComboBoxUF.Items.AddRange(new object[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" });
-            ComboBoxUF.Location = new Point(104, 356);
+            ComboBoxUF.Location = new Point(104, 387);
             ComboBoxUF.Name = "ComboBoxUF";
             ComboBoxUF.Size = new Size(55, 23);
             ComboBoxUF.TabIndex = 11;
@@ -301,11 +303,11 @@
             LabelCadastrarUsuarios.AutoSize = true;
             LabelCadastrarUsuarios.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
-            LabelCadastrarUsuarios.Location = new Point(127, 7);
+            LabelCadastrarUsuarios.Location = new Point(151, 7);
             LabelCadastrarUsuarios.Name = "LabelCadastrarUsuarios";
-            LabelCadastrarUsuarios.Size = new Size(163, 25);
+            LabelCadastrarUsuarios.Size = new Size(130, 25);
             LabelCadastrarUsuarios.TabIndex = 0;
-            LabelCadastrarUsuarios.Text = "Cadastrar Cliente";
+            LabelCadastrarUsuarios.Text = "Editar Cliente";
             // 
             // PanelHeader
             // 
@@ -317,12 +319,31 @@
             PanelHeader.Size = new Size(434, 41);
             PanelHeader.TabIndex = 50;
             // 
-            // TelaCadastrarCliente
+            // TextBoxCodigo
+            // 
+            TextBoxCodigo.Enabled = false;
+            TextBoxCodigo.Location = new Point(104, 58);
+            TextBoxCodigo.Name = "TextBoxCodigo";
+            TextBoxCodigo.Size = new Size(55, 23);
+            TextBoxCodigo.TabIndex = 51;
+            // 
+            // LabelCodigo
+            // 
+            LabelCodigo.AutoSize = true;
+            LabelCodigo.Location = new Point(50, 61);
+            LabelCodigo.Name = "LabelCodigo";
+            LabelCodigo.Size = new Size(52, 15);
+            LabelCodigo.TabIndex = 52;
+            LabelCodigo.Text = "Código: ";
+            // 
+            // TelaEditarCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(434, 446);
+            ClientSize = new Size(434, 478);
+            Controls.Add(TextBoxCodigo);
+            Controls.Add(LabelCodigo);
             Controls.Add(PanelHeader);
             Controls.Add(ComboBoxUF);
             Controls.Add(LabelCEP);
@@ -350,8 +371,8 @@
             Controls.Add(LabelEmail);
             Controls.Add(TextBoxEmail);
             Controls.Add(TextBoxNome);
-            Name = "TelaCadastrarCliente";
-            Text = "CadastrarCliente";
+            Name = "TelaEditarCliente";
+            Text = "EditarCliente";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);
@@ -388,5 +409,7 @@
         private ComboBox ComboBoxUF;
         private Label LabelCadastrarUsuarios;
         private Panel PanelHeader;
+        private TextBox TextBoxCodigo;
+        private Label LabelCodigo;
     }
 }

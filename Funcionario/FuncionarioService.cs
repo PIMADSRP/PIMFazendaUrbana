@@ -14,17 +14,26 @@
         {
             try
             {
-                if (funcionarioDAO.AutenticarFuncionario_DAO(usuario, senha) == true)
+                string autenticado = funcionarioDAO.AutenticarFuncionario_DAO(usuario, senha);
+                if (autenticado == "autenticado")
                 {
-                    // Aqui você pode fazer algo com os dados do funcionário autenticado.
-
                     return "autenticado"; // Retorna "autenticado" para indicar que o funcionário foi autenticado
+                }
+                else if (autenticado == "inativo")
+                {
+                    return "inativo"; // Retorna "inativo" para indicar que o funcionário está inativo
+                }
+                else if (autenticado == "naoautenticado")
+                {
+                    return "naoautenticado"; // Retorna "naoautenticado" para indicar que o funcionário não foi autenticado
+                }
+                else if (autenticado == "naoexiste")
+                {
+                    return "naoexiste"; // Retorna "naoexiste" para indicar que o funcionário não existe
                 }
                 else
                 {
-                    // Aqui você pode lidar com o caso em que o funcionário não é autenticado.
-
-                    return "naoautenticado"; // Retorna "naoautenticado" para indicar que o funcionário não foi autenticado
+                    return "erro desconhecido";
                 }
             }
             catch (Exception ex)
@@ -146,7 +155,6 @@
             try
             {
                 List<Funcionario> funcionarios = funcionarioDAO.ListarFuncionariosAtivos_DAO();
-                // Aqui você pode adicionar qualquer lógica adicional, se necessário
                 return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)
@@ -164,7 +172,6 @@
             try
             {
                 List<Funcionario> funcionarios = funcionarioDAO.ListarTodosFuncionarios_DAO();
-                // Aqui você pode adicionar qualquer lógica adicional, se necessário
                 return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)

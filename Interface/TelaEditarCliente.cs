@@ -3,28 +3,28 @@ using System.Text.RegularExpressions;
 
 namespace PIMFazendaUrbana
 {
-    public partial class TelaCadastrarCliente : Form
+    public partial class TelaEditarCliente : Form
     {
         Cliente cliente1 = new Cliente();
 
-        bool nomevalido = false;
-        bool cnpjvalido = false;
-        bool emailvalido = false;
+        bool nomevalido = true;
+        bool cnpjvalido = true;
+        bool emailvalido = true;
 
-        bool dddvalido = false;
-        bool telefonevalido = false;
+        bool dddvalido = true;
+        bool telefonevalido = true;
 
-        bool logradourovalido = false;
-        bool numerocasavalido = false;
-        bool bairrovalido = false;
-        bool cidadevalida = false;
-        bool ufvalido = false;
-        bool cepvalido = false;
+        bool logradourovalido = true;
+        bool numerocasavalido = true;
+        bool bairrovalido = true;
+        bool cidadevalida = true;
+        bool ufvalido = true;
+        bool cepvalido = true;
 
         ClienteDAO clienteDAO; // Declaração de uma instância de ClienteDAO
         ClienteService clienteService; // Declaração de uma instância de ClienteService
 
-        public TelaCadastrarCliente()
+        public TelaEditarCliente(int clienteID)
         {
             InitializeComponent();
 
@@ -32,6 +32,54 @@ namespace PIMFazendaUrbana
 
             clienteDAO = new ClienteDAO(connectionString); // Cria uma instância de ClienteDAO passando a string de conexão como parâmetro
             clienteService = new ClienteService(clienteDAO); // Cria uma instância de ClienteService passando o clienteDAO como parâmetro
+
+            Cliente cliente = clienteService.ConsultarClienteID(clienteID); // Chamando o método ConsultarClienteID da instância clienteService
+
+            // Preencher os campos do formulário TelaEditarCliente com os dados do cliente
+            if (cliente != null)
+            {
+                PreencherCampos(cliente);
+            }
+            else
+            {
+                MessageBox.Show("Erro ao carregar dados do cliente. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        public void PreencherCampos(Cliente cliente)
+        {
+            TextBoxCodigo.Text = cliente.ID.ToString();
+
+            TextBoxNome.Text = cliente.Nome;
+            TextBoxEmail.Text = cliente.Email;
+            TextBoxCNPJ.Text = cliente.CNPJ;
+
+            // Instanciar e preencher o endereço
+            cliente1.Endereco = new EnderecoCliente();
+            cliente1.Endereco.Logradouro = cliente.Endereco.Logradouro;
+            cliente1.Endereco.Numero = cliente.Endereco.Numero;
+            cliente1.Endereco.Complemento = cliente.Endereco.Complemento;
+            cliente1.Endereco.Bairro = cliente.Endereco.Bairro;
+            cliente1.Endereco.Cidade = cliente.Endereco.Cidade;
+            cliente1.Endereco.UF = cliente.Endereco.UF;
+            cliente1.Endereco.CEP = cliente.Endereco.CEP;
+
+            TextBoxLogradouro.Text = cliente.Endereco.Logradouro;
+            TextBoxNumero.Text = cliente.Endereco.Numero;
+            TextBoxComplemento.Text = cliente.Endereco.Complemento;
+            TextBoxBairro.Text = cliente.Endereco.Bairro;
+            TextBoxCidade.Text = cliente.Endereco.Cidade;
+            ComboBoxUF.Text = cliente.Endereco.UF;
+            TextBoxCEP.Text = cliente.Endereco.CEP;
+
+            // Instanciar e preencher o telefone
+            cliente1.Telefone = new TelefoneCliente();
+            cliente1.Telefone.DDD = cliente.Telefone.DDD;
+            cliente1.Telefone.Numero = cliente.Telefone.Numero;
+
+            TextBoxDDD.Text = cliente.Telefone.DDD;
+            TextBoxTelefone.Text = cliente.Telefone.Numero;
         }
 
         private void BotaoConfirmar_Click(object sender, EventArgs e)
@@ -104,10 +152,10 @@ namespace PIMFazendaUrbana
             }
             else
             {
+                cliente1.ID = Convert.ToInt32(TextBoxCodigo.Text);
                 cliente1.Nome = TextBoxNome.Text;
-                cliente1.CNPJ = TextBoxCNPJ.Text.Replace(".", "").Replace("/", "").Replace("-", ""); ; // Marcelo falou para no banco guardar como varchar, mas antes tirar os pontos, barras e traços
                 cliente1.Email = TextBoxEmail.Text;
-                cliente1.StatusAtivo = true;
+                cliente1.CNPJ = TextBoxCNPJ.Text;
 
                 cliente1.Endereco = new EnderecoCliente();
                 cliente1.Endereco.Logradouro = TextBoxLogradouro.Text;
@@ -117,30 +165,28 @@ namespace PIMFazendaUrbana
                 cliente1.Endereco.Cidade = TextBoxCidade.Text;
                 cliente1.Endereco.UF = ComboBoxUF.Text;
                 cliente1.Endereco.CEP = TextBoxCEP.Text.Replace("-", ""); // Marcelo falou para no banco guardar como varchar, mas antes tirar os traços
-                cliente1.Endereco.StatusAtivo = true;
 
                 cliente1.Telefone = new TelefoneCliente();
                 cliente1.Telefone.DDD = TextBoxDDD.Text;
                 cliente1.Telefone.Numero = TextBoxTelefone.Text;
-                cliente1.Telefone.StatusAtivo = true;
 
-                bool sucesso = clienteService.CadastrarCliente(cliente1); // Chamando o método CadastrarCliente da instância clienteService
+                bool sucesso = clienteService.AlterarCliente(cliente1); // Chamando o método AlterarCliente da instância clienteService
                 if (sucesso == true)
                 {
-                    MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClienteCadastradoSucesso?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show("Cliente alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClienteEditadoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar cliente. Verifique se o cliente já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao editar cliente. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
         }
 
         // Definir um evento para notificar o cadastro bem-sucedido do cliente
-        public event EventHandler ClienteCadastradoSucesso;
+        public event EventHandler ClienteEditadoSucesso;
 
         private void BotaoCancelar_Click(object sender, EventArgs e)
         {

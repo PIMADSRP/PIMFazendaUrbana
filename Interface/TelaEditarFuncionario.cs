@@ -1,6 +1,4 @@
-﻿using MySqlX.XDevAPI;
-using System.ComponentModel;
-using System.Runtime.ConstrainedExecution;
+﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
 
 namespace PIMFazendaUrbana
@@ -34,7 +32,7 @@ namespace PIMFazendaUrbana
         {
             InitializeComponent();
 
-            string connectionString = "Server=localhost;Database=testepim;Uid=root;Pwd=marcelogomesrp;"; ; // Substitua pelos valores reais da conexão com o banco de dados
+            string connectionString = ConnectionString.GetConnectionString(); // Obter a string de conexão do método GetConnectionString da classe ConnectionString
 
             funcionarioDAO = new FuncionarioDAO(connectionString); // Cria uma instância de FuncionarioDAO passando a string de conexão como parâmetro
             funcionarioService = new FuncionarioService(funcionarioDAO); // Cria uma instância de FuncionarioService passando o funcionarioDAO como parâmetro
@@ -48,7 +46,7 @@ namespace PIMFazendaUrbana
             }
             else
             {
-                MessageBox.Show("Erro ao carregar dados do funcionário. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao carregar dados do usuário. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
             }
         }
@@ -67,7 +65,6 @@ namespace PIMFazendaUrbana
 
             // Instanciar e preencher o endereço
             funcionario1.Endereco = new EnderecoFuncionario();
-
             funcionario1.Endereco.Logradouro = funcionario.Endereco.Logradouro;
             funcionario1.Endereco.Numero = funcionario.Endereco.Numero;
             funcionario1.Endereco.Complemento = funcionario.Endereco.Complemento;
@@ -76,11 +73,6 @@ namespace PIMFazendaUrbana
             funcionario1.Endereco.UF = funcionario.Endereco.UF;
             funcionario1.Endereco.CEP = funcionario.Endereco.CEP;
 
-            // Instanciar e preencher o telefone
-            funcionario1.Telefone = new TelefoneFuncionario();
-            funcionario1.Telefone.DDD = funcionario.Telefone.DDD;
-            funcionario1.Telefone.Numero = funcionario.Telefone.Numero;
-
             TextBoxLogradouro.Text = funcionario.Endereco.Logradouro;
             TextBoxNumero.Text = funcionario.Endereco.Numero;
             TextBoxComplemento.Text = funcionario.Endereco.Complemento;
@@ -88,6 +80,11 @@ namespace PIMFazendaUrbana
             TextBoxCidade.Text = funcionario.Endereco.Cidade;
             ComboBoxUF.Text = funcionario.Endereco.UF;
             TextBoxCEP.Text = funcionario.Endereco.CEP;
+
+            // Instanciar e preencher o telefone
+            funcionario1.Telefone = new TelefoneFuncionario();
+            funcionario1.Telefone.DDD = funcionario.Telefone.DDD;
+            funcionario1.Telefone.Numero = funcionario.Telefone.Numero;
 
             TextBoxDDD.Text = funcionario.Telefone.DDD;
             TextBoxTelefone.Text = funcionario.Telefone.Numero;
@@ -98,26 +95,31 @@ namespace PIMFazendaUrbana
             if (nomevalido == false)
             {
                 MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
                 return;
             }
             else if (emailvalido == false)
             {
                 MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
                 return;
             }
             else if (cargovalido == false)
             {
                 MessageBox.Show("Preencha o campo Cargo corretamente. O cargo deve ser 'Funcionário' ou 'Gerente'", "Cargo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = ComboBoxCargo; // Define o foco para o ComboBoxCargo
                 return;
             }
             else if (sexovalido == false)
             {
                 MessageBox.Show("Preencha o campo Sexo corretamente. O sexo deve ser 'M', 'F' ou '-'", "Sexo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = ComboBoxSexo; // Define o foco para o ComboBoxSexo
                 return;
             }
             else if (usuariovalido == false)
             {
                 MessageBox.Show("Preencha o campo Usuário corretamente. O usuário deve ter ao menos 3 caracteres", "Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
                 return;
             }
             else if (dddvalido == false)
@@ -170,38 +172,25 @@ namespace PIMFazendaUrbana
             }
             else
             {
+                funcionario1.ID = Convert.ToInt32(TextBoxCodigo.Text);
                 funcionario1.Nome = TextBoxNome.Text;
-                MessageBox.Show("Nome: " + funcionario1.Nome);
                 funcionario1.Email = TextBoxEmail.Text;
-                MessageBox.Show("Email: " + funcionario1.Email);
                 funcionario1.Usuario = TextBoxUsuario.Text;
-                MessageBox.Show("Usuário: " + funcionario1.Usuario);
                 funcionario1.Cargo = ComboBoxCargo.Text;
-                MessageBox.Show("Cargo: " + funcionario1.Cargo);
                 funcionario1.Sexo = ComboBoxSexo.Text;
-                MessageBox.Show("Sexo: " + funcionario1.Sexo);
 
                 funcionario1.Endereco = new EnderecoFuncionario();
                 funcionario1.Endereco.Logradouro = TextBoxLogradouro.Text;
-                MessageBox.Show("Logradouro: " + funcionario1.Endereco.Logradouro);
                 funcionario1.Endereco.Numero = TextBoxNumero.Text;
-                MessageBox.Show("Número: " + funcionario1.Endereco.Numero);
                 funcionario1.Endereco.Complemento = TextBoxComplemento.Text;
-                MessageBox.Show("Complemento: " + funcionario1.Endereco.Complemento);
                 funcionario1.Endereco.Bairro = TextBoxBairro.Text;
-                MessageBox.Show("Bairro: " + funcionario1.Endereco.Bairro);
                 funcionario1.Endereco.Cidade = TextBoxCidade.Text;
-                MessageBox.Show("Cidade: " + funcionario1.Endereco.Cidade);
                 funcionario1.Endereco.UF = ComboBoxUF.Text;
-                MessageBox.Show("UF: " + funcionario1.Endereco.UF);
                 funcionario1.Endereco.CEP = TextBoxCEP.Text.Replace("-", ""); // Marcelo falou para no banco guardar como varchar, mas antes tirar os traços
-                MessageBox.Show("CEP: " + funcionario1.Endereco.CEP);
 
                 funcionario1.Telefone = new TelefoneFuncionario();
                 funcionario1.Telefone.DDD = TextBoxDDD.Text;
-                MessageBox.Show("DDD: " + funcionario1.Telefone.DDD);
                 funcionario1.Telefone.Numero = TextBoxTelefone.Text;
-                MessageBox.Show("Telefone: " + funcionario1.Telefone.Numero);
 
                 bool sucesso = funcionarioService.AlterarFuncionario(funcionario1); // Chamando o método AlterarFuncionario da instância funcionarioService
                 if (sucesso == true)
