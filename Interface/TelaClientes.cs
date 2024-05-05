@@ -174,9 +174,8 @@
 
         private void PictureBoxAtualizar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            TelaClientes tela = new TelaClientes();
-            tela.ShowDialog();
+            AtualizarDataGridView();
+            MessageBox.Show("Lista de clientes atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void PictureBoxEditar_Click(object sender, EventArgs e)
@@ -186,8 +185,42 @@
 
         private void PictureBoxDeletar_Click(object sender, EventArgs e)
         {
+            // Verificar se alguma linha está selecionada no DataGridView
+            if (DataGridViewListaClientes.SelectedRows.Count > 0)
+            {
+                // Obter o índice da linha selecionada
+                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index;
 
+                // Obter o ID do cliente selecionado
+                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value;
+
+                // Confirmar a exclusão com o usuário
+                DialogResult result = MessageBox.Show("Tem certeza que deseja excluir este cliente?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Excluir o cliente usando o serviço de cliente
+                        clienteService.ExcluirCliente(clienteID);
+
+                        // Atualizar o DataGridView após a exclusão
+                        ListarClientesAtivosDataGrid();
+
+                        MessageBox.Show("Cliente excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir cliente: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um cliente para excluir (botão '>' à esquerda do ID do cliente).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void PictureBoxHome_Click(object sender, EventArgs e)
         {

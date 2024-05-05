@@ -179,6 +179,7 @@
             Produtos.SizeMode = PictureBoxSizeMode.StretchImage;
             Produtos.TabIndex = 3;
             Produtos.TabStop = false;
+            Produtos.Click += Produtos_Click;
             Produtos.MouseHover += Produtos_MouseHover;
             // 
             // Categorias

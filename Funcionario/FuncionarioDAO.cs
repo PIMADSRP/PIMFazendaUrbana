@@ -75,25 +75,30 @@ namespace PIMFazendaUrbana
         }
 
         // 3- Método para verificar se um nome de usuário já está em uso
-        // ********** ERRO **********
+        // ********** FUNCIONAL **********
         public bool VerificarUsuarioDisponivel_DAO(string funcionarioUsuario)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT COUNT(*) FROM funcionario WHERE usuario_funcionario = @Usuario";
+                string query = "SELECT 1 FROM funcionario WHERE usuario_funcionario = @Usuario";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Usuario", funcionarioUsuario);
 
                 connection.Open();
-                int count = (int)command.ExecuteScalar();
 
-                if (count == 0)
+                // Executar a consulta SQL
+                using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    // Se houver registros retornados, significa que o nome de usuário já está em uso
+                    // Portanto, retornamos false
+                    if (reader.HasRows == true)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
                 }
             }
         }
@@ -195,24 +200,88 @@ namespace PIMFazendaUrbana
         // ********** NÃO TESTADO **********
         public void AlterarFuncionario_DAO(Funcionario funcionario)
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados
             {
-                string query = @"UPDATE funcionario SET nome_funcionario = @Nome, sexo_funcionario = @Sexo, email_funcionario = @Email, cargo_funcionario = @Cargo, 
-                    usuario_funcionario = @Usuario, credenciais_funcionario = @Senha, ativo_funcionario = @StatusAtivo WHERE ID = @ID";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ID", funcionario.ID);
-                command.Parameters.AddWithValue("@Nome", funcionario.Nome);
-                command.Parameters.AddWithValue("@Sexo", funcionario.Sexo);
-                command.Parameters.AddWithValue("@Email", funcionario.Email);
-                command.Parameters.AddWithValue("@Cargo", funcionario.Cargo);
-                command.Parameters.AddWithValue("@Usuario", funcionario.Usuario);
-                command.Parameters.AddWithValue("@Senha", funcionario.Senha);
-                command.Parameters.AddWithValue("@StatusAtivo", funcionario.StatusAtivo);
+                connection.Open(); // Abre a conexão com o banco de dados
+                using (MySqlTransaction transaction = connection.BeginTransaction()) // Inicia uma transação para garantir a consistência dos dados
+                {
+                    try // Tenta executar as operações dentro da transação
+                    {
+                        string updateFuncionarioQuery = @"UPDATE funcionario SET 
+                                                nome_funcionario = @Nome,
+                                                sexo_funcionario = @Sexo,
+                                                email_funcionario = @Email,
+                                                cargo_funcionario = @Cargo,
+                                                usuario_funcionario = @Usuario
+                                                WHERE id_funcionario = @FuncionarioId";
 
-                connection.Open();
-                command.ExecuteNonQuery();
+                        using (MySqlCommand updateFuncionarioCommand = new MySqlCommand(updateFuncionarioQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
+                        {
+                            // Adiciona os parâmetros ao comando com os valores atualizados do funcionário, puxando da instância da classe Funcionario
+                            updateFuncionarioCommand.Parameters.AddWithValue("@FuncionarioId", funcionario.ID);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@Nome", funcionario.Nome);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@Sexo", funcionario.Sexo);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@Email", funcionario.Email);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@Cargo", funcionario.Cargo);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@Usuario", funcionario.Usuario);
+                            updateFuncionarioCommand.ExecuteNonQuery(); // Executa a consulta SQL para atualizar os dados do funcionário
+
+                            // Agora, vamos atualizar o endereço do funcionário
+                            EnderecoFuncionario endereco = funcionario.Endereco;
+
+                            string updateEnderecoQuery = @"UPDATE endereco_funcionario SET 
+                                                logradouro_endfuncionario = @Logradouro,
+                                                numero_endfuncionario = @Numero,
+                                                complemento_endfuncionario = @Complemento,
+                                                bairro_endfuncionario = @Bairro,
+                                                cidade_endfuncionario = @Cidade,
+                                                uf_endfuncionario = @UF,
+                                                cep_endfuncionario = @CEP
+                                                WHERE id_funcionario = @FuncionarioId";
+
+                            using (MySqlCommand updateEnderecoCommand = new MySqlCommand(updateEnderecoQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
+                            {
+                                // Adiciona os parâmetros ao comando com os valores atualizados do endereço do funcionário, puxando da instância da classe EnderecoFuncionario
+                                updateEnderecoCommand.Parameters.AddWithValue("@FuncionarioId", funcionario.ID);
+                                updateEnderecoCommand.Parameters.AddWithValue("@Logradouro", endereco.Logradouro);
+                                updateEnderecoCommand.Parameters.AddWithValue("@Numero", endereco.Numero);
+                                updateEnderecoCommand.Parameters.AddWithValue("@Complemento", endereco.Complemento);
+                                updateEnderecoCommand.Parameters.AddWithValue("@Bairro", endereco.Bairro);
+                                updateEnderecoCommand.Parameters.AddWithValue("@Cidade", endereco.Cidade);
+                                updateEnderecoCommand.Parameters.AddWithValue("@UF", endereco.UF);
+                                updateEnderecoCommand.Parameters.AddWithValue("@CEP", endereco.CEP);
+                                updateEnderecoCommand.ExecuteNonQuery(); // Executa a consulta SQL para atualizar o endereço do funcionário
+                            }
+
+                            // Por fim, vamos atualizar o telefone do funcionário
+                            TelefoneFuncionario telefone = funcionario.Telefone;
+
+                            string updateTelefoneQuery = @"UPDATE telefone_funcionario SET 
+                                                ddd_telfuncionario = @DDD,
+                                                numero_telfuncionario = @Numero
+                                                WHERE id_funcionario = @FuncionarioId";
+
+                            using (MySqlCommand updateTelefoneCommand = new MySqlCommand(updateTelefoneQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
+                            {
+                                // Adiciona os parâmetros ao comando com os valores atualizados do telefone do funcionário, puxando da instância da classe TelefoneFuncionario
+                                updateTelefoneCommand.Parameters.AddWithValue("@FuncionarioId", funcionario.ID);
+                                updateTelefoneCommand.Parameters.AddWithValue("@DDD", telefone.DDD);
+                                updateTelefoneCommand.Parameters.AddWithValue("@Numero", telefone.Numero);
+                                updateTelefoneCommand.ExecuteNonQuery(); // Executa a consulta SQL para atualizar o telefone do funcionário
+                            }
+                        }
+                        // COMMIT de todas as atualizações no banco de dados
+                        transaction.Commit(); // Efetua o commit da transação se todas as operações forem bem-sucedidas
+                    }
+                    catch (Exception) // Captura exceções caso ocorram erros durante a execução das operações
+                    {
+                        transaction.Rollback(); // Em caso de erro, faz o rollback da transação
+                        throw;
+                    }
+                }
             }
         }
+
 
         // 7- Método para excluir (desativar) funcionário
         // ********** FUNCIONAL **********
@@ -367,30 +436,55 @@ namespace PIMFazendaUrbana
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT * FROM funcionario WHERE id_funcionario = @ID AND ativo_funcionario = 1";
+                string query = @"SELECT f.id_funcionario, f.nome_funcionario, f.sexo_funcionario, f.email_funcionario, f.cargo_funcionario, 
+                                f.usuario_funcionario, f.ativo_funcionario, 
+                                t.ddd_telfuncionario, t.numero_telfuncionario, t.ativo_telfuncionario, 
+                                e.logradouro_endfuncionario, e.numero_endfuncionario, e.complemento_endfuncionario, e.bairro_endfuncionario, e.cidade_endfuncionario, 
+                                e.uf_endfuncionario, e.cep_endfuncionario, e.ativo_endfuncionario
+                                FROM funcionario f
+                                LEFT JOIN telefone_funcionario t ON f.id_funcionario = t.id_funcionario
+                                LEFT JOIN endereco_funcionario e ON f.id_funcionario = e.id_funcionario
+                                WHERE f.id_funcionario = @Id";
+
                 MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ID", funcionarioId);
+                command.Parameters.AddWithValue("@Id", funcionarioId);
 
                 connection.Open();
                 MySqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
                 {
-                    funcionario = new Funcionario
+                    if (reader.Read())
                     {
-                        ID = reader.GetInt32("id_funcionario"),
-                        Nome = reader.GetString("nome_funcionario"),
-                        Sexo = reader.GetString("sexo_funcionario"),
-                        Email = reader.GetString("email_funcionario"),
-                        Cargo = reader.GetString("cargo_funcionario"),
-                        Usuario = reader.GetString("usuario_funcionario"),
-                        Senha = reader.GetString("credenciais_funcionario"),
-                        StatusAtivo = reader.GetBoolean("ativo_funcionario")
-                    };
+                        funcionario = new Funcionario
+                        {
+                            ID = funcionarioId,
+                            Nome = reader.GetString("nome_funcionario"),
+                            Sexo = reader.GetString("sexo_funcionario"),
+                            Email = reader.GetString("email_funcionario"),
+                            Cargo = reader.GetString("cargo_funcionario"),
+                            Usuario = reader.GetString("usuario_funcionario"),
+                            StatusAtivo = reader.GetBoolean("ativo_funcionario"),
+                            Telefone = new TelefoneFuncionario
+                            {
+                                DDD = reader.GetString("ddd_telfuncionario"),
+                                Numero = reader.GetString("numero_telfuncionario"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
+                            },
+                            Endereco = new EnderecoFuncionario
+                            {
+                                Logradouro = reader.GetString("logradouro_endfuncionario"),
+                                Numero = reader.GetString("numero_endfuncionario"),
+                                Complemento = reader.IsDBNull("complemento_endfuncionario") ? null : reader.GetString("complemento_endfuncionario"),
+                                Bairro = reader.GetString("bairro_endfuncionario"),
+                                Cidade = reader.GetString("cidade_endfuncionario"),
+                                UF = reader.GetString("uf_endfuncionario"),
+                                CEP = reader.GetString("cep_endfuncionario"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfuncionario")
+                            }
+                        };
+                    }
+                return funcionario;
                 }
             }
-
-            return funcionario;
         }
 
         // 9.2- Método para consultar funcionário por nome (somente funcionários ativos)

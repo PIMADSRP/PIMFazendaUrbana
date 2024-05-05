@@ -11,9 +11,31 @@ INSERT into telefone_funcionario (ddd_telfuncionario, numero_telfuncionario, id_
 values ('11', '11111111', '1');
 
 ## update
+update cliente set nome_cliente = 'teste3' where id_cliente = 6;
+
+update funcionario set nome_funcionario = 'bbbbbbbb' where id_funcionario = 8;
+
 UPDATE funcionario SET cargo_funcionario = 'funcionário' WHERE usuario_funcionario = 'nomedeusuarioteste';
 UPDATE funcionario SET ativo_funcionario = 1 WHERE id_funcionario = 1;
 UPDATE funcionario SET sexo_funcionario = 'M' WHERE id_funcionario = 1;
+
+UPDATE funcionario SET 
+nome_funcionario = 'Luiz Passos',
+sexo_funcionario = 'M',
+email_funcionario = 'luiz@gmail.com',
+cargo_funcionario = 'Gerente',
+usuario_funcionario = 'luiz123'
+WHERE id_funcionario = 4;
+
+UPDATE endereco_funcionario SET 
+logradouro_endfuncionario = 'sdfsdfsdf',
+numero_endfuncionario = '123',
+complemento_endfuncionario = 'sadsd',
+bairro_endfuncionario = 'dfsdf',
+cidade_endfuncionario = 'sdfsdf',
+uf_endfuncionario = 'MG',
+cep_endfuncionario = '12345678'
+WHERE id_funcionario = 4;
 
 ## select
 select * from cliente;
@@ -27,6 +49,9 @@ select * from telefone_fornecedor;
 select * from funcionario;
 select * from endereco_funcionario;
 select * from telefone_funcionario;
+
+SELECT COUNT(*) FROM funcionario WHERE usuario_funcionario = 'luiz1231';
+SELECT COUNT(*) FROM funcionario WHERE usuario_funcionario = 'asdasd';
 
 SELECT f.id_funcionario, f.nome_funcionario, f.sexo_funcionario, f.email_funcionario, f.cargo_funcionario, 
                                 f.usuario_funcionario, f.ativo_funcionario, 

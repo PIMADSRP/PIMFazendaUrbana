@@ -1,34 +1,36 @@
 ﻿using MySqlX.XDevAPI;
 using System.ComponentModel;
+using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 
 namespace PIMFazendaUrbana
 {
-    public partial class TelaCadastrarFuncionario : Form
+    public partial class TelaEditarFuncionario : Form
     {
         Funcionario funcionario1 = new Funcionario();
 
-        bool nomevalido = false;
-        bool emailvalido = false;
-        bool usuariovalido = false;
-        bool senhavalida = false;
-        bool cargovalido = false;
-        bool sexovalido = false;
+        string usuarioAntigo = null;
 
-        bool dddvalido = false;
-        bool telefonevalido = false;
+        bool nomevalido = true;
+        bool emailvalido = true;
+        bool usuariovalido = true;
+        bool cargovalido = true;
+        bool sexovalido = true;
 
-        bool logradourovalido = false;
-        bool numerocasavalido = false;
-        bool bairrovalido = false;
-        bool cidadevalida = false;
-        bool ufvalido = false;
-        bool cepvalido = false;
+        bool dddvalido = true;
+        bool telefonevalido = true;
+
+        bool logradourovalido = true;
+        bool numerocasavalido = true;
+        bool bairrovalido = true;
+        bool cidadevalida = true;
+        bool ufvalido = true;
+        bool cepvalido = true;
 
         FuncionarioDAO funcionarioDAO; // Declaração de uma instância de FuncionarioDAO
         FuncionarioService funcionarioService; // Declaração de uma instância de FuncionarioService
 
-        public TelaCadastrarFuncionario()
+        public TelaEditarFuncionario(int funcionarioID)
         {
             InitializeComponent();
 
@@ -36,6 +38,59 @@ namespace PIMFazendaUrbana
 
             funcionarioDAO = new FuncionarioDAO(connectionString); // Cria uma instância de FuncionarioDAO passando a string de conexão como parâmetro
             funcionarioService = new FuncionarioService(funcionarioDAO); // Cria uma instância de FuncionarioService passando o funcionarioDAO como parâmetro
+
+            Funcionario funcionario = funcionarioService.ConsultarFuncionarioID(funcionarioID); // Chamando o método ConsultarFuncionarioID da instância funcionarioService
+
+            // Preencher os campos do formulário TelaEditarFuncionario com os dados do funcionário
+            if (funcionario != null)
+            {
+                PreencherCampos(funcionario);
+            }
+            else
+            {
+                MessageBox.Show("Erro ao carregar dados do funcionário. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        public void PreencherCampos(Funcionario funcionario)
+        {
+            TextBoxCodigo.Text = funcionario.ID.ToString();
+
+            TextBoxNome.Text = funcionario.Nome;
+            TextBoxEmail.Text = funcionario.Email;
+            TextBoxUsuario.Text = funcionario.Usuario;
+            usuarioAntigo = funcionario.Usuario;
+
+            ComboBoxCargo.Text = funcionario.Cargo;
+            ComboBoxSexo.Text = funcionario.Sexo;
+
+            // Instanciar e preencher o endereço
+            funcionario1.Endereco = new EnderecoFuncionario();
+
+            funcionario1.Endereco.Logradouro = funcionario.Endereco.Logradouro;
+            funcionario1.Endereco.Numero = funcionario.Endereco.Numero;
+            funcionario1.Endereco.Complemento = funcionario.Endereco.Complemento;
+            funcionario1.Endereco.Bairro = funcionario.Endereco.Bairro;
+            funcionario1.Endereco.Cidade = funcionario.Endereco.Cidade;
+            funcionario1.Endereco.UF = funcionario.Endereco.UF;
+            funcionario1.Endereco.CEP = funcionario.Endereco.CEP;
+
+            // Instanciar e preencher o telefone
+            funcionario1.Telefone = new TelefoneFuncionario();
+            funcionario1.Telefone.DDD = funcionario.Telefone.DDD;
+            funcionario1.Telefone.Numero = funcionario.Telefone.Numero;
+
+            TextBoxLogradouro.Text = funcionario.Endereco.Logradouro;
+            TextBoxNumero.Text = funcionario.Endereco.Numero;
+            TextBoxComplemento.Text = funcionario.Endereco.Complemento;
+            TextBoxBairro.Text = funcionario.Endereco.Bairro;
+            TextBoxCidade.Text = funcionario.Endereco.Cidade;
+            ComboBoxUF.Text = funcionario.Endereco.UF;
+            TextBoxCEP.Text = funcionario.Endereco.CEP;
+
+            TextBoxDDD.Text = funcionario.Telefone.DDD;
+            TextBoxTelefone.Text = funcionario.Telefone.Numero;
         }
 
         private void BotaoConfirmar_Click(object sender, EventArgs e)
@@ -43,37 +98,26 @@ namespace PIMFazendaUrbana
             if (nomevalido == false)
             {
                 MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
                 return;
             }
             else if (emailvalido == false)
             {
                 MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
                 return;
             }
             else if (cargovalido == false)
             {
                 MessageBox.Show("Preencha o campo Cargo corretamente. O cargo deve ser 'Funcionário' ou 'Gerente'", "Cargo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = ComboBoxCargo; // Define o foco para o ComboBoxCargo
                 return;
             }
             else if (sexovalido == false)
             {
                 MessageBox.Show("Preencha o campo Sexo corretamente. O sexo deve ser 'M', 'F' ou '-'", "Sexo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = ComboBoxSexo; // Define o foco para o ComboBoxSexo
                 return;
             }
             else if (usuariovalido == false)
             {
                 MessageBox.Show("Preencha o campo Usuário corretamente. O usuário deve ter ao menos 3 caracteres", "Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
-                return;
-            }
-            else if (senhavalida == false)
-            {
-                MessageBox.Show("Preencha ambos os campos de Senha corretamente. A senha deve ter ao menos 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caracter especial", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
                 return;
             }
             else if (dddvalido == false)
@@ -127,45 +171,55 @@ namespace PIMFazendaUrbana
             else
             {
                 funcionario1.Nome = TextBoxNome.Text;
+                MessageBox.Show("Nome: " + funcionario1.Nome);
                 funcionario1.Email = TextBoxEmail.Text;
+                MessageBox.Show("Email: " + funcionario1.Email);
                 funcionario1.Usuario = TextBoxUsuario.Text;
-                funcionario1.Senha = TextBoxSenha1.Text;
+                MessageBox.Show("Usuário: " + funcionario1.Usuario);
                 funcionario1.Cargo = ComboBoxCargo.Text;
+                MessageBox.Show("Cargo: " + funcionario1.Cargo);
                 funcionario1.Sexo = ComboBoxSexo.Text;
-                funcionario1.StatusAtivo = true;
+                MessageBox.Show("Sexo: " + funcionario1.Sexo);
 
                 funcionario1.Endereco = new EnderecoFuncionario();
                 funcionario1.Endereco.Logradouro = TextBoxLogradouro.Text;
+                MessageBox.Show("Logradouro: " + funcionario1.Endereco.Logradouro);
                 funcionario1.Endereco.Numero = TextBoxNumero.Text;
+                MessageBox.Show("Número: " + funcionario1.Endereco.Numero);
                 funcionario1.Endereco.Complemento = TextBoxComplemento.Text;
+                MessageBox.Show("Complemento: " + funcionario1.Endereco.Complemento);
                 funcionario1.Endereco.Bairro = TextBoxBairro.Text;
+                MessageBox.Show("Bairro: " + funcionario1.Endereco.Bairro);
                 funcionario1.Endereco.Cidade = TextBoxCidade.Text;
+                MessageBox.Show("Cidade: " + funcionario1.Endereco.Cidade);
                 funcionario1.Endereco.UF = ComboBoxUF.Text;
+                MessageBox.Show("UF: " + funcionario1.Endereco.UF);
                 funcionario1.Endereco.CEP = TextBoxCEP.Text.Replace("-", ""); // Marcelo falou para no banco guardar como varchar, mas antes tirar os traços
-                funcionario1.Endereco.StatusAtivo = true;
+                MessageBox.Show("CEP: " + funcionario1.Endereco.CEP);
 
                 funcionario1.Telefone = new TelefoneFuncionario();
                 funcionario1.Telefone.DDD = TextBoxDDD.Text;
+                MessageBox.Show("DDD: " + funcionario1.Telefone.DDD);
                 funcionario1.Telefone.Numero = TextBoxTelefone.Text;
-                funcionario1.Telefone.StatusAtivo = true;
+                MessageBox.Show("Telefone: " + funcionario1.Telefone.Numero);
 
-                bool sucesso = funcionarioService.CadastrarFuncionario(funcionario1); // Chamando o método CadastrarFuncionario da instância funcionarioService
+                bool sucesso = funcionarioService.AlterarFuncionario(funcionario1); // Chamando o método AlterarFuncionario da instância funcionarioService
                 if (sucesso == true)
                 {
-                    MessageBox.Show("Usuário cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FuncionarioCadastradoSucesso?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show("Usuário alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FuncionarioEditadoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao cadastrar usuário. Verifique se o usuário já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Erro ao editar usuário. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }
         }
 
         // Definir um evento para notificar o cadastro bem-sucedido do funcionario
-        public event EventHandler FuncionarioCadastradoSucesso;
+        public event EventHandler FuncionarioEditadoSucesso;
 
         private void BotaoCancelar_Click(object sender, EventArgs e)
         {
@@ -260,28 +314,36 @@ namespace PIMFazendaUrbana
         {
             string usuario = TextBoxUsuario.Text;
 
-            if (TextBoxUsuario.Text.Length < 3)
+            if (usuarioAntigo == usuario)
             {
-                TextBoxUsuario.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo Usuário corretamente. O nome de usuário deve ter ao menos 3 caracteres", "Nome de Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                usuariovalido = false;
-                this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
+                TextBoxUsuario.ForeColor = Color.Black;
+                usuariovalido = true;
             }
             else
             {
-                if (VerificarUsuarioDisponivel(usuario) == true)
+                if (TextBoxUsuario.Text.Length < 3)
                 {
-                    TextBoxUsuario.ForeColor = Color.Black;
-                    usuariovalido = true;
+                    TextBoxUsuario.ForeColor = Color.Red;
+
+                    // Exibe a mensagem de erro
+                    MessageBox.Show("Preencha o campo Usuário corretamente. O nome de usuário deve ter ao menos 3 caracteres", "Nome de Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    usuariovalido = false;
+                    this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
                 }
                 else
                 {
-                    TextBoxUsuario.ForeColor = Color.Red;
-                    usuariovalido = false;
-                    this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
+                    if (VerificarUsuarioDisponivel(usuario) == true)
+                    {
+                        TextBoxUsuario.ForeColor = Color.Black;
+                        usuariovalido = true;
+                    }
+                    else
+                    {
+                        TextBoxUsuario.ForeColor = Color.Red;
+                        usuariovalido = false;
+                        this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
+                    }
                 }
             }
         }
@@ -474,130 +536,6 @@ namespace PIMFazendaUrbana
                 TextBoxCEP.ForeColor = Color.Black;
                 cepvalido = true;
             }
-        }
-
-        private void TextBoxSenha2_Validating(object sender, CancelEventArgs e)
-        {
-            if (TextBoxSenha1.Text == null)
-            {
-                MessageBox.Show("Preencha o campo Senha", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TextBoxSenha1.ForeColor = Color.Red;
-            }
-            else
-            {
-                string senha1 = TextBoxSenha1.Text;
-                string senha2 = TextBoxSenha2.Text;
-
-                // Verificar se a senha é forte o suficiente
-                bool senhaforte = VerificarSenhaForte(senha1);
-
-                if (senhaforte == false)
-                {
-                    senhavalida = false;
-                    TextBoxSenha1.ForeColor = Color.Red;
-                    TextBoxSenha2.ForeColor = Color.Red;
-                    this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
-                    return;
-                }
-                else
-                {
-                    if (senha1 != senha2)
-                    {
-                        MessageBox.Show("As senhas são diferentes, confira e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        senhavalida = false;
-                        TextBoxSenha1.ForeColor = Color.Red;
-                        TextBoxSenha2.ForeColor = Color.Red;
-                        this.ActiveControl = TextBoxSenha2; // Define o foco para o TextBoxSenha1
-                    }
-                    else
-                    {
-                        senhavalida = true;
-                        TextBoxSenha1.ForeColor = Color.Black;
-                        TextBoxSenha2.ForeColor = Color.Black;
-                    }
-                }
-            }
-        }
-
-        // Método dedicado para verificar se a senha é forte o suficiente
-        // ********** FUNCIONAL **********
-        public bool VerificarSenhaForte(string senha)
-        {
-            // Verifica se a senha tem pelo menos 8 caracteres
-            if (senha.Length < 8)
-            {
-                MessageBox.Show("A senha deve conter no mínimo 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos um número
-            bool contemNumero = false;
-            foreach (char c in senha)
-            {
-                if (char.IsDigit(c))
-                {
-                    contemNumero = true;
-                    break;
-                }
-            }
-            if (!contemNumero)
-            {
-                MessageBox.Show("A senha deve conter pelo menos um número.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos uma letra maiúscula
-            bool contemMaiuscula = false;
-            foreach (char c in senha)
-            {
-                if (char.IsUpper(c))
-                {
-                    contemMaiuscula = true;
-                    break;
-                }
-            }
-            if (!contemMaiuscula)
-            {
-                MessageBox.Show("A senha deve conter pelo menos uma letra maiúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos uma letra minúscula
-            bool contemMinuscula = false;
-            foreach (char c in senha)
-            {
-                if (char.IsLower(c))
-                {
-                    contemMinuscula = true;
-                    break;
-                }
-            }
-            if (!contemMinuscula)
-            {
-                MessageBox.Show("A senha deve conter pelo menos uma letra minúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Verifica se a senha contém pelo menos um caractere especial
-            bool contemEspecial = false;
-            foreach (char c in senha)
-            {
-                if (!char.IsLetterOrDigit(c))
-                {
-                    contemEspecial = true;
-                    break;
-                }
-            }
-            if (!contemEspecial)
-            {
-                MessageBox.Show("A senha deve conter pelo menos um caractere especial.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            // Se a senha passar por todas as verificações, é considerada forte
-            return true;
-            //MessageBox.Show("Senha forte.", "Senha Forte", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void TextBoxTelefone_KeyPress(object sender, KeyPressEventArgs e)

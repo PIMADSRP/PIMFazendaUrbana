@@ -1,4 +1,6 @@
-﻿namespace PIMFazendaUrbana
+﻿using PIMFazendaUrbana;
+
+namespace PIMFazendaUrbana
 {
     public partial class TelaFuncionarios : Form
     {
@@ -53,6 +55,12 @@
 
         // Manipulador de eventos para o evento FuncionarioCadastradoSucesso
         private void TelaCadastrarFuncionario_FuncionarioCadastradoSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
+        // Manipulador de eventos para o evento FuncionarioEditadoSucesso
+        private void TelaEditarFuncionario_FuncionarioEditadoSucesso(object sender, EventArgs e)
         {
             AtualizarDataGridView();
         }
@@ -162,23 +170,49 @@
 
             telaCadastrarFuncionario.FuncionarioCadastradoSucesso += TelaCadastrarFuncionario_FuncionarioCadastradoSucesso;
         }
-        private void DataGridViewListaFuncionarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            /*
-            DataTable dt = usuarioDao.Select();
-            DataGridViewListaFuncionarios.DataSource = dt;
-            */
-        }
+
         private void PictureBoxAtualizar_Click(object sender, EventArgs e)
         {
-            this.Close();
-            TelaFuncionarios tela = new TelaFuncionarios();
-            tela.ShowDialog();
+            AtualizarDataGridView();
+            MessageBox.Show("Lista de usuários atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void PictureBoxDeletar_Click(object sender, EventArgs e)
         {
+            // Verificar se alguma linha está selecionada no DataGridView
+            if (DataGridViewListaFuncionarios.SelectedRows.Count > 0)
+            {
+                // Obter o índice da linha selecionada
+                int selectedIndex = DataGridViewListaFuncionarios.SelectedRows[0].Index;
 
+                // Obter o ID do funcionário selecionado
+                int funcionarioID = (int)DataGridViewListaFuncionarios.Rows[selectedIndex].Cells["IDColumn"].Value;
+
+                // Confirmar a exclusão com o usuário
+                DialogResult result = MessageBox.Show("Tem certeza que deseja excluir este usuário?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        // Excluir o funcionário usando o serviço de funcionário
+                        funcionarioService.ExcluirFuncionario(funcionarioID);
+
+                        // Atualizar o DataGridView após a exclusão
+                        ListarFuncionariosAtivosDataGrid();
+
+                        MessageBox.Show("Usuário excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao excluir usuário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione um usuário para excluir (botão '>' à esquerda do ID do usuário).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void PictureBoxHome_Click(object sender, EventArgs e)
@@ -188,7 +222,32 @@
 
         private void PictureBoxEditar_Click(object sender, EventArgs e)
         {
+            // Verificar se alguma linha está selecionada no DataGridView
+            if (DataGridViewListaFuncionarios.SelectedRows.Count == 1)
+            {
+                // Obter o índice da linha selecionada
+                int selectedIndex = DataGridViewListaFuncionarios.SelectedRows[0].Index;
 
+                // Obter o ID do funcionário selecionado
+                int funcionarioID = (int)DataGridViewListaFuncionarios.Rows[selectedIndex].Cells["IDColumn"].Value;
+
+                // Criar uma instância do segundo formulário
+                TelaEditarFuncionario telaEditarFuncionario = new TelaEditarFuncionario(funcionarioID);
+
+                // Exibir o segundo formulário
+                telaEditarFuncionario.Show();
+
+                telaEditarFuncionario.FuncionarioEditadoSucesso += TelaEditarFuncionario_FuncionarioEditadoSucesso;
+            }
+            else if (DataGridViewListaFuncionarios.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Por favor, selecione um usuário para editar (botão '>' à esquerda do ID do usuário).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecione apenas um usuário para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
     }
 }

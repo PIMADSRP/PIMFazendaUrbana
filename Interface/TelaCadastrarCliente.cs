@@ -224,7 +224,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxDDD.ForeColor = Color.Red;
 
-                MessageBox.Show("O DDD deve conter exatamente 2 caracteres numéricos.", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O DDD deve conter exatamente 2 caracteres numéricos.", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 dddvalido = false;
                 this.ActiveControl = TextBoxDDD;
             }
@@ -244,7 +244,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxTelefone.ForeColor = Color.Red;
 
-                MessageBox.Show("O número de telefone deve conter 8 ou 9 caracteres numéricos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O número de telefone deve conter 8 ou 9 caracteres numéricos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 telefonevalido = false;
                 this.ActiveControl = TextBoxTelefone;
             }
@@ -264,7 +264,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxLogradouro.ForeColor = Color.Red;
 
-                MessageBox.Show("O logradouro deve conter ao menos 3 caracteres.", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O logradouro deve conter ao menos 3 caracteres.", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 logradourovalido = false;
                 this.ActiveControl = TextBoxLogradouro; // Define o foco para o TextBoxLogradouro
             }
@@ -284,7 +284,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxNumero.ForeColor = Color.Red;
 
-                MessageBox.Show("O número deve conter apenas caracteres numéricos.", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O número deve conter apenas caracteres numéricos.", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 numerocasavalido = false;
                 this.ActiveControl = TextBoxNumero; // Define o foco para o TextBoxNumero
             }
@@ -304,7 +304,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxBairro.ForeColor = Color.Red;
 
-                MessageBox.Show("O bairro deve conter ao menos 3 caracteres.", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("O bairro deve conter ao menos 3 caracteres.", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 bairrovalido = false;
                 this.ActiveControl = TextBoxBairro; // Define o foco para o TextBoxBairro
             }
@@ -324,7 +324,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 TextBoxCidade.ForeColor = Color.Red;
 
-                MessageBox.Show("A cidade deve conter ao menos 3 caracteres.", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("A cidade deve conter ao menos 3 caracteres.", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cidadevalida = false;
                 this.ActiveControl = TextBoxCidade; // Define o foco para o TextBoxCidade
             }
@@ -344,7 +344,7 @@ namespace PIMFazendaUrbana
                 // Define a cor de texto para vermelho
                 ComboBoxUF.ForeColor = Color.Red;
 
-                MessageBox.Show("Selecione uma UF válida.", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Selecione uma UF válida.", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ufvalido = false;
                 this.ActiveControl = ComboBoxUF; // Define o foco para o ComboBoxUF
             }
@@ -381,6 +381,22 @@ namespace PIMFazendaUrbana
             }
         }
 
+        private void TextBoxTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica se a tecla pressionada é um dígito
+            if (char.IsDigit(e.KeyChar))
+            {
+                // Obtém o texto atual do TextBox
+                string text = TextBoxTelefone.Text;
+
+                // Se o comprimento do texto atual for 9, impede a inserção de mais dígitos
+                if (text.Length >= 9)
+                {
+                    e.Handled = true;
+                    MessageBox.Show("O número de telefone deve conter no máximo 9 dígitos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
 
     }
 }

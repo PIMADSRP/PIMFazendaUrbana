@@ -153,6 +153,7 @@
             TextBoxTelefone.Name = "TextBoxTelefone";
             TextBoxTelefone.Size = new Size(156, 23);
             TextBoxTelefone.TabIndex = 5;
+            TextBoxTelefone.KeyPress += TextBoxTelefone_KeyPress;
             TextBoxTelefone.Validating += TextBoxTelefone_Validating;
             // 
             // LabelDDD

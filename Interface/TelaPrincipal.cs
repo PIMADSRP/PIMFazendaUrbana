@@ -68,5 +68,14 @@ namespace PIMFazendaUrbana
         {
             this.Close();
         }
+
+        private void Produtos_Click(object sender, EventArgs e)
+        {
+            // Criar uma instância do segundo formulário
+            TelaIndicarPlantio telaIndicarPlantio = new TelaIndicarPlantio();
+
+            // Exibir o segundo formulário
+            telaIndicarPlantio.Show();
+        }
     }
 }
