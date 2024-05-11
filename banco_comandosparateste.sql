@@ -1,7 +1,7 @@
 ### COMANDOS PARA TESTE:
 
 # insert
-INSERT into funcionario (nome_funcionario, sexo_funcionario, email_funcionario, cargo_funcionario, usuario_funcionario, credenciais_funcionario) 
+INSERT into funcionario (nome_funcionario, sexo_funcionario, email_funcionario, cargo_funcionario, usuario_funcionario, senha_funcionario) 
 values ('nomefuncionarioteste', 'masculino', 'funcionarioteste@gmail.com', 'gerente', 'nomedeusuarioteste', 'senhateste');
 
 INSERT into endereco_funcionario (logradouro_endfuncionario, numero_endfuncionario, complemento_endfuncionario, bairro_endfuncionario, cidade_endfuncionario, uf_endfuncionario, cep_endfuncionario, id_funcionario) 
@@ -56,7 +56,7 @@ select * from telefone_funcionario;
 SELECT COUNT(*) FROM funcionario WHERE usuario_funcionario = 'luiz1231';
 SELECT COUNT(*) FROM funcionario WHERE usuario_funcionario = 'asdasd';
 
-SELECT credenciais_funcionario, ativo_funcionario FROM funcionario WHERE usuario_funcionario = 'igor123';
+SELECT senha_funcionario, ativo_funcionario FROM funcionario WHERE usuario_funcionario = 'igor123';
 
 SELECT f.id_funcionario, f.nome_funcionario, f.sexo_funcionario, f.email_funcionario, f.cargo_funcionario, 
 f.usuario_funcionario, f.ativo_funcionario, 

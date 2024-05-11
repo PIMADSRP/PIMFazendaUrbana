@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PIMFazendaUrbana", "PIMFazendaUrbana.csproj", "{7138895E-978D-44BA-8DEE-3A9280E250BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PIMFazendaUrbanaForms", "PIMFazendaUrbanaForms\PIMFazendaUrbanaForms.csproj", "{2525B9B5-08E7-498F-9530-82CDD441D1C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PIMFazendaUrbanaLib", "PIMFazendaUrbanaLib\PIMFazendaUrbanaLib.csproj", "{281D9961-0352-4C20-AF52-26E74B210C92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7138895E-978D-44BA-8DEE-3A9280E250BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7138895E-978D-44BA-8DEE-3A9280E250BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7138895E-978D-44BA-8DEE-3A9280E250BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7138895E-978D-44BA-8DEE-3A9280E250BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2525B9B5-08E7-498F-9530-82CDD441D1C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2525B9B5-08E7-498F-9530-82CDD441D1C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2525B9B5-08E7-498F-9530-82CDD441D1C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2525B9B5-08E7-498F-9530-82CDD441D1C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281D9961-0352-4C20-AF52-26E74B210C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281D9961-0352-4C20-AF52-26E74B210C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281D9961-0352-4C20-AF52-26E74B210C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281D9961-0352-4C20-AF52-26E74B210C92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
