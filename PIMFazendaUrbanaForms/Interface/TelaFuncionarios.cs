@@ -19,6 +19,7 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaFuncionarios.Columns.Add("NomeColumn", "Nome");
             DataGridViewListaFuncionarios.Columns.Add("SexoColumn", "Sexo");
             DataGridViewListaFuncionarios.Columns.Add("EmailColumn", "Email");
+            DataGridViewListaFuncionarios.Columns.Add("CPFColumn", "CPF");
             DataGridViewListaFuncionarios.Columns.Add("CargoColumn", "Cargo");
             DataGridViewListaFuncionarios.Columns.Add("UsuarioColumn", "Usuário"); // talvez não listar o nome de usuário dos funcionários?
 
@@ -31,6 +32,7 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaFuncionarios.Columns["NomeColumn"].DataPropertyName = "Nome";
             DataGridViewListaFuncionarios.Columns["SexoColumn"].DataPropertyName = "Sexo";
             DataGridViewListaFuncionarios.Columns["EmailColumn"].DataPropertyName = "Email";
+            DataGridViewListaFuncionarios.Columns["CPFColumn"].DataPropertyName = "CPF";
             DataGridViewListaFuncionarios.Columns["CargoColumn"].DataPropertyName = "Cargo";
             DataGridViewListaFuncionarios.Columns["UsuarioColumn"].DataPropertyName = "Usuario"; // talvez não listar o nome de usuário dos funcionários?
 
@@ -62,6 +64,15 @@ namespace PIMFazendaUrbanaForms
             AtualizarDataGridView();
         }
 
+        // Definir um evento para notificar a exclusão bem-sucedida de um funcionário
+        public event EventHandler FuncionarioExcluidoSucesso;
+
+        // Manipulador de eventos para o evento FuncionarioExcluidoSucesso
+        private void TelaExcluirFuncionario_FuncionarioExcluidoSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
         // Método para atualizar o DataGridView
         private void AtualizarDataGridView()
         {
@@ -74,28 +85,26 @@ namespace PIMFazendaUrbanaForms
             {
                 List<Funcionario> funcionarios = funcionarioService.ListarFuncionariosAtivos();
 
-                // Verificar se a lista de funcionários não está vazia
-                if (funcionarios != null && funcionarios.Count > 0)
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = funcionarios?.Select(f => new
                 {
-                    // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
-                    var data = funcionarios.Select(f => new
-                    {
-                        f.ID,
-                        f.Nome,
-                        f.Sexo,
-                        f.Email,
-                        f.Cargo,
-                        f.Usuario, // talvez não listar o nome de usuário dos funcionários?
+                    f.ID,
+                    f.Nome,
+                    f.Sexo,
+                    f.Email,
+                    CPF = FormatarCPF(f.CPF),
+                    f.Cargo,
+                    f.Usuario, // talvez não listar o nome de usuário dos funcionários?
+                    Telefone = FormatarTelefone(f.Telefone), // Formatar o telefone
+                    Endereco = FormatarEndereco(f.Endereco), // Formatar o endereço
+                    CEP = FormatarCEP(f.Endereco) // Formatar o CEP
+                }).ToList();
 
-                        Telefone = FormatarTelefone(f.Telefone), // Formatar o telefone
-                        Endereco = FormatarEndereco(f.Endereco), // Formatar o endereço
-                        CEP = FormatarCEP(f.Endereco) // Formatar o CEP
-                    }).ToList();
+                // Atualizar o DataGridView com a lista de funcionários formatados ou limpa se a lista for vazia
+                DataGridViewListaFuncionarios.DataSource = data;
 
-                    // Preencher o DataGridView com os dados formatados
-                    DataGridViewListaFuncionarios.DataSource = data;
-                }
-                else
+                // Verificar se a lista de funcionários não está vazia
+                if (data == null || data.Count == 0)
                 {
                     MessageBox.Show("Nenhum funcionário encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -104,6 +113,17 @@ namespace PIMFazendaUrbanaForms
             {
                 MessageBox.Show($"Erro ao listar funcionários: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Método para formatar o CPF
+        private object FormatarCPF(string cpf)
+        {
+            string cpfFormatado = cpf;
+            if (cpfFormatado.Length == 11) // Insere os pontos e traço no CPF
+            {
+                cpfFormatado = $"{cpfFormatado.Substring(0, 3)}.{cpfFormatado.Substring(3, 3)}.{cpfFormatado.Substring(6, 3)}-{cpfFormatado.Substring(9)}";
+            }
+            return cpfFormatado;
         }
 
         // Método para formatar o telefone
@@ -192,13 +212,10 @@ namespace PIMFazendaUrbanaForms
                 {
                     try
                     {
-                        // Excluir o funcionário usando o serviço de funcionário
-                        funcionarioService.ExcluirFuncionario(funcionarioID);
-
-                        // Atualizar o DataGridView após a exclusão
-                        ListarFuncionariosAtivosDataGrid();
-
+                        funcionarioService.ExcluirFuncionario(funcionarioID); // Excluir o funcionário
                         MessageBox.Show("Usuário excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        AtualizarDataGridView(); // Atualizar o DataGridView
+                        FuncionarioExcluidoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento FuncionarioExcluidoSucesso
                     }
                     catch (Exception ex)
                     {

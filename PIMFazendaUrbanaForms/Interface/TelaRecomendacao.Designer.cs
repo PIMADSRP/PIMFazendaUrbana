@@ -99,7 +99,7 @@
             // 
             // BotaoFechar
             // 
-            BotaoFechar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoFechar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoFechar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoFechar.ForeColor = Color.White;
             BotaoFechar.Location = new Point(164, 145);

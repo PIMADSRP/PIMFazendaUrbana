@@ -117,7 +117,7 @@
             // 
             // BotaoCancelar
             // 
-            BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
             BotaoCancelar.Location = new Point(282, 404);
@@ -280,7 +280,7 @@
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(168, 358);
+            LabelCEP.Location = new Point(169, 359);
             LabelCEP.Name = "LabelCEP";
             LabelCEP.Size = new Size(31, 15);
             LabelCEP.TabIndex = 25;
@@ -351,6 +351,7 @@
             Controls.Add(TextBoxEmail);
             Controls.Add(TextBoxNome);
             Name = "TelaCadastrarCliente";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CadastrarCliente";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();

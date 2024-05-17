@@ -116,7 +116,7 @@
             // 
             // BotaoCancelar
             // 
-            BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
             BotaoCancelar.Location = new Point(249, 192);
