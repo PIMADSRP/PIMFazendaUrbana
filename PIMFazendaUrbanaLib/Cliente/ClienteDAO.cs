@@ -13,7 +13,7 @@ namespace PIMFazendaUrbanaLib
 
         // 1 - MÉTODO CADASTRAR CLIENTE NO BANCO
         // ********** FUNCIONAL **********
-        public void CadastrarCliente_DAO(Cliente cliente)
+        public void CadastrarCliente(Cliente cliente)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
             {
@@ -86,7 +86,7 @@ namespace PIMFazendaUrbanaLib
 
         // 2- MÉTODO ALTERAR CLIENTE NO BANCO
         // ********** FUNCIONAL **********
-        public void AlterarCliente_DAO(Cliente cliente)
+        public void AlterarCliente(Cliente cliente)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -163,7 +163,7 @@ namespace PIMFazendaUrbanaLib
 
         // 3- MÉTODO EXCLUIR (DESATIVAR) CLIENTE DO BANCO
         // ********** FUNCIONAL **********
-        public void ExcluirCliente_DAO(int clienteId)
+        public void ExcluirCliente(int clienteId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -213,7 +213,7 @@ namespace PIMFazendaUrbanaLib
         // 4- Listagem
         // 4.1- MÉTODO LISTAR APENAS CLIENTES ATIVOS DO BANCO
         // ********** FUNCIONAL **********
-        public List<Cliente> ListarClientesAtivos_DAO()
+        public List<Cliente> ListarClientesAtivos()
         {
             List<Cliente> clientes = new List<Cliente>();
 
@@ -271,24 +271,25 @@ namespace PIMFazendaUrbanaLib
             return clientes;
         }
 
-        // 4.2- MÉTODO LISTAR TODOS OS CLIENTES DO BANCO
+        // 4.2- MÉTODO LISTAR APENAS CLIENTES INATIVOS DO BANCO
+        // O método ListarClientesInativos é responsável por obter a lista de todos os clientes inativos cadastrados no banco de dados e exibir esses dados na tela.
         // ********** FUNCIONAL **********
-        public List<Cliente> ListarTodosClientes_DAO()
+        public List<Cliente> ListarClientesInativos()
         {
-            List<Cliente> clientes = new List<Cliente>();
+            List<Cliente> clientesInativos = new List<Cliente>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
                 string query = @"SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente, 
-                                t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
-                                e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
-                                e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
-                                FROM cliente c
-                                LEFT JOIN telefonecliente t ON c.id_cliente = t.id_cliente
-                                LEFT JOIN enderecocliente e ON c.id_cliente = e.id_cliente
-                                ";
+                        t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
+                        e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
+                        e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
+                        FROM cliente c
+                        LEFT JOIN telefonecliente t ON c.id_cliente = t.id_cliente
+                        LEFT JOIN enderecocliente e ON c.id_cliente = e.id_cliente
+                        WHERE c.ativo_cliente = 0";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -323,18 +324,18 @@ namespace PIMFazendaUrbanaLib
                                     StatusAtivo = reader.GetBoolean("ativo_endcliente")
                                 }
                             };
-                            clientes.Add(cliente);
+                            clientesInativos.Add(cliente);
                         }
                     }
                 }
             }
-            return clientes;
+            return clientesInativos;
         }
 
         // 5- Consulta
         // 5.1- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR ID (somente clientes ativos)
         // ********** FUNCIONAL **********
-        public Cliente ConsultarClienteID_DAO(int clienteId)
+        public Cliente ConsultarClienteID(int clienteId)
         {
             Cliente cliente = null;
 
@@ -391,7 +392,7 @@ namespace PIMFazendaUrbanaLib
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME (somente clientes ativos)
         // ********** NÃO TESTADO **********
-        public Cliente ConsultarClienteNome_DAO(string clienteNome)
+        public Cliente ConsultarClienteNome(string clienteNome)
         {
             Cliente cliente = null;
 
@@ -448,7 +449,7 @@ namespace PIMFazendaUrbanaLib
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ (somente clientes ativos)
         // ********** NÃO TESTADO **********
-        public Cliente ConsultarClienteCNPJ_DAO(string clienteCNPJ)
+        public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
         {
             Cliente cliente = null;
 

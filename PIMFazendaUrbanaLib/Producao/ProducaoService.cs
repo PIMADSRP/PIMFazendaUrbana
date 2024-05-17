@@ -14,7 +14,7 @@
         {
             try
             {
-                producaoDAO.CadastrarProducao_DAO(producao);
+                producaoDAO.CadastrarProducao(producao);
                 return true;
             }
             catch (Exception ex)
@@ -28,7 +28,7 @@
         {
             try
             {
-                producaoDAO.AlterarProducao_DAO(producao);
+                producaoDAO.AlterarProducao(producao);
                 return true;
             }
             catch (Exception ex)
@@ -42,7 +42,7 @@
         {
             try
             {
-                producaoDAO.FinalizarProducao_DAO(producaoId);
+                producaoDAO.FinalizarProducao(producaoId);
                 return true;
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@
         {
             try
             {
-                producaoDAO.ExcluirProducao_DAO(producaoId);
+                producaoDAO.ExcluirProducao(producaoId);
                 return true;
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@
         {
             try
             {
-                List<Producao> producoes = producaoDAO.ListarProducoesAtivas_DAO();
+                List<Producao> producoes = producaoDAO.ListarProducoesAtivas();
                 return producoes; // Retorna a lista de produções quando tudo corre bem
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@
         {
             try
             {
-                List<Producao> producoes = producaoDAO.ListarProducoesAtivasNaoFinalizadas_DAO();
+                List<Producao> producoes = producaoDAO.ListarProducoesAtivasNaoFinalizadas();
                 return producoes; // Retorna a lista de produções quando tudo corre bem
             }
             catch (Exception ex)
@@ -99,7 +99,7 @@
         {
             try
             {
-                Producao producao = producaoDAO.ConsultarProducaoID_DAO(producaoId);
+                Producao producao = producaoDAO.ConsultarProducaoID(producaoId);
                 return producao;
             }
             catch (Exception ex)

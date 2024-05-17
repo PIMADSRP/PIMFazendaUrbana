@@ -119,7 +119,7 @@
             // 
             // BotaoCancelar
             // 
-            BotaoCancelar.BackColor = Color.FromArgb(220, 190, 70);
+            BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
             BotaoCancelar.Location = new Point(282, 430);
@@ -170,7 +170,7 @@
             // LabelTelefone
             // 
             LabelTelefone.AutoSize = true;
-            LabelTelefone.Location = new Point(140, 191);
+            LabelTelefone.Location = new Point(141, 191);
             LabelTelefone.Name = "LabelTelefone";
             LabelTelefone.Size = new Size(54, 15);
             LabelTelefone.TabIndex = 11;
@@ -282,7 +282,7 @@
             // LabelCEP
             // 
             LabelCEP.AutoSize = true;
-            LabelCEP.Location = new Point(168, 389);
+            LabelCEP.Location = new Point(169, 389);
             LabelCEP.Name = "LabelCEP";
             LabelCEP.Size = new Size(31, 15);
             LabelCEP.TabIndex = 25;
@@ -330,7 +330,7 @@
             // LabelCodigo
             // 
             LabelCodigo.AutoSize = true;
-            LabelCodigo.Location = new Point(50, 61);
+            LabelCodigo.Location = new Point(48, 61);
             LabelCodigo.Name = "LabelCodigo";
             LabelCodigo.Size = new Size(52, 15);
             LabelCodigo.TabIndex = 52;

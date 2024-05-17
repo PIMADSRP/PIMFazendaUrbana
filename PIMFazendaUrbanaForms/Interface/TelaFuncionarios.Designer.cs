@@ -41,18 +41,18 @@
             LabelEditar = new Label();
             LabelDeletar = new Label();
             PanelHeader = new Panel();
+            PictureBoxAtualizar = new PictureBox();
+            LabelAtualizar = new Label();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
-            LabelAtualizar = new Label();
-            PictureBoxAtualizar = new PictureBox();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaFuncionarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
             PanelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             SuspendLayout();
             // 
             // PanelFooter
@@ -65,13 +65,13 @@
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
             PanelFooter.Size = new Size(1370, 35);
-            PanelFooter.TabIndex = 1;
+            PanelFooter.TabIndex = 55;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(606, 5);
+            label1.Location = new Point(615, 5);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(263, 25);
@@ -82,17 +82,19 @@
             // TextBoxPesquisar
             // 
             TextBoxPesquisar.Enabled = false;
-            TextBoxPesquisar.Location = new Point(120, 83);
+            TextBoxPesquisar.Location = new Point(201, 19);
             TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.Size = new Size(421, 23);
+            TextBoxPesquisar.Size = new Size(407, 23);
             TextBoxPesquisar.TabIndex = 31;
             // 
             // LabelPesquisarUsuarios
             // 
             LabelPesquisarUsuarios.AutoSize = true;
-            LabelPesquisarUsuarios.Location = new Point(0, 87);
+            LabelPesquisarUsuarios.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold);
+            LabelPesquisarUsuarios.ForeColor = Color.White;
+            LabelPesquisarUsuarios.Location = new Point(71, 21);
             LabelPesquisarUsuarios.Name = "LabelPesquisarUsuarios";
-            LabelPesquisarUsuarios.Size = new Size(108, 15);
+            LabelPesquisarUsuarios.Size = new Size(128, 17);
             LabelPesquisarUsuarios.TabIndex = 30;
             LabelPesquisarUsuarios.Text = "Pesquisar Usuários:";
             // 
@@ -102,15 +104,15 @@
             DataGridViewListaFuncionarios.AllowUserToDeleteRows = false;
             DataGridViewListaFuncionarios.BackgroundColor = SystemColors.Menu;
             DataGridViewListaFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaFuncionarios.Location = new Point(120, 126);
+            DataGridViewListaFuncionarios.Location = new Point(60, 80);
             DataGridViewListaFuncionarios.Name = "DataGridViewListaFuncionarios";
-            DataGridViewListaFuncionarios.Size = new Size(1235, 565);
-            DataGridViewListaFuncionarios.TabIndex = 33;
+            DataGridViewListaFuncionarios.Size = new Size(1410, 666);
+            DataGridViewListaFuncionarios.TabIndex = 0;
             // 
             // PictureBoxEditar
             // 
             PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
-            PictureBoxEditar.Location = new Point(628, 79);
+            PictureBoxEditar.Location = new Point(693, 12);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -121,7 +123,7 @@
             // PictureBoxDeletar
             // 
             PictureBoxDeletar.Image = (Image)resources.GetObject("PictureBoxDeletar.Image");
-            PictureBoxDeletar.Location = new Point(682, 79);
+            PictureBoxDeletar.Location = new Point(751, 12);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -132,7 +134,7 @@
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
-            PictureBoxIncluir.Location = new Point(574, 79);
+            PictureBoxIncluir.Location = new Point(637, 12);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -143,40 +145,78 @@
             // LabelIncluir
             // 
             LabelIncluir.AutoSize = true;
-            LabelIncluir.Location = new Point(568, 104);
+            LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelIncluir.ForeColor = Color.White;
+            LabelIncluir.Location = new Point(630, 37);
             LabelIncluir.Name = "LabelIncluir";
-            LabelIncluir.Size = new Size(40, 15);
+            LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 38;
             LabelIncluir.Text = "Incluir";
             // 
             // LabelEditar
             // 
             LabelEditar.AutoSize = true;
-            LabelEditar.Location = new Point(623, 104);
+            LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelEditar.ForeColor = Color.White;
+            LabelEditar.Location = new Point(688, 37);
             LabelEditar.Name = "LabelEditar";
-            LabelEditar.Size = new Size(37, 15);
+            LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 39;
             LabelEditar.Text = "Editar";
             // 
             // LabelDeletar
             // 
             LabelDeletar.AutoSize = true;
-            LabelDeletar.Location = new Point(674, 104);
+            LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelDeletar.ForeColor = Color.White;
+            LabelDeletar.Location = new Point(742, 37);
             LabelDeletar.Name = "LabelDeletar";
-            LabelDeletar.Size = new Size(44, 15);
+            LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 40;
             LabelDeletar.Text = "Deletar";
             // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(PictureBoxAtualizar);
+            PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
+            PanelHeader.Controls.Add(LabelDeletar);
+            PanelHeader.Controls.Add(LabelPesquisarUsuarios);
+            PanelHeader.Controls.Add(LabelEditar);
+            PanelHeader.Controls.Add(TextBoxPesquisar);
+            PanelHeader.Controls.Add(LabelIncluir);
+            PanelHeader.Controls.Add(PictureBoxEditar);
+            PanelHeader.Controls.Add(PictureBoxIncluir);
+            PanelHeader.Controls.Add(PictureBoxDeletar);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1370, 60);
-            PanelHeader.TabIndex = 41;
+            PanelHeader.TabIndex = 52;
+            // 
+            // PictureBoxAtualizar
+            // 
+            PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
+            PictureBoxAtualizar.Location = new Point(809, 12);
+            PictureBoxAtualizar.Name = "PictureBoxAtualizar";
+            PictureBoxAtualizar.Size = new Size(29, 25);
+            PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxAtualizar.TabIndex = 43;
+            PictureBoxAtualizar.TabStop = false;
+            PictureBoxAtualizar.Click += PictureBoxAtualizar_Click;
+            // 
+            // LabelAtualizar
+            // 
+            LabelAtualizar.AutoSize = true;
+            LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelAtualizar.ForeColor = Color.White;
+            LabelAtualizar.Location = new Point(795, 37);
+            LabelAtualizar.Name = "LabelAtualizar";
+            LabelAtualizar.Size = new Size(61, 17);
+            LabelAtualizar.TabIndex = 42;
+            LabelAtualizar.Text = "Atualizar";
             // 
             // PictureBoxHome
             // 
@@ -203,44 +243,14 @@
             LabelHome.TabIndex = 19;
             LabelHome.Text = "Home";
             // 
-            // LabelAtualizar
-            // 
-            LabelAtualizar.AutoSize = true;
-            LabelAtualizar.Location = new Point(726, 103);
-            LabelAtualizar.Name = "LabelAtualizar";
-            LabelAtualizar.Size = new Size(53, 15);
-            LabelAtualizar.TabIndex = 42;
-            LabelAtualizar.Text = "Atualizar";
-            // 
-            // PictureBoxAtualizar
-            // 
-            PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
-            PictureBoxAtualizar.Location = new Point(736, 79);
-            PictureBoxAtualizar.Name = "PictureBoxAtualizar";
-            PictureBoxAtualizar.Size = new Size(29, 25);
-            PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxAtualizar.TabIndex = 43;
-            PictureBoxAtualizar.TabStop = false;
-            PictureBoxAtualizar.Click += PictureBoxAtualizar_Click;
-            // 
             // TelaFuncionarios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1370, 749);
-            Controls.Add(PictureBoxAtualizar);
-            Controls.Add(LabelAtualizar);
             Controls.Add(PanelHeader);
-            Controls.Add(LabelDeletar);
-            Controls.Add(LabelEditar);
-            Controls.Add(LabelIncluir);
-            Controls.Add(PictureBoxIncluir);
-            Controls.Add(PictureBoxDeletar);
-            Controls.Add(PictureBoxEditar);
-            Controls.Add(DataGridViewListaFuncionarios);
-            Controls.Add(TextBoxPesquisar);
             Controls.Add(PanelFooter);
-            Controls.Add(LabelPesquisarUsuarios);
+            Controls.Add(DataGridViewListaFuncionarios);
             Name = "TelaFuncionarios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Usuarios";
@@ -254,10 +264,9 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

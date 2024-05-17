@@ -10,7 +10,7 @@ namespace PIMFazendaUrbanaLib
             this.connectionString = ConnectionString.GetConnectionString();
         }
 
-        public List<Cultivo> GerarRecomendacao_DAO(string regiao, string estacao)
+        public List<Cultivo> GerarRecomendacao(string regiao, string estacao)
         {
             List<Cultivo> cultivos = new List<Cultivo>();
 
@@ -37,8 +37,8 @@ namespace PIMFazendaUrbanaLib
                                 ID = reader.GetInt32("id_cultivo"),
                                 Nome = reader.GetString("nome_cultivo"),
                                 Variedade = reader.GetString("variedade_cultivo"),
-                                TempoTradicional = reader.GetInt32("tempotrad_cultivo"),
-                                TempoControlado = reader.GetInt32("tempocontrol_cultivo"),
+                                TempoProdTradicional = reader.GetInt32("tempoprodtrad_cultivo"),
+                                TempoProdControlado = reader.GetInt32("tempoprodctrl_cultivo"),
                                 Categoria = reader.GetString("categoria_cultivo"),
                                 StatusAtivo = reader.GetBoolean("ativo_cultivo")
                             };

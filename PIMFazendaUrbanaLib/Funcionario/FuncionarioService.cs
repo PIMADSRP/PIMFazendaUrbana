@@ -13,7 +13,7 @@
         {
             try
             {
-                string autenticado = funcionarioDAO.AutenticarFuncionario_DAO(usuario, senha);
+                string autenticado = funcionarioDAO.AutenticarFuncionario(usuario, senha);
                 if (autenticado == "autenticado")
                 {
                     return "autenticado"; // Retorna "autenticado" para indicar que o funcionário foi autenticado
@@ -46,7 +46,7 @@
         {
             try
             {
-                if (funcionarioDAO.AutenticarGerente_DAO(usuario) == true)
+                if (funcionarioDAO.AutenticarGerente(usuario) == true)
                 {
                     // Aqui você pode fazer algo com os dados do funcionário autenticado.
 
@@ -70,7 +70,7 @@
         {
             try
             {
-                if (funcionarioDAO.VerificarUsuarioDisponivel_DAO(usuario) == true)
+                if (funcionarioDAO.VerificarUsuarioDisponivel(usuario) == true)
                 {
                     return "disponivel"; // Retorna "disponivel" para indicar que o usuário está disponível
                 }
@@ -90,7 +90,7 @@
         {
             try
             {
-                funcionarioDAO.AlterarSenhaFuncionario_DAO(usuario, novaSenha);
+                funcionarioDAO.AlterarSenhaFuncionario(usuario, novaSenha);
 
                 return true; // Retorna true para indicar que a alteração da senha foi bem-sucedida
             }
@@ -106,8 +106,8 @@
             try
             {
                 // Aqui você pode realizar validações dos dados do funcionário antes de chamara o DAO
-
-                funcionarioDAO.CadastrarFuncionario_DAO(funcionario);
+                
+                funcionarioDAO.CadastrarFuncionario(funcionario);
 
                 return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
@@ -122,7 +122,7 @@
         {
             try
             {
-                funcionarioDAO.AlterarFuncionario_DAO(funcionario);
+                funcionarioDAO.AlterarFuncionario(funcionario);
 
                 return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
@@ -137,7 +137,7 @@
         {
             try
             {
-                funcionarioDAO.ExcluirFuncionario_DAO(funcionarioId);
+                funcionarioDAO.ExcluirFuncionario(funcionarioId);
 
                 return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
@@ -153,7 +153,7 @@
         {
             try
             {
-                List<Funcionario> funcionarios = funcionarioDAO.ListarFuncionariosAtivos_DAO();
+                List<Funcionario> funcionarios = funcionarioDAO.ListarFuncionariosAtivos();
                 return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)
@@ -165,18 +165,18 @@
             }
         }
 
-        // 8.2- Método para listar todos os funcionários
-        public List<Funcionario> ListarTodosFuncionarios()
+        // 8.2- Método para listar funcionários inativos
+        public List<Funcionario> ListarFuncionariosInativos()
         {
             try
             {
-                List<Funcionario> funcionarios = funcionarioDAO.ListarTodosFuncionarios_DAO();
-                return funcionarios; // Retorna a lista de funcionarios quando tudo corre bem
+                List<Funcionario> funcionariosInativos = funcionarioDAO.ListarFuncionariosInativos();
+                return funcionariosInativos; // Retorna a lista de funcionarios quando tudo corre bem
             }
             catch (Exception ex)
             {
-                // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios
-                throw new Exception("Erro ao listar funcionários.", ex);
+                // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios inativos
+                throw new Exception("Erro ao listar funcionários inativos.", ex);
                 // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
                 // return new List<Funcionario>(); // Retorna uma lista vazia
             }
@@ -188,7 +188,7 @@
         {
             try
             {
-                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioID_DAO(funcionarioId);
+                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioID(funcionarioId);
                 return funcionario;
             }
             catch (Exception ex)
@@ -203,7 +203,7 @@
         {
             try
             {
-                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioNome_DAO(funcionarioNome);
+                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioNome(funcionarioNome);
                 return funcionario;
             }
             catch (Exception ex)
@@ -218,7 +218,7 @@
         {
             try
             {
-                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioUsuario_DAO(funcionarioUsuario);
+                Funcionario funcionario = funcionarioDAO.ConsultarFuncionarioUsuario(funcionarioUsuario);
                 return funcionario;
             }
             catch (Exception ex)

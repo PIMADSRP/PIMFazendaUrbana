@@ -70,9 +70,8 @@ namespace PIMFazendaUrbanaForms
             try
             {
                 List<Cliente> clientes = clienteService.ListarClientesAtivos();
-
-                // Verificar se a lista de clientes não está vazia
-                if (clientes != null && clientes.Count > 0)
+                
+                if (clientes != null && clientes.Count > 0) // Verificar se a lista de clientes não está vazia
                 {
                     // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
                     var data = clientes.Select(c => new
@@ -86,8 +85,7 @@ namespace PIMFazendaUrbanaForms
                         CEP = FormatarCEP(c.Endereco) // Formatar o CEP
                     }).ToList();
 
-                    // Preencher o DataGridView com os dados formatados
-                    DataGridViewListaClientes.DataSource = data;
+                    DataGridViewListaClientes.DataSource = data; // Preencher o DataGridView com os dados formatados
                 }
                 else
                 {
@@ -105,35 +103,27 @@ namespace PIMFazendaUrbanaForms
         {
             string numeroFormatado = telefone.Numero;
 
-            // Verifica o tamanho do número de telefone
-            if (numeroFormatado.Length == 8)
+            if (numeroFormatado.Length == 8) // Verifica o tamanho do número de telefone
             {
-                // Insere o hífen após os 4 primeiros dígitos
-                numeroFormatado = $"{numeroFormatado.Substring(0, 4)}-{numeroFormatado.Substring(4)}";
+                numeroFormatado = $"{numeroFormatado.Substring(0, 4)}-{numeroFormatado.Substring(4)}"; // Insere o hífen após os 4 primeiros dígitos
             }
             else if (numeroFormatado.Length == 9)
             {
-                // Insere o hífen após os 5 primeiros dígitos
-                numeroFormatado = $"{numeroFormatado.Substring(0, 5)}-{numeroFormatado.Substring(5)}";
+                numeroFormatado = $"{numeroFormatado.Substring(0, 5)}-{numeroFormatado.Substring(5)}"; // Insere o hífen após os 5 primeiros dígitos
             }
-
-            // Formata a exibição do telefone como (DDD) Número
-            return $"({telefone.DDD}) {numeroFormatado}";
+            return $"({telefone.DDD}) {numeroFormatado}"; // Formata a exibição do telefone como (DDD) Número
         }
 
         // Método para formatar o endereço
         private string FormatarEndereco(EnderecoCliente endereco)
         {
             string enderecoFormatado = $"{endereco.Logradouro}, {endereco.Numero}";
-
             if (!string.IsNullOrWhiteSpace(endereco.Complemento))
             {
                 enderecoFormatado += $", {endereco.Complemento}";
             }
 
             enderecoFormatado += $", {endereco.Bairro}, {endereco.Cidade} - {endereco.UF}";
-
-            // Retorna o endereço formatado
             return enderecoFormatado;
         }
 
@@ -141,13 +131,10 @@ namespace PIMFazendaUrbanaForms
         private object FormatarCEP(EnderecoCliente endereco)
         {
             string cepFormatado = endereco.CEP;
-
-            // Insere o hífen no CEP
-            if (cepFormatado.Length == 8)
+            if (cepFormatado.Length == 8) // Insere o hífen no CEP
             {
                 cepFormatado = $"{cepFormatado.Substring(0, 5)}-{cepFormatado.Substring(5)}";
             }
-
             return cepFormatado;
         }
 
@@ -155,25 +142,18 @@ namespace PIMFazendaUrbanaForms
         private object FormatarCNPJ(string cnpj)
         {
             string cnpjFormatado = cnpj;
-
-            // Insere os pontos e a barra no CNPJ
-            if (cnpjFormatado.Length == 14)
+            if (cnpjFormatado.Length == 14) // Insere os pontos e a barra no CNPJ
             {
                 cnpjFormatado = $"{cnpjFormatado.Substring(0, 2)}.{cnpjFormatado.Substring(2, 3)}.{cnpjFormatado.Substring(5, 3)}/{cnpjFormatado.Substring(8, 4)}-{cnpjFormatado.Substring(12)}";
             }
-
             return cnpjFormatado;
         }
 
         private void PictureBoxIncluir_Click(object sender, EventArgs e)
         {
-            // Criar uma instância do segundo formulário
-            TelaCadastrarCliente telaCadastrarCliente = new TelaCadastrarCliente();
-
-            // Exibir o segundo formulário
-            telaCadastrarCliente.Show();
-
-            telaCadastrarCliente.ClienteCadastradoSucesso += TelaCadastrarCliente_ClienteCadastradoSucesso;
+            TelaCadastrarCliente telaCadastrarCliente = new TelaCadastrarCliente(); // Criar uma instância do form cadastrar
+            telaCadastrarCliente.Show(); // Exibir o form cadastrar
+            telaCadastrarCliente.ClienteCadastradoSucesso += TelaCadastrarCliente_ClienteCadastradoSucesso; // Evento para atualizar
         }
 
         private void PictureBoxAtualizar_Click(object sender, EventArgs e)
@@ -184,22 +164,13 @@ namespace PIMFazendaUrbanaForms
 
         private void PictureBoxEditar_Click(object sender, EventArgs e)
         {
-            // Verificar se alguma linha está selecionada no DataGridView
-            if (DataGridViewListaClientes.SelectedRows.Count == 1)
+            if (DataGridViewListaClientes.SelectedRows.Count == 1) // Verifica se alguma linha está selecionada no DataGridView
             {
-                // Obter o índice da linha selecionada
-                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index;
-
-                // Obter o ID do cliente selecionado
-                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value;
-
-                // Criar uma instância do segundo formulário
-                TelaEditarCliente telaEditarCliente = new TelaEditarCliente(clienteID);
-
-                // Exibir o segundo formulário
-                telaEditarCliente.Show();
-
-                telaEditarCliente.ClienteEditadoSucesso += TelaEditarCliente_ClienteEditadoSucesso;
+                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index; // Obter o índice da linha selecionada
+                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value; // Obter o ID do cliente selecionado
+                TelaEditarCliente telaEditarCliente = new TelaEditarCliente(clienteID); // Criar uma instância do form editar
+                telaEditarCliente.Show(); // Exibir o form editar
+                telaEditarCliente.ClienteEditadoSucesso += TelaEditarCliente_ClienteEditadoSucesso; // Evento para atualizar
             }
             else if (DataGridViewListaClientes.SelectedRows.Count == 0)
             {
@@ -213,14 +184,10 @@ namespace PIMFazendaUrbanaForms
 
         private void PictureBoxDeletar_Click(object sender, EventArgs e)
         {
-            // Verificar se alguma linha está selecionada no DataGridView
-            if (DataGridViewListaClientes.SelectedRows.Count > 0)
+            if (DataGridViewListaClientes.SelectedRows.Count > 0) // Verificar se alguma linha está selecionada no DataGridView
             {
-                // Obter o índice da linha selecionada
-                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index;
-
-                // Obter o ID do cliente selecionado
-                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value;
+                int selectedIndex = DataGridViewListaClientes.SelectedRows[0].Index; // Obter o índice da linha selecionada
+                int clienteID = (int)DataGridViewListaClientes.Rows[selectedIndex].Cells["IDColumn"].Value; // Obter o ID do cliente selecionado
 
                 // Confirmar a exclusão com o usuário
                 DialogResult result = MessageBox.Show("Tem certeza que deseja excluir este cliente?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -229,13 +196,9 @@ namespace PIMFazendaUrbanaForms
                 {
                     try
                     {
-                        // Excluir o cliente usando o serviço de cliente
-                        clienteService.ExcluirCliente(clienteID);
-
-                        // Atualizar o DataGridView após a exclusão
-                        ListarClientesAtivosDataGrid();
-
+                        clienteService.ExcluirCliente(clienteID); // Excluir o cliente
                         MessageBox.Show("Cliente excluído com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListarClientesAtivosDataGrid(); // Atualizar o DataGridView após a exclusão
                     }
                     catch (Exception ex)
                     {
@@ -248,7 +211,6 @@ namespace PIMFazendaUrbanaForms
                 MessageBox.Show("Por favor, selecione um cliente para excluir (botão '>' à esquerda do ID do cliente).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
 
         private void PictureBoxHome_Click(object sender, EventArgs e)
         {

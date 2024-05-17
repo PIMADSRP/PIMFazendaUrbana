@@ -13,7 +13,7 @@ namespace PIMFazendaUrbanaLib
 
         // 1 - MÉTODO CADASTRAR FORNECEDOR NO BANCO
         // ********** FUNCIONAL **********
-        public void CadastrarFornecedor_DAO(Fornecedor fornecedor)
+        public void CadastrarFornecedor(Fornecedor fornecedor)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
             {
@@ -86,7 +86,7 @@ namespace PIMFazendaUrbanaLib
 
         // 2- MÉTODO ALTERAR FORNECEDOR NO BANCO
         // ********** FUNCIONAL **********
-        public void AlterarFornecedor_DAO(Fornecedor fornecedor)
+        public void AlterarFornecedor(Fornecedor fornecedor)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -163,7 +163,7 @@ namespace PIMFazendaUrbanaLib
 
         // 3- MÉTODO EXCLUIR (DESATIVAR) FORNECEDOR DO BANCO
         // ********** FUNCIONAL **********
-        public void ExcluirFornecedor_DAO(int fornecedorId)
+        public void ExcluirFornecedor(int fornecedorId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -211,9 +211,9 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 4- Listagem
-        // 4.1- MÉTODO LISTAR APENAS FORNECEDORS ATIVOS DO BANCO
+        // 4.1- MÉTODO LISTAR APENAS FORNECEDORES ATIVOS DO BANCO
         // ********** FUNCIONAL **********
-        public List<Fornecedor> ListarFornecedorsAtivos_DAO()
+        public List<Fornecedor> ListarFornecedoresAtivos()
         {
             List<Fornecedor> fornecedores = new List<Fornecedor>();
 
@@ -221,14 +221,14 @@ namespace PIMFazendaUrbanaLib
             {
                 connection.Open();
 
-                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.email_fornecedor, c.cnpj_fornecedor, c.ativo_fornecedor, 
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor c
-                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
-                                WHERE c.ativo_fornecedor = true";
+                                FROM fornecedor f
+                                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
+                                WHERE f.ativo_fornecedor = true";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -271,23 +271,23 @@ namespace PIMFazendaUrbanaLib
             return fornecedores;
         }
 
-        // 4.2- MÉTODO LISTAR TODOS OS FORNECEDORS DO BANCO
+        // 4.2- MÉTODO LISTAR APENAS FORNECEDORES INATIVOS DO BANCO
         // ********** FUNCIONAL **********
-        public List<Fornecedor> ListarTodosFornecedors_DAO()
+        public List<Fornecedor> ListarFornecedoresInativos()
         {
-            List<Fornecedor> fornecedores = new List<Fornecedor>();
+            List<Fornecedor> fornecedoresInativos = new List<Fornecedor>();
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.email_fornecedor, c.cnpj_fornecedor, c.ativo_fornecedor, 
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor c
-                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                FROM fornecedor f
+                                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
                                 ";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -323,32 +323,32 @@ namespace PIMFazendaUrbanaLib
                                     StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
                                 }
                             };
-                            fornecedores.Add(fornecedor);
+                            fornecedoresInativos.Add(fornecedor);
                         }
                     }
                 }
             }
-            return fornecedores;
+            return fornecedoresInativos;
         }
 
         // 5- Consulta
         // 5.1- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR ID (somente fornecedores ativos)
         // ********** FUNCIONAL **********
-        public Fornecedor ConsultarFornecedorID_DAO(int fornecedorId)
+        public Fornecedor ConsultarFornecedorID(int fornecedorId)
         {
             Fornecedor fornecedor = null;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor,
-                                c.ativo_fornecedor, 
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.cnpj_fornecedor, f.email_fornecedor,
+                                f.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor c
-                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
-                                WHERE c.id_fornecedor = @Id";
+                                FROM fornecedor f
+                                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
+                                WHERE f.id_fornecedor = @Id";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Id", fornecedorId);
@@ -391,21 +391,21 @@ namespace PIMFazendaUrbanaLib
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR NOME (somente fornecedores ativos)
         // ********** NÃO TESTADO **********
-        public Fornecedor ConsultarFornecedorNome_DAO(string fornecedorNome)
+        public Fornecedor ConsultarFornecedorNome(string fornecedorNome)
         {
             Fornecedor fornecedor = null;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor, 
-                                c.ativo_fornecedor, 
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.cnpj_fornecedor, f.email_fornecedor, 
+                                f.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor c
-                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
-                                WHERE c.nome_fornecedor = @Nome";
+                                FROM fornecedor f
+                                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
+                                WHERE f.nome_fornecedor = @Nome";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@Nome", fornecedorNome);
@@ -448,21 +448,21 @@ namespace PIMFazendaUrbanaLib
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR CNPJ (somente fornecedores ativos)
         // ********** NÃO TESTADO **********
-        public Fornecedor ConsultarFornecedorCNPJ_DAO(string fornecedorCNPJ)
+        public Fornecedor ConsultarFornecedorCNPJ(string fornecedorCNPJ)
         {
             Fornecedor fornecedor = null;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor, 
-                                c.ativo_fornecedor, 
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.cnpj_fornecedor, f.email_fornecedor, 
+                                f.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor c
-                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
-                                WHERE c.cnpj_fornecedor = @CNPJ";
+                                FROM fornecedor f
+                                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
+                                WHERE f.cnpj_fornecedor = @CNPJ";
 
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@CNPJ", fornecedorCNPJ);

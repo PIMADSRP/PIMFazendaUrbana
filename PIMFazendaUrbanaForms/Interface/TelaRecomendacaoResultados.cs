@@ -56,12 +56,12 @@ namespace PIMFazendaUrbanaForms
             if (ambienteControlado == true)
             {
                 DataGridViewResultados.Columns.Add("Tempo2Column", "Tempo Médio de Produção (dias)");
-                DataGridViewResultados.Columns["Tempo2Column"].DataPropertyName = "TempoControlado";
+                DataGridViewResultados.Columns["Tempo2Column"].DataPropertyName = "TempoProdControlado";
             }
             else
             {
                 DataGridViewResultados.Columns.Add("Tempo1Column", "Tempo Médio de Produção (dias)");
-                DataGridViewResultados.Columns["Tempo1Column"].DataPropertyName = "TempoTradicional";
+                DataGridViewResultados.Columns["Tempo1Column"].DataPropertyName = "TempoProdTradicional";
             }
 
             // Configurar o modo de redimensionamento das colunas
@@ -79,8 +79,8 @@ namespace PIMFazendaUrbanaForms
                     c.Nome,
                     c.Variedade,
                     c.Categoria,
-                    c.TempoTradicional,
-                    c.TempoControlado,
+                    c.TempoProdTradicional,
+                    c.TempoProdControlado,
                 }).ToList();
 
                 // Preencher o DataGridView com os dados formatados

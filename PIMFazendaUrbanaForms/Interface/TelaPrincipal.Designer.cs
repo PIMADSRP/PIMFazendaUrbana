@@ -79,17 +79,17 @@
             PanelFooter.Controls.Add(LabelFarmSystem);
             PanelFooter.Dock = DockStyle.Bottom;
             PanelFooter.ForeColor = Color.White;
-            PanelFooter.Location = new Point(0, 714);
+            PanelFooter.Location = new Point(0, 694);
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
-            PanelFooter.Size = new Size(1106, 35);
+            PanelFooter.Size = new Size(1540, 35);
             PanelFooter.TabIndex = 0;
             // 
             // LabelFarmSystem
             // 
             LabelFarmSystem.AutoSize = true;
             LabelFarmSystem.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelFarmSystem.Location = new Point(606, 5);
+            LabelFarmSystem.Location = new Point(623, 5);
             LabelFarmSystem.Margin = new Padding(5, 0, 5, 0);
             LabelFarmSystem.Name = "LabelFarmSystem";
             LabelFarmSystem.Size = new Size(263, 25);
@@ -263,13 +263,13 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1106, 65);
+            PanelHeader.Size = new Size(1540, 65);
             PanelHeader.TabIndex = 1;
             // 
             // BotaoTesteRecomendacoes
             // 
             BotaoTesteRecomendacoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoTesteRecomendacoes.Location = new Point(723, 34);
+            BotaoTesteRecomendacoes.Location = new Point(886, 18);
             BotaoTesteRecomendacoes.Name = "BotaoTesteRecomendacoes";
             BotaoTesteRecomendacoes.Size = new Size(183, 28);
             BotaoTesteRecomendacoes.TabIndex = 21;
@@ -279,7 +279,7 @@
             // 
             // BotaoLogin
             // 
-            BotaoLogin.Location = new Point(966, 12);
+            BotaoLogin.Location = new Point(1403, 16);
             BotaoLogin.Name = "BotaoLogin";
             BotaoLogin.Size = new Size(102, 33);
             BotaoLogin.TabIndex = 20;
@@ -290,7 +290,7 @@
             // BotaoAbrirTelaDeTeste
             // 
             BotaoAbrirTelaDeTeste.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoAbrirTelaDeTeste.Location = new Point(723, 4);
+            BotaoAbrirTelaDeTeste.Location = new Point(725, 18);
             BotaoAbrirTelaDeTeste.Name = "BotaoAbrirTelaDeTeste";
             BotaoAbrirTelaDeTeste.Size = new Size(138, 29);
             BotaoAbrirTelaDeTeste.TabIndex = 19;
@@ -349,18 +349,18 @@
             // PictureBoxLogoFundo
             // 
             PictureBoxLogoFundo.Image = (Image)resources.GetObject("PictureBoxLogoFundo.Image");
-            PictureBoxLogoFundo.Location = new Point(562, 125);
+            PictureBoxLogoFundo.Location = new Point(590, 135);
             PictureBoxLogoFundo.Name = "PictureBoxLogoFundo";
-            PictureBoxLogoFundo.Size = new Size(380, 575);
+            PictureBoxLogoFundo.Size = new Size(351, 539);
             PictureBoxLogoFundo.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxLogoFundo.TabIndex = 2;
             PictureBoxLogoFundo.TabStop = false;
             // 
             // TelaPrincipal
             // 
-            AutoScaleDimensions = new SizeF(11F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1106, 749);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1540, 729);
             Controls.Add(PictureBoxLogoFundo);
             Controls.Add(PanelFooter);
             Controls.Add(PanelHeader);

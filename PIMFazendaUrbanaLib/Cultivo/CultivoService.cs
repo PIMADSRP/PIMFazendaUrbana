@@ -15,7 +15,7 @@
         {
             try
             {
-                cultivoDAO.CadastrarCultivo_DAO(cultivo);
+                cultivoDAO.CadastrarCultivo(cultivo);
                 return true;
             }
             catch (Exception ex)
@@ -29,7 +29,7 @@
         {
             try
             {
-                cultivoDAO.AlterarCultivo_DAO(cultivo);
+                cultivoDAO.AlterarCultivo(cultivo);
                 return true;
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@
         {
             try
             {
-                cultivoDAO.ExcluirCultivo_DAO(cultivoId);
+                cultivoDAO.ExcluirCultivo(cultivoId);
                 return true;
             }
             catch (Exception ex)
@@ -57,7 +57,7 @@
         {
             try
             {
-                List<Cultivo> cultivos = cultivoDAO.ListarCultivosAtivos_DAO();
+                List<Cultivo> cultivos = cultivoDAO.ListarCultivosAtivos();
                 return cultivos; // Retorna a lista de cultivos quando tudo corre bem
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@
         {
             try
             {
-                Cultivo cultivo = cultivoDAO.ConsultarCultivoID_DAO(cultivoId);
+                Cultivo cultivo = cultivoDAO.ConsultarCultivoID(cultivoId);
                 return cultivo;
             }
             catch (Exception ex)

@@ -12,6 +12,7 @@ namespace PIMFazendaUrbanaForms
 
         bool nomevalido = true;
         bool emailvalido = true;
+        bool cpfvalido = true;
         bool usuariovalido = true;
         bool cargovalido = true;
         bool sexovalido = true;
@@ -54,6 +55,7 @@ namespace PIMFazendaUrbanaForms
 
             TextBoxNome.Text = funcionario.Nome;
             TextBoxEmail.Text = funcionario.Email;
+            MaskedTextBoxCPF.Text = funcionario.CPF;
             TextBoxUsuario.Text = funcionario.Usuario;
             usuarioAntigo = funcionario.Usuario;
 
@@ -99,6 +101,12 @@ namespace PIMFazendaUrbanaForms
             {
                 MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
+                return;
+            }
+            else if (cpfvalido == false)
+            {
+                MessageBox.Show("Preencha o campo CPF corretamente. O CPF deve ter 11 números", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ActiveControl = MaskedTextBoxCPF; // Define o foco para o MaskedTextBoxCPF
                 return;
             }
             else if (cargovalido == false)
@@ -172,6 +180,7 @@ namespace PIMFazendaUrbanaForms
                 funcionario1.ID = Convert.ToInt32(TextBoxCodigo.Text);
                 funcionario1.Nome = TextBoxNome.Text;
                 funcionario1.Email = TextBoxEmail.Text;
+                funcionario1.CPF = MaskedTextBoxCPF.Text;
                 funcionario1.Usuario = TextBoxUsuario.Text;
                 funcionario1.Cargo = ComboBoxCargo.Text;
                 funcionario1.Sexo = ComboBoxSexo.Text;
@@ -541,5 +550,30 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void MaskedTextBoxCPF_Validating(object sender, CancelEventArgs e)
+        {
+            // Remove todos os caracteres não numéricos do texto
+            string cpfDigitsOnly = MaskedTextBoxCPF.Text.Replace(".", "").Replace("-", "");
+
+            // Verifica se o CPF tem exatamente 11 dígitos
+            if (cpfDigitsOnly.Length != 11 || !cpfDigitsOnly.All(char.IsDigit))
+            {
+                // Define a cor de texto para vermelho
+                MaskedTextBoxCPF.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo CPF corretamente. O CPF deve conter 11 números.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                cpfvalido = false;
+                this.ActiveControl = MaskedTextBoxCPF; // Define o foco para o TextBoxCNPJ
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                MaskedTextBoxCPF.ForeColor = Color.Black;
+
+                cpfvalido = true;
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@
         {
             try
             {
-                clienteDAO.CadastrarCliente_DAO(cliente); // Chama o método CadastrarCliente do DAO para inserir o novo cliente no banco de dados, passando o objeto cliente como argumento
+                clienteDAO.CadastrarCliente(cliente); // Chama o método CadastrarCliente do DAO para inserir o novo cliente no banco de dados, passando o objeto cliente como argumento
                 return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
             catch (Exception ex)
@@ -29,7 +29,7 @@
         {
             try
             {
-                clienteDAO.AlterarCliente_DAO(cliente);
+                clienteDAO.AlterarCliente(cliente);
                 return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@
         {
             try
             {
-                clienteDAO.ExcluirCliente_DAO(clienteId); // Chama o método ExcluirCliente da classe ClienteDAO, passando o ID do cliente como argumento
+                clienteDAO.ExcluirCliente(clienteId); // Chama o método ExcluirCliente da classe ClienteDAO, passando o ID do cliente como argumento
                 return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@
         {
             try
             {
-                List<Cliente> clientes = clienteDAO.ListarClientesAtivos_DAO();
+                List<Cliente> clientes = clienteDAO.ListarClientesAtivos();
                 return clientes; // Retorna a lista de clientes quando tudo corre bem
             }
             catch (Exception ex)
@@ -69,18 +69,18 @@
             }
         }
 
-        // 4.2- Listar Todos os Clientes
-        // O método ListarTodosClientes é responsável por obter a lista de todos os clientes cadastrados no banco de dados e exibir esses dados na tela, independente se estão definidos como ativos ou inativos.
-        public List<Cliente> ListarTodosClientes()
+        // 4.2- Listar Clientes Inativos
+        // O método ListarClientesInativos é responsável por obter a lista de todos os clientes inativos cadastrados no banco de dados e exibir esses dados na tela.
+        public List<Cliente> ListarClientesInativos()
         {
             try
             {
-                List<Cliente> clientes = clienteDAO.ListarTodosClientes_DAO();
-                return clientes; // Retorna a lista de clientes quando tudo corre bem
+                List<Cliente> clientesInativos = clienteDAO.ListarClientesInativos();
+                return clientesInativos; // Retorna a lista de clientes inativos quando tudo corre bem
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar clientes.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar clientes
+                throw new Exception("Erro ao listar clientes inativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar clientes inativos
             }
         }
 
@@ -90,7 +90,7 @@
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteID_DAO(clienteId); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo ID
+                Cliente cliente = clienteDAO.ConsultarClienteID(clienteId); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo ID
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
@@ -105,7 +105,7 @@
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteNome_DAO(clienteNome); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo nome
+                Cliente cliente = clienteDAO.ConsultarClienteNome(clienteNome); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo nome
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
@@ -120,7 +120,7 @@
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteCNPJ_DAO(clienteCNPJ); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo cnpj
+                Cliente cliente = clienteDAO.ConsultarClienteCNPJ(clienteCNPJ); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo cnpj
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)

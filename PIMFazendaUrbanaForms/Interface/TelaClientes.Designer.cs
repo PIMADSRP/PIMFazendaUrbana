@@ -44,8 +44,8 @@ namespace PIMFazendaUrbanaForms
             PictureBoxEditar = new PictureBox();
             PanelHeader = new Panel();
             PictureBoxHome = new PictureBox();
-            LabelHome = new Label();
             TextBoxPesquisar = new TextBox();
+            LabelHome = new Label();
             LabelPesquisarClientes = new Label();
             PanelFooter = new Panel();
             label1 = new Label();
@@ -66,10 +66,10 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaClientes.AllowUserToDeleteRows = false;
             DataGridViewListaClientes.BackgroundColor = SystemColors.Menu;
             DataGridViewListaClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaClientes.Location = new Point(120, 126);
+            DataGridViewListaClientes.Location = new Point(60, 80);
             DataGridViewListaClientes.Name = "DataGridViewListaClientes";
             DataGridViewListaClientes.ReadOnly = true;
-            DataGridViewListaClientes.Size = new Size(1235, 565);
+            DataGridViewListaClientes.Size = new Size(1410, 666);
             DataGridViewListaClientes.TabIndex = 0;
             DataGridViewListaClientes.VirtualMode = true;
             // 
@@ -80,7 +80,7 @@ namespace PIMFazendaUrbanaForms
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
-            PictureBoxAtualizar.Location = new Point(735, 78);
+            PictureBoxAtualizar.Location = new Point(809, 12);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -91,43 +91,51 @@ namespace PIMFazendaUrbanaForms
             // LabelAtualizar
             // 
             LabelAtualizar.AutoSize = true;
-            LabelAtualizar.Location = new Point(725, 102);
+            LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelAtualizar.ForeColor = Color.White;
+            LabelAtualizar.Location = new Point(795, 37);
             LabelAtualizar.Name = "LabelAtualizar";
-            LabelAtualizar.Size = new Size(53, 15);
+            LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
             LabelAtualizar.Text = "Atualizar";
             // 
             // LabelDeletar
             // 
             LabelDeletar.AutoSize = true;
-            LabelDeletar.Location = new Point(673, 103);
+            LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelDeletar.ForeColor = Color.White;
+            LabelDeletar.Location = new Point(742, 37);
             LabelDeletar.Name = "LabelDeletar";
-            LabelDeletar.Size = new Size(44, 15);
+            LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 49;
             LabelDeletar.Text = "Deletar";
             // 
             // LabelEditar
             // 
             LabelEditar.AutoSize = true;
-            LabelEditar.Location = new Point(622, 103);
+            LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelEditar.ForeColor = Color.White;
+            LabelEditar.Location = new Point(688, 37);
             LabelEditar.Name = "LabelEditar";
-            LabelEditar.Size = new Size(37, 15);
+            LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 48;
             LabelEditar.Text = "Editar";
             // 
             // LabelIncluir
             // 
             LabelIncluir.AutoSize = true;
-            LabelIncluir.Location = new Point(567, 103);
+            LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelIncluir.ForeColor = Color.White;
+            LabelIncluir.Location = new Point(630, 37);
             LabelIncluir.Name = "LabelIncluir";
-            LabelIncluir.Size = new Size(40, 15);
+            LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
             LabelIncluir.Text = "Incluir";
             // 
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
-            PictureBoxIncluir.Location = new Point(573, 78);
+            PictureBoxIncluir.Location = new Point(637, 12);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -138,7 +146,7 @@ namespace PIMFazendaUrbanaForms
             // PictureBoxDeletar
             // 
             PictureBoxDeletar.Image = (Image)resources.GetObject("PictureBoxDeletar.Image");
-            PictureBoxDeletar.Location = new Point(681, 78);
+            PictureBoxDeletar.Location = new Point(751, 12);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -149,7 +157,7 @@ namespace PIMFazendaUrbanaForms
             // PictureBoxEditar
             // 
             PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
-            PictureBoxEditar.Location = new Point(627, 78);
+            PictureBoxEditar.Location = new Point(693, 12);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -161,11 +169,21 @@ namespace PIMFazendaUrbanaForms
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
             PanelHeader.Controls.Add(PictureBoxHome);
+            PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(LabelHome);
+            PanelHeader.Controls.Add(LabelPesquisarClientes);
+            PanelHeader.Controls.Add(PictureBoxAtualizar);
+            PanelHeader.Controls.Add(PictureBoxEditar);
+            PanelHeader.Controls.Add(PictureBoxDeletar);
+            PanelHeader.Controls.Add(LabelAtualizar);
+            PanelHeader.Controls.Add(PictureBoxIncluir);
+            PanelHeader.Controls.Add(LabelDeletar);
+            PanelHeader.Controls.Add(LabelIncluir);
+            PanelHeader.Controls.Add(LabelEditar);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1370, 60);
+            PanelHeader.Size = new Size(1350, 60);
             PanelHeader.TabIndex = 52;
             // 
             // PictureBoxHome
@@ -182,6 +200,14 @@ namespace PIMFazendaUrbanaForms
             PictureBoxHome.TabStop = false;
             PictureBoxHome.Click += PictureBoxHome_Click;
             // 
+            // TextBoxPesquisar
+            // 
+            TextBoxPesquisar.Enabled = false;
+            TextBoxPesquisar.Location = new Point(201, 19);
+            TextBoxPesquisar.Name = "TextBoxPesquisar";
+            TextBoxPesquisar.Size = new Size(407, 23);
+            TextBoxPesquisar.TabIndex = 54;
+            // 
             // LabelHome
             // 
             LabelHome.AutoSize = true;
@@ -193,20 +219,14 @@ namespace PIMFazendaUrbanaForms
             LabelHome.TabIndex = 19;
             LabelHome.Text = "Home";
             // 
-            // TextBoxPesquisar
-            // 
-            TextBoxPesquisar.Enabled = false;
-            TextBoxPesquisar.Location = new Point(122, 82);
-            TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.Size = new Size(421, 23);
-            TextBoxPesquisar.TabIndex = 54;
-            // 
             // LabelPesquisarClientes
             // 
             LabelPesquisarClientes.AutoSize = true;
-            LabelPesquisarClientes.Location = new Point(2, 86);
+            LabelPesquisarClientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarClientes.ForeColor = Color.White;
+            LabelPesquisarClientes.Location = new Point(75, 21);
             LabelPesquisarClientes.Name = "LabelPesquisarClientes";
-            LabelPesquisarClientes.Size = new Size(105, 15);
+            LabelPesquisarClientes.Size = new Size(124, 17);
             LabelPesquisarClientes.TabIndex = 53;
             LabelPesquisarClientes.Text = "Pesquisar Clientes:";
             // 
@@ -216,17 +236,17 @@ namespace PIMFazendaUrbanaForms
             PanelFooter.Controls.Add(label1);
             PanelFooter.Dock = DockStyle.Bottom;
             PanelFooter.ForeColor = Color.White;
-            PanelFooter.Location = new Point(0, 714);
+            PanelFooter.Location = new Point(0, 694);
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
-            PanelFooter.Size = new Size(1370, 35);
+            PanelFooter.Size = new Size(1350, 35);
             PanelFooter.TabIndex = 55;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(606, 5);
+            label1.Location = new Point(615, 5);
             label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
             label1.Size = new Size(263, 25);
@@ -236,21 +256,11 @@ namespace PIMFazendaUrbanaForms
             // 
             // TelaClientes
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1370, 749);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1350, 729);
             Controls.Add(PanelFooter);
-            Controls.Add(TextBoxPesquisar);
-            Controls.Add(LabelPesquisarClientes);
             Controls.Add(PanelHeader);
-            Controls.Add(PictureBoxAtualizar);
-            Controls.Add(LabelAtualizar);
-            Controls.Add(LabelDeletar);
-            Controls.Add(LabelEditar);
-            Controls.Add(LabelIncluir);
-            Controls.Add(PictureBoxIncluir);
-            Controls.Add(PictureBoxDeletar);
-            Controls.Add(PictureBoxEditar);
             Controls.Add(DataGridViewListaClientes);
             Name = "TelaClientes";
             StartPosition = FormStartPosition.CenterScreen;
@@ -269,7 +279,6 @@ namespace PIMFazendaUrbanaForms
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

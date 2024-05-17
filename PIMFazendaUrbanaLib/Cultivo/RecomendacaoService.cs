@@ -12,7 +12,7 @@
         {
             try
             {
-                List<Cultivo> recomendacoes = recomendacaoDAO.GerarRecomendacao_DAO(regiao, estacao);
+                List<Cultivo> recomendacoes = recomendacaoDAO.GerarRecomendacao(regiao, estacao);
                 return recomendacoes;
             }
             catch (Exception ex)

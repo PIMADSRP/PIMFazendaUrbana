@@ -14,7 +14,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 1 - MÉTODO CADASTRAR CULTIVO NO BANCO
-        public void CadastrarCultivo_DAO(Cultivo cultivo)
+        public void CadastrarCultivo(Cultivo cultivo)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
             {
@@ -49,7 +49,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 2 - MÉTODO ALTERAR CULTIVO NO BANCO
-        public void AlterarCultivo_DAO(Cultivo cultivo)
+        public void AlterarCultivo(Cultivo cultivo)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -114,7 +114,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 4 - MÉTODO LISTAR CULTIVOS (ATIVOS) NO BANCO
-        public List<Cultivo> ListarCultivosAtivos_DAO()
+        public List<Cultivo> ListarCultivosAtivos()
         {
             List<Cultivo> cultivos = new List<Cultivo>();
 
@@ -153,7 +153,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5 - MÉTODO CONSULTAR CULTIVO POR ID NO BANCO
-        public Cultivo ConsultarCultivoID_DAO(int cultivoId)
+        public Cultivo ConsultarCultivoID(int cultivoId)
         {
             Cultivo cultivo = null;
 

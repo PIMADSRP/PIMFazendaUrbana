@@ -11,7 +11,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 1 - MÉTODO CADASTRAR PRODUCAO NO BANCO
-        public void CadastrarProducao_DAO(Producao producao)
+        public void CadastrarProducao(Producao producao)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
             {
@@ -45,7 +45,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 2 - MÉTODO ALTERAR PRODUCAO NO BANCO
-        public void AlterarProducao_DAO(Producao producao)
+        public void AlterarProducao(Producao producao)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -80,7 +80,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 3 - MÉTODO FINALIZAR PRODUCAO NO BANCO
-        public void FinalizarProducao_DAO(int producaoId)
+        public void FinalizarProducao(int producaoId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -108,7 +108,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 4 - MÉTODO EXCLUIR (DESATIVAR) PRODUCAO NO BANCO
-        public void ExcluirProducao_DAO(int producaoId)
+        public void ExcluirProducao(int producaoId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
@@ -137,7 +137,7 @@ namespace PIMFazendaUrbanaLib
 
         // 5 - Listagem
         // 5.1 - MÉTODO LISTAR PRODUCOES (ATIVAS) NO BANCO
-        public List<Producao> ListarProducoesAtivas_DAO()
+        public List<Producao> ListarProducoesAtivas()
         {
             List<Producao> producoes = new List<Producao>();
 
@@ -174,7 +174,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.2 - MÉTODO LISTAR PRODUCOES (ATIVAS E NÃO FINALIZADAS) NO BANCO
-        public List<Producao> ListarProducoesAtivasNaoFinalizadas_DAO()
+        public List<Producao> ListarProducoesAtivasNaoFinalizadas()
         {
             List<Producao> producoes = new List<Producao>();
 
@@ -213,7 +213,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 6 - MÉTODO CONSULTAR PRODUCAO POR ID NO BANCO
-        public Producao ConsultarProducaoID_DAO(int producaoId)
+        public Producao ConsultarProducaoID(int producaoId)
         {
             Producao producao = null;
 
