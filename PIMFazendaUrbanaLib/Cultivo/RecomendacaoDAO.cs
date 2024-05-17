@@ -10,7 +10,7 @@ namespace PIMFazendaUrbanaLib
             this.connectionString = ConnectionString.GetConnectionString();
         }
 
-        public List<Cultivo> GerarRecomendacao(string regiao, string estacao)
+        public List<Cultivo> GerarRecomendacao_DAO(string regiao, string estacao)
         {
             List<Cultivo> cultivos = new List<Cultivo>();
 
@@ -20,7 +20,7 @@ namespace PIMFazendaUrbanaLib
 
                 string query = @"SELECT c.*
                                 FROM cultivo c
-                                JOIN regiao_estacao_cultivo rec ON c.id_cultivo = rec.id_cultivo
+                                JOIN recomendacaocultivo rec ON c.id_cultivo = rec.id_cultivo
                                 WHERE rec.regiao = @regiao AND rec.estacao = @estacao";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))

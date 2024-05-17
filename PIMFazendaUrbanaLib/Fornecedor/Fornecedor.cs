@@ -1,4 +1,5 @@
-﻿namespace PIMFazendaUrbana
+﻿namespace PIMFazendaUrbanaLib
+
 {
     public class Fornecedor
     {

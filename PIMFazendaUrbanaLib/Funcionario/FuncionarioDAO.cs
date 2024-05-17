@@ -300,12 +300,46 @@ namespace PIMFazendaUrbanaLib
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "UPDATE funcionario SET ativo_funcionario = 0 WHERE id_funcionario = @ID";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ID", funcionarioId);
-
                 connection.Open();
-                command.ExecuteNonQuery();
+                using (MySqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Desativar o funcionário
+                        string updateFuncionarioQuery = "UPDATE funcionario SET ativo_funcionario = @status WHERE id_funcionario = @id";
+                        using (MySqlCommand updateFuncionarioCommand = new MySqlCommand(updateFuncionarioQuery, connection, transaction))
+                        {
+                            updateFuncionarioCommand.Parameters.AddWithValue("@status", false);
+                            updateFuncionarioCommand.Parameters.AddWithValue("@id", funcionarioId);
+                            updateFuncionarioCommand.ExecuteNonQuery();
+                        }
+
+                        // Desativar o telefone do funcionário
+                        string updateTelefoneQuery = "UPDATE telefonefuncionario SET ativo_telfuncionario = @status WHERE id_funcionario = @id";
+                        using (MySqlCommand updateTelefoneCommand = new MySqlCommand(updateTelefoneQuery, connection, transaction))
+                        {
+                            updateTelefoneCommand.Parameters.AddWithValue("@status", false);
+                            updateTelefoneCommand.Parameters.AddWithValue("@id", funcionarioId);
+                            updateTelefoneCommand.ExecuteNonQuery();
+                        }
+
+                        // Desativar o endereço do funcionário
+                        string updateEnderecoQuery = "UPDATE enderecofuncionario SET ativo_endfuncionario = @status WHERE id_funcionario = @id";
+                        using (MySqlCommand updateEnderecoCommand = new MySqlCommand(updateEnderecoQuery, connection, transaction))
+                        {
+                            updateEnderecoCommand.Parameters.AddWithValue("@status", false);
+                            updateEnderecoCommand.Parameters.AddWithValue("@id", funcionarioId);
+                            updateEnderecoCommand.ExecuteNonQuery();
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
 

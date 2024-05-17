@@ -1,18 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Data;
 
-namespace PIMFazendaUrbana
+namespace PIMFazendaUrbanaLib
 {
     public class FornecedorDAO // Classe DAO (Data Access Object) para manipulação de dados de fornecedores no banco de dados
     {
         private string connectionString;
-        public FornecedorDAO(string connectionString) // Construtor da classe FornecedorDAO que recebe a string de conexão como parâmetro
+        public FornecedorDAO()
         {
-            this.connectionString = connectionString; // Atribui a string de conexão recebida pelo parâmetro à variável de instância connectionString
+            this.connectionString = ConnectionString.GetConnectionString();
         }
 
         // 1 - MÉTODO CADASTRAR FORNECEDOR NO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public void CadastrarFornecedor_DAO(Fornecedor fornecedor)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
@@ -23,7 +23,7 @@ namespace PIMFazendaUrbana
                     try // Tenta executar as operações dentro da transação
                     {
                         string insertFornecedorQuery = @"INSERT INTO fornecedor (nome_fornecedor, email_fornecedor, cnpj_fornecedor, ativo_fornecedor) 
-                                                        VALUES (@nome, @email, @cnpj, @status)"; // Define a consulta SQL para inserir os dados do fornecedor
+                                                    VALUES (@nome, @email, @cnpj, @status)"; // Define a consulta SQL para inserir os dados do fornecedor
 
                         using (MySqlCommand insertFornecedorCommand = new MySqlCommand(insertFornecedorQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
                         {
@@ -38,7 +38,7 @@ namespace PIMFazendaUrbana
 
                             EnderecoFornecedor endereco = fornecedor.Endereco; // Instancia um objeto EnderecoFornecedor com os dados do endereço do fornecedor
 
-                            string insertEnderecoQuery = @"INSERT INTO endereco_fornecedor (id_fornecedor, logradouro_endfornecedor, numero_endfornecedor, complemento_endfornecedor, 
+                            string insertEnderecoQuery = @"INSERT INTO enderecofornecedor (id_fornecedor, logradouro_endfornecedor, numero_endfornecedor, complemento_endfornecedor, 
                                                         bairro_endfornecedor, cidade_endfornecedor, uf_endfornecedor, cep_endfornecedor, ativo_endfornecedor) 
                                                         VALUES (@fornecedorId, @logradouro, @numero, @complemento, @bairro, @cidade, @uf, @cep, @status)"; // Define a consulta SQL para cadastrar o endereço do fornecedor
 
@@ -59,7 +59,7 @@ namespace PIMFazendaUrbana
 
                             TelefoneFornecedor telefone = fornecedor.Telefone; // Instancia um objeto TelefoneFornecedor com os dados do telefone do fornecedor
 
-                            string insertTelefoneQuery = @"INSERT INTO telefone_fornecedor (id_fornecedor, ddd_telfornecedor, numero_telfornecedor, ativo_telfornecedor) 
+                            string insertTelefoneQuery = @"INSERT INTO telefonefornecedor (id_fornecedor, ddd_telfornecedor, numero_telfornecedor, ativo_telfornecedor) 
                                                         VALUES (@fornecedorId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do fornecedor
 
                             using (MySqlCommand insertTelefoneCommand = new MySqlCommand(insertTelefoneQuery, connection, transaction)) // Cria um comando MySqlCommand com a consulta SQL, a conexão e a transação
@@ -85,7 +85,7 @@ namespace PIMFazendaUrbana
         }
 
         // 2- MÉTODO ALTERAR FORNECEDOR NO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public void AlterarFornecedor_DAO(Fornecedor fornecedor)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -95,50 +95,58 @@ namespace PIMFazendaUrbana
                 {
                     try
                     {
-                        string updateFornecedorQuery = @"UPDATE fornecedor SET nome_fornecedor = @nome, email_fornecedor = @email, 
-                                                    cnpj_fornecedor = @cnpj, ativo_fornecedor = @status WHERE id_fornecedor = @fornecedorId";
+                        string updateFornecedorQuery = @"UPDATE fornecedor SET 
+                                                nome_fornecedor = @Nome,
+                                                cnpj_fornecedor = @Cnpj,
+                                                email_fornecedor = @Email
+                                                WHERE id_fornecedor = @FornecedorId";
 
                         using (MySqlCommand updateFornecedorCommand = new MySqlCommand(updateFornecedorQuery, connection, transaction))
                         {
-                            updateFornecedorCommand.Parameters.AddWithValue("@nome", fornecedor.Nome);
-                            updateFornecedorCommand.Parameters.AddWithValue("@email", fornecedor.Email);
-                            updateFornecedorCommand.Parameters.AddWithValue("@cnpj", fornecedor.CNPJ);
-                            updateFornecedorCommand.Parameters.AddWithValue("@status", fornecedor.StatusAtivo);
-                            updateFornecedorCommand.Parameters.AddWithValue("@fornecedorId", fornecedor.ID);
+                            updateFornecedorCommand.Parameters.AddWithValue("@FornecedorId", fornecedor.ID);
+                            updateFornecedorCommand.Parameters.AddWithValue("@Nome", fornecedor.Nome);
+                            updateFornecedorCommand.Parameters.AddWithValue("@Email", fornecedor.Email);
+                            updateFornecedorCommand.Parameters.AddWithValue("@Cnpj", fornecedor.CNPJ);
                             updateFornecedorCommand.ExecuteNonQuery();
                         }
 
                         EnderecoFornecedor endereco = fornecedor.Endereco;
 
-                        string updateEnderecoQuery = @"UPDATE endereco_fornecedor SET logradouro_endfornecedor = @logradouro, numero_endfornecedor = @numero, 
-                                                    complemento_endfornecedor = @complemento, bairro_endfornecedor = @bairro, cidade_endfornecedor = @cidade, 
-                                                    uf_endfornecedor = @uf, cep_endfornecedor = @cep, ativo_endfornecedor = @status WHERE id_fornecedor = @fornecedorId";
+                        string updateEnderecoQuery = @"UPDATE enderecofornecedor SET 
+                                                logradouro_endfornecedor = @Logradouro,
+                                                numero_endfornecedor = @Numero,
+                                                complemento_endfornecedor = @Complemento,
+                                                bairro_endfornecedor = @Bairro,
+                                                cidade_endfornecedor = @Cidade,
+                                                uf_endfornecedor = @UF,
+                                                cep_endfornecedor = @CEP
+                                                WHERE id_fornecedor = @FornecedorId";
 
                         using (MySqlCommand updateEnderecoCommand = new MySqlCommand(updateEnderecoQuery, connection, transaction))
                         {
-                            updateEnderecoCommand.Parameters.AddWithValue("@logradouro", endereco.Logradouro);
-                            updateEnderecoCommand.Parameters.AddWithValue("@numero", endereco.Numero);
-                            updateEnderecoCommand.Parameters.AddWithValue("@complemento", endereco.Complemento);
-                            updateEnderecoCommand.Parameters.AddWithValue("@bairro", endereco.Bairro);
-                            updateEnderecoCommand.Parameters.AddWithValue("@cidade", endereco.Cidade);
-                            updateEnderecoCommand.Parameters.AddWithValue("@uf", endereco.UF);
-                            updateEnderecoCommand.Parameters.AddWithValue("@cep", endereco.CEP);
-                            updateEnderecoCommand.Parameters.AddWithValue("@status", endereco.StatusAtivo);
-                            updateEnderecoCommand.Parameters.AddWithValue("@fornecedorId", fornecedor.ID);
+                            updateEnderecoCommand.Parameters.AddWithValue("@FornecedorId", fornecedor.ID);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Logradouro", endereco.Logradouro);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Numero", endereco.Numero);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Complemento", endereco.Complemento);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Bairro", endereco.Bairro);
+                            updateEnderecoCommand.Parameters.AddWithValue("@Cidade", endereco.Cidade);
+                            updateEnderecoCommand.Parameters.AddWithValue("@UF", endereco.UF);
+                            updateEnderecoCommand.Parameters.AddWithValue("@CEP", endereco.CEP);
                             updateEnderecoCommand.ExecuteNonQuery();
                         }
 
                         TelefoneFornecedor telefone = fornecedor.Telefone;
 
-                        string updateTelefoneQuery = @"UPDATE telefone_fornecedor SET ddd_telfornecedor = @ddd, numero_telfornecedor = @numero, 
-                                                    ativo_telfornecedor = @status WHERE id_fornecedor = @fornecedorId";
+                        string updateTelefoneQuery = @"UPDATE telefonefornecedor SET 
+                                                ddd_telfornecedor = @DDD,
+                                                numero_telfornecedor = @Numero
+                                                WHERE id_fornecedor = @FornecedorId";
 
                         using (MySqlCommand updateTelefoneCommand = new MySqlCommand(updateTelefoneQuery, connection, transaction))
                         {
-                            updateTelefoneCommand.Parameters.AddWithValue("@ddd", telefone.DDD);
-                            updateTelefoneCommand.Parameters.AddWithValue("@numero", telefone.Numero);
-                            updateTelefoneCommand.Parameters.AddWithValue("@status", telefone.StatusAtivo);
-                            updateTelefoneCommand.Parameters.AddWithValue("@fornecedorId", fornecedor.ID);
+                            updateTelefoneCommand.Parameters.AddWithValue("@FornecedorId", fornecedor.ID);
+                            updateTelefoneCommand.Parameters.AddWithValue("@DDD", telefone.DDD);
+                            updateTelefoneCommand.Parameters.AddWithValue("@Numero", telefone.Numero);
                             updateTelefoneCommand.ExecuteNonQuery();
                         }
 
@@ -154,7 +162,7 @@ namespace PIMFazendaUrbana
         }
 
         // 3- MÉTODO EXCLUIR (DESATIVAR) FORNECEDOR DO BANCO
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public void ExcluirFornecedor_DAO(int fornecedorId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -174,7 +182,7 @@ namespace PIMFazendaUrbana
                         }
 
                         // Desativar o telefone do fornecedor
-                        string updateTelefoneQuery = "UPDATE telefone_fornecedor SET ativo_telfornecedor = @status WHERE id_fornecedor = @id";
+                        string updateTelefoneQuery = "UPDATE telefonefornecedor SET ativo_telfornecedor = @status WHERE id_fornecedor = @id";
                         using (MySqlCommand updateTelefoneCommand = new MySqlCommand(updateTelefoneQuery, connection, transaction))
                         {
                             updateTelefoneCommand.Parameters.AddWithValue("@status", false);
@@ -183,7 +191,7 @@ namespace PIMFazendaUrbana
                         }
 
                         // Desativar o endereço do fornecedor
-                        string updateEnderecoQuery = "UPDATE endereco_fornecedor SET ativo_endfornecedor = @status WHERE id_fornecedor = @id";
+                        string updateEnderecoQuery = "UPDATE enderecofornecedor SET ativo_endfornecedor = @status WHERE id_fornecedor = @id";
                         using (MySqlCommand updateEnderecoCommand = new MySqlCommand(updateEnderecoQuery, connection, transaction))
                         {
                             updateEnderecoCommand.Parameters.AddWithValue("@status", false);
@@ -203,9 +211,9 @@ namespace PIMFazendaUrbana
         }
 
         // 4- Listagem
-        // 4.1- MÉTODO LISTAR APENAS FORNECEDORES ATIVOS DO BANCO
-        // ********** NÃO TESTADO **********
-        public List<Fornecedor> ListarFornecedoresAtivos_DAO()
+        // 4.1- MÉTODO LISTAR APENAS FORNECEDORS ATIVOS DO BANCO
+        // ********** FUNCIONAL **********
+        public List<Fornecedor> ListarFornecedorsAtivos_DAO()
         {
             List<Fornecedor> fornecedores = new List<Fornecedor>();
 
@@ -213,14 +221,14 @@ namespace PIMFazendaUrbana
             {
                 connection.Open();
 
-                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
+                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.email_fornecedor, c.cnpj_fornecedor, c.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor f
-                                LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
-                                WHERE f.ativo_fornecedor = true";
+                                FROM fornecedor c
+                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                WHERE c.ativo_fornecedor = true";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -255,19 +263,17 @@ namespace PIMFazendaUrbana
                                     StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
                                 }
                             };
-
                             fornecedores.Add(fornecedor);
                         }
                     }
                 }
             }
-
             return fornecedores;
         }
 
-        // 4.2- MÉTODO LISTAR TODOS OS FORNECEDORES DO BANCO
-        // ********** NÃO TESTADO **********
-        public List<Fornecedor> ListarTodosFornecedores_DAO()
+        // 4.2- MÉTODO LISTAR TODOS OS FORNECEDORS DO BANCO
+        // ********** FUNCIONAL **********
+        public List<Fornecedor> ListarTodosFornecedors_DAO()
         {
             List<Fornecedor> fornecedores = new List<Fornecedor>();
 
@@ -275,13 +281,14 @@ namespace PIMFazendaUrbana
             {
                 connection.Open();
 
-                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
+                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.email_fornecedor, c.cnpj_fornecedor, c.ativo_fornecedor, 
                                 t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
                                 e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
                                 e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
-                                FROM fornecedor f
-                                LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor";
+                                FROM fornecedor c
+                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                ";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -316,77 +323,70 @@ namespace PIMFazendaUrbana
                                     StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
                                 }
                             };
-
                             fornecedores.Add(fornecedor);
                         }
                     }
                 }
             }
-
             return fornecedores;
         }
 
         // 5- Consulta
         // 5.1- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR ID (somente fornecedores ativos)
-        // ********** NÃO TESTADO **********
+        // ********** FUNCIONAL **********
         public Fornecedor ConsultarFornecedorID_DAO(int fornecedorId)
         {
             Fornecedor fornecedor = null;
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor,
+                                c.ativo_fornecedor, 
+                                t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
+                                e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
+                                e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
+                                FROM fornecedor c
+                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                WHERE c.id_fornecedor = @Id";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Id", fornecedorId);
+
                 connection.Open();
-
-                string selectFornecedorQuery = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor,
-                                            e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor,
-                                            e.bairro_endfornecedor, e.cidade_endfornecedor, e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor,
-                                            t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor
-                                            FROM fornecedor f
-                                            LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
-                                            LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.id_fornecedor = @id AND ativo_funcionario = 1";
-
-                using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectFornecedorCommand.Parameters.AddWithValue("@id", fornecedorId);
-
-                    using (MySqlDataReader reader = selectFornecedorCommand.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        fornecedor = new Fornecedor
                         {
-                            fornecedor = new Fornecedor
+                            ID = fornecedorId,
+                            Nome = reader.GetString("nome_fornecedor"),
+                            CNPJ = reader.GetString("cnpj_fornecedor"),
+                            Email = reader.GetString("email_fornecedor"),
+                            StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
+                            Telefone = new TelefoneFornecedor
                             {
-                                ID = reader.GetInt32("id_fornecedor"),
-                                Nome = reader.GetString("nome_fornecedor"),
-                                Email = reader.GetString("email_fornecedor"),
-                                CNPJ = reader.GetString("cnpj_fornecedor"),
-                                StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-
-                                Endereco = new EnderecoFornecedor
-                                {
-                                    Logradouro = reader.GetString("logradouro_endfornecedor"),
-                                    Numero = reader.GetString("numero_endfornecedor"),
-                                    Complemento = reader.GetString("complemento_endfornecedor"),
-                                    Bairro = reader.GetString("bairro_endfornecedor"),
-                                    Cidade = reader.GetString("cidade_endfornecedor"),
-                                    UF = reader.GetString("uf_endfornecedor"),
-                                    CEP = reader.GetString("cep_endfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
-                                },
-
-                                Telefone = new TelefoneFornecedor
-                                {
-                                    DDD = reader.GetString("ddd_telfornecedor"),
-                                    Numero = reader.GetString("numero_telfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telfornecedor"),
+                                Numero = reader.GetString("numero_telfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
+                            },
+                            Endereco = new EnderecoFornecedor
+                            {
+                                Logradouro = reader.GetString("logradouro_endfornecedor"),
+                                Numero = reader.GetString("numero_endfornecedor"),
+                                Complemento = reader.IsDBNull("complemento_endfornecedor") ? null : reader.GetString("complemento_endfornecedor"),
+                                Bairro = reader.GetString("bairro_endfornecedor"),
+                                Cidade = reader.GetString("cidade_endfornecedor"),
+                                UF = reader.GetString("uf_endfornecedor"),
+                                CEP = reader.GetString("cep_endfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
+                            }
+                        };
                     }
+                    return fornecedor;
                 }
             }
-
-            return fornecedor;
         }
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR NOME (somente fornecedores ativos)
@@ -397,58 +397,53 @@ namespace PIMFazendaUrbana
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor, 
+                                c.ativo_fornecedor, 
+                                t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
+                                e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
+                                e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
+                                FROM fornecedor c
+                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                WHERE c.nome_fornecedor = @Nome";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Nome", fornecedorNome);
+
                 connection.Open();
-
-                string selectFornecedorQuery = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
-                                            e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, 
-                                            e.bairro_endfornecedor, e.cidade_endfornecedor, e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor, 
-                                            t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor
-                                            FROM fornecedor f
-                                            LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
-                                            LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.nome_fornecedor = @nome AND ativo_funcionario = 1";
-
-                using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectFornecedorCommand.Parameters.AddWithValue("@nome", fornecedorNome);
-
-                    using (MySqlDataReader reader = selectFornecedorCommand.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        fornecedor = new Fornecedor
                         {
-                            fornecedor = new Fornecedor
+                            ID = reader.GetInt32("id_fornecedor"),
+                            Nome = fornecedorNome,
+                            CNPJ = reader.GetString("cnpj_fornecedor"),
+                            Email = reader.GetString("email_fornecedor"),
+                            StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
+                            Telefone = new TelefoneFornecedor
                             {
-                                ID = reader.GetInt32("id_fornecedor"),
-                                Nome = reader.GetString("nome_fornecedor"),
-                                Email = reader.GetString("email_fornecedor"),
-                                CNPJ = reader.GetString("cnpj_fornecedor"),
-                                StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-
-                                Endereco = new EnderecoFornecedor
-                                {
-                                    Logradouro = reader.GetString("logradouro_endfornecedor"),
-                                    Numero = reader.GetString("numero_endfornecedor"),
-                                    Complemento = reader.GetString("complemento_endfornecedor"),
-                                    Bairro = reader.GetString("bairro_endfornecedor"),
-                                    Cidade = reader.GetString("cidade_endfornecedor"),
-                                    UF = reader.GetString("uf_endfornecedor"),
-                                    CEP = reader.GetString("cep_endfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
-                                },
-
-                                Telefone = new TelefoneFornecedor
-                                {
-                                    DDD = reader.GetString("ddd_telfornecedor"),
-                                    Numero = reader.GetString("numero_telfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telfornecedor"),
+                                Numero = reader.GetString("numero_telfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
+                            },
+                            Endereco = new EnderecoFornecedor
+                            {
+                                Logradouro = reader.GetString("logradouro_endfornecedor"),
+                                Numero = reader.GetString("numero_endfornecedor"),
+                                Complemento = reader.IsDBNull("complemento_endfornecedor") ? null : reader.GetString("complemento_endfornecedor"),
+                                Bairro = reader.GetString("bairro_endfornecedor"),
+                                Cidade = reader.GetString("cidade_endfornecedor"),
+                                UF = reader.GetString("uf_endfornecedor"),
+                                CEP = reader.GetString("cep_endfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
+                            }
+                        };
                     }
+                    return fornecedor;
                 }
             }
-
-            return fornecedor;
         }
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR CNPJ (somente fornecedores ativos)
@@ -459,60 +454,54 @@ namespace PIMFazendaUrbana
 
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
+                string query = @"SELECT c.id_fornecedor, c.nome_fornecedor, c.cnpj_fornecedor, c.email_fornecedor, 
+                                c.ativo_fornecedor, 
+                                t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
+                                e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
+                                e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
+                                FROM fornecedor c
+                                LEFT JOIN telefonefornecedor t ON c.id_fornecedor = t.id_fornecedor
+                                LEFT JOIN enderecofornecedor e ON c.id_fornecedor = e.id_fornecedor
+                                WHERE c.cnpj_fornecedor = @CNPJ";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CNPJ", fornecedorCNPJ);
+
                 connection.Open();
-
-                string selectFornecedorQuery = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
-                                            e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, 
-                                            e.bairro_endfornecedor, e.cidade_endfornecedor, e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor, 
-                                            t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor
-                                            FROM fornecedor f
-                                            LEFT JOIN endereco_fornecedor e ON f.id_fornecedor = e.id_fornecedor
-                                            LEFT JOIN telefone_fornecedor t ON f.id_fornecedor = t.id_fornecedor
-                                            WHERE f.cnpj_fornecedor = @cnpj AND ativo_funcionario = 1";
-
-                using (MySqlCommand selectFornecedorCommand = new MySqlCommand(selectFornecedorQuery, connection))
+                MySqlDataReader reader = command.ExecuteReader();
                 {
-                    selectFornecedorCommand.Parameters.AddWithValue("@cnpj", fornecedorCNPJ);
-
-                    using (MySqlDataReader reader = selectFornecedorCommand.ExecuteReader())
+                    if (reader.Read())
                     {
-                        if (reader.Read())
+                        fornecedor = new Fornecedor
                         {
-                            fornecedor = new Fornecedor
+                            ID = reader.GetInt32("id_fornecedor"),
+                            Nome = reader.GetString("nome_fornecedor"),
+                            CNPJ = fornecedorCNPJ,
+                            Email = reader.GetString("email_fornecedor"),
+                            StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
+                            Telefone = new TelefoneFornecedor
                             {
-                                ID = reader.GetInt32("id_fornecedor"),
-                                Nome = reader.GetString("nome_fornecedor"),
-                                Email = reader.GetString("email_fornecedor"),
-                                CNPJ = reader.GetString("cnpj_fornecedor"),
-                                StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-
-                                Endereco = new EnderecoFornecedor
-                                {
-                                    Logradouro = reader.GetString("logradouro_endfornecedor"),
-                                    Numero = reader.GetString("numero_endfornecedor"),
-                                    Complemento = reader.GetString("complemento_endfornecedor"),
-                                    Bairro = reader.GetString("bairro_endfornecedor"),
-                                    Cidade = reader.GetString("cidade_endfornecedor"),
-                                    UF = reader.GetString("uf_endfornecedor"),
-                                    CEP = reader.GetString("cep_endfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
-                                },
-
-                                Telefone = new TelefoneFornecedor
-                                {
-                                    DDD = reader.GetString("ddd_telfornecedor"),
-                                    Numero = reader.GetString("numero_telfornecedor"),
-                                    StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
-                                }
-                            };
-                        }
+                                DDD = reader.GetString("ddd_telfornecedor"),
+                                Numero = reader.GetString("numero_telfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
+                            },
+                            Endereco = new EnderecoFornecedor
+                            {
+                                Logradouro = reader.GetString("logradouro_endfornecedor"),
+                                Numero = reader.GetString("numero_endfornecedor"),
+                                Complemento = reader.IsDBNull("complemento_endfornecedor") ? null : reader.GetString("complemento_endfornecedor"),
+                                Bairro = reader.GetString("bairro_endfornecedor"),
+                                Cidade = reader.GetString("cidade_endfornecedor"),
+                                UF = reader.GetString("uf_endfornecedor"),
+                                CEP = reader.GetString("cep_endfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
+                            }
+                        };
                     }
+                    return fornecedor;
                 }
             }
-
-            return fornecedor;
         }
-
 
     }
 }

@@ -1,264 +1,136 @@
 ### CRIAÇÃO DO BANCO:
-CREATE DATABASE testepim;
-USE testepim;
+CREATE DATABASE pimfazendaurbana;
+USE pimfazendaurbana;
 
 begin;
 ### PESSOAS
 ## Cliente:
 CREATE TABLE `cliente` (
 	`id_cliente` int NOT NULL AUTO_INCREMENT,
-	`nome_cliente` varchar(255) DEFAULT NULL,
-	`email_cliente` varchar(255) DEFAULT NULL UNIQUE,
-	`cnpj_cliente` varchar(255) DEFAULT NULL UNIQUE,
+	`nome_cliente` varchar(100) NOT NULL,
+	`email_cliente` varchar(50) NOT NULL UNIQUE,
+	`cnpj_cliente` varchar(25) NOT NULL UNIQUE,
 	`ativo_cliente` boolean DEFAULT true,
 	PRIMARY KEY (`id_cliente`)
 );
 CREATE TABLE `enderecocliente` (
-	`id_endcliente` int NOT NULL AUTO_INCREMENT,
-	`logradouro_endcliente` varchar(255) DEFAULT NULL,
-	`numero_endcliente` varchar(255) DEFAULT NULL,
-	`complemento_endcliente` varchar(255) DEFAULT NULL,
-	`bairro_endcliente` varchar(255) DEFAULT NULL,
-	`cidade_endcliente` varchar(255) DEFAULT NULL,
-	`uf_endcliente` varchar(255) DEFAULT NULL,
-	`cep_endcliente` varchar(255) DEFAULT NULL,
+	`logradouro_endcliente` varchar(100) NOT NULL,
+	`numero_endcliente` varchar(10) NOT NULL,
+	`complemento_endcliente` varchar(50) DEFAULT NULL,
+	`bairro_endcliente` varchar(100) NOT NULL,
+	`cidade_endcliente` varchar(100) NOT NULL,
+	`uf_endcliente` varchar(10) NOT NULL,
+	`cep_endcliente` varchar(25) NOT NULL,
 	`ativo_endcliente` boolean DEFAULT true,
 	`id_cliente` int NOT NULL,
-	PRIMARY KEY (`id_endcliente`),
+	PRIMARY KEY (`id_cliente`),
 	KEY `id_cliente` (`id_cliente`),
-	CONSTRAINT `endereco_cliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
+	CONSTRAINT `enderecocliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
 );
 CREATE TABLE `telefonecliente` (
-	`id_telcliente` int NOT NULL AUTO_INCREMENT,
-	`ddd_telcliente` varchar(255) DEFAULT NULL,
-	`numero_telcliente` varchar(255) DEFAULT NULL,
+	`ddd_telcliente` varchar(10) NOT NULL,
+	`numero_telcliente` varchar(25) NOT NULL,
 	`ativo_telcliente` boolean DEFAULT true,
 	`id_cliente` int NOT NULL,
-	PRIMARY KEY (`id_telcliente`),
+	PRIMARY KEY (`id_cliente`),
 	KEY `id_cliente` (`id_cliente`),
-	CONSTRAINT `telefone_cliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
+	CONSTRAINT `telefonecliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
 );
 
 ## Fornecedor:
 CREATE TABLE `fornecedor` (
 	`id_fornecedor` int NOT NULL AUTO_INCREMENT,
-	`nome_fornecedor` varchar(255) DEFAULT NULL,
-	`email_fornecedor` varchar(255) DEFAULT NULL UNIQUE,
-	`cnpj_fornecedor` varchar(255) DEFAULT NULL UNIQUE,
+	`nome_fornecedor` varchar(100) NOT NULL,
+	`email_fornecedor` varchar(50) NOT NULL UNIQUE,
+	`cnpj_fornecedor` varchar(25) NOT NULL UNIQUE,
 	`ativo_fornecedor` boolean DEFAULT true,
 	PRIMARY KEY (`id_fornecedor`)
 );
 CREATE TABLE `enderecofornecedor` (
-	`id_endfornecedor` int NOT NULL AUTO_INCREMENT,
-	`logradouro_endfornecedor` varchar(255) DEFAULT NULL,
-	`numero_endfornecedor` varchar(255) DEFAULT NULL,
-	`complemento_endfornecedor` varchar(255) DEFAULT NULL,
-	`bairro_endfornecedor` varchar(255) DEFAULT NULL,
-	`cidade_endfornecedor` varchar(255) DEFAULT NULL,
-	`uf_endfornecedor` varchar(255) DEFAULT NULL,
-	`cep_endfornecedor` varchar(255) DEFAULT NULL,
+	`logradouro_endfornecedor` varchar(100) NOT NULL,
+	`numero_endfornecedor` varchar(10) NOT NULL,
+	`complemento_endfornecedor` varchar(50) DEFAULT NULL,
+	`bairro_endfornecedor` varchar(100) NOT NULL,
+	`cidade_endfornecedor` varchar(100) NOT NULL,
+	`uf_endfornecedor` varchar(10) NOT NULL,
+	`cep_endfornecedor` varchar(25) NOT NULL,
 	`ativo_endfornecedor` boolean DEFAULT true,
 	`id_fornecedor` int NOT NULL,
-	PRIMARY KEY (`id_endfornecedor`),
+	PRIMARY KEY (`id_fornecedor`),
 	KEY `id_fornecedor` (`id_fornecedor`),
-	CONSTRAINT `endereco_fornecedor_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
+	CONSTRAINT `enderecofornecedor_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
 );
 CREATE TABLE `telefonefornecedor` (
-  `id_telfornecedor` int NOT NULL AUTO_INCREMENT,
-  `ddd_telfornecedor` varchar(255) DEFAULT NULL,
-  `numero_telfornecedor` varchar(255) DEFAULT NULL,
+  `ddd_telfornecedor` varchar(10) NOT NULL,
+  `numero_telfornecedor` varchar(25) NOT NULL,
   `ativo_telfornecedor` boolean DEFAULT true,
   `id_fornecedor` int NOT NULL,
-  PRIMARY KEY (`id_telfornecedor`),
+  PRIMARY KEY (`id_fornecedor`),
   KEY `id_fornecedor` (`id_fornecedor`),
-  CONSTRAINT `telefone_fornecedor_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
+  CONSTRAINT `telefonefornecedor_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
 );
 
 ## Funcionario:
 CREATE TABLE `funcionario` (
 	`id_funcionario` int NOT NULL AUTO_INCREMENT,
-	`nome_funcionario` varchar(255) DEFAULT NULL,
-	`sexo_funcionario` varchar(255) DEFAULT NULL,
-	`email_funcionario` varchar(255) DEFAULT NULL UNIQUE,
-	`cargo_funcionario` varchar(255) DEFAULT NULL,
-	`usuario_funcionario` varchar(255) DEFAULT NULL UNIQUE,
-	`senha_funcionario` varchar(255) DEFAULT NULL,
+	`nome_funcionario` varchar(100) NOT NULL,
+    `cpf_funcionario` varchar(25) NOT NULL UNIQUE,
+	`sexo_funcionario` varchar(10) DEFAULT NULL,
+	`email_funcionario` varchar(100) NOT NULL UNIQUE,
+	`cargo_funcionario` varchar(50) NOT NULL,
+	`usuario_funcionario` varchar(50) NOT NULL UNIQUE,
+	`senha_funcionario` varchar(50) NOT NULL,
 	`ativo_funcionario` boolean DEFAULT true,
 	PRIMARY KEY (`id_funcionario`)
 );
 CREATE TABLE `enderecofuncionario` (
-	`id_endfuncionario` int NOT NULL AUTO_INCREMENT,
-	`logradouro_endfuncionario` varchar(255) DEFAULT NULL,
-	`numero_endfuncionario` varchar(255) DEFAULT NULL,
-	`complemento_endfuncionario` varchar(255) DEFAULT NULL,
-	`bairro_endfuncionario` varchar(255) DEFAULT NULL,
-	`cidade_endfuncionario` varchar(255) DEFAULT NULL,
-	`uf_endfuncionario` varchar(255) DEFAULT NULL,
-	`cep_endfuncionario` varchar(255) DEFAULT NULL,
+	`logradouro_endfuncionario` varchar(100) NOT NULL,
+	`numero_endfuncionario` varchar(10) NOT NULL,
+	`complemento_endfuncionario` varchar(50) DEFAULT NULL,
+	`bairro_endfuncionario` varchar(100) NOT NULL,
+	`cidade_endfuncionario` varchar(100) NOT NULL,
+	`uf_endfuncionario` varchar(10) NOT NULL,
+	`cep_endfuncionario` varchar(25) NOT NULL,
 	`ativo_endfuncionario` boolean DEFAULT true,
 	`id_funcionario` int NOT NULL,
-	PRIMARY KEY (`id_endfuncionario`),
+	PRIMARY KEY (`id_funcionario`),
 	KEY `id_funcionario` (`id_funcionario`),
-	CONSTRAINT `endereco_funcionario_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`)
+	CONSTRAINT `enderecofuncionario_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`)
 );
 CREATE TABLE `telefonefuncionario` (
-	`id_telfuncionario` int NOT NULL AUTO_INCREMENT,
-	`ddd_telfuncionario` varchar(255) DEFAULT NULL,
-	`numero_telfuncionario` varchar(255) DEFAULT NULL,
+	`ddd_telfuncionario` varchar(10) NOT NULL,
+	`numero_telfuncionario` varchar(25) NOT NULL,
 	`ativo_telfuncionario` boolean DEFAULT true,
 	`id_funcionario` int NOT NULL,
-	PRIMARY KEY (`id_telfuncionario`),
+	PRIMARY KEY (`id_funcionario`),
 	KEY `id_funcionario` (`id_funcionario`),
-	CONSTRAINT `telefone_funcionario_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`)
-);
-
-### VENDAS E PRODUÇÃO
-## PedidoCompra
-CREATE TABLE `pedidocompra` (
-	`id_pedidocompra` int NOT NULL AUTO_INCREMENT,
-	`data_pedidocompra` timestamp NOT NULL,
-	`id_fornecedor` int NOT NULL,
-	PRIMARY KEY (`id_pedidocompra`),
-	KEY `id_fornecedor` (`id_fornecedor`),
-	CONSTRAINT `pedidocompra_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
-);
-
-## EstoqueInsumo
-CREATE TABLE `estoqueinsumo` (
-	`id_insumo` int NOT NULL AUTO_INCREMENT,
-	`nome_insumo` varchar(255) DEFAULT NULL UNIQUE,
-	`categoria_insumo` varchar(255) DEFAULT NULL,
-    `qtd_insumo` int DEFAULT 0,
-    `unidqtd_insumo` varchar(255) DEFAULT NULL,
-	`ativo_insumo` boolean DEFAULT true,
-	PRIMARY KEY (`id_insumo`)
-);
-
-## EntradaInsumo
-CREATE TABLE `entradainsumo` (
-	`id_entradainsumo` int NOT NULL AUTO_INCREMENT,
-	`qtd_entradainsumo` int DEFAULT 0,
-	`unidqtd_entradainsumo` varchar(255) DEFAULT NULL,
-	`data_entradainsumo` timestamp NOT NULL,
-	`id_insumo` int NOT NULL,
-	PRIMARY KEY (`id_entradainsumo`),
-	KEY `id_insumo` (`id_insumo`),
-	CONSTRAINT `entradainsumo_ibfk_1` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
-);
-
-## SaidaInsumo
-CREATE TABLE `saidainsumo` (
-	`id_saidainsumo` int NOT NULL AUTO_INCREMENT,
-	`qtd_saidainsumo` int DEFAULT 0,
-	`unidqtd_saidainsumo` varchar(255) DEFAULT NULL,
-	`data_saidainsumo` timestamp NOT NULL,
-	`id_insumo` int NOT NULL,
-	PRIMARY KEY (`id_saidainsumo`),
-	KEY `id_insumo` (`id_insumo`),
-	CONSTRAINT `saidainsumo_ibfk_1` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
-);
-
-## CompraItem
-CREATE TABLE `compraitem` (
-	`id_compraitem` int NOT NULL AUTO_INCREMENT,
-	`qtd_compraitem` int DEFAULT 0,
-	`unidqtd_compraitem` varchar(255) DEFAULT NULL,
-    `valor_compraitem` decimal(9,3),
-	`id_pedidocompra` int NOT NULL,
-	`id_insumo` int NOT NULL,
-	PRIMARY KEY (`id_compraitem`),
-	KEY `id_pedidocompra` (`id_pedidocompra`),
-	CONSTRAINT `compraitem_ibfk_1` FOREIGN KEY (`id_pedidocompra`) REFERENCES `pedidocompra` (`id_pedidocompra`),
-	KEY `id_insumo` (`id_insumo`),
-	CONSTRAINT `compraitem_ibfk_2` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
-);
-
-## Producao
-CREATE TABLE `producao` (
-	`id_producao` int NOT NULL AUTO_INCREMENT,
-	`qtd_producao` int DEFAULT 0,
-	`unidqtd_producao` varchar(255) DEFAULT NULL,
-	`data_producao` timestamp NOT NULL,
-    `finalizado_producao` boolean DEFAULT false,
-	`ativo_producao` boolean DEFAULT true,
-	`id_cultivo` int NOT NULL,
-	PRIMARY KEY (`id_producao`),
-	KEY `id_cultivo` (`id_cultivo`),
-	CONSTRAINT `producao_ibfk_1` FOREIGN KEY (`id_cultivo`) REFERENCES `cultivo` (`id_cultivo`)
-);
-
-## EntradaProduto
-CREATE TABLE `entradaproduto` (
-	`id_entradaproduto` int NOT NULL AUTO_INCREMENT,
-	`qtd_entradaproduto` int DEFAULT 0,
-	`unidqtd_entradaproduto` varchar(255) DEFAULT NULL,
-	`data_entradaproduto` timestamp NOT NULL,
-	`saida_entradaproduto` boolean DEFAULT false,
-    `vendido_entradaproduto` boolean DEFAULT false,
-	`ativo_entradaproduto` boolean DEFAULT true,
-	`id_producao` int NOT NULL,
-	PRIMARY KEY (`id_entradaproduto`),
-	KEY `id_producao` (`id_producao`),
-	CONSTRAINT `entradaproduto_ibfk_1` FOREIGN KEY (`id_producao`) REFERENCES `producao` (`id_producao`)
-);
-
-## SaidaProduto
-CREATE TABLE `saidaproduto` (
-	`id_saidaproduto` int NOT NULL AUTO_INCREMENT,
-	`qtd_saidaproduto` int DEFAULT 0,
-	`unidqtd_saidaproduto` varchar(255) DEFAULT NULL,
-	`data_saidaproduto` timestamp NOT NULL,
-    `venda_saidaproduto` boolean DEFAULT true,
-	`ativo_saidaproduto` boolean DEFAULT true,
-	`id_entradaproduto` int NOT NULL,
-	PRIMARY KEY (`id_saidaproduto`),
-	KEY `id_entradaproduto` (`id_entradaproduto`),
-	CONSTRAINT `saidaproduto_ibfk_1` FOREIGN KEY (`id_entradaproduto`) REFERENCES `entradaproduto` (`id_entradaproduto`)
-);
-
-## PedidoVenda
-CREATE TABLE `pedidovenda` (
-	`id_pedidovenda` int NOT NULL AUTO_INCREMENT,
-	`data_pedidovenda` timestamp NOT NULL,
-	`id_cliente` int NOT NULL,
-	PRIMARY KEY (`id_pedidovenda`),
-	KEY `id_cliente` (`id_cliente`),
-	CONSTRAINT `pedidovenda_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
-);
-
-## VendaItem
-CREATE TABLE `vendaitem` (
-	`id_vendaitem` int NOT NULL AUTO_INCREMENT,
-	`qtd_vendaitem` int DEFAULT 0,
-	`unidqtd_vendaitem` varchar(255) DEFAULT NULL,
-    `valor_vendaitem` decimal(9,3),
-    `desconto_vendaitem` decimal(9,3),
-	`id_pedidovenda` int NOT NULL,
-	`id_saidaproduto` int NOT NULL,
-	PRIMARY KEY (`id_vendaitem`),
-	KEY `id_pedidovenda` (`id_pedidovenda`),
-	CONSTRAINT `vendaitem_ibfk_1` FOREIGN KEY (`id_pedidovenda`) REFERENCES `pedidovenda` (`id_pedidovenda`),
-	KEY `id_saidaproduto` (`id_saidaproduto`),
-	CONSTRAINT `vendaitem_ibfk_2` FOREIGN KEY (`id_saidaproduto`) REFERENCES `saidaproduto` (`id_saidaproduto`)
+	CONSTRAINT `telefonefuncionario_ibfk_1` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`)
 );
 commit;
 
-
-
+### VENDAS E PRODUÇÃO
 begin;
 -- Criar a tabela cultivo
-CREATE TABLE cultivo (
-    id_cultivo INT PRIMARY KEY,
-    nome_cultivo VARCHAR(100),
-    variedade_cultivo VARCHAR(100),
-    tempotrad_cultivo INT,
-    tempocontrol_cultivo INT,
-    categoria_cultivo VARCHAR(100),
-    ativo_cultivo boolean DEFAULT true
+CREATE TABLE `cultivo` (
+    `id_cultivo` int NOT NULL AUTO_INCREMENT,
+    `nome_cultivo` varchar(100) NOT NULL,
+    `variedade_cultivo` varchar(100) NOT NULL UNIQUE,
+    `tempoprodtrad_cultivo` int DEFAULT NULL,
+    `tempoprodctrl_cultivo` int DEFAULT NULL,
+	`categoria_cultivo` varchar(50) NOT NULL,
+	`ativo_cultivo` boolean DEFAULT true,
+	PRIMARY KEY (`id_cultivo`)
 );
 
 -- Inserir os dados na tabela cultivo
-INSERT INTO cultivo (id_cultivo, nome_cultivo, variedade_cultivo, tempotrad_cultivo, tempocontrol_cultivo, categoria_cultivo) VALUES
+INSERT INTO `cultivo` (
+	`id_cultivo`, 
+	`nome_cultivo`, 
+	`variedade_cultivo`, 
+	`tempoprodtrad_cultivo`, 
+	`tempoprodctrl_cultivo`, 
+	`categoria_cultivo`
+) VALUES
 (1, 'Abacaxi', 'Abacaxi Pérola', 600, 365, 'Fruta'),
 (2, 'Abóbora', 'Abóbora Japonesa', 100, 60, 'Legume'),
 (3, 'Abobrinha', 'Abobrinha Menina Brasileira', 50, 30, 'Legume'),
@@ -319,22 +191,29 @@ INSERT INTO cultivo (id_cultivo, nome_cultivo, variedade_cultivo, tempotrad_cult
 (58, 'Tomate', 'Tomate Italiano', 79, 48, 'Fruta'),
 (59, 'Tomate', 'Tomate Santa Cruz Kada', 80, 48, 'Fruta'),
 (60, 'Tomate', 'Tomateiro Cereja', 75, 46, 'Fruta'),
-(61, 'Tomilho', 'Tomilho Limão', 85, 50, 'Verdura');
+(61, 'Tomilho', 'Tomilho Limão', 85, 50, 'Verdura')
+;
 commit;
 
 begin;
--- Criar a tabela regiao_estacao_cultivo
-CREATE TABLE regiao_estacao_cultivo (
-    id_regiao_estacao_cultivo SERIAL PRIMARY KEY,
-    regiao VARCHAR(50),
-    estacao VARCHAR(50),
-    id_cultivo INT,
-    FOREIGN KEY (id_cultivo) REFERENCES cultivo(id_cultivo)
+-- Criar a tabela recomendacaocultivo
+CREATE TABLE `recomendacaocultivo` (
+    `id_recomendacaocultivo` int NOT NULL AUTO_INCREMENT,
+    `regiao` VARCHAR(25) NOT NULL,
+    `estacao` VARCHAR(25) NOT NULL,
+    `id_cultivo` INT NOT NULL,
+    PRIMARY KEY (`id_recomendacaocultivo`, `id_cultivo`),
+	KEY `id_cultivo` (`id_cultivo`),
+    CONSTRAINT `recomendacaocultivo_ibfk_1` FOREIGN KEY (`id_cultivo`) REFERENCES `cultivo`(`id_cultivo`)
 );
 
--- Inserir os dados na tabela regiao_estacao_cultivo
+-- Inserir os dados na tabela recomendacaocultivo
 -- Sul
-INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
+INSERT INTO `recomendacaocultivo` (
+	`regiao`, 
+	`estacao`, 
+	`id_cultivo`
+) VALUES
 ('Sul', 'Inverno', 31), ('Sul', 'Inverno', 24), ('Sul', 'Inverno', 6), ('Sul', 'Inverno', 53), ('Sul', 'Inverno', 16),
 ('Sul', 'Inverno', 26), ('Sul', 'Inverno', 52), ('Sul', 'Inverno', 25), ('Sul', 'Inverno', 19), ('Sul', 'Inverno', 10),
 ('Sul', 'Inverno', 20), ('Sul', 'Inverno', 13), ('Sul', 'Inverno', 30), ('Sul', 'Inverno', 34), ('Sul', 'Inverno', 54),
@@ -352,7 +231,11 @@ INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
 ('Sul', 'Primavera', 53), ('Sul', 'Primavera', 31), ('Sul', 'Primavera', 39);
 
 -- Sudeste
-INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
+INSERT INTO `recomendacaocultivo` (
+	`regiao`, 
+	`estacao`, 
+	`id_cultivo`
+) VALUES
 ('Sudeste', 'Inverno', 6), ('Sudeste', 'Inverno', 31), ('Sudeste', 'Inverno', 24), ('Sudeste', 'Inverno', 53),
 ('Sudeste', 'Inverno', 16), ('Sudeste', 'Inverno', 26), ('Sudeste', 'Inverno', 52), ('Sudeste', 'Inverno', 19),
 ('Sudeste', 'Inverno', 10), ('Sudeste', 'Inverno', 20), ('Sudeste', 'Inverno', 14), ('Sudeste', 'Inverno', 30),
@@ -371,7 +254,11 @@ INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
 ('Sudeste', 'Primavera', 7), ('Sudeste', 'Primavera', 53), ('Sudeste', 'Primavera', 31), ('Sudeste', 'Primavera', 39);
 
 -- Nordeste
-INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
+INSERT INTO `recomendacaocultivo` (
+	`regiao`, 
+	`estacao`, 
+	`id_cultivo`
+) VALUES
 ('Nordeste', 'Verão', 2), ('Nordeste', 'Verão', 43), ('Nordeste', 'Verão', 44), ('Nordeste', 'Verão', 50),
 ('Nordeste', 'Verão', 33), ('Nordeste', 'Verão', 42), ('Nordeste', 'Verão', 45), ('Nordeste', 'Verão', 58),
 ('Nordeste', 'Verão', 49), ('Nordeste', 'Verão', 48), ('Nordeste', 'Verão', 15), ('Nordeste', 'Verão', 20),
@@ -390,7 +277,11 @@ INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
 ('Nordeste', 'Primavera', 44), ('Nordeste', 'Primavera', 42), ('Nordeste', 'Primavera', 6);
 
 -- Norte
-INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
+INSERT INTO `recomendacaocultivo` (
+	`regiao`, 
+	`estacao`, 
+	`id_cultivo`
+) VALUES
 ('Norte', 'Verão', 40), ('Norte', 'Verão', 45), ('Norte', 'Verão', 1), ('Norte', 'Verão', 11), ('Norte', 'Verão', 41),
 ('Norte', 'Verão', 43), ('Norte', 'Verão', 44), ('Norte', 'Verão', 17), ('Norte', 'Verão', 27), ('Norte', 'Verão', 29),
 ('Norte', 'Outono', 1), ('Norte', 'Outono', 40), ('Norte', 'Outono', 45), ('Norte', 'Outono', 11), ('Norte', 'Outono', 41),
@@ -401,7 +292,11 @@ INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
 ('Norte', 'Primavera', 27), ('Norte', 'Primavera', 29);
 
 -- Centro-Oeste
-INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
+INSERT INTO `recomendacaocultivo` (
+	`regiao`, 
+	`estacao`, 
+	`id_cultivo`
+) VALUES
 ('Centro-Oeste', 'Verão', 45), ('Centro-Oeste', 'Verão', 56), ('Centro-Oeste', 'Verão', 37), ('Centro-Oeste', 'Verão', 8),
 ('Centro-Oeste', 'Verão', 34), ('Centro-Oeste', 'Verão', 59), ('Centro-Oeste', 'Verão', 49), ('Centro-Oeste', 'Verão', 2),
 ('Centro-Oeste', 'Verão', 43), ('Centro-Oeste', 'Verão', 48), ('Centro-Oeste', 'Verão', 15), ('Centro-Oeste', 'Verão', 50),
@@ -420,3 +315,106 @@ INSERT INTO regiao_estacao_cultivo (regiao, estacao, id_cultivo) VALUES
 ('Centro-Oeste', 'Primavera', 15), ('Centro-Oeste', 'Primavera', 50), ('Centro-Oeste', 'Primavera', 20),
 ('Centro-Oeste', 'Primavera', 14), ('Centro-Oeste', 'Primavera', 3), ('Centro-Oeste', 'Primavera', 43);
 commit;
+
+begin;
+## EstoqueInsumo
+CREATE TABLE `estoqueinsumo` (
+	`id_insumo` int NOT NULL AUTO_INCREMENT,
+	`nome_insumo` varchar(100) NOT NULL,
+	`categoria_insumo` varchar(50) NOT NULL,
+    `qtd_insumo` int DEFAULT 0,
+    `unidqtd_insumo` varchar(10) DEFAULT 'Kg',
+	`ativo_insumo` boolean DEFAULT true,
+	PRIMARY KEY (`id_insumo`)
+);
+
+## PedidoCompra
+CREATE TABLE `pedidocompra` (
+	`id_pedidocompra` int NOT NULL AUTO_INCREMENT,
+	`data_pedidocompra` timestamp NOT NULL,
+	`id_fornecedor` int NOT NULL,
+	PRIMARY KEY (`id_pedidocompra`),
+	KEY `id_fornecedor` (`id_fornecedor`),
+	CONSTRAINT `pedidocompra_ibfk_1` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id_fornecedor`)
+);
+
+## CompraItem
+CREATE TABLE `compraitem` (
+	`id_compraitem` int NOT NULL AUTO_INCREMENT,
+	`qtd_compraitem` int DEFAULT 0,
+	`unidqtd_compraitem` varchar(10) DEFAULT 'Kg',
+    `valor_compraitem` decimal(9,3) NOT NULL,
+	`id_pedidocompra` int NOT NULL,
+	`id_insumo` int NOT NULL,
+	PRIMARY KEY (`id_compraitem`, `id_pedidocompra`),
+	KEY `id_pedidocompra` (`id_pedidocompra`),
+	CONSTRAINT `compraitem_ibfk_1` FOREIGN KEY (`id_pedidocompra`) REFERENCES `pedidocompra` (`id_pedidocompra`),
+	KEY `id_insumo` (`id_insumo`),
+	CONSTRAINT `compraitem_ibfk_2` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
+);
+
+## SaidaInsumo
+CREATE TABLE `saidainsumo` (
+	`id_saidainsumo` int NOT NULL AUTO_INCREMENT,
+	`qtd_saidainsumo` int DEFAULT 0,
+	`unidqtd_saidainsumo` varchar(10) DEFAULT 'Kg',
+	`data_saidainsumo` timestamp NOT NULL,
+	`id_insumo` int NOT NULL,
+	PRIMARY KEY (`id_saidainsumo`, `id_insumo`),
+	KEY `id_insumo` (`id_insumo`),
+	CONSTRAINT `saidainsumo_ibfk_1` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
+);
+
+## Producao
+CREATE TABLE `producao` (
+	`id_producao` int NOT NULL AUTO_INCREMENT,
+	`qtd_producao` int NOT NULL,
+	`unidqtd_producao` varchar(10) DEFAULT 'Kg',
+	`data_producao` timestamp NOT NULL,
+    `finalizado_producao` boolean DEFAULT false,
+	`id_cultivo` int NOT NULL,
+	PRIMARY KEY (`id_producao`),
+	KEY `id_cultivo` (`id_cultivo`),
+	CONSTRAINT `producao_ibfk_1` FOREIGN KEY (`id_cultivo`) REFERENCES `cultivo` (`id_cultivo`)
+);
+
+## EstoqueProduto
+CREATE TABLE `estoqueproduto` (
+	`id_estoqueproduto` int NOT NULL AUTO_INCREMENT,
+	`qtd_estoqueproduto` int NOT NULL,
+	`unidqtd_estoqueproduto` varchar(10) DEFAULT 'Kg',
+	`dataentrada_estoqueproduto` timestamp NOT NULL,
+	`ativo_estoqueproduto` boolean DEFAULT true,
+	`id_producao` int NOT NULL,
+	PRIMARY KEY (`id_estoqueproduto`),
+	KEY `id_producao` (`id_producao`),
+	CONSTRAINT `estoqueproduto_ibfk_1` FOREIGN KEY (`id_producao`) REFERENCES `producao` (`id_producao`)
+);
+
+## PedidoVenda
+CREATE TABLE `pedidovenda` (
+	`id_pedidovenda` int NOT NULL AUTO_INCREMENT,
+	`data_pedidovenda` timestamp NOT NULL,
+	`id_cliente` int NOT NULL,
+	PRIMARY KEY (`id_pedidovenda`),
+	KEY `id_cliente` (`id_cliente`),
+	CONSTRAINT `pedidovenda_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`)
+);
+
+## VendaItem
+CREATE TABLE `vendaitem` (
+	`id_vendaitem` int NOT NULL AUTO_INCREMENT,
+	`qtd_vendaitem` int NOT NULL,
+	`unidqtd_vendaitem` varchar(10) DEFAULT 'Kg',
+    `valor_vendaitem` decimal(9,3) NOT NULL,
+    `desconto_vendaitem` decimal(9,3),
+	`id_pedidovenda` int NOT NULL,
+	`id_estoqueproduto` int NOT NULL,
+	PRIMARY KEY (`id_vendaitem`, `id_pedidovenda`),
+	KEY `id_pedidovenda` (`id_pedidovenda`),
+	CONSTRAINT `vendaitem_ibfk_1` FOREIGN KEY (`id_pedidovenda`) REFERENCES `pedidovenda` (`id_pedidovenda`),
+	KEY `id_estoqueproduto` (`id_estoqueproduto`),
+	CONSTRAINT `vendaitem_ibfk_2` FOREIGN KEY (`id_estoqueproduto`) REFERENCES `estoqueproduto` (`id_estoqueproduto`)
+);
+commit;
+
