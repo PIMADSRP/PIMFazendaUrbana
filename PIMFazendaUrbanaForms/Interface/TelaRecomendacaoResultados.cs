@@ -1,4 +1,6 @@
 ﻿using PIMFazendaUrbanaLib;
+using System.Text;
+using System.Windows.Forms;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -36,9 +38,9 @@ namespace PIMFazendaUrbanaForms
             else
             {
                 TextBoxRecomenda.Text = $"Recomenda-se o plantio das seguintes culturas na região {regiao} durante a estação {estacao}, para as melhores condições de cultivo:";
-                TextBoxRecomenda.Height = 56;
-                DataGridViewResultados.Height = 344;
-                DataGridViewResultados.Location = new Point(28, 143);
+                //TextBoxRecomenda.Height = 48;
+                //DataGridViewResultados.Height = 259;
+                //DataGridViewResultados.Location = new Point(28, 121);
             }
 
             // Define AutoGenerateColumns como false para evitar a geração automática de colunas
@@ -97,6 +99,67 @@ namespace PIMFazendaUrbanaForms
         {
             this.Close();
         }
+
+        private void BotaoExportar_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.FileName = "Recomendacoes_de_plantio_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewResultados, saveFileDialog.FileName);
+            }
+        }
+
+        private void ExportToCSV(DataGridView dataGridView, string fileName)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+                {
+                    // Escreve os cabeçalhos das colunas
+                    for (int i = 0; i < dataGridView.Columns.Count; i++)
+                    {
+                        writer.Write(dataGridView.Columns[i].HeaderText);
+                        if (i < dataGridView.Columns.Count - 1)
+                        {
+                            writer.Write(";");
+                        }
+                    }
+                    writer.WriteLine();
+
+                    // Escreve os dados das células
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        for (int i = 0; i < dataGridView.Columns.Count; i++)
+                        {
+                            // Obter o valor da célula e converter para string
+                            string cellValue = Convert.ToString(row.Cells[i].Value);
+
+                            // Substituir ponto e vírgula por vírgula, para evitar conflito com o delimitador
+                            cellValue = cellValue.Replace(";", ",");
+
+                            // Escrever o valor da célula
+                            writer.Write(cellValue);
+
+                            if (i < dataGridView.Columns.Count - 1)
+                            {
+                                writer.Write(";");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                }
+
+                MessageBox.Show("Dados exportados com sucesso para " + fileName, "Relatório Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exportar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }

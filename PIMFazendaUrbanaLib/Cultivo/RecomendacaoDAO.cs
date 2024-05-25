@@ -21,7 +21,7 @@ namespace PIMFazendaUrbanaLib
                 string query = @"SELECT c.*
                                 FROM cultivo c
                                 JOIN recomendacaocultivo rec ON c.id_cultivo = rec.id_cultivo
-                                WHERE rec.regiao = @regiao AND rec.estacao = @estacao";
+                                WHERE rec.regiao = @regiao AND rec.estacao = @estacao ORDER BY id_cultivo;";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
