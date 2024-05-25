@@ -33,6 +33,7 @@
             LabelResultados = new Label();
             PanelHeader = new Panel();
             TextBoxRecomenda = new TextBox();
+            BotaoExportar = new Button();
             ((System.ComponentModel.ISupportInitialize)DataGridViewResultados).BeginInit();
             PanelHeader.SuspendLayout();
             SuspendLayout();
@@ -42,11 +43,11 @@
             DataGridViewResultados.BackgroundColor = Color.LightGray;
             DataGridViewResultados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewResultados.GridColor = Color.Gainsboro;
-            DataGridViewResultados.Location = new Point(24, 125);
+            DataGridViewResultados.Location = new Point(24, 121);
             DataGridViewResultados.Margin = new Padding(3, 2, 3, 2);
             DataGridViewResultados.Name = "DataGridViewResultados";
             DataGridViewResultados.RowHeadersWidth = 51;
-            DataGridViewResultados.Size = new Size(575, 237);
+            DataGridViewResultados.Size = new Size(575, 260);
             DataGridViewResultados.TabIndex = 0;
             // 
             // BotaoFechar
@@ -54,7 +55,7 @@
             BotaoFechar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoFechar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoFechar.ForeColor = Color.White;
-            BotaoFechar.Location = new Point(259, 371);
+            BotaoFechar.Location = new Point(332, 391);
             BotaoFechar.Name = "BotaoFechar";
             BotaoFechar.Size = new Size(104, 30);
             BotaoFechar.TabIndex = 56;
@@ -90,20 +91,34 @@
             TextBoxRecomenda.BackColor = Color.FromArgb(55, 185, 65);
             TextBoxRecomenda.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TextBoxRecomenda.ForeColor = Color.White;
-            TextBoxRecomenda.Location = new Point(24, 56);
+            TextBoxRecomenda.Location = new Point(24, 61);
             TextBoxRecomenda.Margin = new Padding(3, 2, 3, 2);
             TextBoxRecomenda.Multiline = true;
             TextBoxRecomenda.Name = "TextBoxRecomenda";
             TextBoxRecomenda.ReadOnly = true;
-            TextBoxRecomenda.Size = new Size(576, 60);
+            TextBoxRecomenda.Size = new Size(576, 48);
             TextBoxRecomenda.TabIndex = 58;
             TextBoxRecomenda.TextAlign = HorizontalAlignment.Center;
+            // 
+            // BotaoExportar
+            // 
+            BotaoExportar.BackColor = Color.FromArgb(55, 185, 65);
+            BotaoExportar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BotaoExportar.ForeColor = Color.White;
+            BotaoExportar.Location = new Point(189, 391);
+            BotaoExportar.Name = "BotaoExportar";
+            BotaoExportar.Size = new Size(104, 30);
+            BotaoExportar.TabIndex = 59;
+            BotaoExportar.Text = "Exportar";
+            BotaoExportar.UseVisualStyleBackColor = false;
+            BotaoExportar.Click += BotaoExportar_Click;
             // 
             // TelaRecomendacaoResultados
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(625, 412);
+            ClientSize = new Size(625, 430);
+            Controls.Add(BotaoExportar);
             Controls.Add(TextBoxRecomenda);
             Controls.Add(PanelHeader);
             Controls.Add(BotaoFechar);
@@ -127,5 +142,6 @@
         private Label LabelResultados;
         private Panel PanelHeader;
         private TextBox TextBoxRecomenda;
+        private Button BotaoExportar;
     }
 }

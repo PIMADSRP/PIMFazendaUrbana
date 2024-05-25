@@ -6,6 +6,9 @@ namespace PIMFazendaUrbanaForms
         {
             InitializeComponent();
 
+            this.Icon = new Icon("FazendaUrbana.ico");
+            // this.Icon = new Icon(@"C:\Users\User\source\repos\PIMADSRP\PIMFazendaUrbana\PIMFazendaUrbanaForms\FazendaUrbana.ico");
+
             // Abre a tela principal
             this.Show();
 

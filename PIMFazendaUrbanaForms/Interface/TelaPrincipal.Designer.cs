@@ -269,9 +269,9 @@
             // BotaoTesteRecomendacoes
             // 
             BotaoTesteRecomendacoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoTesteRecomendacoes.Location = new Point(886, 18);
+            BotaoTesteRecomendacoes.Location = new Point(886, 9);
             BotaoTesteRecomendacoes.Name = "BotaoTesteRecomendacoes";
-            BotaoTesteRecomendacoes.Size = new Size(183, 28);
+            BotaoTesteRecomendacoes.Size = new Size(150, 47);
             BotaoTesteRecomendacoes.TabIndex = 21;
             BotaoTesteRecomendacoes.Text = "Recomendações de plantio";
             BotaoTesteRecomendacoes.UseVisualStyleBackColor = true;
