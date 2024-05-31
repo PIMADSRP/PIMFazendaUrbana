@@ -390,7 +390,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR NOME (somente fornecedores ativos)
-        // ********** NÃO TESTADO **********
         public Fornecedor ConsultarFornecedorNome(string fornecedorNome)
         {
             Fornecedor fornecedor = null;
@@ -447,7 +446,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) FORNECEDOR NO BANCO POR CNPJ (somente fornecedores ativos)
-        // ********** NÃO TESTADO **********
         public Fornecedor ConsultarFornecedorCNPJ(string fornecedorCNPJ)
         {
             Fornecedor fornecedor = null;
@@ -502,6 +500,65 @@ namespace PIMFazendaUrbanaLib
                 }
             }
         }
+
+        // 6- MÉTODO FILTRAR LISTA DE FORNECEDORES POR NOME
+        // ********** FUNCIONAL **********
+        public List<Fornecedor> FiltrarFornecedoresNome(string fornecedorNome)
+        {
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor, 
+                t.ddd_telfornecedor, t.numero_telfornecedor, t.ativo_telfornecedor, 
+                e.logradouro_endfornecedor, e.numero_endfornecedor, e.complemento_endfornecedor, e.bairro_endfornecedor, e.cidade_endfornecedor, 
+                e.uf_endfornecedor, e.cep_endfornecedor, e.ativo_endfornecedor
+                FROM fornecedor f
+                LEFT JOIN telefonefornecedor t ON f.id_fornecedor = t.id_fornecedor
+                LEFT JOIN enderecofornecedor e ON f.id_fornecedor = e.id_fornecedor
+                WHERE f.nome_fornecedor LIKE @nome";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nome", "%" + fornecedorNome + "%");
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Fornecedor fornecedor = new Fornecedor
+                        {
+                            ID = reader.GetInt32("id_fornecedor"),
+                            Nome = reader.GetString("nome_fornecedor"),
+                            Email = reader.GetString("email_fornecedor"),
+                            CNPJ = reader.GetString("cnpj_fornecedor"),
+                            StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
+                            Telefone = new TelefoneFornecedor
+                            {
+                                DDD = reader.GetString("ddd_telfornecedor"),
+                                Numero = reader.GetString("numero_telfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
+                            },
+                            Endereco = new EnderecoFornecedor
+                            {
+                                Logradouro = reader.GetString("logradouro_endfornecedor"),
+                                Numero = reader.GetString("numero_endfornecedor"),
+                                Complemento = reader.IsDBNull("complemento_endfornecedor") ? null : reader.GetString("complemento_endfornecedor"),
+                                Bairro = reader.GetString("bairro_endfornecedor"),
+                                Cidade = reader.GetString("cidade_endfornecedor"),
+                                UF = reader.GetString("uf_endfornecedor"),
+                                CEP = reader.GetString("cep_endfornecedor"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfornecedor")
+                            }
+                        };
+                        fornecedores.Add(fornecedor);
+                    }
+                }
+            }
+            return fornecedores;
+        }
+
+
 
     }
 }

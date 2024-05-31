@@ -83,6 +83,8 @@ namespace PIMFazendaUrbanaForms
         {
             try
             {
+                DataGridViewListaFuncionarios.DataSource = null; // Limpa a DataSource do DataGridView
+
                 List<Funcionario> funcionarios = funcionarioService.ListarFuncionariosAtivos();
 
                 // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
@@ -263,5 +265,30 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void TextBoxPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            string funcionarioNome = TextBoxPesquisar.Text;
+            List<Funcionario> funcionarios = funcionarioService.FiltrarFuncionariosNome(funcionarioNome);
+
+            if (funcionarios != null && funcionarios.Count > 0) // Verificar se a lista de clientes não está vazia
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = funcionarios?.Select(f => new
+                {
+                    f.ID,
+                    f.Nome,
+                    f.Sexo,
+                    f.Email,
+                    CPF = FormatarCPF(f.CPF),
+                    f.Cargo,
+                    f.Usuario, // talvez não listar o nome de usuário dos funcionários?
+                    Telefone = FormatarTelefone(f.Telefone), // Formatar o telefone
+                    Endereco = FormatarEndereco(f.Endereco), // Formatar o endereço
+                    CEP = FormatarCEP(f.Endereco) // Formatar o CEP
+                }).ToList();
+
+                DataGridViewListaFuncionarios.DataSource = data; // Preencher o DataGridView com os dados formatados
+            }
+        }
     }
 }

@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFuncionarios));
             PanelFooter = new Panel();
             label1 = new Label();
-            TextBoxPesquisar = new TextBox();
             LabelPesquisarUsuarios = new Label();
             DataGridViewListaFuncionarios = new DataGridView();
             PictureBoxEditar = new PictureBox();
@@ -41,6 +40,7 @@
             LabelEditar = new Label();
             LabelDeletar = new Label();
             PanelHeader = new Panel();
+            TextBoxPesquisar = new TextBox();
             PictureBoxAtualizar = new PictureBox();
             LabelAtualizar = new Label();
             PictureBoxHome = new PictureBox();
@@ -79,14 +79,6 @@
             label1.Text = "FARM SYSTEM | VERSÃO 1.0";
             label1.TextAlign = ContentAlignment.BottomCenter;
             // 
-            // TextBoxPesquisar
-            // 
-            TextBoxPesquisar.Enabled = false;
-            TextBoxPesquisar.Location = new Point(201, 19);
-            TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.Size = new Size(407, 23);
-            TextBoxPesquisar.TabIndex = 31;
-            // 
             // LabelPesquisarUsuarios
             // 
             LabelPesquisarUsuarios.AutoSize = true;
@@ -111,7 +103,7 @@
             // 
             // PictureBoxEditar
             // 
-            PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
+            PictureBoxEditar.Image = Properties.Resources.editar;
             PictureBoxEditar.Location = new Point(693, 12);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
@@ -178,6 +170,7 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
             PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(PictureBoxHome);
@@ -185,7 +178,6 @@
             PanelHeader.Controls.Add(LabelDeletar);
             PanelHeader.Controls.Add(LabelPesquisarUsuarios);
             PanelHeader.Controls.Add(LabelEditar);
-            PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(LabelIncluir);
             PanelHeader.Controls.Add(PictureBoxEditar);
             PanelHeader.Controls.Add(PictureBoxIncluir);
@@ -195,6 +187,15 @@
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1370, 60);
             PanelHeader.TabIndex = 52;
+            // 
+            // TextBoxPesquisar
+            // 
+            TextBoxPesquisar.Location = new Point(205, 20);
+            TextBoxPesquisar.Name = "TextBoxPesquisar";
+            TextBoxPesquisar.PlaceholderText = "Digite o nome do funcionário";
+            TextBoxPesquisar.Size = new Size(419, 23);
+            TextBoxPesquisar.TabIndex = 56;
+            TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
             // 
             // PictureBoxAtualizar
             // 
@@ -273,7 +274,6 @@
 
         private Panel PanelFooter;
         private Label label1;
-        private TextBox TextBoxPesquisar;
         private Label LabelPesquisarUsuarios;
         private DataGridView DataGridViewListaFuncionarios;
         private PictureBox PictureBoxEditar;
@@ -287,5 +287,6 @@
         private Label LabelHome;
         private Label LabelAtualizar;
         private PictureBox PictureBoxAtualizar;
+        private TextBox TextBoxPesquisar;
     }
 }

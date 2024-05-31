@@ -4,6 +4,8 @@ namespace PIMFazendaUrbanaForms
 {
     public partial class TelaLogin : Form
     {
+        internal Funcionario UsuarioLogado { get; private set; }
+
         FuncionarioService funcionarioService; // Declaração de uma instância de FuncionarioService
         public TelaLogin()
         {
@@ -31,7 +33,10 @@ namespace PIMFazendaUrbanaForms
             bool autenticado = AutenticarFuncionario(usuario, senha); // Chamando o método dedicado AutenticarFuncionario
             if (autenticado == true)
             {
-                this.Close();
+                UsuarioLogado = funcionarioService.ConsultarFuncionarioUsuario(usuario);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close(); // Fecha a TelaLogin
             }
 
         }
@@ -87,9 +92,11 @@ namespace PIMFazendaUrbanaForms
             TextBoxSenha.UseSystemPasswordChar = true;
         }
 
-        private void PictureBoxX_Click(object sender, EventArgs e)
+        private void PictureBoxX_Click(object sender, EventArgs e) // Para pular o login, apenas para testes
         {
-            this.Close();
+            MessageBox.Show("Acesso permitido para testes.", "Acesso Permitido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.DialogResult = DialogResult.OK;
+            this.Close(); // Fecha a TelaLogin
         }
 
         private void PictureBoxMostrarSenha_Click(object sender, EventArgs e)

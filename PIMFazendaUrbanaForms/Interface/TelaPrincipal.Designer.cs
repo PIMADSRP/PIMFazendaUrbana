@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
             PanelFooter = new Panel();
             LabelFarmSystem = new Label();
             LabelFornecedores = new Label();
@@ -47,30 +46,43 @@
             PictureBoxTransacoes = new PictureBox();
             PictureBoxInventario = new PictureBox();
             PictureBoxProdutos = new PictureBox();
-            PictureBoxCategorias = new PictureBox();
+            PictureBoxInsumos = new PictureBox();
             PictureBoxClientes = new PictureBox();
             PictureBoxFornecedores = new PictureBox();
             PictureBoxFuncionarios = new PictureBox();
             PanelHeader = new Panel();
+            LabelLogoff = new Label();
+            PictureBoxLogoff = new PictureBox();
+            LabelBemVindo = new Label();
             BotaoTesteRecomendacoes = new Button();
-            BotaoLogin = new Button();
             BotaoAbrirTelaDeTeste = new Button();
             LabelSair = new Label();
             PictureBoxSair = new PictureBox();
             LabelClientes = new Label();
             LabelFuncionarios = new Label();
             PictureBoxLogoFundo = new PictureBox();
+            RichTextBoxNotas = new RichTextBox();
+            LabelNotas = new Label();
+            PictureBoxSlideShow = new PictureBox();
+            TimerSlideShow = new System.Windows.Forms.Timer(components);
+            TimerFade = new System.Windows.Forms.Timer(components);
+            ListBoxNoticias = new ListBox();
+            LabelNoticias = new Label();
+            ListBoxNoticiasInternas = new ListBox();
+            LabelNoticiasInternas = new Label();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxCategorias).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).BeginInit();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSair).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).BeginInit();
             SuspendLayout();
             // 
             // PanelFooter
@@ -145,15 +157,15 @@
             LabelCategorias.AutoSize = true;
             LabelCategorias.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCategorias.ForeColor = SystemColors.ControlLightLight;
-            LabelCategorias.Location = new Point(368, 44);
+            LabelCategorias.Location = new Point(374, 44);
             LabelCategorias.Name = "LabelCategorias";
-            LabelCategorias.Size = new Size(62, 13);
+            LabelCategorias.Size = new Size(51, 13);
             LabelCategorias.TabIndex = 10;
-            LabelCategorias.Text = "Categorias";
+            LabelCategorias.Text = "Insumos";
             // 
             // PictureBoxTransacoes
             // 
-            PictureBoxTransacoes.Image = (Image)resources.GetObject("PictureBoxTransacoes.Image");
+            PictureBoxTransacoes.Image = Properties.Resources.Transacao;
             PictureBoxTransacoes.Location = new Point(640, 4);
             PictureBoxTransacoes.Name = "PictureBoxTransacoes";
             PictureBoxTransacoes.Size = new Size(40, 37);
@@ -165,7 +177,7 @@
             // 
             // PictureBoxInventario
             // 
-            PictureBoxInventario.Image = (Image)resources.GetObject("PictureBoxInventario.Image");
+            PictureBoxInventario.Image = Properties.Resources.Inventario;
             PictureBoxInventario.Location = new Point(553, 4);
             PictureBoxInventario.Name = "PictureBoxInventario";
             PictureBoxInventario.Size = new Size(40, 37);
@@ -177,7 +189,7 @@
             // 
             // PictureBoxProdutos
             // 
-            PictureBoxProdutos.Image = (Image)resources.GetObject("PictureBoxProdutos.Image");
+            PictureBoxProdutos.Image = Properties.Resources.Produtos;
             PictureBoxProdutos.Location = new Point(466, 4);
             PictureBoxProdutos.Name = "PictureBoxProdutos";
             PictureBoxProdutos.Size = new Size(40, 37);
@@ -187,21 +199,21 @@
             PictureBoxProdutos.Click += PictureBoxProdutos_Click;
             PictureBoxProdutos.MouseHover += PictureBoxProdutos_MouseHover;
             // 
-            // PictureBoxCategorias
+            // PictureBoxInsumos
             // 
-            PictureBoxCategorias.Image = (Image)resources.GetObject("PictureBoxCategorias.Image");
-            PictureBoxCategorias.Location = new Point(379, 4);
-            PictureBoxCategorias.Name = "PictureBoxCategorias";
-            PictureBoxCategorias.Size = new Size(40, 37);
-            PictureBoxCategorias.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxCategorias.TabIndex = 7;
-            PictureBoxCategorias.TabStop = false;
-            PictureBoxCategorias.Click += PictureBoxCategorias_Click;
-            PictureBoxCategorias.MouseHover += PictureBoxCategorias_MouseHover;
+            PictureBoxInsumos.Image = Properties.Resources.Insumos;
+            PictureBoxInsumos.Location = new Point(379, 4);
+            PictureBoxInsumos.Name = "PictureBoxInsumos";
+            PictureBoxInsumos.Size = new Size(40, 37);
+            PictureBoxInsumos.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxInsumos.TabIndex = 7;
+            PictureBoxInsumos.TabStop = false;
+            PictureBoxInsumos.Click += PictureBoxInsumos_Click;
+            PictureBoxInsumos.MouseHover += PictureBoxInsumos_MouseHover;
             // 
             // PictureBoxClientes
             // 
-            PictureBoxClientes.Image = (Image)resources.GetObject("PictureBoxClientes.Image");
+            PictureBoxClientes.Image = Properties.Resources.Clientes;
             PictureBoxClientes.Location = new Point(205, 4);
             PictureBoxClientes.Name = "PictureBoxClientes";
             PictureBoxClientes.Size = new Size(40, 37);
@@ -213,7 +225,7 @@
             // 
             // PictureBoxFornecedores
             // 
-            PictureBoxFornecedores.Image = (Image)resources.GetObject("PictureBoxFornecedores.Image");
+            PictureBoxFornecedores.Image = Properties.Resources.Fornecedores;
             PictureBoxFornecedores.Location = new Point(293, 4);
             PictureBoxFornecedores.Name = "PictureBoxFornecedores";
             PictureBoxFornecedores.Size = new Size(40, 37);
@@ -228,7 +240,7 @@
             PictureBoxFuncionarios.AccessibleDescription = "Usuarios";
             PictureBoxFuncionarios.AccessibleName = "Usuarios";
             PictureBoxFuncionarios.AccessibleRole = AccessibleRole.TitleBar;
-            PictureBoxFuncionarios.Image = (Image)resources.GetObject("PictureBoxFuncionarios.Image");
+            PictureBoxFuncionarios.Image = Properties.Resources.Usuarios;
             PictureBoxFuncionarios.Location = new Point(119, 4);
             PictureBoxFuncionarios.Name = "PictureBoxFuncionarios";
             PictureBoxFuncionarios.Size = new Size(40, 37);
@@ -241,8 +253,10 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(LabelLogoff);
+            PanelHeader.Controls.Add(PictureBoxLogoff);
+            PanelHeader.Controls.Add(LabelBemVindo);
             PanelHeader.Controls.Add(BotaoTesteRecomendacoes);
-            PanelHeader.Controls.Add(BotaoLogin);
             PanelHeader.Controls.Add(BotaoAbrirTelaDeTeste);
             PanelHeader.Controls.Add(LabelSair);
             PanelHeader.Controls.Add(PictureBoxSair);
@@ -253,7 +267,7 @@
             PanelHeader.Controls.Add(LabelProdutos);
             PanelHeader.Controls.Add(PictureBoxProdutos);
             PanelHeader.Controls.Add(LabelCategorias);
-            PanelHeader.Controls.Add(PictureBoxCategorias);
+            PanelHeader.Controls.Add(PictureBoxInsumos);
             PanelHeader.Controls.Add(LabelFornecedores);
             PanelHeader.Controls.Add(PictureBoxFornecedores);
             PanelHeader.Controls.Add(LabelClientes);
@@ -266,6 +280,39 @@
             PanelHeader.Size = new Size(1540, 65);
             PanelHeader.TabIndex = 1;
             // 
+            // LabelLogoff
+            // 
+            LabelLogoff.AutoSize = true;
+            LabelLogoff.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelLogoff.ForeColor = Color.White;
+            LabelLogoff.Location = new Point(1452, 42);
+            LabelLogoff.Name = "LabelLogoff";
+            LabelLogoff.Size = new Size(77, 15);
+            LabelLogoff.TabIndex = 8;
+            LabelLogoff.Text = "Fazer Logoff";
+            // 
+            // PictureBoxLogoff
+            // 
+            PictureBoxLogoff.Image = Properties.Resources.cancelar;
+            PictureBoxLogoff.Location = new Point(1477, 11);
+            PictureBoxLogoff.Name = "PictureBoxLogoff";
+            PictureBoxLogoff.Size = new Size(30, 28);
+            PictureBoxLogoff.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxLogoff.TabIndex = 23;
+            PictureBoxLogoff.TabStop = false;
+            PictureBoxLogoff.Click += PictureBoxLogoff_Click;
+            // 
+            // LabelBemVindo
+            // 
+            LabelBemVindo.AutoSize = true;
+            LabelBemVindo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelBemVindo.ForeColor = Color.White;
+            LabelBemVindo.Location = new Point(1349, 22);
+            LabelBemVindo.Name = "LabelBemVindo";
+            LabelBemVindo.Size = new Size(100, 17);
+            LabelBemVindo.TabIndex = 22;
+            LabelBemVindo.Text = "Bem-vindo(a), ";
+            // 
             // BotaoTesteRecomendacoes
             // 
             BotaoTesteRecomendacoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -276,16 +323,6 @@
             BotaoTesteRecomendacoes.Text = "Recomendações de plantio";
             BotaoTesteRecomendacoes.UseVisualStyleBackColor = true;
             BotaoTesteRecomendacoes.Click += BotaoTesteRecomendacoes_Click;
-            // 
-            // BotaoLogin
-            // 
-            BotaoLogin.Location = new Point(1403, 16);
-            BotaoLogin.Name = "BotaoLogin";
-            BotaoLogin.Size = new Size(102, 33);
-            BotaoLogin.TabIndex = 20;
-            BotaoLogin.Text = "Login";
-            BotaoLogin.UseVisualStyleBackColor = true;
-            BotaoLogin.Click += BotaoLogin_Click;
             // 
             // BotaoAbrirTelaDeTeste
             // 
@@ -303,7 +340,7 @@
             LabelSair.AutoSize = true;
             LabelSair.BackColor = Color.FromArgb(62, 181, 68);
             LabelSair.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelSair.ForeColor = SystemColors.ActiveCaptionText;
+            LabelSair.ForeColor = Color.White;
             LabelSair.Location = new Point(34, 43);
             LabelSair.Name = "LabelSair";
             LabelSair.Size = new Size(26, 13);
@@ -315,7 +352,7 @@
             PictureBoxSair.AccessibleDescription = "Usuarios";
             PictureBoxSair.AccessibleName = "Usuarios";
             PictureBoxSair.AccessibleRole = AccessibleRole.TitleBar;
-            PictureBoxSair.Image = (Image)resources.GetObject("PictureBoxSair.Image");
+            PictureBoxSair.Image = Properties.Resources.Sair;
             PictureBoxSair.Location = new Point(26, 4);
             PictureBoxSair.Name = "PictureBoxSair";
             PictureBoxSair.Size = new Size(40, 37);
@@ -348,19 +385,111 @@
             // 
             // PictureBoxLogoFundo
             // 
-            PictureBoxLogoFundo.Image = (Image)resources.GetObject("PictureBoxLogoFundo.Image");
-            PictureBoxLogoFundo.Location = new Point(590, 135);
+            PictureBoxLogoFundo.Image = Properties.Resources.Logo;
+            PictureBoxLogoFundo.Location = new Point(592, 125);
             PictureBoxLogoFundo.Name = "PictureBoxLogoFundo";
             PictureBoxLogoFundo.Size = new Size(351, 539);
             PictureBoxLogoFundo.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxLogoFundo.TabIndex = 2;
             PictureBoxLogoFundo.TabStop = false;
             // 
+            // RichTextBoxNotas
+            // 
+            RichTextBoxNotas.BackColor = Color.LightGreen;
+            RichTextBoxNotas.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RichTextBoxNotas.Location = new Point(1135, 140);
+            RichTextBoxNotas.Name = "RichTextBoxNotas";
+            RichTextBoxNotas.Size = new Size(357, 254);
+            RichTextBoxNotas.TabIndex = 3;
+            RichTextBoxNotas.Text = "";
+            // 
+            // LabelNotas
+            // 
+            LabelNotas.AutoSize = true;
+            LabelNotas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelNotas.ForeColor = Color.DarkGreen;
+            LabelNotas.Location = new Point(1135, 116);
+            LabelNotas.Name = "LabelNotas";
+            LabelNotas.Size = new Size(199, 17);
+            LabelNotas.TabIndex = 4;
+            LabelNotas.Text = "Suas notas para a sessão atual:";
+            // 
+            // PictureBoxSlideShow
+            // 
+            PictureBoxSlideShow.Location = new Point(1135, 461);
+            PictureBoxSlideShow.Name = "PictureBoxSlideShow";
+            PictureBoxSlideShow.Size = new Size(357, 238);
+            PictureBoxSlideShow.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxSlideShow.TabIndex = 5;
+            PictureBoxSlideShow.TabStop = false;
+            // 
+            // TimerSlideShow
+            // 
+            TimerSlideShow.Enabled = true;
+            TimerSlideShow.Interval = 7000;
+            // 
+            // TimerFade
+            // 
+            TimerFade.Interval = 1;
+            // 
+            // ListBoxNoticias
+            // 
+            ListBoxNoticias.BackColor = Color.WhiteSmoke;
+            ListBoxNoticias.DrawMode = DrawMode.OwnerDrawVariable;
+            ListBoxNoticias.ForeColor = Color.Green;
+            ListBoxNoticias.FormattingEnabled = true;
+            ListBoxNoticias.Location = new Point(51, 140);
+            ListBoxNoticias.Name = "ListBoxNoticias";
+            ListBoxNoticias.Size = new Size(352, 254);
+            ListBoxNoticias.TabIndex = 6;
+            ListBoxNoticias.DrawItem += ListBoxNoticias_DrawItem;
+            ListBoxNoticias.MeasureItem += ListBoxNoticias_MeasureItem;
+            // 
+            // LabelNoticias
+            // 
+            LabelNoticias.AutoSize = true;
+            LabelNoticias.ForeColor = Color.DarkGreen;
+            LabelNoticias.Location = new Point(51, 110);
+            LabelNoticias.Name = "LabelNoticias";
+            LabelNoticias.Size = new Size(83, 25);
+            LabelNoticias.TabIndex = 7;
+            LabelNoticias.Text = "Notícias";
+            // 
+            // ListBoxNoticiasInternas
+            // 
+            ListBoxNoticiasInternas.BackColor = Color.WhiteSmoke;
+            ListBoxNoticiasInternas.DrawMode = DrawMode.OwnerDrawVariable;
+            ListBoxNoticiasInternas.ForeColor = Color.Green;
+            ListBoxNoticiasInternas.FormattingEnabled = true;
+            ListBoxNoticiasInternas.Location = new Point(51, 461);
+            ListBoxNoticiasInternas.Name = "ListBoxNoticiasInternas";
+            ListBoxNoticiasInternas.Size = new Size(352, 238);
+            ListBoxNoticiasInternas.TabIndex = 8;
+            ListBoxNoticiasInternas.DrawItem += ListBoxNoticiasInternas_DrawItem;
+            ListBoxNoticiasInternas.MeasureItem += ListBoxNoticiasInternas_MeasureItem;
+            // 
+            // LabelNoticiasInternas
+            // 
+            LabelNoticiasInternas.AutoSize = true;
+            LabelNoticiasInternas.ForeColor = Color.DarkGreen;
+            LabelNoticiasInternas.Location = new Point(52, 431);
+            LabelNoticiasInternas.Name = "LabelNoticiasInternas";
+            LabelNoticiasInternas.Size = new Size(161, 25);
+            LabelNoticiasInternas.TabIndex = 9;
+            LabelNoticiasInternas.Text = "Notícias Internas";
+            // 
             // TelaPrincipal
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1540, 729);
+            Controls.Add(LabelNoticiasInternas);
+            Controls.Add(ListBoxNoticiasInternas);
+            Controls.Add(LabelNoticias);
+            Controls.Add(ListBoxNoticias);
+            Controls.Add(PictureBoxSlideShow);
+            Controls.Add(LabelNotas);
+            Controls.Add(RichTextBoxNotas);
             Controls.Add(PictureBoxLogoFundo);
             Controls.Add(PanelFooter);
             Controls.Add(PanelHeader);
@@ -375,15 +504,18 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxCategorias).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSair).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -405,7 +537,7 @@
         private PictureBox PictureBoxTransacoes;
         private PictureBox PictureBoxInventario;
         private PictureBox PictureBoxProdutos;
-        private PictureBox PictureBoxCategorias;
+        private PictureBox PictureBoxInsumos;
         private PictureBox PictureBoxClientes;
         private PictureBox PictureBoxFornecedores;
         private PictureBox PictureBoxFuncionarios;
@@ -416,7 +548,18 @@
         private PictureBox PictureBoxSair;
         private PictureBox PictureBoxLogoFundo;
         private Button BotaoAbrirTelaDeTeste;
-        private Button BotaoLogin;
         private Button BotaoTesteRecomendacoes;
+        private RichTextBox RichTextBoxNotas;
+        private Label LabelNotas;
+        private PictureBox PictureBoxSlideShow;
+        private System.Windows.Forms.Timer TimerSlideShow;
+        private System.Windows.Forms.Timer TimerFade;
+        private ListBox ListBoxNoticias;
+        private Label LabelNoticias;
+        private Label LabelBemVindo;
+        private PictureBox PictureBoxLogoff;
+        private Label LabelLogoff;
+        private ListBox ListBoxNoticiasInternas;
+        private Label LabelNoticiasInternas;
     }
 }

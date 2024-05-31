@@ -31,7 +31,6 @@ namespace PIMFazendaUrbanaForms
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaClientes));
             DataGridViewListaClientes = new DataGridView();
             clienteServiceBindingSource = new BindingSource(components);
             PictureBoxAtualizar = new PictureBox();
@@ -43,8 +42,8 @@ namespace PIMFazendaUrbanaForms
             PictureBoxDeletar = new PictureBox();
             PictureBoxEditar = new PictureBox();
             PanelHeader = new Panel();
-            PictureBoxHome = new PictureBox();
             TextBoxPesquisar = new TextBox();
+            PictureBoxHome = new PictureBox();
             LabelHome = new Label();
             LabelPesquisarClientes = new Label();
             PanelFooter = new Panel();
@@ -79,7 +78,7 @@ namespace PIMFazendaUrbanaForms
             // 
             // PictureBoxAtualizar
             // 
-            PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
+            PictureBoxAtualizar.Image = Properties.Resources.Atualizar;
             PictureBoxAtualizar.Location = new Point(809, 12);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
@@ -134,7 +133,7 @@ namespace PIMFazendaUrbanaForms
             // 
             // PictureBoxIncluir
             // 
-            PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
+            PictureBoxIncluir.Image = Properties.Resources.Incluir;
             PictureBoxIncluir.Location = new Point(637, 12);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
@@ -145,7 +144,7 @@ namespace PIMFazendaUrbanaForms
             // 
             // PictureBoxDeletar
             // 
-            PictureBoxDeletar.Image = (Image)resources.GetObject("PictureBoxDeletar.Image");
+            PictureBoxDeletar.Image = Properties.Resources.Deletar;
             PictureBoxDeletar.Location = new Point(751, 12);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
@@ -156,7 +155,7 @@ namespace PIMFazendaUrbanaForms
             // 
             // PictureBoxEditar
             // 
-            PictureBoxEditar.Image = (Image)resources.GetObject("PictureBoxEditar.Image");
+            PictureBoxEditar.Image = Properties.Resources.editar;
             PictureBoxEditar.Location = new Point(693, 12);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
@@ -168,8 +167,8 @@ namespace PIMFazendaUrbanaForms
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
-            PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(TextBoxPesquisar);
+            PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
             PanelHeader.Controls.Add(LabelPesquisarClientes);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
@@ -186,12 +185,21 @@ namespace PIMFazendaUrbanaForms
             PanelHeader.Size = new Size(1350, 60);
             PanelHeader.TabIndex = 52;
             // 
+            // TextBoxPesquisar
+            // 
+            TextBoxPesquisar.Location = new Point(205, 20);
+            TextBoxPesquisar.Name = "TextBoxPesquisar";
+            TextBoxPesquisar.PlaceholderText = "Digite o nome do cliente";
+            TextBoxPesquisar.Size = new Size(419, 23);
+            TextBoxPesquisar.TabIndex = 55;
+            TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
+            // 
             // PictureBoxHome
             // 
             PictureBoxHome.AccessibleDescription = "Usuarios";
             PictureBoxHome.AccessibleName = "Usuarios";
             PictureBoxHome.AccessibleRole = AccessibleRole.TitleBar;
-            PictureBoxHome.Image = (Image)resources.GetObject("PictureBoxHome.Image");
+            PictureBoxHome.Image = Properties.Resources.Home;
             PictureBoxHome.Location = new Point(12, 4);
             PictureBoxHome.Name = "PictureBoxHome";
             PictureBoxHome.Size = new Size(40, 37);
@@ -199,14 +207,6 @@ namespace PIMFazendaUrbanaForms
             PictureBoxHome.TabIndex = 18;
             PictureBoxHome.TabStop = false;
             PictureBoxHome.Click += PictureBoxHome_Click;
-            // 
-            // TextBoxPesquisar
-            // 
-            TextBoxPesquisar.Enabled = false;
-            TextBoxPesquisar.Location = new Point(201, 19);
-            TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.Size = new Size(407, 23);
-            TextBoxPesquisar.TabIndex = 54;
             // 
             // LabelHome
             // 
@@ -296,9 +296,9 @@ namespace PIMFazendaUrbanaForms
         private Panel PanelHeader;
         private PictureBox PictureBoxHome;
         private Label LabelHome;
-        private TextBox TextBoxPesquisar;
         private Label LabelPesquisarClientes;
         private Panel PanelFooter;
         private Label label1;
+        private TextBox TextBoxPesquisar;
     }
 }

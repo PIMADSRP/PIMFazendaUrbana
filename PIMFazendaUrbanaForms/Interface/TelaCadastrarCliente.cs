@@ -89,7 +89,7 @@ namespace PIMFazendaUrbanaForms
                 TextBoxNome.ForeColor = Color.Red;
 
                 // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres.", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 nomevalido = false;
                 this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome

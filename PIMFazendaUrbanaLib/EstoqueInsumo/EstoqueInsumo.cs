@@ -1,12 +1,13 @@
 ﻿namespace PIMFazendaUrbanaLib
 {
-    internal class EstoqueInsumo
+    public class Insumo
     {
-        // Atributos/Propriedades
-        public int ID { get; set; }
+        // Propriedades
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Categoria { get; set; }
-        public int Quantidade { get; set; }
-        public bool StatusAtivo { get; set; }
+        public int Qtd { get; set; }
+        public string Unidqtd { get; set; }
+        public bool Ativo { get; set; }
     }
 }

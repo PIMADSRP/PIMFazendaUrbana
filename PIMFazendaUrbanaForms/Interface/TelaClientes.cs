@@ -69,8 +69,10 @@ namespace PIMFazendaUrbanaForms
         {
             try
             {
+                DataGridViewListaClientes.DataSource = null; // Limpa a DataSource do DataGridView
+
                 List<Cliente> clientes = clienteService.ListarClientesAtivos();
-                
+
                 if (clientes != null && clientes.Count > 0) // Verificar se a lista de clientes não está vazia
                 {
                     // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
@@ -215,6 +217,29 @@ namespace PIMFazendaUrbanaForms
         private void PictureBoxHome_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TextBoxPesquisar_TextChanged(object sender, EventArgs e)
+        {
+            string clienteNome = TextBoxPesquisar.Text;
+            List<Cliente> clientes = clienteService.FiltrarClientesNome(clienteNome);
+
+            if (clientes != null && clientes.Count > 0) // Verificar se a lista de clientes não está vazia
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = clientes.Select(c => new
+                {
+                    c.ID,
+                    c.Nome,
+                    c.Email,
+                    CNPJ = FormatarCNPJ(c.CNPJ), // Formatar o CNPJ
+                    Telefone = FormatarTelefone(c.Telefone), // Formatar o telefone
+                    Endereco = FormatarEndereco(c.Endereco), // Formatar o endereço
+                    CEP = FormatarCEP(c.Endereco) // Formatar o CEP
+                }).ToList();
+
+                DataGridViewListaClientes.DataSource = data; // Preencher o DataGridView com os dados formatados
+            }
         }
     }
 }

@@ -391,7 +391,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME (somente clientes ativos)
-        // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteNome(string clienteNome)
         {
             Cliente cliente = null;
@@ -448,7 +447,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ (somente clientes ativos)
-        // ********** NÃO TESTADO **********
         public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
         {
             Cliente cliente = null;
@@ -503,6 +501,66 @@ namespace PIMFazendaUrbanaLib
                 }
             }
         }
+
+        // 6- MÉTODO FILTRAR LISTA DE CLIENTES POR NOME
+        // ********** FUNCIONAL **********
+        public List<Cliente> FiltrarClientesNome(string clienteNome)
+        {
+            List<Cliente> clientes = new List<Cliente>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente, 
+                        t.ddd_telcliente, t.numero_telcliente, t.ativo_telcliente, 
+                        e.logradouro_endcliente, e.numero_endcliente, e.complemento_endcliente, e.bairro_endcliente, e.cidade_endcliente, 
+                        e.uf_endcliente, e.cep_endcliente, e.ativo_endcliente
+                        FROM cliente c
+                        LEFT JOIN telefonecliente t ON c.id_cliente = t.id_cliente
+                        LEFT JOIN enderecocliente e ON c.id_cliente = e.id_cliente
+                        WHERE c.nome_cliente LIKE @nome";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nome", "%" + clienteNome + "%");
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cliente cliente = new Cliente
+                        {
+                            ID = reader.GetInt32("id_cliente"),
+                            Nome = reader.GetString("nome_cliente"),
+                            Email = reader.GetString("email_cliente"),
+                            CNPJ = reader.GetString("cnpj_cliente"),
+                            StatusAtivo = reader.GetBoolean("ativo_cliente"),
+                            Telefone = new TelefoneCliente
+                            {
+                                DDD = reader.GetString("ddd_telcliente"),
+                                Numero = reader.GetString("numero_telcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_telcliente")
+                            },
+                            Endereco = new EnderecoCliente
+                            {
+                                Logradouro = reader.GetString("logradouro_endcliente"),
+                                Numero = reader.GetString("numero_endcliente"),
+                                Complemento = reader.IsDBNull("complemento_endcliente") ? null : reader.GetString("complemento_endcliente"),
+                                Bairro = reader.GetString("bairro_endcliente"),
+                                Cidade = reader.GetString("cidade_endcliente"),
+                                UF = reader.GetString("uf_endcliente"),
+                                CEP = reader.GetString("cep_endcliente"),
+                                StatusAtivo = reader.GetBoolean("ativo_endcliente")
+                            }
+                        };
+                        clientes.Add(cliente);
+                    }
+                }
+            }
+            return clientes;
+        }
+
+
+
 
     }
 }

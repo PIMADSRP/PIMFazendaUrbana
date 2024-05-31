@@ -40,16 +40,17 @@
 
         // 3- Excluir (DESATIVAR) Cliente
         // O método ExcluirCliente é responsável por excluir (DESATIVAR) um cliente do banco de dados. Antes de chamar o DAO para realizar a exclusão, este método pode realizar validações ou outras operações necessárias.
-        public bool ExcluirCliente(int clienteId)
+        public void ExcluirCliente(int clienteId)
         {
             try
             {
                 clienteDAO.ExcluirCliente(clienteId); // Chama o método ExcluirCliente da classe ClienteDAO, passando o ID do cliente como argumento
-                return true; // Retorna true para indicar que a exclusão foi bem-sucedida
+                //return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a exclusão falhou
+                throw new Exception("Erro ao excluir cliente.", ex); // Lança uma exceção indicando que ocorreu um erro ao excluir o cliente
+                //return false; // Retorna false para indicar que a exclusão falhou
             }
         }
 
@@ -129,6 +130,22 @@
                 return null;
             }
         }
+
+
+        // 6 - Filtrar lista de clientes por nome
+        public List<Cliente> FiltrarClientesNome(string clienteNome)
+        {
+            try
+            {
+                List<Cliente> clientes = clienteDAO.FiltrarClientesNome(clienteNome);
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
     }
 }

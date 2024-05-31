@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
+using PIMFazendaUrbanaLib;
 using System.Data;
+using System.Reflection.PortableExecutable;
 
 namespace PIMFazendaUrbanaLib
 {
@@ -539,7 +541,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 9.2- Método para consultar funcionário por nome (somente funcionários ativos)
-        // ********** NÃO TESTADO **********
         public Funcionario ConsultarFuncionarioNome(string funcionarioNome)
         {
             Funcionario funcionario = null;
@@ -599,7 +600,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 9.3- Método para consultar funcionário por nome de usuário (somente funcionários ativos)
-        // ********** NÃO TESTADO **********
         public Funcionario ConsultarFuncionarioUsuario(string funcionarioUsuario)
         {
             Funcionario funcionario = null;
@@ -656,6 +656,70 @@ namespace PIMFazendaUrbanaLib
                     return funcionario;
                 }
             }
+        }
+
+        // 10- Método para filtrar lista de funcionários por nome
+        // ********** FUNCIONAL **********
+        public List<Funcionario> FiltrarFuncionariosNome(string funcionarioNome)
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT f.id_funcionario, f.nome_funcionario, f.sexo_funcionario, f.email_funcionario, f.cpf_funcionario,
+                                f.cargo_funcionario, f.usuario_funcionario, f.ativo_funcionario, 
+                                t.ddd_telfuncionario, t.numero_telfuncionario, t.ativo_telfuncionario, 
+                                e.logradouro_endfuncionario, e.numero_endfuncionario, e.complemento_endfuncionario, e.bairro_endfuncionario, e.cidade_endfuncionario, 
+                                e.uf_endfuncionario, e.cep_endfuncionario, e.ativo_endfuncionario
+                                FROM funcionario f
+                                LEFT JOIN telefonefuncionario t ON f.id_funcionario = t.id_funcionario
+                                LEFT JOIN enderecofuncionario e ON f.id_funcionario = e.id_funcionario
+                                WHERE f.nome_funcionario LIKE @nome";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nome", "%" + funcionarioNome + "%");
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int funcionarioId = reader.GetInt32("id_funcionario");
+
+                        Funcionario funcionario = new Funcionario
+                        {
+                            ID = funcionarioId,
+                            Nome = reader.GetString("nome_funcionario"),
+                            Sexo = reader.GetString("sexo_funcionario"),
+                            Email = reader.GetString("email_funcionario"),
+                            CPF = reader.GetString("cpf_funcionario"),
+                            Cargo = reader.GetString("cargo_funcionario"),
+                            Usuario = reader.GetString("usuario_funcionario"),
+                            StatusAtivo = reader.GetBoolean("ativo_funcionario"),
+                            Telefone = new TelefoneFuncionario
+                            {
+                                DDD = reader.GetString("ddd_telfuncionario"),
+                                Numero = reader.GetString("numero_telfuncionario"),
+                                StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
+                            },
+                            Endereco = new EnderecoFuncionario
+                            {
+                                Logradouro = reader.GetString("logradouro_endfuncionario"),
+                                Numero = reader.GetString("numero_endfuncionario"),
+                                Complemento = reader.IsDBNull("complemento_endfuncionario") ? null : reader.GetString("complemento_endfuncionario"),
+                                Bairro = reader.GetString("bairro_endfuncionario"),
+                                Cidade = reader.GetString("cidade_endfuncionario"),
+                                UF = reader.GetString("uf_endfuncionario"),
+                                CEP = reader.GetString("cep_endfuncionario"),
+                                StatusAtivo = reader.GetBoolean("ativo_endfuncionario")
+                            }
+                        };
+
+                        funcionarios.Add(funcionario);
+                    }
+                }
+            }
+            return funcionarios;
         }
 
     }

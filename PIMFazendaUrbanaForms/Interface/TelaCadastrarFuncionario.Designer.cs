@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCadastrarFuncionario));
             PanelHeader = new Panel();
             LabelCadastrarUsuarios = new Label();
             LabelNome = new Label();
@@ -402,7 +401,7 @@
             // 
             // PictureBoxMostrarSenha
             // 
-            PictureBoxMostrarSenha.Image = (Image)resources.GetObject("PictureBoxMostrarSenha.Image");
+            PictureBoxMostrarSenha.Image = Properties.Resources.mostrarSenha;
             PictureBoxMostrarSenha.Location = new Point(271, 177);
             PictureBoxMostrarSenha.Name = "PictureBoxMostrarSenha";
             PictureBoxMostrarSenha.Size = new Size(26, 23);

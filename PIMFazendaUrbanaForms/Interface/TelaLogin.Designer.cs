@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLogin));
             PanelHeader = new Panel();
             PictureBoxX = new PictureBox();
             LabelLogin = new Label();
@@ -57,7 +56,7 @@
             // 
             // PictureBoxX
             // 
-            PictureBoxX.Image = (Image)resources.GetObject("PictureBoxX.Image");
+            PictureBoxX.Image = Properties.Resources.cancelar;
             PictureBoxX.Location = new Point(430, 13);
             PictureBoxX.Name = "PictureBoxX";
             PictureBoxX.Size = new Size(30, 27);
@@ -142,7 +141,7 @@
             // 
             // PictureBoxMostrarSenha
             // 
-            PictureBoxMostrarSenha.Image = (Image)resources.GetObject("PictureBoxMostrarSenha.Image");
+            PictureBoxMostrarSenha.Image = Properties.Resources.mostrarSenha;
             PictureBoxMostrarSenha.Location = new Point(299, 150);
             PictureBoxMostrarSenha.Name = "PictureBoxMostrarSenha";
             PictureBoxMostrarSenha.Size = new Size(26, 23);

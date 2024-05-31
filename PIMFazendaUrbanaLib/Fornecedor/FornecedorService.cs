@@ -130,5 +130,19 @@
             }
         }
 
+        // 6 - Filtrar lista de fornecedores por nome
+        public List<Fornecedor> FiltrarFornecedoresNome(string fornecedorNome)
+        {
+            try
+            {
+                List<Fornecedor> fornecedores = fornecedorDAO.FiltrarFornecedoresNome(fornecedorNome);
+                return fornecedores;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }

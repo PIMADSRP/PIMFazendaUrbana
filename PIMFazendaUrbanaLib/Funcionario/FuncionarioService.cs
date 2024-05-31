@@ -228,5 +228,19 @@
             }
         }
 
+        // 10 - Método para filtrar lista de funcionários por nome
+        public List<Funcionario> FiltrarFuncionariosNome(string funcionarioNome)
+        {
+            try
+            {
+                List<Funcionario> funcionarios = funcionarioDAO.FiltrarFuncionariosNome(funcionarioNome);
+                return funcionarios;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
     }
 }
