@@ -7,7 +7,6 @@ namespace PIMFazendaUrbanaForms
         Insumo insumo = new Insumo();
         Insumo insumo1 = new Insumo();
 
-
         public event EventHandler InsumoEditadoSucesso;
 
         InsumoService insumoService; // Declaração de uma instância de InsumoService

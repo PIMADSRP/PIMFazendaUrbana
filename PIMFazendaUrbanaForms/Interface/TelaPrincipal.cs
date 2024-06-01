@@ -88,7 +88,7 @@ namespace PIMFazendaUrbanaForms
                 int deslocamento = textSize.Width;
 
                 // Ajustar a posição horizontal da label para mover à esquerda com base no comprimento do texto
-                int novaPosicaoX = ClientSize.Width - deslocamento - 120;
+                int novaPosicaoX = ClientSize.Width - deslocamento - 150;
 
                 // Definir a nova localização
                 LabelBemVindo.Location = new Point(novaPosicaoX, LabelBemVindo.Location.Y);
@@ -178,14 +178,14 @@ namespace PIMFazendaUrbanaForms
             toolTip2.SetToolTip(PictureBoxInsumos, "Insumos");
         }
 
-        private void PictureBoxProdutos_MouseHover(object sender, EventArgs e)
+        private void PictureBoxProducao_MouseHover(object sender, EventArgs e)
         {
-            toolTip3.SetToolTip(PictureBoxProdutos, "Produtos");
+            toolTip3.SetToolTip(PictureBoxProducao, "Produção");
         }
 
         private void PictureBoxInventario_MouseHover(object sender, EventArgs e)
         {
-            toolTip4.SetToolTip(PictureBoxInventario, "Inventario");
+            toolTip4.SetToolTip(PictureBoxInventario, "Inventário");
         }
 
         private void PictureBoxTransacoes_MouseHover(object sender, EventArgs e)
@@ -214,9 +214,10 @@ namespace PIMFazendaUrbanaForms
             this.Close();
         }
 
-        private void PictureBoxProdutos_Click(object sender, EventArgs e)
+        private void PictureBoxProducao_Click(object sender, EventArgs e)
         {
-
+            TelaProducao telaCultivo = new TelaProducao();
+            telaCultivo.Show();
         }
 
         private void PictureBoxInsumos_Click(object sender, EventArgs e)

@@ -203,6 +203,16 @@ namespace PIMFazendaUrbanaForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SaidaDeEstoque {
+            get {
+                object obj = ResourceManager.GetObject("SaidaDeEstoque", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sair {
             get {
                 object obj = ResourceManager.GetObject("Sair", resourceCulture);

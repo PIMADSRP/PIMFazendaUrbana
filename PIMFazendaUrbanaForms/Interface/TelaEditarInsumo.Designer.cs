@@ -49,7 +49,7 @@
             BotaoCancelar.Location = new Point(215, 172);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
-            BotaoCancelar.TabIndex = 68;
+            BotaoCancelar.TabIndex = 4;
             BotaoCancelar.Text = "Cancelar";
             BotaoCancelar.UseVisualStyleBackColor = false;
             BotaoCancelar.Click += BotaoCancelar_Click;
@@ -62,7 +62,7 @@
             BotaoConfirmar.Location = new Point(55, 172);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
-            BotaoConfirmar.TabIndex = 67;
+            BotaoConfirmar.TabIndex = 3;
             BotaoConfirmar.Text = "Confirmar";
             BotaoConfirmar.UseVisualStyleBackColor = false;
             BotaoConfirmar.Click += BotaoConfirmar_Click;
@@ -74,12 +74,12 @@
             ComboBoxUnidade.Location = new Point(113, 127);
             ComboBoxUnidade.Name = "ComboBoxUnidade";
             ComboBoxUnidade.Size = new Size(86, 23);
-            ComboBoxUnidade.TabIndex = 66;
+            ComboBoxUnidade.TabIndex = 2;
             // 
             // LabelUnidade
             // 
             LabelUnidade.AutoSize = true;
-            LabelUnidade.Location = new Point(55, 131);
+            LabelUnidade.Location = new Point(51, 130);
             LabelUnidade.Name = "LabelUnidade";
             LabelUnidade.Size = new Size(54, 15);
             LabelUnidade.TabIndex = 65;
@@ -92,12 +92,12 @@
             ComboBoxCategoria.Location = new Point(113, 94);
             ComboBoxCategoria.Name = "ComboBoxCategoria";
             ComboBoxCategoria.Size = new Size(86, 23);
-            ComboBoxCategoria.TabIndex = 63;
+            ComboBoxCategoria.TabIndex = 1;
             // 
             // LabelCategoria
             // 
             LabelCategoria.AutoSize = true;
-            LabelCategoria.Location = new Point(48, 98);
+            LabelCategoria.Location = new Point(43, 97);
             LabelCategoria.Name = "LabelCategoria";
             LabelCategoria.Size = new Size(61, 15);
             LabelCategoria.TabIndex = 64;
@@ -117,7 +117,7 @@
             TextBoxNome.Location = new Point(113, 62);
             TextBoxNome.Name = "TextBoxNome";
             TextBoxNome.Size = new Size(182, 23);
-            TextBoxNome.TabIndex = 61;
+            TextBoxNome.TabIndex = 0;
             // 
             // PanelHeader
             // 
@@ -137,7 +137,7 @@
             LabelCadastrarProdutos.Location = new Point(103, 9);
             LabelCadastrarProdutos.Name = "LabelCadastrarProdutos";
             LabelCadastrarProdutos.Size = new Size(136, 25);
-            LabelCadastrarProdutos.TabIndex = 0;
+            LabelCadastrarProdutos.TabIndex = 55;
             LabelCadastrarProdutos.Text = "Editar Insumo";
             // 
             // TelaEditarInsumo
@@ -155,6 +155,7 @@
             Controls.Add(TextBoxNome);
             Controls.Add(PanelHeader);
             Name = "TelaEditarInsumo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Editar Insumo";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();

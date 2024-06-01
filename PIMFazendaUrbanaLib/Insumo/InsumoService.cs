@@ -100,5 +100,45 @@
             }
         }
 
+        public List<SaidaInsumo> ListarSaidaInsumos()
+        {
+            try
+            {
+                List<SaidaInsumo> saidainsumos = insumoDAO.ListarSaidaInsumos();
+                return saidainsumos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao listar registros de saída de insumos.", ex);
+            }
+        }
+
+        public bool CadastrarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)
+        {
+            try
+            {
+                insumoDAO.CadastrarSaidaInsumo(saidainsumo, insumo);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao cadastrar saída de insumo.", ex);
+            }
+        }
+
+        public bool AumentarQtdInsumo(Insumo insumo, int qtd)
+        {
+            try
+            {
+                insumoDAO.AumentarQtdInsumo(insumo, qtd);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao alterar quantidade do insumo.", ex);
+                return false;
+            }
+        }
+
     }
 }

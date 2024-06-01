@@ -213,7 +213,7 @@ namespace PIMFazendaUrbanaForms
             LabelHome.AutoSize = true;
             LabelHome.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelHome.ForeColor = SystemColors.ControlLightLight;
-            LabelHome.Location = new Point(14, 44);
+            LabelHome.Location = new Point(14, 41);
             LabelHome.Name = "LabelHome";
             LabelHome.Size = new Size(38, 13);
             LabelHome.TabIndex = 19;

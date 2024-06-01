@@ -1,6 +1,6 @@
 ﻿namespace PIMFazendaUrbanaForms
 {
-    partial class TelaInsumo
+    partial class TelaProducao
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProducao));
             PanelHeader = new Panel();
+            pictureBox1 = new PictureBox();
+            LabelFinalizarProducao = new Label();
             PictureBoxCadastrarSaida = new PictureBox();
             LabelCadastrarSaida = new Label();
-            PictureBoxHome = new PictureBox();
             TextBoxPesquisar = new TextBox();
+            PictureBoxHome = new PictureBox();
             LabelHome = new Label();
-            LabelPesquisarClientes = new Label();
-            PictureBoxAtualizar = new PictureBox();
-            PictureBoxEditar = new PictureBox();
-            PictureBoxDeletar = new PictureBox();
+            LabelPesquisarCultivo = new Label();
+            PictureBoxAtualizarCultivo = new PictureBox();
+            PictureBoxEditarCultivo = new PictureBox();
+            PictureBoxDeletarCultivo = new PictureBox();
             LabelAtualizar = new Label();
             PictureBoxIncluir = new PictureBox();
             LabelDeletar = new Label();
             LabelIncluir = new Label();
             LabelEditar = new Label();
-            DataGridViewListaInsumos = new DataGridView();
+            DataGridViewListaCultivos = new DataGridView();
             PanelFooter = new Panel();
             label1 = new Label();
-            DataGridViewSaidaInsumos = new DataGridView();
-            LabelEstoqueInsumos = new Label();
+            LabelCultivos = new Label();
             LabelRegistroSaida = new Label();
+            DataGridViewSaidaInsumos = new DataGridView();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizarCultivo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxEditarCultivo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletarCultivo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewListaCultivos).BeginInit();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).BeginInit();
             SuspendLayout();
@@ -64,15 +68,17 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(pictureBox1);
+            PanelHeader.Controls.Add(LabelFinalizarProducao);
             PanelHeader.Controls.Add(PictureBoxCadastrarSaida);
             PanelHeader.Controls.Add(LabelCadastrarSaida);
-            PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(TextBoxPesquisar);
+            PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
-            PanelHeader.Controls.Add(LabelPesquisarClientes);
-            PanelHeader.Controls.Add(PictureBoxAtualizar);
-            PanelHeader.Controls.Add(PictureBoxEditar);
-            PanelHeader.Controls.Add(PictureBoxDeletar);
+            PanelHeader.Controls.Add(LabelPesquisarCultivo);
+            PanelHeader.Controls.Add(PictureBoxAtualizarCultivo);
+            PanelHeader.Controls.Add(PictureBoxEditarCultivo);
+            PanelHeader.Controls.Add(PictureBoxDeletarCultivo);
             PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(PictureBoxIncluir);
             PanelHeader.Controls.Add(LabelDeletar);
@@ -84,16 +90,36 @@
             PanelHeader.Size = new Size(1350, 60);
             PanelHeader.TabIndex = 53;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.SaidaDeEstoque;
+            pictureBox1.Location = new Point(1008, 10);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(29, 25);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 63;
+            pictureBox1.TabStop = false;
+            // 
+            // LabelFinalizarProducao
+            // 
+            LabelFinalizarProducao.AutoSize = true;
+            LabelFinalizarProducao.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelFinalizarProducao.ForeColor = Color.White;
+            LabelFinalizarProducao.Location = new Point(962, 38);
+            LabelFinalizarProducao.Name = "LabelFinalizarProducao";
+            LabelFinalizarProducao.Size = new Size(119, 17);
+            LabelFinalizarProducao.TabIndex = 64;
+            LabelFinalizarProducao.Text = "Finalizar produção";
+            // 
             // PictureBoxCadastrarSaida
             // 
             PictureBoxCadastrarSaida.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxCadastrarSaida.Location = new Point(860, 12);
+            PictureBoxCadastrarSaida.Location = new Point(872, 10);
             PictureBoxCadastrarSaida.Name = "PictureBoxCadastrarSaida";
             PictureBoxCadastrarSaida.Size = new Size(29, 25);
             PictureBoxCadastrarSaida.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxCadastrarSaida.TabIndex = 55;
+            PictureBoxCadastrarSaida.TabIndex = 61;
             PictureBoxCadastrarSaida.TabStop = false;
-            PictureBoxCadastrarSaida.Click += PictureBoxCadastrarSaida_Click;
             // 
             // LabelCadastrarSaida
             // 
@@ -102,9 +128,18 @@
             LabelCadastrarSaida.ForeColor = Color.White;
             LabelCadastrarSaida.Location = new Point(826, 38);
             LabelCadastrarSaida.Name = "LabelCadastrarSaida";
-            LabelCadastrarSaida.Size = new Size(101, 17);
-            LabelCadastrarSaida.TabIndex = 56;
-            LabelCadastrarSaida.Text = "Cadastrar saída";
+            LabelCadastrarSaida.Size = new Size(128, 17);
+            LabelCadastrarSaida.TabIndex = 62;
+            LabelCadastrarSaida.Text = "Cadastrar produção";
+            // 
+            // TextBoxPesquisar
+            // 
+            TextBoxPesquisar.Location = new Point(224, 20);
+            TextBoxPesquisar.Name = "TextBoxPesquisar";
+            TextBoxPesquisar.PlaceholderText = "Digite o nome do cultivo";
+            TextBoxPesquisar.Size = new Size(246, 23);
+            TextBoxPesquisar.TabIndex = 2;
+            TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
             // 
             // PictureBoxHome
             // 
@@ -120,15 +155,6 @@
             PictureBoxHome.TabStop = false;
             PictureBoxHome.Click += PictureBoxHome_Click;
             // 
-            // TextBoxPesquisar
-            // 
-            TextBoxPesquisar.Location = new Point(224, 20);
-            TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.PlaceholderText = "Digite o nome do insumo";
-            TextBoxPesquisar.Size = new Size(246, 23);
-            TextBoxPesquisar.TabIndex = 2;
-            TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
-            // 
             // LabelHome
             // 
             LabelHome.AutoSize = true;
@@ -137,52 +163,52 @@
             LabelHome.Location = new Point(14, 41);
             LabelHome.Name = "LabelHome";
             LabelHome.Size = new Size(38, 13);
-            LabelHome.TabIndex = 19;
+            LabelHome.TabIndex = 46;
             LabelHome.Text = "Home";
             // 
-            // LabelPesquisarClientes
+            // LabelPesquisarCultivo
             // 
-            LabelPesquisarClientes.AutoSize = true;
-            LabelPesquisarClientes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPesquisarClientes.ForeColor = Color.White;
-            LabelPesquisarClientes.Location = new Point(94, 21);
-            LabelPesquisarClientes.Name = "LabelPesquisarClientes";
-            LabelPesquisarClientes.Size = new Size(127, 17);
-            LabelPesquisarClientes.TabIndex = 53;
-            LabelPesquisarClientes.Text = "Pesquisar Insumos:";
+            LabelPesquisarCultivo.AutoSize = true;
+            LabelPesquisarCultivo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarCultivo.ForeColor = Color.White;
+            LabelPesquisarCultivo.Location = new Point(94, 21);
+            LabelPesquisarCultivo.Name = "LabelPesquisarCultivo";
+            LabelPesquisarCultivo.Size = new Size(125, 17);
+            LabelPesquisarCultivo.TabIndex = 53;
+            LabelPesquisarCultivo.Text = "Pesquisar Cultivos:";
             // 
-            // PictureBoxAtualizar
+            // PictureBoxAtualizarCultivo
             // 
-            PictureBoxAtualizar.Image = Properties.Resources.Atualizar;
-            PictureBoxAtualizar.Location = new Point(655, 13);
-            PictureBoxAtualizar.Name = "PictureBoxAtualizar";
-            PictureBoxAtualizar.Size = new Size(29, 25);
-            PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxAtualizar.TabIndex = 51;
-            PictureBoxAtualizar.TabStop = false;
-            PictureBoxAtualizar.Click += PictureBoxAtualizar_Click;
+            PictureBoxAtualizarCultivo.Image = (Image)resources.GetObject("PictureBoxAtualizarCultivo.Image");
+            PictureBoxAtualizarCultivo.Location = new Point(655, 13);
+            PictureBoxAtualizarCultivo.Name = "PictureBoxAtualizarCultivo";
+            PictureBoxAtualizarCultivo.Size = new Size(29, 25);
+            PictureBoxAtualizarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxAtualizarCultivo.TabIndex = 51;
+            PictureBoxAtualizarCultivo.TabStop = false;
+            PictureBoxAtualizarCultivo.Click += PictureBoxAtualizarCultivo_Click;
             // 
-            // PictureBoxEditar
+            // PictureBoxEditarCultivo
             // 
-            PictureBoxEditar.Image = Properties.Resources.editar;
-            PictureBoxEditar.Location = new Point(539, 13);
-            PictureBoxEditar.Name = "PictureBoxEditar";
-            PictureBoxEditar.Size = new Size(29, 25);
-            PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxEditar.TabIndex = 44;
-            PictureBoxEditar.TabStop = false;
-            PictureBoxEditar.Click += PictureBoxEditar_Click;
+            PictureBoxEditarCultivo.Image = (Image)resources.GetObject("PictureBoxEditarCultivo.Image");
+            PictureBoxEditarCultivo.Location = new Point(539, 13);
+            PictureBoxEditarCultivo.Name = "PictureBoxEditarCultivo";
+            PictureBoxEditarCultivo.Size = new Size(29, 25);
+            PictureBoxEditarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxEditarCultivo.TabIndex = 44;
+            PictureBoxEditarCultivo.TabStop = false;
+            PictureBoxEditarCultivo.Click += PictureBoxEditarCultivo_Click;
             // 
-            // PictureBoxDeletar
+            // PictureBoxDeletarCultivo
             // 
-            PictureBoxDeletar.Image = Properties.Resources.Deletar;
-            PictureBoxDeletar.Location = new Point(597, 13);
-            PictureBoxDeletar.Name = "PictureBoxDeletar";
-            PictureBoxDeletar.Size = new Size(29, 25);
-            PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxDeletar.TabIndex = 45;
-            PictureBoxDeletar.TabStop = false;
-            PictureBoxDeletar.Click += PictureBoxDeletar_Click;
+            PictureBoxDeletarCultivo.Image = (Image)resources.GetObject("PictureBoxDeletarCultivo.Image");
+            PictureBoxDeletarCultivo.Location = new Point(597, 13);
+            PictureBoxDeletarCultivo.Name = "PictureBoxDeletarCultivo";
+            PictureBoxDeletarCultivo.Size = new Size(29, 25);
+            PictureBoxDeletarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxDeletarCultivo.TabIndex = 45;
+            PictureBoxDeletarCultivo.TabStop = false;
+            PictureBoxDeletarCultivo.Click += PictureBoxDeletarCultivo_Click;
             // 
             // LabelAtualizar
             // 
@@ -197,7 +223,7 @@
             // 
             // PictureBoxIncluir
             // 
-            PictureBoxIncluir.Image = Properties.Resources.Incluir;
+            PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
             PictureBoxIncluir.Location = new Point(483, 13);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
@@ -239,18 +265,18 @@
             LabelEditar.TabIndex = 48;
             LabelEditar.Text = "Editar";
             // 
-            // DataGridViewListaInsumos
+            // DataGridViewListaCultivos
             // 
-            DataGridViewListaInsumos.AllowUserToAddRows = false;
-            DataGridViewListaInsumos.AllowUserToDeleteRows = false;
-            DataGridViewListaInsumos.BackgroundColor = SystemColors.Menu;
-            DataGridViewListaInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaInsumos.Location = new Point(94, 93);
-            DataGridViewListaInsumos.Name = "DataGridViewListaInsumos";
-            DataGridViewListaInsumos.ReadOnly = true;
-            DataGridViewListaInsumos.Size = new Size(608, 647);
-            DataGridViewListaInsumos.TabIndex = 0;
-            DataGridViewListaInsumos.VirtualMode = true;
+            DataGridViewListaCultivos.AllowUserToAddRows = false;
+            DataGridViewListaCultivos.AllowUserToDeleteRows = false;
+            DataGridViewListaCultivos.BackgroundColor = SystemColors.Menu;
+            DataGridViewListaCultivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewListaCultivos.Location = new Point(94, 93);
+            DataGridViewListaCultivos.Name = "DataGridViewListaCultivos";
+            DataGridViewListaCultivos.ReadOnly = true;
+            DataGridViewListaCultivos.Size = new Size(608, 647);
+            DataGridViewListaCultivos.TabIndex = 0;
+            DataGridViewListaCultivos.VirtualMode = true;
             // 
             // PanelFooter
             // 
@@ -276,6 +302,28 @@
             label1.Text = "FARM SYSTEM | VERSÃO 1.0";
             label1.TextAlign = ContentAlignment.BottomCenter;
             // 
+            // LabelCultivos
+            // 
+            LabelCultivos.AutoSize = true;
+            LabelCultivos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelCultivos.ForeColor = Color.DarkGreen;
+            LabelCultivos.Location = new Point(94, 73);
+            LabelCultivos.Name = "LabelCultivos";
+            LabelCultivos.Size = new Size(141, 17);
+            LabelCultivos.TabIndex = 58;
+            LabelCultivos.Text = "Cultivos Cadastrados:";
+            // 
+            // LabelRegistroSaida
+            // 
+            LabelRegistroSaida.AutoSize = true;
+            LabelRegistroSaida.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRegistroSaida.ForeColor = Color.DarkGreen;
+            LabelRegistroSaida.Location = new Point(826, 73);
+            LabelRegistroSaida.Name = "LabelRegistroSaida";
+            LabelRegistroSaida.Size = new Size(152, 17);
+            LabelRegistroSaida.TabIndex = 59;
+            LabelRegistroSaida.Text = "Produções cadastradas:";
+            // 
             // DataGridViewSaidaInsumos
             // 
             DataGridViewSaidaInsumos.AllowUserToAddRows = false;
@@ -289,53 +337,33 @@
             DataGridViewSaidaInsumos.TabIndex = 1;
             DataGridViewSaidaInsumos.VirtualMode = true;
             // 
-            // LabelEstoqueInsumos
-            // 
-            LabelEstoqueInsumos.AutoSize = true;
-            LabelEstoqueInsumos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelEstoqueInsumos.ForeColor = Color.DarkGreen;
-            LabelEstoqueInsumos.Location = new Point(94, 73);
-            LabelEstoqueInsumos.Name = "LabelEstoqueInsumos";
-            LabelEstoqueInsumos.Size = new Size(136, 17);
-            LabelEstoqueInsumos.TabIndex = 57;
-            LabelEstoqueInsumos.Text = "Estoque de Insumos:";
-            // 
-            // LabelRegistroSaida
-            // 
-            LabelRegistroSaida.AutoSize = true;
-            LabelRegistroSaida.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelRegistroSaida.ForeColor = Color.DarkGreen;
-            LabelRegistroSaida.Location = new Point(826, 73);
-            LabelRegistroSaida.Name = "LabelRegistroSaida";
-            LabelRegistroSaida.Size = new Size(194, 17);
-            LabelRegistroSaida.TabIndex = 58;
-            LabelRegistroSaida.Text = "Registro de Saída de Insumos:";
-            // 
-            // TelaInsumo
+            // TelaProducao
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            AutoValidate = AutoValidate.EnablePreventFocusChange;
             ClientSize = new Size(1350, 729);
-            Controls.Add(LabelRegistroSaida);
-            Controls.Add(LabelEstoqueInsumos);
             Controls.Add(DataGridViewSaidaInsumos);
+            Controls.Add(LabelRegistroSaida);
+            Controls.Add(LabelCultivos);
             Controls.Add(PanelFooter);
-            Controls.Add(DataGridViewListaInsumos);
+            Controls.Add(DataGridViewListaCultivos);
             Controls.Add(PanelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "TelaInsumo";
+            Name = "TelaProducao";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Insumos";
+            Text = "Produção";
             WindowState = FormWindowState.Maximized;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizarCultivo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxEditarCultivo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletarCultivo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewListaCultivos).EndInit();
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).EndInit();
@@ -347,24 +375,26 @@
 
         private Panel PanelHeader;
         private PictureBox PictureBoxHome;
-        private TextBox TextBoxPesquisar;
         private Label LabelHome;
-        private Label LabelPesquisarClientes;
-        private PictureBox PictureBoxAtualizar;
-        private PictureBox PictureBoxEditar;
-        private PictureBox PictureBoxDeletar;
+        private Label LabelPesquisarCultivo;
+        private PictureBox PictureBoxAtualizarCultivo;
+        private PictureBox PictureBoxEditarCultivo;
+        private PictureBox PictureBoxDeletarCultivo;
         private Label LabelAtualizar;
         private PictureBox PictureBoxIncluir;
         private Label LabelDeletar;
         private Label LabelIncluir;
         private Label LabelEditar;
-        private DataGridView DataGridViewListaInsumos;
+        private DataGridView DataGridViewListaCultivos;
         private Panel PanelFooter;
         private Label label1;
+        private TextBox TextBoxPesquisar;
+        private Label LabelCultivos;
+        private Label LabelRegistroSaida;
         private DataGridView DataGridViewSaidaInsumos;
         private PictureBox PictureBoxCadastrarSaida;
         private Label LabelCadastrarSaida;
-        private Label LabelEstoqueInsumos;
-        private Label LabelRegistroSaida;
+        private PictureBox pictureBox1;
+        private Label LabelFinalizarProducao;
     }
 }

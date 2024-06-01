@@ -34,7 +34,7 @@
             LabelFornecedores = new Label();
             LabelTransacoes = new Label();
             LabelInventario = new Label();
-            LabelProdutos = new Label();
+            LabelProducao = new Label();
             LabelCategorias = new Label();
             toolTip1 = new ToolTip(components);
             toolTip2 = new ToolTip(components);
@@ -45,19 +45,17 @@
             toolTip7 = new ToolTip(components);
             PictureBoxTransacoes = new PictureBox();
             PictureBoxInventario = new PictureBox();
-            PictureBoxProdutos = new PictureBox();
+            PictureBoxProducao = new PictureBox();
             PictureBoxInsumos = new PictureBox();
             PictureBoxClientes = new PictureBox();
             PictureBoxFornecedores = new PictureBox();
             PictureBoxFuncionarios = new PictureBox();
             PanelHeader = new Panel();
-            LabelLogoff = new Label();
             PictureBoxLogoff = new PictureBox();
+            LabelLogoff = new Label();
             LabelBemVindo = new Label();
             BotaoTesteRecomendacoes = new Button();
             BotaoAbrirTelaDeTeste = new Button();
-            LabelSair = new Label();
-            PictureBoxSair = new PictureBox();
             LabelClientes = new Label();
             LabelFuncionarios = new Label();
             PictureBoxLogoFundo = new PictureBox();
@@ -73,14 +71,13 @@
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxSair).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).BeginInit();
             SuspendLayout();
@@ -113,7 +110,7 @@
             LabelFornecedores.AutoSize = true;
             LabelFornecedores.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelFornecedores.ForeColor = SystemColors.ControlLightLight;
-            LabelFornecedores.Location = new Point(275, 44);
+            LabelFornecedores.Location = new Point(191, 46);
             LabelFornecedores.Name = "LabelFornecedores";
             LabelFornecedores.Size = new Size(77, 13);
             LabelFornecedores.TabIndex = 15;
@@ -124,7 +121,7 @@
             LabelTransacoes.AutoSize = true;
             LabelTransacoes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelTransacoes.ForeColor = SystemColors.ControlLightLight;
-            LabelTransacoes.Location = new Point(626, 42);
+            LabelTransacoes.Location = new Point(542, 44);
             LabelTransacoes.Name = "LabelTransacoes";
             LabelTransacoes.Size = new Size(67, 15);
             LabelTransacoes.TabIndex = 13;
@@ -135,29 +132,29 @@
             LabelInventario.AutoSize = true;
             LabelInventario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelInventario.ForeColor = SystemColors.ControlLightLight;
-            LabelInventario.Location = new Point(542, 43);
+            LabelInventario.Location = new Point(458, 45);
             LabelInventario.Name = "LabelInventario";
             LabelInventario.Size = new Size(65, 15);
             LabelInventario.TabIndex = 12;
             LabelInventario.Text = "Inventário";
             // 
-            // LabelProdutos
+            // LabelProducao
             // 
-            LabelProdutos.AutoSize = true;
-            LabelProdutos.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelProdutos.ForeColor = SystemColors.ControlLightLight;
-            LabelProdutos.Location = new Point(458, 43);
-            LabelProdutos.Name = "LabelProdutos";
-            LabelProdutos.Size = new Size(57, 15);
-            LabelProdutos.TabIndex = 11;
-            LabelProdutos.Text = "Produtos";
+            LabelProducao.AutoSize = true;
+            LabelProducao.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelProducao.ForeColor = SystemColors.ControlLightLight;
+            LabelProducao.Location = new Point(374, 45);
+            LabelProducao.Name = "LabelProducao";
+            LabelProducao.Size = new Size(57, 15);
+            LabelProducao.TabIndex = 11;
+            LabelProducao.Text = "Produção";
             // 
             // LabelCategorias
             // 
             LabelCategorias.AutoSize = true;
             LabelCategorias.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCategorias.ForeColor = SystemColors.ControlLightLight;
-            LabelCategorias.Location = new Point(374, 44);
+            LabelCategorias.Location = new Point(290, 46);
             LabelCategorias.Name = "LabelCategorias";
             LabelCategorias.Size = new Size(51, 13);
             LabelCategorias.TabIndex = 10;
@@ -166,7 +163,7 @@
             // PictureBoxTransacoes
             // 
             PictureBoxTransacoes.Image = Properties.Resources.Transacao;
-            PictureBoxTransacoes.Location = new Point(640, 4);
+            PictureBoxTransacoes.Location = new Point(556, 6);
             PictureBoxTransacoes.Name = "PictureBoxTransacoes";
             PictureBoxTransacoes.Size = new Size(40, 37);
             PictureBoxTransacoes.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -178,7 +175,7 @@
             // PictureBoxInventario
             // 
             PictureBoxInventario.Image = Properties.Resources.Inventario;
-            PictureBoxInventario.Location = new Point(553, 4);
+            PictureBoxInventario.Location = new Point(469, 6);
             PictureBoxInventario.Name = "PictureBoxInventario";
             PictureBoxInventario.Size = new Size(40, 37);
             PictureBoxInventario.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -187,22 +184,22 @@
             PictureBoxInventario.Click += PictureBoxInventario_Click;
             PictureBoxInventario.MouseHover += PictureBoxInventario_MouseHover;
             // 
-            // PictureBoxProdutos
+            // PictureBoxProducao
             // 
-            PictureBoxProdutos.Image = Properties.Resources.Produtos;
-            PictureBoxProdutos.Location = new Point(466, 4);
-            PictureBoxProdutos.Name = "PictureBoxProdutos";
-            PictureBoxProdutos.Size = new Size(40, 37);
-            PictureBoxProdutos.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxProdutos.TabIndex = 3;
-            PictureBoxProdutos.TabStop = false;
-            PictureBoxProdutos.Click += PictureBoxProdutos_Click;
-            PictureBoxProdutos.MouseHover += PictureBoxProdutos_MouseHover;
+            PictureBoxProducao.Image = Properties.Resources.Produtos;
+            PictureBoxProducao.Location = new Point(382, 6);
+            PictureBoxProducao.Name = "PictureBoxProducao";
+            PictureBoxProducao.Size = new Size(40, 37);
+            PictureBoxProducao.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxProducao.TabIndex = 3;
+            PictureBoxProducao.TabStop = false;
+            PictureBoxProducao.Click += PictureBoxProducao_Click;
+            PictureBoxProducao.MouseHover += PictureBoxProducao_MouseHover;
             // 
             // PictureBoxInsumos
             // 
             PictureBoxInsumos.Image = Properties.Resources.Insumos;
-            PictureBoxInsumos.Location = new Point(379, 4);
+            PictureBoxInsumos.Location = new Point(295, 6);
             PictureBoxInsumos.Name = "PictureBoxInsumos";
             PictureBoxInsumos.Size = new Size(40, 37);
             PictureBoxInsumos.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -214,7 +211,7 @@
             // PictureBoxClientes
             // 
             PictureBoxClientes.Image = Properties.Resources.Clientes;
-            PictureBoxClientes.Location = new Point(205, 4);
+            PictureBoxClientes.Location = new Point(121, 6);
             PictureBoxClientes.Name = "PictureBoxClientes";
             PictureBoxClientes.Size = new Size(40, 37);
             PictureBoxClientes.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -226,7 +223,7 @@
             // PictureBoxFornecedores
             // 
             PictureBoxFornecedores.Image = Properties.Resources.Fornecedores;
-            PictureBoxFornecedores.Location = new Point(293, 4);
+            PictureBoxFornecedores.Location = new Point(209, 6);
             PictureBoxFornecedores.Name = "PictureBoxFornecedores";
             PictureBoxFornecedores.Size = new Size(40, 37);
             PictureBoxFornecedores.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -241,7 +238,7 @@
             PictureBoxFuncionarios.AccessibleName = "Usuarios";
             PictureBoxFuncionarios.AccessibleRole = AccessibleRole.TitleBar;
             PictureBoxFuncionarios.Image = Properties.Resources.Usuarios;
-            PictureBoxFuncionarios.Location = new Point(119, 4);
+            PictureBoxFuncionarios.Location = new Point(35, 6);
             PictureBoxFuncionarios.Name = "PictureBoxFuncionarios";
             PictureBoxFuncionarios.Size = new Size(40, 37);
             PictureBoxFuncionarios.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -253,19 +250,17 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
-            PanelHeader.Controls.Add(LabelLogoff);
             PanelHeader.Controls.Add(PictureBoxLogoff);
+            PanelHeader.Controls.Add(LabelLogoff);
             PanelHeader.Controls.Add(LabelBemVindo);
             PanelHeader.Controls.Add(BotaoTesteRecomendacoes);
             PanelHeader.Controls.Add(BotaoAbrirTelaDeTeste);
-            PanelHeader.Controls.Add(LabelSair);
-            PanelHeader.Controls.Add(PictureBoxSair);
             PanelHeader.Controls.Add(LabelTransacoes);
             PanelHeader.Controls.Add(PictureBoxTransacoes);
             PanelHeader.Controls.Add(LabelInventario);
             PanelHeader.Controls.Add(PictureBoxInventario);
-            PanelHeader.Controls.Add(LabelProdutos);
-            PanelHeader.Controls.Add(PictureBoxProdutos);
+            PanelHeader.Controls.Add(LabelProducao);
+            PanelHeader.Controls.Add(PictureBoxProducao);
             PanelHeader.Controls.Add(LabelCategorias);
             PanelHeader.Controls.Add(PictureBoxInsumos);
             PanelHeader.Controls.Add(LabelFornecedores);
@@ -277,37 +272,37 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1540, 65);
+            PanelHeader.Size = new Size(1540, 67);
             PanelHeader.TabIndex = 1;
+            // 
+            // PictureBoxLogoff
+            // 
+            PictureBoxLogoff.Image = Properties.Resources.Sair;
+            PictureBoxLogoff.Location = new Point(1459, 6);
+            PictureBoxLogoff.Name = "PictureBoxLogoff";
+            PictureBoxLogoff.Size = new Size(40, 37);
+            PictureBoxLogoff.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxLogoff.TabIndex = 23;
+            PictureBoxLogoff.TabStop = false;
+            PictureBoxLogoff.Click += PictureBoxLogoff_Click;
             // 
             // LabelLogoff
             // 
             LabelLogoff.AutoSize = true;
             LabelLogoff.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelLogoff.ForeColor = Color.White;
-            LabelLogoff.Location = new Point(1452, 42);
+            LabelLogoff.Location = new Point(1442, 44);
             LabelLogoff.Name = "LabelLogoff";
             LabelLogoff.Size = new Size(77, 15);
             LabelLogoff.TabIndex = 8;
             LabelLogoff.Text = "Fazer Logoff";
-            // 
-            // PictureBoxLogoff
-            // 
-            PictureBoxLogoff.Image = Properties.Resources.cancelar;
-            PictureBoxLogoff.Location = new Point(1477, 11);
-            PictureBoxLogoff.Name = "PictureBoxLogoff";
-            PictureBoxLogoff.Size = new Size(30, 28);
-            PictureBoxLogoff.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxLogoff.TabIndex = 23;
-            PictureBoxLogoff.TabStop = false;
-            PictureBoxLogoff.Click += PictureBoxLogoff_Click;
             // 
             // LabelBemVindo
             // 
             LabelBemVindo.AutoSize = true;
             LabelBemVindo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelBemVindo.ForeColor = Color.White;
-            LabelBemVindo.Location = new Point(1349, 22);
+            LabelBemVindo.Location = new Point(1324, 24);
             LabelBemVindo.Name = "LabelBemVindo";
             LabelBemVindo.Size = new Size(100, 17);
             LabelBemVindo.TabIndex = 22;
@@ -335,38 +330,12 @@
             BotaoAbrirTelaDeTeste.UseVisualStyleBackColor = true;
             BotaoAbrirTelaDeTeste.Click += BotaoAbrirTelaDeTeste_Click;
             // 
-            // LabelSair
-            // 
-            LabelSair.AutoSize = true;
-            LabelSair.BackColor = Color.FromArgb(62, 181, 68);
-            LabelSair.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelSair.ForeColor = Color.White;
-            LabelSair.Location = new Point(34, 43);
-            LabelSair.Name = "LabelSair";
-            LabelSair.Size = new Size(26, 13);
-            LabelSair.TabIndex = 18;
-            LabelSair.Text = "Sair";
-            // 
-            // PictureBoxSair
-            // 
-            PictureBoxSair.AccessibleDescription = "Usuarios";
-            PictureBoxSair.AccessibleName = "Usuarios";
-            PictureBoxSair.AccessibleRole = AccessibleRole.TitleBar;
-            PictureBoxSair.Image = Properties.Resources.Sair;
-            PictureBoxSair.Location = new Point(26, 4);
-            PictureBoxSair.Name = "PictureBoxSair";
-            PictureBoxSair.Size = new Size(40, 37);
-            PictureBoxSair.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxSair.TabIndex = 16;
-            PictureBoxSair.TabStop = false;
-            PictureBoxSair.Click += PictureBoxSair_Click;
-            // 
             // LabelClientes
             // 
             LabelClientes.AutoSize = true;
             LabelClientes.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelClientes.ForeColor = SystemColors.ControlLightLight;
-            LabelClientes.Location = new Point(201, 44);
+            LabelClientes.Location = new Point(117, 46);
             LabelClientes.Name = "LabelClientes";
             LabelClientes.Size = new Size(48, 13);
             LabelClientes.TabIndex = 14;
@@ -377,7 +346,7 @@
             LabelFuncionarios.AutoSize = true;
             LabelFuncionarios.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelFuncionarios.ForeColor = SystemColors.ControlLightLight;
-            LabelFuncionarios.Location = new Point(102, 44);
+            LabelFuncionarios.Location = new Point(18, 46);
             LabelFuncionarios.Name = "LabelFuncionarios";
             LabelFuncionarios.Size = new Size(74, 13);
             LabelFuncionarios.TabIndex = 2;
@@ -386,7 +355,7 @@
             // PictureBoxLogoFundo
             // 
             PictureBoxLogoFundo.Image = Properties.Resources.Logo;
-            PictureBoxLogoFundo.Location = new Point(592, 125);
+            PictureBoxLogoFundo.Location = new Point(592, 135);
             PictureBoxLogoFundo.Name = "PictureBoxLogoFundo";
             PictureBoxLogoFundo.Size = new Size(351, 539);
             PictureBoxLogoFundo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -503,7 +472,7 @@
             PanelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxProdutos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxClientes).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).EndInit();
@@ -511,7 +480,6 @@
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxSair).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).EndInit();
             ResumeLayout(false);
@@ -529,14 +497,14 @@
         private ToolTip toolTip5;
         private ToolTip toolTip6;
         private ToolTip toolTip7;
-        private Label LabelProdutos;
+        private Label LabelProducao;
         private Label LabelCategorias;
         private Label LabelFornecedores;
         private Label LabelTransacoes;
         private Label LabelInventario;
         private PictureBox PictureBoxTransacoes;
         private PictureBox PictureBoxInventario;
-        private PictureBox PictureBoxProdutos;
+        private PictureBox PictureBoxProducao;
         private PictureBox PictureBoxInsumos;
         private PictureBox PictureBoxClientes;
         private PictureBox PictureBoxFornecedores;
@@ -544,8 +512,6 @@
         private Panel PanelHeader;
         private Label LabelClientes;
         private Label LabelFuncionarios;
-        private Label LabelSair;
-        private PictureBox PictureBoxSair;
         private PictureBox PictureBoxLogoFundo;
         private Button BotaoAbrirTelaDeTeste;
         private Button BotaoTesteRecomendacoes;
