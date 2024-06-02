@@ -35,10 +35,23 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaFornecedores.Columns["CEPColumn"].DataPropertyName = "CEP";
 
             // Configurar o modo de redimensionamento das colunas
+            /*
             foreach (DataGridViewColumn column in DataGridViewListaFornecedores.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            */
+
+            // Definindo o tamanho padrão das colunas
+            DataGridViewListaFornecedores.Columns["IDColumn"].Width = 40;
+            DataGridViewListaFornecedores.Columns["NomeColumn"].Width = 380;
+            DataGridViewListaFornecedores.Columns["EmailColumn"].Width = 300;
+            DataGridViewListaFornecedores.Columns["CNPJColumn"].Width = 150;
+            DataGridViewListaFornecedores.Columns["TelefoneColumn"].Width = 125;
+            DataGridViewListaFornecedores.Columns["EnderecoColumn"].Width = 500;
+            DataGridViewListaFornecedores.Columns["CEPColumn"].Width = 85;
+
+            DataGridViewListaFornecedores.Columns["EnderecoColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
         }
 

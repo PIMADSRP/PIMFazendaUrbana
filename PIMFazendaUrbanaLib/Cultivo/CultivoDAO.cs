@@ -295,5 +295,30 @@ namespace PIMFazendaUrbanaLib
             }
             return cultivos;
         }
+
+        public List<string> ListarCategorias()
+        {
+            List<string> categorias = new List<string>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT DISTINCT categoria_cultivo FROM cultivo WHERE ativo_cultivo = true";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            categorias.Add(reader.GetString("categoria_cultivo"));
+                        }
+                    }
+                }
+            }
+            return categorias;
+        }
+
     }
 }

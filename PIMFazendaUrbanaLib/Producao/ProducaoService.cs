@@ -4,9 +4,9 @@
     {
         private ProducaoDAO producaoDAO;
 
-        public ProducaoService(ProducaoDAO producaoDAO)
+        public ProducaoService()
         {
-            this.producaoDAO = producaoDAO;
+            this.producaoDAO = new ProducaoDAO();
         }
 
         // 1 - MÉTODO CADASTRAR PRODUCAO
@@ -19,7 +19,8 @@
             }
             catch (Exception ex)
             {
-                return false;
+                throw new Exception("Erro ao cadastrar produção: " + ex.Message);
+                //return false;
             }
         }
 
@@ -47,54 +48,41 @@
             }
             catch (Exception ex)
             {
-                return false;
+                throw new Exception("Erro ao finalizar produção: " + ex.Message);
+                //return false;
             }
         }
 
-        // 4 - MÉTODO EXCLUIR (DESATIVAR) PRODUCAO
-        public bool ExcluirProducao(int producaoId)
+        // 4 - Listagem
+        // 4.1 - MÉTODO LISTAR PRODUCOES
+        public List<Producao> ListarProducoes()
         {
             try
             {
-                producaoDAO.ExcluirProducao(producaoId);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        // 5 - Listagem
-        // 5.1 - MÉTODO LISTAR PRODUCOES (ATIVAS)
-        public List<Producao> ListarProducoesAtivas()
-        {
-            try
-            {
-                List<Producao> producoes = producaoDAO.ListarProducoesAtivas();
+                List<Producao> producoes = producaoDAO.ListarProducoes();
                 return producoes; // Retorna a lista de produções quando tudo corre bem
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar produções ativas.", ex); // Lança uma exceção indicando que ocorreu um erro
+                throw new Exception("Erro ao listar produções: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro
             }
         }
 
-        // 5.2 - MÉTODO LISTAR PRODUCOES (ATIVAS E NÃO FINALIZADAS)
-        public List<Producao> ListarProducoesAtivasNaoFinalizadas()
+        // 4.2 - MÉTODO LISTAR PRODUCOES (NÃO FINALIZADAS)
+        public List<Producao> ListarProducoesNaoFinalizadas()
         {
             try
             {
-                List<Producao> producoes = producaoDAO.ListarProducoesAtivasNaoFinalizadas();
+                List<Producao> producoes = producaoDAO.ListarProducoesNaoFinalizadas();
                 return producoes; // Retorna a lista de produções quando tudo corre bem
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar produções ativas.", ex); // Lança uma exceção indicando que ocorreu um erro
+                throw new Exception("Erro ao listar produções.", ex); // Lança uma exceção indicando que ocorreu um erro
             }
         }
 
-        // 6 - MÉTODO CONSULTAR PRODUCAO POR ID
+        // 5 - MÉTODO CONSULTAR PRODUCAO POR ID
         public Producao ConsultarProducaoID(int producaoId)
         {
             try

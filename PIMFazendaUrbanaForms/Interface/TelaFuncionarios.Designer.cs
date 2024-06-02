@@ -98,6 +98,7 @@
             DataGridViewListaFuncionarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DataGridViewListaFuncionarios.Location = new Point(60, 80);
             DataGridViewListaFuncionarios.Name = "DataGridViewListaFuncionarios";
+            DataGridViewListaFuncionarios.RowHeadersWidth = 27;
             DataGridViewListaFuncionarios.Size = new Size(1410, 666);
             DataGridViewListaFuncionarios.TabIndex = 0;
             // 

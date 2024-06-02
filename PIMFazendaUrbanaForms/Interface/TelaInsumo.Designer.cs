@@ -248,6 +248,7 @@
             DataGridViewListaInsumos.Location = new Point(94, 93);
             DataGridViewListaInsumos.Name = "DataGridViewListaInsumos";
             DataGridViewListaInsumos.ReadOnly = true;
+            DataGridViewListaInsumos.RowHeadersWidth = 27;
             DataGridViewListaInsumos.Size = new Size(608, 647);
             DataGridViewListaInsumos.TabIndex = 0;
             DataGridViewListaInsumos.VirtualMode = true;
@@ -285,6 +286,7 @@
             DataGridViewSaidaInsumos.Location = new Point(826, 93);
             DataGridViewSaidaInsumos.Name = "DataGridViewSaidaInsumos";
             DataGridViewSaidaInsumos.ReadOnly = true;
+            DataGridViewSaidaInsumos.RowHeadersWidth = 27;
             DataGridViewSaidaInsumos.Size = new Size(608, 647);
             DataGridViewSaidaInsumos.TabIndex = 1;
             DataGridViewSaidaInsumos.VirtualMode = true;

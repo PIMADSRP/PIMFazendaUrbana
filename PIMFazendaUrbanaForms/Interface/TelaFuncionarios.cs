@@ -41,10 +41,26 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaFuncionarios.Columns["CEPColumn"].DataPropertyName = "CEP";
 
             // Configurar o modo de redimensionamento das colunas
+            /*
             foreach (DataGridViewColumn column in DataGridViewListaFuncionarios.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            */
+
+            // Definindo o tamanho padrão das colunas
+            DataGridViewListaFuncionarios.Columns["IDColumn"].Width = 40;
+            DataGridViewListaFuncionarios.Columns["NomeColumn"].Width = 320;
+            DataGridViewListaFuncionarios.Columns["SexoColumn"].Width = 45;
+            DataGridViewListaFuncionarios.Columns["EmailColumn"].Width = 220;
+            DataGridViewListaFuncionarios.Columns["CPFColumn"].Width = 120;
+            DataGridViewListaFuncionarios.Columns["CargoColumn"].Width = 100;
+            DataGridViewListaFuncionarios.Columns["UsuarioColumn"].Width = 85;
+            DataGridViewListaFuncionarios.Columns["TelefoneColumn"].Width = 125;
+            DataGridViewListaFuncionarios.Columns["EnderecoColumn"].Width = 500;
+            DataGridViewListaFuncionarios.Columns["CEPColumn"].Width = 85;
+
+            DataGridViewListaFuncionarios.Columns["EnderecoColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
         }
         private void TelaFuncionarios_Load(object sender, EventArgs e)

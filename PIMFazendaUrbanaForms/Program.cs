@@ -9,6 +9,7 @@ namespace PIMFazendaUrbanaForms
         /// </summary>
         
         internal static Funcionario UsuarioLogado { get; set; }
+        public static Utility utility = new Utility();
 
         [STAThread]
         static void Main()

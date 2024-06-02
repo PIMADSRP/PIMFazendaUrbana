@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProducao));
             PanelHeader = new Panel();
-            pictureBox1 = new PictureBox();
+            PictureBoxFinalizarProducao = new PictureBox();
             LabelFinalizarProducao = new Label();
-            PictureBoxCadastrarSaida = new PictureBox();
+            PictureBoxCadastrarProducao = new PictureBox();
             LabelCadastrarSaida = new Label();
             TextBoxPesquisar = new TextBox();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
             LabelPesquisarCultivo = new Label();
-            PictureBoxAtualizarCultivo = new PictureBox();
+            PictureBoxAtualizar = new PictureBox();
             PictureBoxEditarCultivo = new PictureBox();
             PictureBoxDeletarCultivo = new PictureBox();
             LabelAtualizar = new Label();
@@ -51,32 +51,32 @@
             label1 = new Label();
             LabelCultivos = new Label();
             LabelRegistroSaida = new Label();
-            DataGridViewSaidaInsumos = new DataGridView();
+            DataGridViewProducao = new DataGridView();
             PanelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFinalizarProducao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarProducao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizarCultivo).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditarCultivo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxDeletarCultivo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaCultivos).BeginInit();
             PanelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewProducao).BeginInit();
             SuspendLayout();
             // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
-            PanelHeader.Controls.Add(pictureBox1);
+            PanelHeader.Controls.Add(PictureBoxFinalizarProducao);
             PanelHeader.Controls.Add(LabelFinalizarProducao);
-            PanelHeader.Controls.Add(PictureBoxCadastrarSaida);
+            PanelHeader.Controls.Add(PictureBoxCadastrarProducao);
             PanelHeader.Controls.Add(LabelCadastrarSaida);
             PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
             PanelHeader.Controls.Add(LabelPesquisarCultivo);
-            PanelHeader.Controls.Add(PictureBoxAtualizarCultivo);
+            PanelHeader.Controls.Add(PictureBoxAtualizar);
             PanelHeader.Controls.Add(PictureBoxEditarCultivo);
             PanelHeader.Controls.Add(PictureBoxDeletarCultivo);
             PanelHeader.Controls.Add(LabelAtualizar);
@@ -90,15 +90,16 @@
             PanelHeader.Size = new Size(1350, 60);
             PanelHeader.TabIndex = 53;
             // 
-            // pictureBox1
+            // PictureBoxFinalizarProducao
             // 
-            pictureBox1.Image = Properties.Resources.SaidaDeEstoque;
-            pictureBox1.Location = new Point(1008, 10);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(29, 25);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 63;
-            pictureBox1.TabStop = false;
+            PictureBoxFinalizarProducao.Image = Properties.Resources.SaidaDeEstoque;
+            PictureBoxFinalizarProducao.Location = new Point(1008, 10);
+            PictureBoxFinalizarProducao.Name = "PictureBoxFinalizarProducao";
+            PictureBoxFinalizarProducao.Size = new Size(29, 25);
+            PictureBoxFinalizarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxFinalizarProducao.TabIndex = 63;
+            PictureBoxFinalizarProducao.TabStop = false;
+            PictureBoxFinalizarProducao.Click += PictureBoxFinalizarProducao_Click;
             // 
             // LabelFinalizarProducao
             // 
@@ -111,15 +112,16 @@
             LabelFinalizarProducao.TabIndex = 64;
             LabelFinalizarProducao.Text = "Finalizar produção";
             // 
-            // PictureBoxCadastrarSaida
+            // PictureBoxCadastrarProducao
             // 
-            PictureBoxCadastrarSaida.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxCadastrarSaida.Location = new Point(872, 10);
-            PictureBoxCadastrarSaida.Name = "PictureBoxCadastrarSaida";
-            PictureBoxCadastrarSaida.Size = new Size(29, 25);
-            PictureBoxCadastrarSaida.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxCadastrarSaida.TabIndex = 61;
-            PictureBoxCadastrarSaida.TabStop = false;
+            PictureBoxCadastrarProducao.Image = Properties.Resources.SaidaDeEstoque;
+            PictureBoxCadastrarProducao.Location = new Point(872, 10);
+            PictureBoxCadastrarProducao.Name = "PictureBoxCadastrarProducao";
+            PictureBoxCadastrarProducao.Size = new Size(29, 25);
+            PictureBoxCadastrarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxCadastrarProducao.TabIndex = 61;
+            PictureBoxCadastrarProducao.TabStop = false;
+            PictureBoxCadastrarProducao.Click += PictureBoxCadastrarProducao_Click;
             // 
             // LabelCadastrarSaida
             // 
@@ -177,16 +179,16 @@
             LabelPesquisarCultivo.TabIndex = 53;
             LabelPesquisarCultivo.Text = "Pesquisar Cultivos:";
             // 
-            // PictureBoxAtualizarCultivo
+            // PictureBoxAtualizar
             // 
-            PictureBoxAtualizarCultivo.Image = (Image)resources.GetObject("PictureBoxAtualizarCultivo.Image");
-            PictureBoxAtualizarCultivo.Location = new Point(655, 13);
-            PictureBoxAtualizarCultivo.Name = "PictureBoxAtualizarCultivo";
-            PictureBoxAtualizarCultivo.Size = new Size(29, 25);
-            PictureBoxAtualizarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxAtualizarCultivo.TabIndex = 51;
-            PictureBoxAtualizarCultivo.TabStop = false;
-            PictureBoxAtualizarCultivo.Click += PictureBoxAtualizarCultivo_Click;
+            PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
+            PictureBoxAtualizar.Location = new Point(655, 13);
+            PictureBoxAtualizar.Name = "PictureBoxAtualizar";
+            PictureBoxAtualizar.Size = new Size(29, 25);
+            PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxAtualizar.TabIndex = 51;
+            PictureBoxAtualizar.TabStop = false;
+            PictureBoxAtualizar.Click += PictureBoxAtualizar_Click;
             // 
             // PictureBoxEditarCultivo
             // 
@@ -271,10 +273,11 @@
             DataGridViewListaCultivos.AllowUserToDeleteRows = false;
             DataGridViewListaCultivos.BackgroundColor = SystemColors.Menu;
             DataGridViewListaCultivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaCultivos.Location = new Point(94, 93);
+            DataGridViewListaCultivos.Location = new Point(35, 93);
             DataGridViewListaCultivos.Name = "DataGridViewListaCultivos";
             DataGridViewListaCultivos.ReadOnly = true;
-            DataGridViewListaCultivos.Size = new Size(608, 647);
+            DataGridViewListaCultivos.RowHeadersWidth = 27;
+            DataGridViewListaCultivos.Size = new Size(667, 647);
             DataGridViewListaCultivos.TabIndex = 0;
             DataGridViewListaCultivos.VirtualMode = true;
             // 
@@ -307,7 +310,7 @@
             LabelCultivos.AutoSize = true;
             LabelCultivos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCultivos.ForeColor = Color.DarkGreen;
-            LabelCultivos.Location = new Point(94, 73);
+            LabelCultivos.Location = new Point(35, 73);
             LabelCultivos.Name = "LabelCultivos";
             LabelCultivos.Size = new Size(141, 17);
             LabelCultivos.TabIndex = 58;
@@ -324,18 +327,19 @@
             LabelRegistroSaida.TabIndex = 59;
             LabelRegistroSaida.Text = "Produções cadastradas:";
             // 
-            // DataGridViewSaidaInsumos
+            // DataGridViewProducao
             // 
-            DataGridViewSaidaInsumos.AllowUserToAddRows = false;
-            DataGridViewSaidaInsumos.AllowUserToDeleteRows = false;
-            DataGridViewSaidaInsumos.BackgroundColor = SystemColors.Menu;
-            DataGridViewSaidaInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewSaidaInsumos.Location = new Point(826, 93);
-            DataGridViewSaidaInsumos.Name = "DataGridViewSaidaInsumos";
-            DataGridViewSaidaInsumos.ReadOnly = true;
-            DataGridViewSaidaInsumos.Size = new Size(608, 647);
-            DataGridViewSaidaInsumos.TabIndex = 1;
-            DataGridViewSaidaInsumos.VirtualMode = true;
+            DataGridViewProducao.AllowUserToAddRows = false;
+            DataGridViewProducao.AllowUserToDeleteRows = false;
+            DataGridViewProducao.BackgroundColor = SystemColors.Menu;
+            DataGridViewProducao.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewProducao.Location = new Point(826, 93);
+            DataGridViewProducao.Name = "DataGridViewProducao";
+            DataGridViewProducao.ReadOnly = true;
+            DataGridViewProducao.RowHeadersWidth = 27;
+            DataGridViewProducao.Size = new Size(608, 647);
+            DataGridViewProducao.TabIndex = 1;
+            DataGridViewProducao.VirtualMode = true;
             // 
             // TelaProducao
             // 
@@ -343,7 +347,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoValidate = AutoValidate.EnablePreventFocusChange;
             ClientSize = new Size(1350, 729);
-            Controls.Add(DataGridViewSaidaInsumos);
+            Controls.Add(DataGridViewProducao);
             Controls.Add(LabelRegistroSaida);
             Controls.Add(LabelCultivos);
             Controls.Add(PanelFooter);
@@ -356,17 +360,17 @@
             WindowState = FormWindowState.Maximized;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxFinalizarProducao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarProducao).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizarCultivo).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditarCultivo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxDeletarCultivo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaCultivos).EndInit();
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewProducao).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -377,7 +381,7 @@
         private PictureBox PictureBoxHome;
         private Label LabelHome;
         private Label LabelPesquisarCultivo;
-        private PictureBox PictureBoxAtualizarCultivo;
+        private PictureBox PictureBoxAtualizar;
         private PictureBox PictureBoxEditarCultivo;
         private PictureBox PictureBoxDeletarCultivo;
         private Label LabelAtualizar;
@@ -391,10 +395,10 @@
         private TextBox TextBoxPesquisar;
         private Label LabelCultivos;
         private Label LabelRegistroSaida;
-        private DataGridView DataGridViewSaidaInsumos;
-        private PictureBox PictureBoxCadastrarSaida;
+        private DataGridView DataGridViewProducao;
+        private PictureBox PictureBoxCadastrarProducao;
         private Label LabelCadastrarSaida;
-        private PictureBox pictureBox1;
+        private PictureBox PictureBoxFinalizarProducao;
         private Label LabelFinalizarProducao;
     }
 }

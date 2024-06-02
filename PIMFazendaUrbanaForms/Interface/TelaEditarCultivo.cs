@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Text.RegularExpressions;
-using PIMFazendaUrbanaLib;
+﻿using PIMFazendaUrbanaLib;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -10,16 +8,12 @@ namespace PIMFazendaUrbanaForms
         private CultivoService cultivoService;
         public event EventHandler CultivoEditadoSucesso;
 
-        bool nomeValido = true;
-        bool variedadeValida = true;
-        bool categoriaValida = true;
-        bool tempoTradicionalValido = true;
-        bool tempoControladoValido = true;
-
         public TelaEditarCultivo(int cultivoID)
         {
             InitializeComponent();
             cultivoService = new CultivoService();
+
+            PreencherComboBoxCategorias();
 
             cultivo = cultivoService.ConsultarCultivoID(cultivoID);
             if (cultivo != null)
@@ -38,59 +32,133 @@ namespace PIMFazendaUrbanaForms
             TextBoxNome.Text = cultivo.Nome;
             TextBoxVariedade.Text = cultivo.Variedade;
             ComboBoxCategoria.SelectedItem = cultivo.Categoria;
-            maskedTextBoxTempoTradicional.Text = cultivo.TempoProdTradicional.ToString();
-            maskedTextBoxTempoControlado.Text = cultivo.TempoProdControlado.ToString();
+            MaskedTextBoxTempoTradicional.Text = cultivo.TempoProdTradicional.ToString();
+            MaskedTextBoxTempoControlado.Text = cultivo.TempoProdControlado.ToString();
         }
 
+        private void PreencherComboBoxCategorias()
+        {
+            List<string> categorias = cultivoService.ListarCategorias();
+            ComboBoxCategoria.Items.Clear();
+            ComboBoxCategoria.Items.AddRange(categorias.ToArray());
+        }
         private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
-            if (!nomeValido)
+            string nome = TextBoxNome.Text;
+            string variedade = TextBoxVariedade.Text;
+            string categoria = ComboBoxCategoria.SelectedItem?.ToString();
+            string tempoTradicional = MaskedTextBoxTempoTradicional.Text;
+            string tempoControlado = MaskedTextBoxTempoControlado.Text;
+            bool nomeValido = true;
+            bool variedadeValida = true;
+            bool categoriaValida = true;
+            bool tempoTradicionalValido = true;
+            bool tempoControladoValido = true;
+
+            // Verifica se o nome tem pelo menos 3 caracteres alfabéticos
+            if (nome.Length < 3)
             {
-                MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres alfabéticos", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBoxNome.ForeColor = Color.Red;
+                MessageBox.Show("O nome do produto deve conter pelo menos 3 caracteres.");
                 this.ActiveControl = TextBoxNome;
-                return;
-            }
-            if (!variedadeValida)
-            {
-                MessageBox.Show("Preencha o campo Variedade corretamente. A variedade deve ter ao menos 3 caracteres alfabéticos", "Variedade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = TextBoxVariedade;
-                return;
-            }
-            if (!categoriaValida)
-            {
-                MessageBox.Show("Por favor, selecione uma categoria válida.", "Categoria Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = ComboBoxCategoria;
-                return;
-            }
-            if (!tempoTradicionalValido)
-            {
-                MessageBox.Show("Por favor, insira um valor válido para o tempo tradicional (número inteiro).", "Tempo Tradicional Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = maskedTextBoxTempoTradicional;
-                return;
-            }
-            if (!tempoControladoValido)
-            {
-                MessageBox.Show("Por favor, insira um valor válido para o tempo controlado (número inteiro).", "Tempo Controlado Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                this.ActiveControl = maskedTextBoxTempoControlado;
-                return;
-            }
-
-            cultivo.Nome = TextBoxNome.Text;
-            cultivo.Variedade = TextBoxVariedade.Text;
-            cultivo.Categoria = ComboBoxCategoria.SelectedItem.ToString();
-            cultivo.TempoProdTradicional = int.Parse(maskedTextBoxTempoTradicional.Text);
-            cultivo.TempoProdControlado = int.Parse(maskedTextBoxTempoControlado.Text);
-
-            bool sucesso = cultivoService.AlterarCultivo(cultivo);
-            if (sucesso)
-            {
-                MessageBox.Show("Cultivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                CultivoEditadoSucesso?.Invoke(this, EventArgs.Empty);
-                this.Close();
+                nomeValido = false;
             }
             else
             {
-                MessageBox.Show("Erro ao editar cultivo. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TextBoxNome.ForeColor = Color.Black;
+                nomeValido = true;
+            }
+
+            // Verifica se a variedade tem pelo menos 3 caracteres alfabéticos
+            if (variedade.Length < 3)
+            {
+                MessageBox.Show("A variedade deve conter pelo menos 3 caracteres.");
+                this.ActiveControl = TextBoxVariedade;
+                variedadeValida = false;
+            }
+            else
+            {
+                TextBoxVariedade.ForeColor = Color.Black;
+                variedadeValida = true;
+            }
+
+            // Lista de categorias permitidas
+            List<string> categoriasPermitidas = new List<string>
+            {
+                "Verdura",
+                "Legume",
+                "Fruta",
+                "Outro"
+            };
+
+            // Verifica se a categoria está na lista de permitidas
+            if (categoria == null || !categoriasPermitidas.Contains(categoria))
+            {
+                ComboBoxCategoria.ForeColor = Color.Red;
+                MessageBox.Show("Por favor, selecione uma categoria válida.");
+                this.ActiveControl = ComboBoxCategoria;
+                categoriaValida = false;
+            }
+            else
+            {
+                ComboBoxCategoria.ForeColor = Color.Black;
+                categoriaValida = true;
+            }
+
+            // Verifica se os campos de tempo estão preenchidos corretamente
+            if (string.IsNullOrWhiteSpace(tempoTradicional) || !int.TryParse(tempoTradicional, out _))
+            {
+                MaskedTextBoxTempoTradicional.ForeColor = Color.Red;
+                MessageBox.Show("Por favor, insira um valor válido para o tempo tradicional (número inteiro).");
+                this.ActiveControl = MaskedTextBoxTempoTradicional;
+                tempoTradicionalValido = false;
+            }
+            else
+            {
+                MaskedTextBoxTempoTradicional.ForeColor = Color.Black;
+                tempoTradicionalValido = true;
+            }
+
+            if (string.IsNullOrWhiteSpace(tempoControlado) || !int.TryParse(tempoControlado, out _))
+            {
+                MaskedTextBoxTempoControlado.ForeColor = Color.Red;
+                MessageBox.Show("Por favor, insira um valor válido para o tempo controlado (número inteiro).");
+                this.ActiveControl = MaskedTextBoxTempoControlado;
+                tempoControladoValido = false;
+            }
+            else
+            {
+                MaskedTextBoxTempoControlado.ForeColor = Color.Black;
+                tempoControladoValido = true;
+            }
+
+            if (nomeValido == true && variedadeValida == true && categoriaValida == true && tempoTradicionalValido == true && tempoControladoValido == true)
+            {
+
+                cultivo.Nome = nome;
+                cultivo.Variedade = variedade;
+                cultivo.Categoria = categoria;
+                cultivo.TempoProdTradicional = int.Parse(tempoTradicional);
+                cultivo.TempoProdControlado = int.Parse(tempoControlado);
+
+                try
+                {
+                    bool sucesso = cultivoService.AlterarCultivo(cultivo);
+                    if (sucesso == true)
+                    {
+                        MessageBox.Show("Cultivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CultivoEditadoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar cultivo. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao alterar cultivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -99,87 +167,7 @@ namespace PIMFazendaUrbanaForms
             this.Close();
         }
 
-        private void TextBoxNome_Validating(object sender, CancelEventArgs e)
-        {
-            string nome = TextBoxNome.Text;
-            if (!Regex.IsMatch(nome, @"^[A-Za-z]{3,}$"))
-            {
-                TextBoxNome.ForeColor = Color.Red;
-                nomeValido = false;
-            }
-            else
-            {
-                TextBoxNome.ForeColor = Color.Black;
-                nomeValido = true;
-            }
-        }
-
-        private void TextBoxVariedade_Validating(object sender, CancelEventArgs e)
-        {
-            string variedade = TextBoxVariedade.Text;
-            if (!Regex.IsMatch(variedade, @"^[A-Za-z]{3,}$"))
-            {
-                TextBoxVariedade.ForeColor = Color.Red;
-                variedadeValida = false;
-            }
-            else
-            {
-                TextBoxVariedade.ForeColor = Color.Black;
-                variedadeValida = true;
-            }
-        }
-
-        private void ComboBoxCategoria_Validating(object sender, CancelEventArgs e)
-        {
-            string categoria = ComboBoxCategoria.SelectedItem?.ToString();
-            List<string> categoriasPermitidas = new List<string>
-            {
-                "Hortaliças Folhosas", "Legumes", "Frutas", "Ervas Aromáticas",
-                "Grãos", "Tubérculos", "Flores Comestíveis", "Cogumelos",
-                "Brotos e Microverdes", "Plantas Medicinais"
-            };
-
-            if (categoria == null || !categoriasPermitidas.Contains(categoria))
-            {
-                ComboBoxCategoria.ForeColor = Color.Red;
-                categoriaValida = false;
-            }
-            else
-            {
-                ComboBoxCategoria.ForeColor = Color.Black;
-                categoriaValida = true;
-            }
-        }
-
-        private void MaskedTextBoxTempoTradicional_Validating(object sender, CancelEventArgs e)
-        {
-            string tempoTradicional = maskedTextBoxTempoTradicional.Text;
-            if (!int.TryParse(tempoTradicional, out _))
-            {
-                maskedTextBoxTempoTradicional.ForeColor = Color.Red;
-                tempoTradicionalValido = false;
-            }
-            else
-            {
-                maskedTextBoxTempoTradicional.ForeColor = Color.Black;
-                tempoTradicionalValido = true;
-            }
-        }
-
-        private void MaskedTextBoxTempoControlado_Validating(object sender, CancelEventArgs e)
-        {
-            string tempoControlado = maskedTextBoxTempoControlado.Text;
-            if (!int.TryParse(tempoControlado, out _))
-            {
-                maskedTextBoxTempoControlado.ForeColor = Color.Red;
-                tempoControladoValido = false;
-            }
-            else
-            {
-                maskedTextBoxTempoControlado.ForeColor = Color.Black;
-                tempoControladoValido = true;
-            }
-        }
-
     }
 }
+
+

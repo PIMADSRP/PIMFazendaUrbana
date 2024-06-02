@@ -28,105 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            maskedTextBoxTempoControlado = new MaskedTextBox();
-            label1 = new Label();
+            MaskedTextBoxTempoControlado = new MaskedTextBox();
+            LabelTempoProducaoControlado = new Label();
             ComboBoxCategoria = new ComboBox();
-            LabelCidade = new Label();
-            LabelBairro = new Label();
-            LabelComplemento = new Label();
-            LabelNumero = new Label();
-            maskedTextBoxTempoTradicional = new MaskedTextBox();
+            LabelTempoProducaoTradicional = new Label();
+            LabelCategoria = new Label();
+            LabelVariedade = new Label();
+            LabelNome = new Label();
+            MaskedTextBoxTempoTradicional = new MaskedTextBox();
             TextBoxVariedade = new TextBox();
             TextBoxNome = new TextBox();
             BotaoCancelar = new Button();
             BotaoConfirmar = new Button();
             PanelHeader = new Panel();
             LabelCadastrarCultivo = new Label();
+            LabelDias = new Label();
+            LabelDias2 = new Label();
             PanelHeader.SuspendLayout();
             SuspendLayout();
             // 
-            // maskedTextBoxTempoControlado
+            // MaskedTextBoxTempoControlado
             // 
-            maskedTextBoxTempoControlado.Culture = new System.Globalization.CultureInfo("");
-            maskedTextBoxTempoControlado.Location = new Point(150, 176);
-            maskedTextBoxTempoControlado.Mask = "000";
-            maskedTextBoxTempoControlado.Name = "maskedTextBoxTempoControlado";
-            maskedTextBoxTempoControlado.Size = new Size(70, 23);
-            maskedTextBoxTempoControlado.TabIndex = 4;
+            MaskedTextBoxTempoControlado.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxTempoControlado.Location = new Point(188, 171);
+            MaskedTextBoxTempoControlado.Mask = "000";
+            MaskedTextBoxTempoControlado.Name = "MaskedTextBoxTempoControlado";
+            MaskedTextBoxTempoControlado.Size = new Size(70, 23);
+            MaskedTextBoxTempoControlado.TabIndex = 4;
             // 
-            // label1
+            // LabelTempoProducaoControlado
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(25, 179);
-            label1.Name = "label1";
-            label1.Size = new Size(109, 15);
-            label1.TabIndex = 80;
-            label1.Text = "Tempo Controlado:";
+            LabelTempoProducaoControlado.AutoSize = true;
+            LabelTempoProducaoControlado.Location = new Point(28, 175);
+            LabelTempoProducaoControlado.Name = "label1";
+            LabelTempoProducaoControlado.Size = new Size(156, 15);
+            LabelTempoProducaoControlado.TabIndex = 80;
+            LabelTempoProducaoControlado.Text = "Tempo de Prod. Controlado:";
             // 
             // ComboBoxCategoria
             // 
             ComboBoxCategoria.FormattingEnabled = true;
-            ComboBoxCategoria.Items.AddRange(new object[] { "Hortaliças Folhosas", "Legumes", "Frutas", "Ervas Aromáticas", "Grãos", "Tubérculos", "Flores Comestíveis", "Cogumelos", "Brotos e Microverdes", "Plantas Medicinais" });
-            ComboBoxCategoria.Location = new Point(150, 118);
+            ComboBoxCategoria.Items.AddRange(new object[] { "Verdura", "Legume", "Fruta", "Outro" });
+            ComboBoxCategoria.Location = new Point(188, 113);
             ComboBoxCategoria.Name = "ComboBoxCategoria";
             ComboBoxCategoria.Size = new Size(137, 23);
             ComboBoxCategoria.TabIndex = 2;
             // 
-            // LabelCidade
+            // LabelTempoProducaoTradicional
             // 
-            LabelCidade.AutoSize = true;
-            LabelCidade.Location = new Point(28, 150);
-            LabelCidade.Name = "LabelCidade";
-            LabelCidade.Size = new Size(106, 15);
-            LabelCidade.TabIndex = 79;
-            LabelCidade.Text = "Tempo Tradicional:";
+            LabelTempoProducaoTradicional.AutoSize = true;
+            LabelTempoProducaoTradicional.Location = new Point(30, 146);
+            LabelTempoProducaoTradicional.Name = "LabelTempoProducaoTradicional";
+            LabelTempoProducaoTradicional.Size = new Size(153, 15);
+            LabelTempoProducaoTradicional.TabIndex = 79;
+            LabelTempoProducaoTradicional.Text = "Tempo de Prod. Tradicional:";
             // 
-            // LabelBairro
+            // LabelCategoria
             // 
-            LabelBairro.AutoSize = true;
-            LabelBairro.Location = new Point(79, 121);
-            LabelBairro.Name = "LabelBairro";
-            LabelBairro.Size = new Size(61, 15);
-            LabelBairro.TabIndex = 78;
-            LabelBairro.Text = "Categoria:";
+            LabelCategoria.AutoSize = true;
+            LabelCategoria.Location = new Point(123, 117);
+            LabelCategoria.Name = "LabelCategoria";
+            LabelCategoria.Size = new Size(61, 15);
+            LabelCategoria.TabIndex = 78;
+            LabelCategoria.Text = "Categoria:";
             // 
-            // LabelComplemento
+            // LabelVariedade
             // 
-            LabelComplemento.AutoSize = true;
-            LabelComplemento.Location = new Point(76, 93);
-            LabelComplemento.Name = "LabelComplemento";
-            LabelComplemento.Size = new Size(61, 15);
-            LabelComplemento.TabIndex = 77;
-            LabelComplemento.Text = "Variedade:";
+            LabelVariedade.AutoSize = true;
+            LabelVariedade.Location = new Point(122, 88);
+            LabelVariedade.Name = "LabelVariedade";
+            LabelVariedade.Size = new Size(61, 15);
+            LabelVariedade.TabIndex = 77;
+            LabelVariedade.Text = "Variedade:";
             // 
-            // LabelNumero
+            // LabelNome
             // 
-            LabelNumero.AutoSize = true;
-            LabelNumero.Location = new Point(99, 64);
-            LabelNumero.Name = "LabelNumero";
-            LabelNumero.Size = new Size(43, 15);
-            LabelNumero.TabIndex = 76;
-            LabelNumero.Text = "Nome:";
+            LabelNome.AutoSize = true;
+            LabelNome.Location = new Point(142, 58);
+            LabelNome.Name = "LabelNome";
+            LabelNome.Size = new Size(43, 15);
+            LabelNome.TabIndex = 76;
+            LabelNome.Text = "Nome:";
             // 
-            // maskedTextBoxTempoTradicional
+            // MaskedTextBoxTempoTradicional
             // 
-            maskedTextBoxTempoTradicional.Culture = new System.Globalization.CultureInfo("");
-            maskedTextBoxTempoTradicional.Location = new Point(150, 147);
-            maskedTextBoxTempoTradicional.Mask = "000";
-            maskedTextBoxTempoTradicional.Name = "maskedTextBoxTempoTradicional";
-            maskedTextBoxTempoTradicional.Size = new Size(70, 23);
-            maskedTextBoxTempoTradicional.TabIndex = 3;
+            MaskedTextBoxTempoTradicional.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxTempoTradicional.Location = new Point(188, 142);
+            MaskedTextBoxTempoTradicional.Mask = "000";
+            MaskedTextBoxTempoTradicional.Name = "MaskedTextBoxTempoTradicional";
+            MaskedTextBoxTempoTradicional.Size = new Size(70, 23);
+            MaskedTextBoxTempoTradicional.TabIndex = 3;
             // 
             // TextBoxVariedade
             // 
-            TextBoxVariedade.Location = new Point(150, 89);
+            TextBoxVariedade.Location = new Point(188, 84);
             TextBoxVariedade.Name = "TextBoxVariedade";
             TextBoxVariedade.Size = new Size(137, 23);
             TextBoxVariedade.TabIndex = 1;
             // 
             // TextBoxNome
             // 
-            TextBoxNome.Location = new Point(150, 60);
+            TextBoxNome.Location = new Point(188, 55);
             TextBoxNome.Name = "TextBoxNome";
             TextBoxNome.Size = new Size(137, 23);
             TextBoxNome.TabIndex = 0;
@@ -136,7 +138,7 @@
             BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
-            BotaoCancelar.Location = new Point(223, 217);
+            BotaoCancelar.Location = new Point(245, 216);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
             BotaoCancelar.TabIndex = 6;
@@ -149,7 +151,7 @@
             BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
             BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoConfirmar.ForeColor = Color.White;
-            BotaoConfirmar.Location = new Point(54, 217);
+            BotaoConfirmar.Location = new Point(78, 216);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
             BotaoConfirmar.TabIndex = 5;
@@ -164,7 +166,7 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(360, 41);
+            PanelHeader.Size = new Size(418, 41);
             PanelHeader.TabIndex = 69;
             // 
             // LabelCadastrarCultivo
@@ -172,25 +174,47 @@
             LabelCadastrarCultivo.AutoSize = true;
             LabelCadastrarCultivo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarCultivo.ForeColor = SystemColors.ButtonHighlight;
-            LabelCadastrarCultivo.Location = new Point(113, 9);
+            LabelCadastrarCultivo.Location = new Point(141, 9);
             LabelCadastrarCultivo.Name = "LabelCadastrarCultivo";
             LabelCadastrarCultivo.Size = new Size(132, 25);
             LabelCadastrarCultivo.TabIndex = 55;
             LabelCadastrarCultivo.Text = "Editar Cultivo";
             // 
+            // LabelDias
+            // 
+            LabelDias.AutoSize = true;
+            LabelDias.ForeColor = SystemColors.ControlDarkDark;
+            LabelDias.Location = new Point(261, 146);
+            LabelDias.Name = "LabelDias";
+            LabelDias.Size = new Size(29, 15);
+            LabelDias.TabIndex = 81;
+            LabelDias.Text = "Dias";
+            // 
+            // LabelDias2
+            // 
+            LabelDias2.AutoSize = true;
+            LabelDias2.ForeColor = SystemColors.ControlDarkDark;
+            LabelDias2.Location = new Point(261, 175);
+            LabelDias2.Name = "LabelDias2";
+            LabelDias2.Size = new Size(29, 15);
+            LabelDias2.TabIndex = 82;
+            LabelDias2.Text = "Dias";
+            // 
             // TelaEditarCultivo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(360, 258);
-            Controls.Add(maskedTextBoxTempoControlado);
-            Controls.Add(label1);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(418, 258);
+            Controls.Add(LabelDias2);
+            Controls.Add(LabelDias);
+            Controls.Add(MaskedTextBoxTempoControlado);
+            Controls.Add(LabelTempoProducaoControlado);
             Controls.Add(ComboBoxCategoria);
-            Controls.Add(LabelCidade);
-            Controls.Add(LabelBairro);
-            Controls.Add(LabelComplemento);
-            Controls.Add(LabelNumero);
-            Controls.Add(maskedTextBoxTempoTradicional);
+            Controls.Add(LabelTempoProducaoTradicional);
+            Controls.Add(LabelCategoria);
+            Controls.Add(LabelVariedade);
+            Controls.Add(LabelNome);
+            Controls.Add(MaskedTextBoxTempoTradicional);
             Controls.Add(TextBoxVariedade);
             Controls.Add(TextBoxNome);
             Controls.Add(BotaoCancelar);
@@ -207,19 +231,21 @@
 
         #endregion
 
-        private MaskedTextBox maskedTextBoxTempoControlado;
-        private Label label1;
+        private MaskedTextBox MaskedTextBoxTempoControlado;
+        private Label LabelTempoProducaoControlado;
         private ComboBox ComboBoxCategoria;
-        private Label LabelCidade;
-        private Label LabelBairro;
-        private Label LabelComplemento;
-        private Label LabelNumero;
-        private MaskedTextBox maskedTextBoxTempoTradicional;
+        private Label LabelTempoProducaoTradicional;
+        private Label LabelCategoria;
+        private Label LabelVariedade;
+        private Label LabelNome;
+        private MaskedTextBox MaskedTextBoxTempoTradicional;
         private TextBox TextBoxVariedade;
         private TextBox TextBoxNome;
         private Button BotaoCancelar;
         private Button BotaoConfirmar;
         private Panel PanelHeader;
         private Label LabelCadastrarCultivo;
+        private Label LabelDias;
+        private Label LabelDias2;
     }
 }

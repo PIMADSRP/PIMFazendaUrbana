@@ -1,3 +1,4 @@
+using PIMFazendaUrbanaForms.Interface;
 using System.Drawing.Imaging;
 
 namespace PIMFazendaUrbanaForms
@@ -188,9 +189,9 @@ namespace PIMFazendaUrbanaForms
             toolTip4.SetToolTip(PictureBoxInventario, "Inventário");
         }
 
-        private void PictureBoxTransacoes_MouseHover(object sender, EventArgs e)
+        private void pictureBoxCompras_MouseHover(object sender, EventArgs e)
         {
-            toolTip5.SetToolTip(PictureBoxTransacoes, "Transações");
+            toolTip5.SetToolTip(pictureBoxCompras, "Compras");
         }
 
         private void PictureBoxClientes_MouseHover(object sender, EventArgs e)
@@ -232,21 +233,7 @@ namespace PIMFazendaUrbanaForms
             telaListarFornecedores.Show();
         }
 
-        private void PictureBoxInventario_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void PictureBoxTransacoes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BotaoTesteRecomendacoes_Click(object sender, EventArgs e)
-        {
-            TelaRecomendacao telaRecomendacao = new TelaRecomendacao();
-            telaRecomendacao.Show();
-        }
 
         private void PictureBoxLogoff_Click(object sender, EventArgs e)
         {
@@ -356,6 +343,29 @@ namespace PIMFazendaUrbanaForms
 
             // Desenhar o foco se o item estiver selecionado
             e.DrawFocusRectangle();
+        }
+
+
+        private void pictureBoxRecomendarPlantio_Click(object sender, EventArgs e)
+        {
+            TelaRecomendacao telaRecomendacao = new TelaRecomendacao();
+            telaRecomendacao.Show();
+        }
+
+        private void pictureBoxCompras_MouseHover_1(object sender, EventArgs e)
+        {
+            toolTipCompra.SetToolTip(pictureBoxCompras, "Compra");
+        }
+
+        private void pictureBoxVendas_MouseHover(object sender, EventArgs e)
+        {
+            toolTipVenda.SetToolTip(pictureBoxVendas, "Venda");
+        }
+
+        private void pictureBoxCompras_Click(object sender, EventArgs e)
+        {
+            TelaCompra telaCompra = new TelaCompra();
+            telaCompra.Show();
         }
     }
 }

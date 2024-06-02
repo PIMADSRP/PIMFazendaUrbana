@@ -185,7 +185,7 @@ INSERT INTO `cultivo` (
 (52, 'Repolho', 'Repolho Roxo de Inverno', 100, 60, 'Legume'),
 (53, 'Rúcula', 'Rúcula Cultivada', 45, 25, 'Verdura'),
 (54, 'Salsa', 'Salsa Gigante de Itália', 80, 50, 'Verdura'),
-(55, 'Salsinha', 'Salsinha Crespa', 80, 50, 'Tempero'),
+(55, 'Salsinha', 'Salsinha Crespa', 80, 50, 'Verdura'),
 (56, 'Soja', 'Soja BRS 369', 150, 100, 'Legume'),
 (57, 'Tomate', 'Tomate Cereja', 75, 46, 'Fruta'),
 (58, 'Tomate', 'Tomate Italiano', 79, 48, 'Fruta'),
@@ -323,7 +323,7 @@ CREATE TABLE `estoqueinsumo` (
 	`nome_insumo` varchar(100) NOT NULL,
 	`categoria_insumo` varchar(50) NOT NULL,
     `qtd_insumo` int DEFAULT 0,
-    `unidqtd_insumo` varchar(10) DEFAULT 'Kg',
+    `unidqtd_insumo` varchar(10) DEFAULT 'kg',
 	`ativo_insumo` boolean DEFAULT true,
 	PRIMARY KEY (`id_insumo`)
 );
@@ -342,7 +342,7 @@ CREATE TABLE `pedidocompra` (
 CREATE TABLE `compraitem` (
 	`id_compraitem` int NOT NULL AUTO_INCREMENT,
 	`qtd_compraitem` int DEFAULT 0,
-	`unidqtd_compraitem` varchar(10) DEFAULT 'Kg',
+	`unidqtd_compraitem` varchar(10) DEFAULT 'kg',
     `valor_compraitem` decimal(9,3) NOT NULL,
 	`id_pedidocompra` int NOT NULL,
 	`id_insumo` int NOT NULL,
@@ -353,11 +353,25 @@ CREATE TABLE `compraitem` (
 	CONSTRAINT `compraitem_ibfk_2` FOREIGN KEY (`id_insumo`) REFERENCES `estoqueinsumo` (`id_insumo`)
 );
 
+-- Criar Trigger para atualizar qtd_insumo após inserir em compraitem
+DELIMITER //
+
+CREATE TRIGGER after_insert_compraitem
+AFTER INSERT ON compraitem
+FOR EACH ROW
+BEGIN
+    UPDATE estoqueinsumo
+    SET qtd_insumo = qtd_insumo + NEW.qtd_compraitem
+    WHERE id_insumo = NEW.id_insumo;
+END //
+
+DELIMITER ;
+
 ## SaidaInsumo
 CREATE TABLE `saidainsumo` (
 	`id_saidainsumo` int NOT NULL AUTO_INCREMENT,
 	`qtd_saidainsumo` int DEFAULT 0,
-	`unidqtd_saidainsumo` varchar(10) DEFAULT 'Kg',
+	`unidqtd_saidainsumo` varchar(10) DEFAULT 'kg',
 	`data_saidainsumo` timestamp DEFAULT CURRENT_TIMESTAMP,
 	`id_insumo` int NOT NULL,
 	PRIMARY KEY (`id_saidainsumo`, `id_insumo`),
@@ -369,8 +383,10 @@ CREATE TABLE `saidainsumo` (
 CREATE TABLE `producao` (
 	`id_producao` int NOT NULL AUTO_INCREMENT,
 	`qtd_producao` int NOT NULL,
-	`unidqtd_producao` varchar(10) DEFAULT 'Kg',
+	`unidqtd_producao` varchar(10) DEFAULT 'kg',
 	`data_producao` timestamp DEFAULT CURRENT_TIMESTAMP,
+    `datacolheita_producao` timestamp,
+    `ambientectrl_producao` boolean DEFAULT true,
     `finalizado_producao` boolean DEFAULT false,
 	`id_cultivo` int NOT NULL,
 	PRIMARY KEY (`id_producao`),
@@ -382,7 +398,7 @@ CREATE TABLE `producao` (
 CREATE TABLE `estoqueproduto` (
 	`id_estoqueproduto` int NOT NULL AUTO_INCREMENT,
 	`qtd_estoqueproduto` int NOT NULL,
-	`unidqtd_estoqueproduto` varchar(10) DEFAULT 'Kg',
+	`unidqtd_estoqueproduto` varchar(10) DEFAULT 'kg',
 	`dataentrada_estoqueproduto` timestamp DEFAULT CURRENT_TIMESTAMP,
 	`ativo_estoqueproduto` boolean DEFAULT true,
 	`id_producao` int NOT NULL,
@@ -405,7 +421,7 @@ CREATE TABLE `pedidovenda` (
 CREATE TABLE `vendaitem` (
 	`id_vendaitem` int NOT NULL AUTO_INCREMENT,
 	`qtd_vendaitem` int NOT NULL,
-	`unidqtd_vendaitem` varchar(10) DEFAULT 'Kg',
+	`unidqtd_vendaitem` varchar(10) DEFAULT 'kg',
     `valor_vendaitem` decimal(9,3) NOT NULL,
     `desconto_vendaitem` decimal(9,3),
 	`id_pedidovenda` int NOT NULL,

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipal));
             PanelFooter = new Panel();
             LabelFarmSystem = new Label();
             LabelFornecedores = new Label();
@@ -43,7 +44,7 @@
             toolTip5 = new ToolTip(components);
             toolTip6 = new ToolTip(components);
             toolTip7 = new ToolTip(components);
-            PictureBoxTransacoes = new PictureBox();
+            pictureBoxCompras = new PictureBox();
             PictureBoxInventario = new PictureBox();
             PictureBoxProducao = new PictureBox();
             PictureBoxInsumos = new PictureBox();
@@ -51,10 +52,13 @@
             PictureBoxFornecedores = new PictureBox();
             PictureBoxFuncionarios = new PictureBox();
             PanelHeader = new Panel();
+            label1 = new Label();
+            pictureBoxVendas = new PictureBox();
+            pictureBoxRecomendarPlantio = new PictureBox();
+            lbRecomendarPlantio = new Label();
             PictureBoxLogoff = new PictureBox();
             LabelLogoff = new Label();
             LabelBemVindo = new Label();
-            BotaoTesteRecomendacoes = new Button();
             BotaoAbrirTelaDeTeste = new Button();
             LabelClientes = new Label();
             LabelFuncionarios = new Label();
@@ -68,8 +72,13 @@
             LabelNoticias = new Label();
             ListBoxNoticiasInternas = new ListBox();
             LabelNoticiasInternas = new Label();
+            toolTip8 = new ToolTip(components);
+            toolTip9 = new ToolTip(components);
+            toolTipCompra = new ToolTip(components);
+            toolTipVenda = new ToolTip(components);
+            toolTip10 = new ToolTip(components);
             PanelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCompras).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).BeginInit();
@@ -77,6 +86,8 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).BeginInit();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxVendas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRecomendarPlantio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).BeginInit();
@@ -91,7 +102,7 @@
             PanelFooter.Location = new Point(0, 694);
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
-            PanelFooter.Size = new Size(1540, 35);
+            PanelFooter.Size = new Size(1370, 35);
             PanelFooter.TabIndex = 0;
             // 
             // LabelFarmSystem
@@ -121,11 +132,11 @@
             LabelTransacoes.AutoSize = true;
             LabelTransacoes.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelTransacoes.ForeColor = SystemColors.ControlLightLight;
-            LabelTransacoes.Location = new Point(542, 44);
+            LabelTransacoes.Location = new Point(548, 44);
             LabelTransacoes.Name = "LabelTransacoes";
-            LabelTransacoes.Size = new Size(67, 15);
+            LabelTransacoes.Size = new Size(50, 15);
             LabelTransacoes.TabIndex = 13;
-            LabelTransacoes.Text = "Transações";
+            LabelTransacoes.Text = "Compra";
             // 
             // LabelInventario
             // 
@@ -145,7 +156,7 @@
             LabelProducao.ForeColor = SystemColors.ControlLightLight;
             LabelProducao.Location = new Point(374, 45);
             LabelProducao.Name = "LabelProducao";
-            LabelProducao.Size = new Size(57, 15);
+            LabelProducao.Size = new Size(59, 15);
             LabelProducao.TabIndex = 11;
             LabelProducao.Text = "Produção";
             // 
@@ -160,17 +171,17 @@
             LabelCategorias.TabIndex = 10;
             LabelCategorias.Text = "Insumos";
             // 
-            // PictureBoxTransacoes
+            // pictureBoxCompras
             // 
-            PictureBoxTransacoes.Image = Properties.Resources.Transacao;
-            PictureBoxTransacoes.Location = new Point(556, 6);
-            PictureBoxTransacoes.Name = "PictureBoxTransacoes";
-            PictureBoxTransacoes.Size = new Size(40, 37);
-            PictureBoxTransacoes.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxTransacoes.TabIndex = 5;
-            PictureBoxTransacoes.TabStop = false;
-            PictureBoxTransacoes.Click += PictureBoxTransacoes_Click;
-            PictureBoxTransacoes.MouseHover += PictureBoxTransacoes_MouseHover;
+            pictureBoxCompras.Image = (Image)resources.GetObject("pictureBoxCompras.Image");
+            pictureBoxCompras.Location = new Point(553, 6);
+            pictureBoxCompras.Name = "pictureBoxCompras";
+            pictureBoxCompras.Size = new Size(40, 37);
+            pictureBoxCompras.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxCompras.TabIndex = 5;
+            pictureBoxCompras.TabStop = false;
+            pictureBoxCompras.Click += pictureBoxCompras_Click;
+            pictureBoxCompras.MouseHover += pictureBoxCompras_MouseHover_1;
             // 
             // PictureBoxInventario
             // 
@@ -181,7 +192,6 @@
             PictureBoxInventario.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxInventario.TabIndex = 4;
             PictureBoxInventario.TabStop = false;
-            PictureBoxInventario.Click += PictureBoxInventario_Click;
             PictureBoxInventario.MouseHover += PictureBoxInventario_MouseHover;
             // 
             // PictureBoxProducao
@@ -250,13 +260,16 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(label1);
+            PanelHeader.Controls.Add(pictureBoxVendas);
+            PanelHeader.Controls.Add(pictureBoxRecomendarPlantio);
+            PanelHeader.Controls.Add(lbRecomendarPlantio);
             PanelHeader.Controls.Add(PictureBoxLogoff);
             PanelHeader.Controls.Add(LabelLogoff);
             PanelHeader.Controls.Add(LabelBemVindo);
-            PanelHeader.Controls.Add(BotaoTesteRecomendacoes);
             PanelHeader.Controls.Add(BotaoAbrirTelaDeTeste);
             PanelHeader.Controls.Add(LabelTransacoes);
-            PanelHeader.Controls.Add(PictureBoxTransacoes);
+            PanelHeader.Controls.Add(pictureBoxCompras);
             PanelHeader.Controls.Add(LabelInventario);
             PanelHeader.Controls.Add(PictureBoxInventario);
             PanelHeader.Controls.Add(LabelProducao);
@@ -272,8 +285,52 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1540, 67);
+            PanelHeader.Size = new Size(1370, 67);
             PanelHeader.TabIndex = 1;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ControlLightLight;
+            label1.Location = new Point(637, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(41, 15);
+            label1.TabIndex = 27;
+            label1.Text = "Venda";
+            // 
+            // pictureBoxVendas
+            // 
+            pictureBoxVendas.Image = (Image)resources.GetObject("pictureBoxVendas.Image");
+            pictureBoxVendas.Location = new Point(637, 6);
+            pictureBoxVendas.Name = "pictureBoxVendas";
+            pictureBoxVendas.Size = new Size(40, 37);
+            pictureBoxVendas.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxVendas.TabIndex = 26;
+            pictureBoxVendas.TabStop = false;
+            pictureBoxVendas.MouseHover += pictureBoxVendas_MouseHover;
+            // 
+            // pictureBoxRecomendarPlantio
+            // 
+            pictureBoxRecomendarPlantio.Image = (Image)resources.GetObject("pictureBoxRecomendarPlantio.Image");
+            pictureBoxRecomendarPlantio.Location = new Point(730, 6);
+            pictureBoxRecomendarPlantio.Name = "pictureBoxRecomendarPlantio";
+            pictureBoxRecomendarPlantio.Size = new Size(40, 37);
+            pictureBoxRecomendarPlantio.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxRecomendarPlantio.TabIndex = 25;
+            pictureBoxRecomendarPlantio.TabStop = false;
+            pictureBoxRecomendarPlantio.Click += pictureBoxRecomendarPlantio_Click;
+            // 
+            // lbRecomendarPlantio
+            // 
+            lbRecomendarPlantio.AutoSize = true;
+            lbRecomendarPlantio.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbRecomendarPlantio.ForeColor = SystemColors.ControlLightLight;
+            lbRecomendarPlantio.Location = new Point(696, 46);
+            lbRecomendarPlantio.Name = "lbRecomendarPlantio";
+            lbRecomendarPlantio.Size = new Size(119, 15);
+            lbRecomendarPlantio.TabIndex = 24;
+            lbRecomendarPlantio.Text = "Recomendar Plantio";
             // 
             // PictureBoxLogoff
             // 
@@ -308,21 +365,10 @@
             LabelBemVindo.TabIndex = 22;
             LabelBemVindo.Text = "Bem-vindo(a), ";
             // 
-            // BotaoTesteRecomendacoes
-            // 
-            BotaoTesteRecomendacoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoTesteRecomendacoes.Location = new Point(886, 9);
-            BotaoTesteRecomendacoes.Name = "BotaoTesteRecomendacoes";
-            BotaoTesteRecomendacoes.Size = new Size(150, 47);
-            BotaoTesteRecomendacoes.TabIndex = 21;
-            BotaoTesteRecomendacoes.Text = "Recomendações de plantio";
-            BotaoTesteRecomendacoes.UseVisualStyleBackColor = true;
-            BotaoTesteRecomendacoes.Click += BotaoTesteRecomendacoes_Click;
-            // 
             // BotaoAbrirTelaDeTeste
             // 
             BotaoAbrirTelaDeTeste.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BotaoAbrirTelaDeTeste.Location = new Point(725, 18);
+            BotaoAbrirTelaDeTeste.Location = new Point(861, 18);
             BotaoAbrirTelaDeTeste.Name = "BotaoAbrirTelaDeTeste";
             BotaoAbrirTelaDeTeste.Size = new Size(138, 29);
             BotaoAbrirTelaDeTeste.TabIndex = 19;
@@ -451,7 +497,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1540, 729);
+            ClientSize = new Size(1370, 729);
             Controls.Add(LabelNoticiasInternas);
             Controls.Add(ListBoxNoticiasInternas);
             Controls.Add(LabelNoticias);
@@ -470,7 +516,7 @@
             WindowState = FormWindowState.Maximized;
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxTransacoes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCompras).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).EndInit();
@@ -479,6 +525,8 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxFuncionarios).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxVendas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRecomendarPlantio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoFundo).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxSlideShow).EndInit();
@@ -502,7 +550,7 @@
         private Label LabelFornecedores;
         private Label LabelTransacoes;
         private Label LabelInventario;
-        private PictureBox PictureBoxTransacoes;
+        private PictureBox pictureBoxCompras;
         private PictureBox PictureBoxInventario;
         private PictureBox PictureBoxProducao;
         private PictureBox PictureBoxInsumos;
@@ -514,7 +562,6 @@
         private Label LabelFuncionarios;
         private PictureBox PictureBoxLogoFundo;
         private Button BotaoAbrirTelaDeTeste;
-        private Button BotaoTesteRecomendacoes;
         private RichTextBox RichTextBoxNotas;
         private Label LabelNotas;
         private PictureBox PictureBoxSlideShow;
@@ -527,5 +574,14 @@
         private Label LabelLogoff;
         private ListBox ListBoxNoticiasInternas;
         private Label LabelNoticiasInternas;
+        private PictureBox pictureBoxRecomendarPlantio;
+        private Label lbRecomendarPlantio;
+        private ToolTip toolTip8;
+        private ToolTip toolTip9;
+        private ToolTip toolTipCompra;
+        private ToolTip toolTipVenda;
+        private Label label1;
+        private PictureBox pictureBoxVendas;
+        private ToolTip toolTip10;
     }
 }

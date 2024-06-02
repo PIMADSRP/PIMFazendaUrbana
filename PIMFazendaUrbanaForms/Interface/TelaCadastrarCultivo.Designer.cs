@@ -42,6 +42,8 @@
             BotaoConfirmar = new Button();
             LabelTempoControlado = new Label();
             MaskedTextBoxTempoControlado = new MaskedTextBox();
+            label2 = new Label();
+            lbDias = new Label();
             PanelHeader.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,7 +54,7 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(358, 41);
+            PanelHeader.Size = new Size(404, 41);
             PanelHeader.TabIndex = 51;
             // 
             // LabelCadastrarCultivo
@@ -60,7 +62,7 @@
             LabelCadastrarCultivo.AutoSize = true;
             LabelCadastrarCultivo.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarCultivo.ForeColor = SystemColors.ButtonHighlight;
-            LabelCadastrarCultivo.Location = new Point(86, 9);
+            LabelCadastrarCultivo.Location = new Point(116, 9);
             LabelCadastrarCultivo.Name = "LabelCadastrarCultivo";
             LabelCadastrarCultivo.Size = new Size(165, 25);
             LabelCadastrarCultivo.TabIndex = 55;
@@ -70,7 +72,7 @@
             // 
             ComboBoxCategoria.FormattingEnabled = true;
             ComboBoxCategoria.Items.AddRange(new object[] { "Verdura", "Legume", "Fruta", "Outro" });
-            ComboBoxCategoria.Location = new Point(151, 116);
+            ComboBoxCategoria.Location = new Point(191, 116);
             ComboBoxCategoria.Name = "ComboBoxCategoria";
             ComboBoxCategoria.Size = new Size(138, 23);
             ComboBoxCategoria.TabIndex = 2;
@@ -78,16 +80,16 @@
             // LabelTempoTradicional
             // 
             LabelTempoTradicional.AutoSize = true;
-            LabelTempoTradicional.Location = new Point(30, 148);
+            LabelTempoTradicional.Location = new Point(34, 149);
             LabelTempoTradicional.Name = "LabelTempoTradicional";
-            LabelTempoTradicional.Size = new Size(106, 15);
+            LabelTempoTradicional.Size = new Size(153, 15);
             LabelTempoTradicional.TabIndex = 63;
-            LabelTempoTradicional.Text = "Tempo Tradicional:";
+            LabelTempoTradicional.Text = "Tempo de Prod. Tradicional:";
             // 
             // LabelCategoria
             // 
             LabelCategoria.AutoSize = true;
-            LabelCategoria.Location = new Point(81, 119);
+            LabelCategoria.Location = new Point(127, 120);
             LabelCategoria.Name = "LabelCategoria";
             LabelCategoria.Size = new Size(61, 15);
             LabelCategoria.TabIndex = 62;
@@ -96,7 +98,7 @@
             // LabelVariedade
             // 
             LabelVariedade.AutoSize = true;
-            LabelVariedade.Location = new Point(80, 90);
+            LabelVariedade.Location = new Point(126, 91);
             LabelVariedade.Name = "LabelVariedade";
             LabelVariedade.Size = new Size(61, 15);
             LabelVariedade.TabIndex = 61;
@@ -105,7 +107,7 @@
             // LabelNome
             // 
             LabelNome.AutoSize = true;
-            LabelNome.Location = new Point(102, 61);
+            LabelNome.Location = new Point(145, 62);
             LabelNome.Name = "LabelNome";
             LabelNome.Size = new Size(43, 15);
             LabelNome.TabIndex = 60;
@@ -114,7 +116,7 @@
             // MaskedTextBoxTempoTradicional
             // 
             MaskedTextBoxTempoTradicional.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxTempoTradicional.Location = new Point(151, 145);
+            MaskedTextBoxTempoTradicional.Location = new Point(191, 145);
             MaskedTextBoxTempoTradicional.Mask = "000";
             MaskedTextBoxTempoTradicional.Name = "MaskedTextBoxTempoTradicional";
             MaskedTextBoxTempoTradicional.Size = new Size(70, 23);
@@ -122,14 +124,14 @@
             // 
             // TextBoxVariedade
             // 
-            TextBoxVariedade.Location = new Point(151, 87);
+            TextBoxVariedade.Location = new Point(191, 87);
             TextBoxVariedade.Name = "TextBoxVariedade";
             TextBoxVariedade.Size = new Size(138, 23);
             TextBoxVariedade.TabIndex = 1;
             // 
             // TextBoxNome
             // 
-            TextBoxNome.Location = new Point(151, 58);
+            TextBoxNome.Location = new Point(191, 58);
             TextBoxNome.Name = "TextBoxNome";
             TextBoxNome.Size = new Size(138, 23);
             TextBoxNome.TabIndex = 0;
@@ -139,7 +141,7 @@
             BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
-            BotaoCancelar.Location = new Point(224, 212);
+            BotaoCancelar.Location = new Point(238, 210);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
             BotaoCancelar.TabIndex = 6;
@@ -152,7 +154,7 @@
             BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
             BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoConfirmar.ForeColor = Color.White;
-            BotaoConfirmar.Location = new Point(52, 212);
+            BotaoConfirmar.Location = new Point(69, 210);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
             BotaoConfirmar.TabIndex = 5;
@@ -163,26 +165,48 @@
             // LabelTempoControlado
             // 
             LabelTempoControlado.AutoSize = true;
-            LabelTempoControlado.Location = new Point(27, 177);
+            LabelTempoControlado.Location = new Point(32, 178);
             LabelTempoControlado.Name = "LabelTempoControlado";
-            LabelTempoControlado.Size = new Size(109, 15);
+            LabelTempoControlado.Size = new Size(156, 15);
             LabelTempoControlado.TabIndex = 67;
-            LabelTempoControlado.Text = "Tempo Controlado:";
+            LabelTempoControlado.Text = "Tempo de Prod. Controlado:";
             // 
             // MaskedTextBoxTempoControlado
             // 
             MaskedTextBoxTempoControlado.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxTempoControlado.Location = new Point(151, 174);
+            MaskedTextBoxTempoControlado.Location = new Point(191, 174);
             MaskedTextBoxTempoControlado.Mask = "000";
             MaskedTextBoxTempoControlado.Name = "MaskedTextBoxTempoControlado";
             MaskedTextBoxTempoControlado.Size = new Size(70, 23);
             MaskedTextBoxTempoControlado.TabIndex = 4;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = SystemColors.ControlDarkDark;
+            label2.Location = new Point(262, 178);
+            label2.Name = "label2";
+            label2.Size = new Size(29, 15);
+            label2.TabIndex = 84;
+            label2.Text = "Dias";
+            // 
+            // lbDias
+            // 
+            lbDias.AutoSize = true;
+            lbDias.ForeColor = SystemColors.ControlDarkDark;
+            lbDias.Location = new Point(262, 149);
+            lbDias.Name = "lbDias";
+            lbDias.Size = new Size(29, 15);
+            lbDias.TabIndex = 83;
+            lbDias.Text = "Dias";
+            // 
             // TelaCadastrarCultivo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(358, 252);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(404, 252);
+            Controls.Add(label2);
+            Controls.Add(lbDias);
             Controls.Add(MaskedTextBoxTempoControlado);
             Controls.Add(LabelTempoControlado);
             Controls.Add(ComboBoxCategoria);
@@ -221,5 +245,7 @@
         private Button BotaoConfirmar;
         private Label LabelTempoControlado;
         private MaskedTextBox MaskedTextBoxTempoControlado;
+        private Label label2;
+        private Label lbDias;
     }
 }

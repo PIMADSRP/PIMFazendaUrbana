@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System.Data;
 
 namespace PIMFazendaUrbanaLib
 {
@@ -124,6 +123,41 @@ namespace PIMFazendaUrbanaLib
                 string query = @"SELECT id_insumo, nome_insumo, categoria_insumo, qtd_insumo, unidqtd_insumo, ativo_insumo 
                                 FROM estoqueinsumo 
                                 WHERE ativo_insumo = true";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Insumo insumo = new Insumo
+                            {
+                                Id = reader.GetInt32("id_insumo"),
+                                Nome = reader.GetString("nome_insumo"),
+                                Categoria = reader.GetString("categoria_insumo"),
+                                Qtd = reader.GetInt32("qtd_insumo"),
+                                Unidqtd = reader.GetString("unidqtd_insumo"),
+                                Ativo = reader.GetBoolean("ativo_insumo")
+                            };
+                            insumos.Add(insumo);
+                        }
+                    }
+                }
+            }
+            return insumos;
+        }
+
+        // Método para listar todos os insumos ativos com quantidade maior que zero
+        public List<Insumo> ListarInsumosEmEstoque()
+        {
+            List<Insumo> insumos = new List<Insumo>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT id_insumo, nome_insumo, categoria_insumo, qtd_insumo, unidqtd_insumo, ativo_insumo 
+                                FROM estoqueinsumo 
+                                WHERE ativo_insumo = true AND qtd_insumo > 0";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -287,6 +321,65 @@ namespace PIMFazendaUrbanaLib
                 }
             }
             return insumos;
+        }
+
+        // Método para filtrar insumos pela unidade
+        public List<Insumo> FiltrarInsumosPorUnidade(string unidade)
+        {
+            List<Insumo> insumos = new List<Insumo>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT id_insumo, nome_insumo, categoria_insumo, qtd_insumo, unidqtd_insumo, ativo_insumo 
+                                FROM estoqueinsumo 
+                                WHERE unidqtd_insumo LIKE @unidade";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@unidade", "%" + unidade + "%");
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Insumo insumo = new Insumo
+                        {
+                            Id = reader.GetInt32("id_insumo"),
+                            Nome = reader.GetString("nome_insumo"),
+                            Categoria = reader.GetString("categoria_insumo"),
+                            Qtd = reader.GetInt32("qtd_insumo"),
+                            Unidqtd = reader.GetString("unidqtd_insumo"),
+                            Ativo = reader.GetBoolean("ativo_insumo")
+                        };
+                        insumos.Add(insumo);
+                    }
+                }
+            }
+            return insumos;
+        }
+
+        // Método para obter a categoria do insumo pelo nome
+        public string ObterCategoriaPorNomeInsumo(string nomeInsumo)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                string query = @"SELECT categoria_insumo 
+                                FROM estoqueinsumo 
+                                WHERE nome_insumo = @nomeInsumo LIMIT 1";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@nomeInsumo", nomeInsumo);
+
+                connection.Open();
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString("categoria_insumo");
+                    }
+                }
+            }
+            return null;
         }
 
         public void CadastrarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)

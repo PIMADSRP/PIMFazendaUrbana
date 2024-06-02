@@ -48,6 +48,7 @@ namespace PIMFazendaUrbanaForms
 
             if (categoria == null || !categoriasPermitidas.Contains(categoria))
             {
+                ComboBoxCategoria.ForeColor = Color.Red;
                 MessageBox.Show("Por favor, selecione uma categoria válida (Sementes ou Fertilizantes).", "Categoria Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = ComboBoxCategoria;
                 categoriaValida = false;
@@ -67,6 +68,7 @@ namespace PIMFazendaUrbanaForms
             // Verifica se a unidade está na lista de permitidas
             if (unidade == null || !unidadesPermitidas.Contains(unidade))
             {
+                ComboBoxUnidade.ForeColor = Color.Red;
                 MessageBox.Show("Por favor, selecione uma unidade válida.", "Unidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = ComboBoxUnidade;
                 unidadeValida = false;

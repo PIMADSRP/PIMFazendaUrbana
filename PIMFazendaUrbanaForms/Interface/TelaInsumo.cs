@@ -29,11 +29,20 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaInsumos.Columns["QtdColumn"].DataPropertyName = "Qtd";
             DataGridViewListaInsumos.Columns["UnidQtdColumn"].DataPropertyName = "Unidqtd";
 
+            /*
             foreach (DataGridViewColumn column in DataGridViewListaInsumos.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            // Deixar a coluna nome com tamanho fixo
+            */
+
+            // Definindo o tamanho padrão das colunas
+            DataGridViewListaInsumos.Columns["IDColumn"].Width = 40;
+            DataGridViewListaInsumos.Columns["NomeColumn"].Width = 200;
+            DataGridViewListaInsumos.Columns["CategoriaColumn"].Width = 100;
+            DataGridViewListaInsumos.Columns["QtdColumn"].Width = 95;
+            DataGridViewListaInsumos.Columns["UnidQtdColumn"].Width = 75;
+
             DataGridViewListaInsumos.Columns["NomeColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             //----------------------------------------------------------------------------------------
@@ -54,11 +63,21 @@ namespace PIMFazendaUrbanaForms
             DataGridViewSaidaInsumos.Columns["UnidQtdColumn"].DataPropertyName = "Unidqtd";
             DataGridViewSaidaInsumos.Columns["DataColumn"].DataPropertyName = "Data";
 
+            /*
             foreach (DataGridViewColumn column in DataGridViewSaidaInsumos.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            // Deixar a coluna nome com tamanho fixo
+            */
+
+            // Definindo o tamanho padrão das colunas
+            DataGridViewSaidaInsumos.Columns["IDColumn"].Width = 40;
+            DataGridViewSaidaInsumos.Columns["NomeColumn"].Width = 200;
+            DataGridViewSaidaInsumos.Columns["CategoriaColumn"].Width = 100;
+            DataGridViewSaidaInsumos.Columns["QtdColumn"].Width = 95;
+            DataGridViewSaidaInsumos.Columns["UnidQtdColumn"].Width = 75;
+            DataGridViewSaidaInsumos.Columns["DataColumn"].Width = 145;
+
             DataGridViewSaidaInsumos.Columns["NomeColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
@@ -91,7 +110,7 @@ namespace PIMFazendaUrbanaForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao listar insumos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -113,7 +132,8 @@ namespace PIMFazendaUrbanaForms
                         si.CategoriaInsumo,
                         si.Qtd,
                         si.Unidqtd,
-                        si.Data
+                        si.Data,
+                        //Data = Program.utility.FormatarDataSemHora(si.Data), // Caso deseje exibir a data sem a hora
                     }).ToList();
 
                     DataGridViewSaidaInsumos.DataSource = data; // Preencher o DataGridView com os dados formatados
@@ -121,7 +141,7 @@ namespace PIMFazendaUrbanaForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao listar registros de saída de insumos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -147,7 +167,7 @@ namespace PIMFazendaUrbanaForms
             {
                 CarregarInsumos();
                 CarregarSaidaInsumos();
-                MessageBox.Show("Lista de insumos atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Listas de insumos e registros de saída atualizadas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -223,7 +243,7 @@ namespace PIMFazendaUrbanaForms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Erro ao excluir insumo: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

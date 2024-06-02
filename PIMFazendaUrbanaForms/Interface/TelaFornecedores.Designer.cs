@@ -68,6 +68,7 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaFornecedores.Location = new Point(60, 80);
             DataGridViewListaFornecedores.Name = "DataGridViewListaFornecedores";
             DataGridViewListaFornecedores.ReadOnly = true;
+            DataGridViewListaFornecedores.RowHeadersWidth = 27;
             DataGridViewListaFornecedores.Size = new Size(1410, 666);
             DataGridViewListaFornecedores.TabIndex = 0;
             DataGridViewListaFornecedores.VirtualMode = true;

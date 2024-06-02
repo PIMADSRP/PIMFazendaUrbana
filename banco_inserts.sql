@@ -37,18 +37,8 @@ INSERT INTO `telefonefuncionario` (`ddd_telfuncionario`, `numero_telfuncionario`
 ('16', '91098-7654', true, 8),
 ('16', '90987-6543', true, 9),
 ('16', '89876-5432', true, 10);
-commit;
-SELECT f.id_funcionario, f.nome_funcionario, f.cpf_funcionario, f.sexo_funcionario, f.email_funcionario,
-       f.cargo_funcionario, f.usuario_funcionario, f.senha_funcionario, f.ativo_funcionario,
-       ef.logradouro_endfuncionario, ef.numero_endfuncionario, ef.complemento_endfuncionario, ef.bairro_endfuncionario,
-       ef.cidade_endfuncionario, ef.uf_endfuncionario, ef.cep_endfuncionario,
-       tf.ddd_telfuncionario, tf.numero_telfuncionario
-FROM funcionario f
-JOIN enderecofuncionario ef ON f.id_funcionario = ef.id_funcionario
-JOIN telefonefuncionario tf ON f.id_funcionario = tf.id_funcionario;
 
 ## Cliente
-begin;
 INSERT INTO `cliente` (`nome_cliente`, `email_cliente`, `cnpj_cliente`, `ativo_cliente`) VALUES
 ('Mercado São João', 'contato@mercadosaojoao.com.br', '12.345.678/0001-00', true),
 ('Hortifruti Bom Preço', 'contato@hortifrutibompreco.com.br', '23.456.789/0001-11', true),
@@ -84,17 +74,8 @@ INSERT INTO `telefonecliente` (`ddd_telcliente`, `numero_telcliente`, `ativo_tel
 ('16', '98901-2345', true, 8),
 ('16', '99012-3456', true, 9),
 ('16', '90123-4567', true, 10);
-commit;
-SELECT c.id_cliente, c.nome_cliente, c.email_cliente, c.cnpj_cliente, c.ativo_cliente,
-       ec.logradouro_endcliente, ec.numero_endcliente, ec.complemento_endcliente, ec.bairro_endcliente,
-       ec.cidade_endcliente, ec.uf_endcliente, ec.cep_endcliente,
-       tc.ddd_telcliente, tc.numero_telcliente
-FROM cliente c
-JOIN enderecocliente ec ON c.id_cliente = ec.id_cliente
-JOIN telefonecliente tc ON c.id_cliente = tc.id_cliente;
 
 ## Fornecedor
-begin;
 INSERT INTO `fornecedor` (`nome_fornecedor`, `email_fornecedor`, `cnpj_fornecedor`, `ativo_fornecedor`) VALUES
 ('AgroFertilizantes S.A.', 'contato@agrofertilizantes.com.br', '12.345.678/0001-00', true),
 ('Sementes de Qualidade Ltda.', 'contato@sementesdequalidade.com.br', '23.456.789/0001-11', true),
@@ -130,11 +111,51 @@ INSERT INTO `telefonefornecedor` (`ddd_telfornecedor`, `numero_telfornecedor`, `
 ('16', '98901-2345', true, 8),
 ('16', '99012-3456', true, 9),
 ('16', '90123-4567', true, 10);
+
+INSERT INTO `estoqueinsumo` (`nome_insumo`, `categoria_insumo`, `qtd_insumo`, `unidqtd_insumo`, `ativo_insumo`) VALUES
+('Nitrato de amônio', 'Fertilizantes', 0, 'kg', true),
+('Fosfato diamônico', 'Fertilizantes', 0, 'kg', true),
+('Sulfato de potássio', 'Fertilizantes', 0, 'kg', true),
+('Calcário dolomítico', 'Fertilizantes', 0, 'kg', true),
+('Uréia', 'Fertilizantes', 0, 'kg', true),
+('Superfosfato simples', 'Fertilizantes', 0, 'kg', true),
+('Cloreto de potássio', 'Fertilizantes', 0, 'kg', true),
+('Fertilizante líquido NPK 10-10-10', 'Fertilizantes', 0, 'l', true),
+('Fertilizante líquido NPK 20-5-10', 'Fertilizantes', 0, 'l', true),
+('Fertilizante líquido NPK 15-30-15', 'Fertilizantes', 0, 'l', true),
+('Fertilizante líquido NPK 12-0-12', 'Fertilizantes', 0, 'l', true),
+('Fertilizante granulado NPK 20-10-10', 'Fertilizantes', 0, 'kg', true),
+('Fertilizante granulado NPK 15-15-15', 'Fertilizantes', 0, 'kg', true),
+('Fertilizante granulado NPK 10-20-10', 'Fertilizantes', 0, 'kg', true),
+('Fertilizante granulado NPK 10-10-20', 'Fertilizantes', 0, 'kg', true),
+('Abacaxi Pérola', 'Sementes', 0, 'kg', true),
+('Abóbora Japonesa', 'Sementes', 0, 'kg', true),
+('Abobrinha Menina Brasileira', 'Sementes', 0, 'kg', true),
+('Acelga Verde de Verão', 'Sementes', 0, 'kg', true),
+('Agrião de Água', 'Sementes', 0, 'kg', true),
+('Alface Crespa', 'Sementes', 0, 'kg', true),
+('Alface Americana', 'Sementes', 0, 'kg', true),
+('Algodão BRS 368', 'Sementes', 0, 'kg', true),
+('Alho Roxo', 'Sementes', 0, 'kg', true),
+('Alho-poró Porto Rico', 'Sementes', 0, 'kg', true),
+('Banana Prata', 'Sementes', 0, 'kg', true),
+('Batata-doce Beauregard', 'Sementes', 0, 'kg', true),
+('Beterraba Detroit Dark Red', 'Sementes', 0, 'kg', true),
+('Beterraba Early Wonder', 'Sementes', 0, 'kg', true),
+('Berinjela Roxa', 'Sementes', 0, 'kg', true),
+('Brócolis Calabrês', 'Sementes', 0, 'kg', true),
+('Caju Anão Precoce', 'Sementes', 0, 'kg', true),
+('Cebola Baia Periforme', 'Sementes', 0, 'kg', true),
+('Cebolinha Verde Todo o Ano', 'Sementes', 0, 'kg', true),
+('Cenoura Brasília', 'Sementes', 0, 'kg', true),
+('Cenoura Nantes', 'Sementes', 0, 'kg', true),
+('Chicória Catalonha', 'Sementes', 0, 'kg', true),
+('Coentro Português', 'Sementes', 0, 'kg', true),
+('Couve Manteiga', 'Sementes', 0, 'kg', true),
+('Couve-de-bruxelas Menina', 'Sementes', 0, 'kg', true),
+('Couve-flor de Inverno', 'Sementes', 0, 'kg', true),
+('Cupuaçuzeiro', 'Sementes', 0, 'kg', true),
+('Erva-doce de Mesa', 'Sementes', 0, 'kg', true),
+('Ervilha Douce Provence', 'Sementes', 0, 'kg', true),
+('Ervilha Early Frosty', 'Sementes', 0, 'kg', true);
 commit;
-SELECT f.id_fornecedor, f.nome_fornecedor, f.email_fornecedor, f.cnpj_fornecedor, f.ativo_fornecedor,
-       ef.logradouro_endfornecedor, ef.numero_endfornecedor, ef.complemento_endfornecedor, ef.bairro_endfornecedor,
-       ef.cidade_endfornecedor, ef.uf_endfornecedor, ef.cep_endfornecedor,
-       tf.ddd_telfornecedor, tf.numero_telfornecedor
-FROM fornecedor f
-JOIN enderecofornecedor ef ON f.id_fornecedor = ef.id_fornecedor
-JOIN telefonefornecedor tf ON f.id_fornecedor = tf.id_fornecedor;

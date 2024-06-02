@@ -130,6 +130,7 @@
             // 
             // TextBoxCategoria
             // 
+            TextBoxCategoria.BackColor = SystemColors.ControlLightLight;
             TextBoxCategoria.Enabled = false;
             TextBoxCategoria.Location = new Point(166, 91);
             TextBoxCategoria.Name = "TextBoxCategoria";
@@ -138,6 +139,7 @@
             // 
             // TextBoxData
             // 
+            TextBoxData.BackColor = SystemColors.ControlLightLight;
             TextBoxData.Enabled = false;
             TextBoxData.Location = new Point(166, 218);
             TextBoxData.Name = "TextBoxData";
@@ -146,6 +148,7 @@
             // 
             // TextBoxNome
             // 
+            TextBoxNome.BackColor = SystemColors.ControlLightLight;
             TextBoxNome.Enabled = false;
             TextBoxNome.Location = new Point(166, 59);
             TextBoxNome.Name = "TextBoxNome";
@@ -154,6 +157,7 @@
             // 
             // TextBoxUnidade
             // 
+            TextBoxUnidade.BackColor = SystemColors.ControlLightLight;
             TextBoxUnidade.Enabled = false;
             TextBoxUnidade.Location = new Point(166, 186);
             TextBoxUnidade.Name = "TextBoxUnidade";
@@ -189,6 +193,7 @@
             // 
             // TextBoxQuantidadeAtual
             // 
+            TextBoxQuantidadeAtual.BackColor = SystemColors.ControlLightLight;
             TextBoxQuantidadeAtual.Enabled = false;
             TextBoxQuantidadeAtual.Location = new Point(166, 123);
             TextBoxQuantidadeAtual.Name = "TextBoxQuantidadeAtual";

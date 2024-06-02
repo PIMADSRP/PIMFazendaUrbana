@@ -18,7 +18,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao cadastrar insumo.", ex);
+                throw new Exception("Erro ao cadastrar insumo: " + ex.Message);
             }
         }
 
@@ -31,7 +31,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao alterar insumo.", ex);
+                throw new Exception("Erro ao alterar insumo: " + ex.Message);
                 return false;
             }
         }
@@ -45,7 +45,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao consultar insumo por ID.", ex);
+                throw new Exception("Erro ao consultar insumo por ID: " + ex.Message);
             }
         }
 
@@ -58,7 +58,20 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar insumos ativos.", ex);
+                throw new Exception("Erro ao listar insumos ativos: " + ex.Message);
+            }
+        }
+
+        public List<Insumo> ListarInsumosEmEstoque()
+        {
+            try
+            {
+                List<Insumo> insumos = insumoDAO.ListarInsumosEmEstoque();
+                return insumos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao listar insumos em estoque: " + ex.Message);
             }
         }
 
@@ -71,7 +84,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar insumos inativos.", ex);
+                throw new Exception("Erro ao listar insumos inativos: " + ex.Message);
             }
         }
 
@@ -83,7 +96,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao desativar insumo.", ex);
+                throw new Exception("Erro ao desativar insumo: " + ex.Message);
             }
         }
 
@@ -96,7 +109,8 @@
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception("Erro ao filtrar insumos por nome: " + ex.Message);
+                //return null;
             }
         }
 
@@ -109,7 +123,33 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar registros de saída de insumos.", ex);
+                throw new Exception("Erro ao listar registros de saída de insumos: " + ex.Message);
+            }
+        }
+
+        // Método para filtrar insumos pela unidade
+        public List<Insumo> FiltrarInsumosPorUnidade(string unidade)
+        {
+            try
+            {
+                return insumoDAO.FiltrarInsumosPorUnidade(unidade);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar insumos pela unidade: " + ex.Message);
+            }
+        }
+
+        // Método para obter a categoria do insumo pelo nome
+        public string ObterCategoriaPorNomeInsumo(string nomeInsumo)
+        {
+            try
+            {
+                return insumoDAO.ObterCategoriaPorNomeInsumo(nomeInsumo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao obter categoria do insumo pelo nome: " + ex.Message);
             }
         }
 
@@ -122,7 +162,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao cadastrar saída de insumo.", ex);
+                throw new Exception("Erro ao cadastrar saída de insumo: " + ex.Message);
             }
         }
 
@@ -135,7 +175,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao alterar quantidade do insumo.", ex);
+                throw new Exception("Erro ao alterar quantidade do insumo: " + ex.Message);
                 return false;
             }
         }

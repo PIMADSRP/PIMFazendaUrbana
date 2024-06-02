@@ -118,5 +118,19 @@
         {
             return cultivoDAO.FiltrarCultivosNome(cultivoNome);
         }
+
+        public List<string> ListarCategorias()
+        {
+            try
+            {
+                return cultivoDAO.ListarCategorias();
+            }
+            catch (Exception ex)
+            {
+                // Log exception details for debugging
+                return new List<string>();
+            }
+        }
+
     }
 }

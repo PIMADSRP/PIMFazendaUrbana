@@ -26,6 +26,9 @@
     <Compile Update="Interface\TelaCadastrarSaidaInsumo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Interface\TelaCadastrarProducao.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Interface\TelaEditarFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>

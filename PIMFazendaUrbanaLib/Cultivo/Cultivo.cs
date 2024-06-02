@@ -10,6 +10,5 @@
         public int? TempoProdControlado { get; set; }
         public string Categoria { get; set; }
         public bool StatusAtivo { get; set; }
-        public string Clima { get; set; }  // Adicionei esta propriedade para atender à necessidade dos métodos de DAO.
     }
 }

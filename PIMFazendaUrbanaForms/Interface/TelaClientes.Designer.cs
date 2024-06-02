@@ -68,6 +68,7 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaClientes.Location = new Point(60, 80);
             DataGridViewListaClientes.Name = "DataGridViewListaClientes";
             DataGridViewListaClientes.ReadOnly = true;
+            DataGridViewListaClientes.RowHeadersWidth = 27;
             DataGridViewListaClientes.Size = new Size(1410, 666);
             DataGridViewListaClientes.TabIndex = 0;
             DataGridViewListaClientes.VirtualMode = true;

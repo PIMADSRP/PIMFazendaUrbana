@@ -1,4 +1,5 @@
 ﻿using PIMFazendaUrbanaLib;
+using System.Windows.Forms;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -34,12 +35,26 @@ namespace PIMFazendaUrbanaForms
             DataGridViewListaClientes.Columns["EnderecoColumn"].DataPropertyName = "Endereco";
             DataGridViewListaClientes.Columns["CEPColumn"].DataPropertyName = "CEP";
 
+
             // Configurar o modo de redimensionamento das colunas
+            /*
             foreach (DataGridViewColumn column in DataGridViewListaClientes.Columns)
             {
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
+            */
 
+            // Definindo o tamanho padrão das colunas
+            DataGridViewListaClientes.Columns["IDColumn"].Width = 40;
+            DataGridViewListaClientes.Columns["NomeColumn"].Width = 400;
+            DataGridViewListaClientes.Columns["EmailColumn"].Width = 270;
+            DataGridViewListaClientes.Columns["CNPJColumn"].Width = 150;
+            DataGridViewListaClientes.Columns["TelefoneColumn"].Width = 125;
+            DataGridViewListaClientes.Columns["EnderecoColumn"].Width = 500;
+            DataGridViewListaClientes.Columns["CEPColumn"].Width = 85;
+
+            DataGridViewListaClientes.Columns["EnderecoColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //DataGridViewListaClientes.AllowUserToResizeColumns = true;
         }
 
         private void TelaListarClientes_Load(object sender, EventArgs e)
