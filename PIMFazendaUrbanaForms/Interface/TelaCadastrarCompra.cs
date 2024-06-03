@@ -264,9 +264,31 @@ namespace PIMFazendaUrbanaForms
                 // Exibir ou utilizar os insumos filtrados conforme necessário
                 // Por exemplo, exibir os nomes dos insumos filtrados em uma mensagem
                 string insumosNomes = string.Join(", ", insumosFiltrados.Select(i => i.Nome));
-                MessageBox.Show($"Insumos filtrados: {insumosNomes}", "Insumos Filtrados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show($"Insumos filtrados: {insumosNomes}", "Insumos Filtrados", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void ComboBoxProduto_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Obter o nome do insumo selecionado
+            string nomeInsumoSelecionado = ComboBoxProduto.SelectedItem.ToString();
+
+            // Buscar o insumo correspondente na lista de insumos
+            Insumo insumoSelecionado = insumos.FirstOrDefault(i => i.Nome == nomeInsumoSelecionado);
+
+            if (insumoSelecionado != null)
+            {
+                // Preencher os campos de categoria e unidade
+                TextBoxCategoria.Text = insumoSelecionado.Categoria;
+                TextBoxUnidade.Text = insumoSelecionado.Unidqtd;
+
+            }
+            else
+            {
+                MessageBox.Show("Insumo não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }

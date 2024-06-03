@@ -48,6 +48,10 @@
             TextBoxCategoria = new TextBox();
             PanelHeader.SuspendLayout();
             SuspendLayout();
+
+            // CÓDIGO NOVO
+            ComboBoxProduto.SelectedIndexChanged += ComboBoxProduto_SelectedIndexChanged;
+
             // 
             // PanelHeader
             // 
