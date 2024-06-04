@@ -139,7 +139,7 @@
     <value>846, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBoxCompras.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="PictureBoxCompras.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAYAAADL1t+KAAAABGdBTUEAALGPC/xhBQAAuMVJREFUeF7t
         nQd8VMX69y/Y77VcEEQBIWCkgyAXEBBuRERRQMo/F6kiSFMQVJAiaAQBQZpI770I0kF6C53QSeglIYT0
@@ -933,7 +933,7 @@
         hmEYhmEYhskF/vGP/w+0OcNyXtafhgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="pictureBoxVendas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="PictureBoxVendas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAIr5JREFUeF7t
         nQm8fVVVx20CCRWNCqNyKjU0MAeEVFAEGWRS0BxAQUnUKAVEUcABRHEGUxTEIZNJnC1QQTQRRVNxABwQ

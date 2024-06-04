@@ -77,7 +77,7 @@ namespace PIMFazendaUrbanaForms
                 SaidaInsumo saidainsumo = new SaidaInsumo();
                 saidainsumo.Qtd = Convert.ToInt32(quantidade);
                 saidainsumo.Unidqtd = insumo.Unidqtd;
-                saidainsumo.Data = data;
+                saidainsumo.Data = DateTime.Now;
                 saidainsumo.IdInsumo = insumo.Id;
                 saidainsumo.NomeInsumo = insumo.Nome;
                 saidainsumo.CategoriaInsumo = insumo.Categoria;

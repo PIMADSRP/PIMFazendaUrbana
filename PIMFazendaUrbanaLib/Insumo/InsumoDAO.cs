@@ -208,7 +208,7 @@ namespace PIMFazendaUrbanaLib
                                 Id = reader.GetInt32("id_saidainsumo"),
                                 Qtd = reader.GetInt32("qtd_saidainsumo"),
                                 Unidqtd = reader.GetString("unidqtd_saidainsumo"),
-                                Data = reader.GetDateTime("data_saidainsumo").ToString("yyyy-MM-dd HH:mm:ss")
+                                Data = reader.GetDateTime("data_saidainsumo")
                             };
                             saidainsumos.Add(saidainsumo);
                         }

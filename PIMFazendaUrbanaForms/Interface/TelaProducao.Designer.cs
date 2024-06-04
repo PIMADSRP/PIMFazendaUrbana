@@ -93,7 +93,7 @@
             // PictureBoxFinalizarProducao
             // 
             PictureBoxFinalizarProducao.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxFinalizarProducao.Location = new Point(1008, 10);
+            PictureBoxFinalizarProducao.Location = new Point(963, 9);
             PictureBoxFinalizarProducao.Name = "PictureBoxFinalizarProducao";
             PictureBoxFinalizarProducao.Size = new Size(29, 25);
             PictureBoxFinalizarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -106,7 +106,7 @@
             LabelFinalizarProducao.AutoSize = true;
             LabelFinalizarProducao.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelFinalizarProducao.ForeColor = Color.White;
-            LabelFinalizarProducao.Location = new Point(962, 38);
+            LabelFinalizarProducao.Location = new Point(917, 35);
             LabelFinalizarProducao.Name = "LabelFinalizarProducao";
             LabelFinalizarProducao.Size = new Size(119, 17);
             LabelFinalizarProducao.TabIndex = 64;
@@ -115,7 +115,7 @@
             // PictureBoxCadastrarProducao
             // 
             PictureBoxCadastrarProducao.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxCadastrarProducao.Location = new Point(872, 10);
+            PictureBoxCadastrarProducao.Location = new Point(826, 9);
             PictureBoxCadastrarProducao.Name = "PictureBoxCadastrarProducao";
             PictureBoxCadastrarProducao.Size = new Size(29, 25);
             PictureBoxCadastrarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -128,7 +128,7 @@
             LabelCadastrarSaida.AutoSize = true;
             LabelCadastrarSaida.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarSaida.ForeColor = Color.White;
-            LabelCadastrarSaida.Location = new Point(826, 38);
+            LabelCadastrarSaida.Location = new Point(781, 35);
             LabelCadastrarSaida.Name = "LabelCadastrarSaida";
             LabelCadastrarSaida.Size = new Size(128, 17);
             LabelCadastrarSaida.TabIndex = 62;
@@ -136,7 +136,7 @@
             // 
             // TextBoxPesquisar
             // 
-            TextBoxPesquisar.Location = new Point(224, 20);
+            TextBoxPesquisar.Location = new Point(204, 19);
             TextBoxPesquisar.Name = "TextBoxPesquisar";
             TextBoxPesquisar.PlaceholderText = "Digite o nome do cultivo";
             TextBoxPesquisar.Size = new Size(246, 23);
@@ -173,7 +173,7 @@
             LabelPesquisarCultivo.AutoSize = true;
             LabelPesquisarCultivo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelPesquisarCultivo.ForeColor = Color.White;
-            LabelPesquisarCultivo.Location = new Point(94, 21);
+            LabelPesquisarCultivo.Location = new Point(74, 20);
             LabelPesquisarCultivo.Name = "LabelPesquisarCultivo";
             LabelPesquisarCultivo.Size = new Size(125, 17);
             LabelPesquisarCultivo.TabIndex = 53;
@@ -182,7 +182,7 @@
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
-            PictureBoxAtualizar.Location = new Point(655, 13);
+            PictureBoxAtualizar.Location = new Point(637, 10);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -193,7 +193,7 @@
             // PictureBoxEditarCultivo
             // 
             PictureBoxEditarCultivo.Image = (Image)resources.GetObject("PictureBoxEditarCultivo.Image");
-            PictureBoxEditarCultivo.Location = new Point(539, 13);
+            PictureBoxEditarCultivo.Location = new Point(521, 10);
             PictureBoxEditarCultivo.Name = "PictureBoxEditarCultivo";
             PictureBoxEditarCultivo.Size = new Size(29, 25);
             PictureBoxEditarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -204,7 +204,7 @@
             // PictureBoxDeletarCultivo
             // 
             PictureBoxDeletarCultivo.Image = (Image)resources.GetObject("PictureBoxDeletarCultivo.Image");
-            PictureBoxDeletarCultivo.Location = new Point(597, 13);
+            PictureBoxDeletarCultivo.Location = new Point(579, 10);
             PictureBoxDeletarCultivo.Name = "PictureBoxDeletarCultivo";
             PictureBoxDeletarCultivo.Size = new Size(29, 25);
             PictureBoxDeletarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -217,7 +217,7 @@
             LabelAtualizar.AutoSize = true;
             LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelAtualizar.ForeColor = Color.White;
-            LabelAtualizar.Location = new Point(641, 38);
+            LabelAtualizar.Location = new Point(623, 35);
             LabelAtualizar.Name = "LabelAtualizar";
             LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
@@ -226,7 +226,7 @@
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
-            PictureBoxIncluir.Location = new Point(483, 13);
+            PictureBoxIncluir.Location = new Point(465, 10);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -239,7 +239,7 @@
             LabelDeletar.AutoSize = true;
             LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelDeletar.ForeColor = Color.White;
-            LabelDeletar.Location = new Point(588, 38);
+            LabelDeletar.Location = new Point(570, 35);
             LabelDeletar.Name = "LabelDeletar";
             LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 49;
@@ -250,7 +250,7 @@
             LabelIncluir.AutoSize = true;
             LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelIncluir.ForeColor = Color.White;
-            LabelIncluir.Location = new Point(476, 38);
+            LabelIncluir.Location = new Point(458, 35);
             LabelIncluir.Name = "LabelIncluir";
             LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
@@ -261,7 +261,7 @@
             LabelEditar.AutoSize = true;
             LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelEditar.ForeColor = Color.White;
-            LabelEditar.Location = new Point(534, 38);
+            LabelEditar.Location = new Point(516, 35);
             LabelEditar.Name = "LabelEditar";
             LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 48;
@@ -273,11 +273,11 @@
             DataGridViewListaCultivos.AllowUserToDeleteRows = false;
             DataGridViewListaCultivos.BackgroundColor = SystemColors.Menu;
             DataGridViewListaCultivos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaCultivos.Location = new Point(35, 93);
+            DataGridViewListaCultivos.Location = new Point(56, 93);
             DataGridViewListaCultivos.Name = "DataGridViewListaCultivos";
             DataGridViewListaCultivos.ReadOnly = true;
             DataGridViewListaCultivos.RowHeadersWidth = 27;
-            DataGridViewListaCultivos.Size = new Size(667, 647);
+            DataGridViewListaCultivos.Size = new Size(667, 645);
             DataGridViewListaCultivos.TabIndex = 0;
             DataGridViewListaCultivos.VirtualMode = true;
             // 
@@ -310,7 +310,7 @@
             LabelCultivos.AutoSize = true;
             LabelCultivos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCultivos.ForeColor = Color.DarkGreen;
-            LabelCultivos.Location = new Point(35, 73);
+            LabelCultivos.Location = new Point(56, 73);
             LabelCultivos.Name = "LabelCultivos";
             LabelCultivos.Size = new Size(141, 17);
             LabelCultivos.TabIndex = 58;
@@ -321,7 +321,7 @@
             LabelRegistroSaida.AutoSize = true;
             LabelRegistroSaida.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelRegistroSaida.ForeColor = Color.DarkGreen;
-            LabelRegistroSaida.Location = new Point(826, 73);
+            LabelRegistroSaida.Location = new Point(781, 73);
             LabelRegistroSaida.Name = "LabelRegistroSaida";
             LabelRegistroSaida.Size = new Size(152, 17);
             LabelRegistroSaida.TabIndex = 59;
@@ -333,11 +333,11 @@
             DataGridViewProducao.AllowUserToDeleteRows = false;
             DataGridViewProducao.BackgroundColor = SystemColors.Menu;
             DataGridViewProducao.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewProducao.Location = new Point(826, 93);
+            DataGridViewProducao.Location = new Point(781, 93);
             DataGridViewProducao.Name = "DataGridViewProducao";
             DataGridViewProducao.ReadOnly = true;
             DataGridViewProducao.RowHeadersWidth = 27;
-            DataGridViewProducao.Size = new Size(608, 647);
+            DataGridViewProducao.Size = new Size(700, 645);
             DataGridViewProducao.TabIndex = 1;
             DataGridViewProducao.VirtualMode = true;
             // 
@@ -347,10 +347,10 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoValidate = AutoValidate.EnablePreventFocusChange;
             ClientSize = new Size(1350, 729);
+            Controls.Add(PanelFooter);
             Controls.Add(DataGridViewProducao);
             Controls.Add(LabelRegistroSaida);
             Controls.Add(LabelCultivos);
-            Controls.Add(PanelFooter);
             Controls.Add(DataGridViewListaCultivos);
             Controls.Add(PanelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;

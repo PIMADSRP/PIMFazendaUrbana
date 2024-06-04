@@ -35,13 +35,13 @@
             maskedTextBox1 = new MaskedTextBox();
             PictureBoxHome = new PictureBox();
             TextBoxPesquisar = new TextBox();
-            label4 = new Label();
+            LabelA = new Label();
             LabelHome = new Label();
             LabelPesquisarVendas = new Label();
             maskedTextBox2 = new MaskedTextBox();
             PictureBoxAtualizar = new PictureBox();
             PictureBoxEditar = new PictureBox();
-            label5 = new Label();
+            LabelPeriodo = new Label();
             PictureBoxDeletar = new PictureBox();
             LabelAtualizar = new Label();
             pictureBox1 = new PictureBox();
@@ -53,12 +53,12 @@
             textBoxInsumoComprados = new TextBox();
             LabelCadastrarSaida = new Label();
             LabelIncluir = new Label();
-            label6 = new Label();
+            LabelPesquisarCompras = new Label();
             PanelFooter = new Panel();
             label3 = new Label();
             LabelEstoqueInsumo = new Label();
-            labelInsumosComprados = new Label();
-            DataGridViewInsumosComprados = new DataGridView();
+            LabelRegistroDeCompras = new Label();
+            DataGridViewRegistroDeCompras = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
@@ -69,7 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
             PanelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewInsumosComprados).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeCompras).BeginInit();
             SuspendLayout();
             // 
             // LabelEstoqueInsumos
@@ -89,12 +89,12 @@
             DataGridViewListaInsumos.AllowUserToDeleteRows = false;
             DataGridViewListaInsumos.BackgroundColor = SystemColors.Menu;
             DataGridViewListaInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaInsumos.Location = new Point(72, 83);
+            DataGridViewListaInsumos.Location = new Point(41, 91);
             DataGridViewListaInsumos.Name = "DataGridViewListaInsumos";
             DataGridViewListaInsumos.ReadOnly = true;
             DataGridViewListaInsumos.RowHeadersWidth = 27;
-            DataGridViewListaInsumos.Size = new Size(507, 611);
-            DataGridViewListaInsumos.TabIndex = 58;
+            DataGridViewListaInsumos.Size = new Size(573, 645);
+            DataGridViewListaInsumos.TabIndex = 0;
             DataGridViewListaInsumos.VirtualMode = true;
             // 
             // PanelHeader
@@ -103,13 +103,13 @@
             PanelHeader.Controls.Add(maskedTextBox1);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(TextBoxPesquisar);
-            PanelHeader.Controls.Add(label4);
+            PanelHeader.Controls.Add(LabelA);
             PanelHeader.Controls.Add(LabelHome);
             PanelHeader.Controls.Add(LabelPesquisarVendas);
             PanelHeader.Controls.Add(maskedTextBox2);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
             PanelHeader.Controls.Add(PictureBoxEditar);
-            PanelHeader.Controls.Add(label5);
+            PanelHeader.Controls.Add(LabelPeriodo);
             PanelHeader.Controls.Add(PictureBoxDeletar);
             PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(pictureBox1);
@@ -121,7 +121,7 @@
             PanelHeader.Controls.Add(textBoxInsumoComprados);
             PanelHeader.Controls.Add(LabelCadastrarSaida);
             PanelHeader.Controls.Add(LabelIncluir);
-            PanelHeader.Controls.Add(label6);
+            PanelHeader.Controls.Add(LabelPesquisarCompras);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
@@ -135,7 +135,7 @@
             maskedTextBox1.Mask = "00/00/0000";
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(96, 23);
-            maskedTextBox1.TabIndex = 71;
+            maskedTextBox1.TabIndex = 5;
             maskedTextBox1.ValidatingType = typeof(DateTime);
             // 
             // PictureBoxHome
@@ -154,23 +154,23 @@
             // 
             // TextBoxPesquisar
             // 
-            TextBoxPesquisar.Location = new Point(250, 18);
+            TextBoxPesquisar.Location = new Point(272, 18);
             TextBoxPesquisar.Name = "TextBoxPesquisar";
             TextBoxPesquisar.PlaceholderText = "Digite o nome do insumo";
             TextBoxPesquisar.Size = new Size(246, 23);
             TextBoxPesquisar.TabIndex = 2;
             TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
             // 
-            // label4
+            // LabelA
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(873, 36);
-            label4.Name = "label4";
-            label4.Size = new Size(15, 17);
-            label4.TabIndex = 70;
-            label4.Text = "à";
+            LabelA.AutoSize = true;
+            LabelA.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelA.ForeColor = Color.White;
+            LabelA.Location = new Point(873, 36);
+            LabelA.Name = "LabelA";
+            LabelA.Size = new Size(15, 17);
+            LabelA.TabIndex = 70;
+            LabelA.Text = "a";
             // 
             // LabelHome
             // 
@@ -188,7 +188,7 @@
             LabelPesquisarVendas.AutoSize = true;
             LabelPesquisarVendas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelPesquisarVendas.ForeColor = Color.White;
-            LabelPesquisarVendas.Location = new Point(58, 20);
+            LabelPesquisarVendas.Location = new Point(72, 19);
             LabelPesquisarVendas.Name = "LabelPesquisarVendas";
             LabelPesquisarVendas.Size = new Size(194, 17);
             LabelPesquisarVendas.TabIndex = 53;
@@ -201,13 +201,13 @@
             maskedTextBox2.Mask = "00/00/0000";
             maskedTextBox2.Name = "maskedTextBox2";
             maskedTextBox2.Size = new Size(96, 23);
-            maskedTextBox2.TabIndex = 69;
+            maskedTextBox2.TabIndex = 4;
             maskedTextBox2.ValidatingType = typeof(DateTime);
             // 
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = Properties.Resources.Atualizar;
-            PictureBoxAtualizar.Location = new Point(1256, 14);
+            PictureBoxAtualizar.Location = new Point(1256, 13);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -218,28 +218,28 @@
             // PictureBoxEditar
             // 
             PictureBoxEditar.Image = Properties.Resources.editar;
-            PictureBoxEditar.Location = new Point(1140, 14);
+            PictureBoxEditar.Location = new Point(1140, 13);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxEditar.TabIndex = 44;
             PictureBoxEditar.TabStop = false;
             // 
-            // label5
+            // LabelPeriodo
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(696, 36);
-            label5.Name = "label5";
-            label5.Size = new Size(60, 17);
-            label5.TabIndex = 68;
-            label5.Text = "Periodo:";
+            LabelPeriodo.AutoSize = true;
+            LabelPeriodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPeriodo.ForeColor = Color.White;
+            LabelPeriodo.Location = new Point(696, 36);
+            LabelPeriodo.Name = "LabelPeriodo";
+            LabelPeriodo.Size = new Size(60, 17);
+            LabelPeriodo.TabIndex = 68;
+            LabelPeriodo.Text = "Periodo:";
             // 
             // PictureBoxDeletar
             // 
             PictureBoxDeletar.Image = Properties.Resources.Deletar;
-            PictureBoxDeletar.Location = new Point(1198, 14);
+            PictureBoxDeletar.Location = new Point(1198, 13);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -251,7 +251,7 @@
             LabelAtualizar.AutoSize = true;
             LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelAtualizar.ForeColor = Color.White;
-            LabelAtualizar.Location = new Point(1241, 39);
+            LabelAtualizar.Location = new Point(1241, 38);
             LabelAtualizar.Name = "LabelAtualizar";
             LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
@@ -260,7 +260,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(1314, 14);
+            pictureBox1.Location = new Point(1314, 13);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(29, 25);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -272,7 +272,7 @@
             LabelDeletar.AutoSize = true;
             LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelDeletar.ForeColor = Color.White;
-            LabelDeletar.Location = new Point(1186, 39);
+            LabelDeletar.Location = new Point(1186, 38);
             LabelDeletar.Name = "LabelDeletar";
             LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 49;
@@ -281,7 +281,7 @@
             // PictureBoxPesquisar
             // 
             PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
-            PictureBoxPesquisar.Location = new Point(1024, 14);
+            PictureBoxPesquisar.Location = new Point(1024, 13);
             PictureBoxPesquisar.Name = "PictureBoxPesquisar";
             PictureBoxPesquisar.Size = new Size(29, 25);
             PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -293,7 +293,7 @@
             labelRelatorio.AutoSize = true;
             labelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelRelatorio.ForeColor = Color.White;
-            labelRelatorio.Location = new Point(1303, 39);
+            labelRelatorio.Location = new Point(1303, 38);
             labelRelatorio.Name = "labelRelatorio";
             labelRelatorio.Size = new Size(62, 17);
             labelRelatorio.TabIndex = 65;
@@ -304,7 +304,7 @@
             LabelEditar.AutoSize = true;
             LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelEditar.ForeColor = Color.White;
-            LabelEditar.Location = new Point(1133, 39);
+            LabelEditar.Location = new Point(1133, 38);
             LabelEditar.Name = "LabelEditar";
             LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 48;
@@ -313,7 +313,7 @@
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = Properties.Resources.Incluir;
-            PictureBoxIncluir.Location = new Point(1082, 14);
+            PictureBoxIncluir.Location = new Point(1082, 13);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -327,14 +327,14 @@
             textBoxInsumoComprados.Name = "textBoxInsumoComprados";
             textBoxInsumoComprados.PlaceholderText = "Digite o nome do insumo";
             textBoxInsumoComprados.Size = new Size(246, 23);
-            textBoxInsumoComprados.TabIndex = 66;
+            textBoxInsumoComprados.TabIndex = 3;
             // 
             // LabelCadastrarSaida
             // 
             LabelCadastrarSaida.AutoSize = true;
             LabelCadastrarSaida.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarSaida.ForeColor = Color.White;
-            LabelCadastrarSaida.Location = new Point(1009, 39);
+            LabelCadastrarSaida.Location = new Point(1009, 38);
             LabelCadastrarSaida.Name = "LabelCadastrarSaida";
             LabelCadastrarSaida.Size = new Size(66, 17);
             LabelCadastrarSaida.TabIndex = 56;
@@ -345,22 +345,22 @@
             LabelIncluir.AutoSize = true;
             LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelIncluir.ForeColor = Color.White;
-            LabelIncluir.Location = new Point(1076, 39);
+            LabelIncluir.Location = new Point(1076, 38);
             LabelIncluir.Name = "LabelIncluir";
             LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
             LabelIncluir.Text = "Incluir";
             // 
-            // label6
+            // LabelPesquisarCompras
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(626, 8);
-            label6.Name = "label6";
-            label6.Size = new Size(129, 17);
-            label6.TabIndex = 67;
-            label6.Text = "Pesquisar Compras:";
+            LabelPesquisarCompras.AutoSize = true;
+            LabelPesquisarCompras.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarCompras.ForeColor = Color.White;
+            LabelPesquisarCompras.Location = new Point(626, 8);
+            LabelPesquisarCompras.Name = "LabelPesquisarCompras";
+            LabelPesquisarCompras.Size = new Size(129, 17);
+            LabelPesquisarCompras.TabIndex = 67;
+            LabelPesquisarCompras.Text = "Pesquisar Compras:";
             // 
             // PanelFooter
             // 
@@ -391,46 +391,46 @@
             LabelEstoqueInsumo.AutoSize = true;
             LabelEstoqueInsumo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelEstoqueInsumo.ForeColor = Color.DarkGreen;
-            LabelEstoqueInsumo.Location = new Point(72, 63);
+            LabelEstoqueInsumo.Location = new Point(41, 71);
             LabelEstoqueInsumo.Name = "LabelEstoqueInsumo";
             LabelEstoqueInsumo.Size = new Size(136, 17);
             LabelEstoqueInsumo.TabIndex = 62;
             LabelEstoqueInsumo.Text = "Estoque de Insumos:";
             // 
-            // labelInsumosComprados
+            // LabelRegistroDeCompras
             // 
-            labelInsumosComprados.AutoSize = true;
-            labelInsumosComprados.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelInsumosComprados.ForeColor = Color.DarkGreen;
-            labelInsumosComprados.Location = new Point(626, 63);
-            labelInsumosComprados.Name = "labelInsumosComprados";
-            labelInsumosComprados.Size = new Size(138, 17);
-            labelInsumosComprados.TabIndex = 64;
-            labelInsumosComprados.Text = "Insumos Comprados:";
+            LabelRegistroDeCompras.AutoSize = true;
+            LabelRegistroDeCompras.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRegistroDeCompras.ForeColor = Color.DarkGreen;
+            LabelRegistroDeCompras.Location = new Point(656, 71);
+            LabelRegistroDeCompras.Name = "LabelRegistroDeCompras";
+            LabelRegistroDeCompras.Size = new Size(209, 17);
+            LabelRegistroDeCompras.TabIndex = 64;
+            LabelRegistroDeCompras.Text = "Registro de Compra de Insumos:";
             // 
-            // DataGridViewInsumosComprados
+            // DataGridViewRegistroDeCompras
             // 
-            DataGridViewInsumosComprados.AllowUserToAddRows = false;
-            DataGridViewInsumosComprados.AllowUserToDeleteRows = false;
-            DataGridViewInsumosComprados.BackgroundColor = SystemColors.Menu;
-            DataGridViewInsumosComprados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewInsumosComprados.Location = new Point(626, 83);
-            DataGridViewInsumosComprados.Name = "DataGridViewInsumosComprados";
-            DataGridViewInsumosComprados.ReadOnly = true;
-            DataGridViewInsumosComprados.RowHeadersWidth = 27;
-            DataGridViewInsumosComprados.Size = new Size(734, 611);
-            DataGridViewInsumosComprados.TabIndex = 63;
-            DataGridViewInsumosComprados.VirtualMode = true;
+            DataGridViewRegistroDeCompras.AllowUserToAddRows = false;
+            DataGridViewRegistroDeCompras.AllowUserToDeleteRows = false;
+            DataGridViewRegistroDeCompras.BackgroundColor = SystemColors.Menu;
+            DataGridViewRegistroDeCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewRegistroDeCompras.Location = new Point(656, 91);
+            DataGridViewRegistroDeCompras.Name = "DataGridViewRegistroDeCompras";
+            DataGridViewRegistroDeCompras.ReadOnly = true;
+            DataGridViewRegistroDeCompras.RowHeadersWidth = 27;
+            DataGridViewRegistroDeCompras.Size = new Size(840, 645);
+            DataGridViewRegistroDeCompras.TabIndex = 1;
+            DataGridViewRegistroDeCompras.VirtualMode = true;
             // 
             // TelaCompra
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1370, 749);
-            Controls.Add(labelInsumosComprados);
-            Controls.Add(DataGridViewInsumosComprados);
-            Controls.Add(LabelEstoqueInsumo);
             Controls.Add(PanelFooter);
+            Controls.Add(LabelRegistroDeCompras);
+            Controls.Add(DataGridViewRegistroDeCompras);
+            Controls.Add(LabelEstoqueInsumo);
             Controls.Add(LabelEstoqueInsumos);
             Controls.Add(DataGridViewListaInsumos);
             Controls.Add(PanelHeader);
@@ -451,7 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewInsumosComprados).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeCompras).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -480,13 +480,13 @@
         private Panel PanelFooter;
         private Label label3;
         private MaskedTextBox maskedTextBox1;
-        private Label label4;
+        private Label LabelA;
         private MaskedTextBox maskedTextBox2;
-        private Label label5;
+        private Label LabelPeriodo;
         private TextBox textBoxInsumoComprados;
-        private Label label6;
+        private Label LabelPesquisarCompras;
         private Label LabelEstoqueInsumo;
-        private Label labelInsumosComprados;
-        private DataGridView DataGridViewInsumosComprados;
+        private Label LabelRegistroDeCompras;
+        private DataGridView DataGridViewRegistroDeCompras;
     }
 }

@@ -40,6 +40,357 @@ namespace PIMFazendaUrbanaForms
 
         private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
+            // Alguns nomes de Strings fora trocados para evitar conflito com string "text"
+
+            string Nome = TextBoxNome.Text; // Valida Nome
+            if (Nome.Length < 3)
+            {
+                // Define a cor de texto para vermelho
+                TextBoxNome.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                nomevalido = false;
+                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxNome.ForeColor = Color.Black;
+                nomevalido = true;
+            }
+
+
+            string Email = TextBoxEmail.Text; // Valida Email
+            if (!Regex.IsMatch(Email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+            {
+                // Define a cor de texto para vermelho
+                TextBoxEmail.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                emailvalido = false;
+                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxEmail.ForeColor = Color.Black;
+                emailvalido = true;
+            }
+
+
+            string text = ComboBoxCargo.Text.Trim(); // Remover espaços em branco extras    // Valida Cargo
+            if (text != "Funcionário" && text != "Gerente")
+            {
+                // Define a cor de texto para vermelho
+                ComboBoxCargo.ForeColor = Color.Red;
+
+                MessageBox.Show("O cargo deve ser 'Funcionário' ou 'Gerente'.", "Cargo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cargovalido = false;
+                this.ActiveControl = ComboBoxCargo; // Define o foco para o ComboBoxCargo
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                ComboBoxCargo.ForeColor = Color.Black;
+                cargovalido = true;
+            }
+
+
+            string textSexo = ComboBoxSexo.Text.Trim(); // Remover espaços em branco extras     // Valida Sexo
+            if (textSexo != "M" && textSexo != "F" && textSexo != "-")
+            {
+                // Define a cor de texto para vermelho
+                ComboBoxSexo.ForeColor = Color.Red;
+
+                MessageBox.Show("O sexo deve ser 'M', 'F' ou '-'.", "Sexo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                sexovalido = false;
+                this.ActiveControl = ComboBoxSexo; // Define o foco para o ComboBoxSexo
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                ComboBoxSexo.ForeColor = Color.Black;
+                sexovalido = true;
+            }
+
+
+            string usuario = TextBoxUsuario.Text; // Valida Usuario
+
+            if (TextBoxUsuario.Text.Length < 3)
+            {
+                TextBoxUsuario.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo Usuário corretamente. O nome de usuário deve ter ao menos 3 caracteres", "Nome de Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                usuariovalido = false;
+                this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
+            }
+            else
+            {
+                if (VerificarUsuarioDisponivel(usuario) == true)
+                {
+                    TextBoxUsuario.ForeColor = Color.Black;
+                    usuariovalido = true;
+                }
+                else
+                {
+                    TextBoxUsuario.ForeColor = Color.Red;
+                    usuariovalido = false;
+                    this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
+                }
+            }
+
+
+            string textD = TextBoxDDD.Text; // Valida DDD   // Mudei nome "text" para "textD" para evitar conflito com "ComboBoxText" acima
+            if (!Regex.IsMatch(textD, @"^\d{2}$"))
+            {
+                // Define a cor de texto para vermelho
+                TextBoxDDD.ForeColor = Color.Red;
+
+                MessageBox.Show("O DDD deve conter exatamente 2 caracteres numéricos.", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dddvalido = false;
+                this.ActiveControl = TextBoxDDD; // Define o foco para o TextBoxDDD
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxDDD.ForeColor = Color.Black;
+                dddvalido = true;
+            }
+
+
+            string textTelefone = TextBoxTelefone.Text; // Valida Telefone
+            if (!Regex.IsMatch(textTelefone, @"^\d{8,9}$"))
+            {
+                // Define a cor de texto para vermelho
+                TextBoxTelefone.ForeColor = Color.Red;
+
+                MessageBox.Show("O número de telefone deve conter 8 ou 9 caracteres numéricos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                telefonevalido = false;
+                this.ActiveControl = TextBoxTelefone; // Define o foco para o TextBoxTelefone
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxTelefone.ForeColor = Color.Black;
+                telefonevalido = true;
+            }
+
+
+            string textLogradouro = TextBoxLogradouro.Text; // Valida Logradouro
+            if (textLogradouro.Length < 3)
+            {
+                // Define a cor de texto para vermelho
+                TextBoxLogradouro.ForeColor = Color.Red;
+
+                MessageBox.Show("O logradouro deve conter ao menos 3 caracteres.", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                logradourovalido = false;
+                this.ActiveControl = TextBoxLogradouro; // Define o foco para o TextBoxLogradouro
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxLogradouro.ForeColor = Color.Black;
+                logradourovalido = true;
+            }
+
+
+            string textNumero = TextBoxNumero.Text; // Valida Numero
+            if (!Regex.IsMatch(textNumero, @"^\d+$"))
+            {
+                // Define a cor de texto para vermelho
+                TextBoxNumero.ForeColor = Color.Red;
+
+                MessageBox.Show("O número deve conter apenas caracteres numéricos.", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                numerocasavalido = false;
+                this.ActiveControl = TextBoxNumero; // Define o foco para o TextBoxNumero
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxNumero.ForeColor = Color.Black;
+                numerocasavalido = true;
+            }
+
+
+            string textBairro = TextBoxBairro.Text; // Valida Bairro
+            if (textBairro.Length < 3)
+            {
+                // Define a cor de texto para vermelho
+                TextBoxBairro.ForeColor = Color.Red;
+
+                MessageBox.Show("O bairro deve conter ao menos 3 caracteres.", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                bairrovalido = false;
+                this.ActiveControl = TextBoxBairro; // Define o foco para o TextBoxBairro
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxBairro.ForeColor = Color.Black;
+                bairrovalido = true;
+            }
+
+
+            string textCidade = TextBoxCidade.Text; // Valida Cidade
+            if (textCidade.Length < 3)
+            {
+                // Define a cor de texto para vermelho
+                TextBoxCidade.ForeColor = Color.Red;
+
+                MessageBox.Show("A cidade deve conter ao menos 3 caracteres.", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cidadevalida = false;
+                this.ActiveControl = TextBoxCidade; // Define o foco para o TextBoxCidade
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxCidade.ForeColor = Color.Black;
+                cidadevalida = true;
+            }
+
+
+            string textUf = ComboBoxUF.Text.Trim(); // Remover espaços em branco extras   Valida UF
+            if (!Regex.IsMatch(textUf, @"^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"))
+            {
+                // Define a cor de texto para vermelho
+                ComboBoxUF.ForeColor = Color.Red;
+
+                MessageBox.Show("Selecione uma UF válida.", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ufvalido = false;
+                this.ActiveControl = ComboBoxUF; // Define o foco para o ComboBoxUF
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                ComboBoxUF.ForeColor = Color.Black;
+                ufvalido = true;
+            }
+
+
+            // Remove todos os caracteres não numéricos do texto
+            string cepDigitsOnly = TextBoxCEP.Text.Replace("-", ""); // Valida CEP
+
+            // Verifica se o CEP tem exatamente 8 dígitos
+            if (cepDigitsOnly.Length != 8 || !cepDigitsOnly.All(char.IsDigit))
+            {
+                // Define a cor de texto para vermelho
+                TextBoxCEP.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo CEP corretamente. O CEP deve conter 8 números.", "CEP Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                cepvalido = false;
+                this.ActiveControl = TextBoxCEP; // Define o foco para o TextBoxCEP
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                TextBoxCEP.ForeColor = Color.Black;
+                cepvalido = true;
+            }
+
+
+            if (TextBoxSenha1.Text == null) // Valida Senha 01
+            {
+                MessageBox.Show("Preencha o campo Senha", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBoxSenha1.ForeColor = Color.Red;
+            }
+            else
+            {
+                string senha1 = TextBoxSenha1.Text;
+
+                // Verificar se a senha é forte o suficiente
+                bool senhaforte = VerificarSenhaForte(senha1);
+
+                if (senhaforte == false)
+                {
+                    senhavalida = false;
+                    TextBoxSenha1.ForeColor = Color.Red;
+                    TextBoxSenha2.ForeColor = Color.Red;
+                    this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
+                    return;
+                }
+                else
+                {
+                    TextBoxSenha1.ForeColor = Color.Black;
+                    TextBoxSenha2.ForeColor = Color.Black;
+                    this.ActiveControl = TextBoxSenha2; // Define o foco para o TextBoxSenha2
+                }
+            }
+
+
+            if (TextBoxSenha1.Text == null) // Valida Senha 02
+            {
+                MessageBox.Show("Preencha o campo Senha", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                TextBoxSenha1.ForeColor = Color.Red;
+            }
+            else
+            {
+                string senha1 = TextBoxSenha1.Text;
+                string senha2 = TextBoxSenha2.Text;
+
+                // Verificar se a senha é forte o suficiente
+                bool senhaforte = VerificarSenhaForte(senha1);
+
+                if (senhaforte == false)
+                {
+                    senhavalida = false;
+                    TextBoxSenha1.ForeColor = Color.Red;
+                    TextBoxSenha2.ForeColor = Color.Red;
+                    this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
+                    return;
+                }
+                else
+                {
+                    if (senha1 != senha2)
+                    {
+                        MessageBox.Show("As senhas são diferentes, confira e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        senhavalida = false;
+                        TextBoxSenha2.ForeColor = Color.Red;
+                        this.ActiveControl = TextBoxSenha2; // Define o foco para o TextBoxSenha1
+                    }
+                    else
+                    {
+                        senhavalida = true;
+                        TextBoxSenha1.ForeColor = Color.Black;
+                        TextBoxSenha2.ForeColor = Color.Black;
+                    }
+                }
+            }
+
+
+            // Remove todos os caracteres não numéricos do texto    Valida CPF
+            string cpfDigitsOnly = MaskedTextBoxCPF.Text.Replace(".", "").Replace("-", "");
+
+            // Verifica se o CPF tem exatamente 11 dígitos
+            if (cpfDigitsOnly.Length != 11 || !cpfDigitsOnly.All(char.IsDigit))
+            {
+                // Define a cor de texto para vermelho
+                MaskedTextBoxCPF.ForeColor = Color.Red;
+
+                // Exibe a mensagem de erro
+                MessageBox.Show("Preencha o campo CPF corretamente. O CPF deve conter 11 números.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                cpfvalido = false;
+                this.ActiveControl = MaskedTextBoxCPF; // Define o foco para o TextBoxCNPJ
+            }
+            else
+            {
+                // Define a cor de texto para preto
+                MaskedTextBoxCPF.ForeColor = Color.Black;
+
+                cpfvalido = true;
+            }
+
+
+            //-------------------------------------------------------------------------------------//
+
+
             if (nomevalido == false)
             {
                 MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -179,118 +530,30 @@ namespace PIMFazendaUrbanaForms
             this.Close();
         }
 
+        // Os códigos de todos os "Validating" foram colocados em "BotaoConfirmar_Click" acima para evitar "travar o usuário"
         private void TextBoxNome_Validating(object sender, CancelEventArgs e)
         {
-            string Nome = TextBoxNome.Text;
-            if (Nome.Length < 3)
-            {
-                // Define a cor de texto para vermelho
-                TextBoxNome.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo Nome corretamente. O nome deve ter ao menos 3 caracteres", "Nome Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                nomevalido = false;
-                this.ActiveControl = TextBoxNome; // Define o foco para o TextBoxNome
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxNome.ForeColor = Color.Black;
-                nomevalido = true;
-            }
+            
         }
 
         private void TextBoxEmail_Validating(object sender, EventArgs e)
         {
-            string Email = TextBoxEmail.Text;
-            if (!Regex.IsMatch(Email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
-            {
-                // Define a cor de texto para vermelho
-                TextBoxEmail.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo E-mail corretamente.", "E-mail Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                emailvalido = false;
-                this.ActiveControl = TextBoxEmail; // Define o foco para o TextBoxEmail
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxEmail.ForeColor = Color.Black;
-                emailvalido = true;
-            }
+            
         }
 
         private void ComboBoxCargo_Validating(object sender, CancelEventArgs e)
         {
-            string text = ComboBoxCargo.Text.Trim(); // Remover espaços em branco extras
-            if (text != "Funcionário" && text != "Gerente")
-            {
-                // Define a cor de texto para vermelho
-                ComboBoxCargo.ForeColor = Color.Red;
-
-                MessageBox.Show("O cargo deve ser 'Funcionário' ou 'Gerente'.", "Cargo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cargovalido = false;
-                this.ActiveControl = ComboBoxCargo; // Define o foco para o ComboBoxCargo
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                ComboBoxCargo.ForeColor = Color.Black;
-                cargovalido = true;
-            }
+            
         }
 
         private void ComboBoxSexo_Validating(object sender, CancelEventArgs e)
         {
-            string text = ComboBoxSexo.Text.Trim(); // Remover espaços em branco extras
-            if (text != "M" && text != "F" && text != "-")
-            {
-                // Define a cor de texto para vermelho
-                ComboBoxSexo.ForeColor = Color.Red;
-
-                MessageBox.Show("O sexo deve ser 'M', 'F' ou '-'.", "Sexo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                sexovalido = false;
-                this.ActiveControl = ComboBoxSexo; // Define o foco para o ComboBoxSexo
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                ComboBoxSexo.ForeColor = Color.Black;
-                sexovalido = true;
-            }
+            
         }
 
         private void TextBoxUsuario_Validating(object sender, CancelEventArgs e)
         {
-            string usuario = TextBoxUsuario.Text;
-
-            if (TextBoxUsuario.Text.Length < 3)
-            {
-                TextBoxUsuario.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo Usuário corretamente. O nome de usuário deve ter ao menos 3 caracteres", "Nome de Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                usuariovalido = false;
-                this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
-            }
-            else
-            {
-                if (VerificarUsuarioDisponivel(usuario) == true)
-                {
-                    TextBoxUsuario.ForeColor = Color.Black;
-                    usuariovalido = true;
-                }
-                else
-                {
-                    TextBoxUsuario.ForeColor = Color.Red;
-                    usuariovalido = false;
-                    this.ActiveControl = TextBoxUsuario; // Define o foco para o TextBoxUsuario
-                }
-            }
+            
         }
 
         // Verificar se um nome de usuário já está em uso
@@ -320,240 +583,52 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxDDD_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxDDD.Text;
-            if (!Regex.IsMatch(text, @"^\d{2}$"))
-            {
-                // Define a cor de texto para vermelho
-                TextBoxDDD.ForeColor = Color.Red;
-
-                MessageBox.Show("O DDD deve conter exatamente 2 caracteres numéricos.", "DDD Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dddvalido = false;
-                this.ActiveControl = TextBoxDDD; // Define o foco para o TextBoxDDD
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxDDD.ForeColor = Color.Black;
-                dddvalido = true;
-            }
+            
         }
 
         private void TextBoxTelefone_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxTelefone.Text;
-            if (!Regex.IsMatch(text, @"^\d{8,9}$"))
-            {
-                // Define a cor de texto para vermelho
-                TextBoxTelefone.ForeColor = Color.Red;
-
-                MessageBox.Show("O número de telefone deve conter 8 ou 9 caracteres numéricos.", "Telefone Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                telefonevalido = false;
-                this.ActiveControl = TextBoxTelefone; // Define o foco para o TextBoxTelefone
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxTelefone.ForeColor = Color.Black;
-                telefonevalido = true;
-            }
+            
         }
 
         private void TextBoxLogradouro_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxLogradouro.Text;
-            if (text.Length < 3)
-            {
-                // Define a cor de texto para vermelho
-                TextBoxLogradouro.ForeColor = Color.Red;
-
-                MessageBox.Show("O logradouro deve conter ao menos 3 caracteres.", "Logradouro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                logradourovalido = false;
-                this.ActiveControl = TextBoxLogradouro; // Define o foco para o TextBoxLogradouro
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxLogradouro.ForeColor = Color.Black;
-                logradourovalido = true;
-            }
+            
         }
 
         private void TextBoxNumero_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxNumero.Text;
-            if (!Regex.IsMatch(text, @"^\d+$"))
-            {
-                // Define a cor de texto para vermelho
-                TextBoxNumero.ForeColor = Color.Red;
-
-                MessageBox.Show("O número deve conter apenas caracteres numéricos.", "Número Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                numerocasavalido = false;
-                this.ActiveControl = TextBoxNumero; // Define o foco para o TextBoxNumero
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxNumero.ForeColor = Color.Black;
-                numerocasavalido = true;
-            }
+            
         }
 
         private void TextBoxBairro_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxBairro.Text;
-            if (text.Length < 3)
-            {
-                // Define a cor de texto para vermelho
-                TextBoxBairro.ForeColor = Color.Red;
-
-                MessageBox.Show("O bairro deve conter ao menos 3 caracteres.", "Bairro Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                bairrovalido = false;
-                this.ActiveControl = TextBoxBairro; // Define o foco para o TextBoxBairro
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxBairro.ForeColor = Color.Black;
-                bairrovalido = true;
-            }
+            
         }
 
         private void TextBoxCidade_Validating(object sender, CancelEventArgs e)
         {
-            string text = TextBoxCidade.Text;
-            if (text.Length < 3)
-            {
-                // Define a cor de texto para vermelho
-                TextBoxCidade.ForeColor = Color.Red;
-
-                MessageBox.Show("A cidade deve conter ao menos 3 caracteres.", "Cidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cidadevalida = false;
-                this.ActiveControl = TextBoxCidade; // Define o foco para o TextBoxCidade
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxCidade.ForeColor = Color.Black;
-                cidadevalida = true;
-            }
+            
         }
 
         private void ComboBoxUF_Validating(object sender, CancelEventArgs e)
         {
-            string text = ComboBoxUF.Text.Trim(); // Remover espaços em branco extras
-            if (!Regex.IsMatch(text, @"^(AC|AL|AP|AM|BA|CE|DF|ES|GO|MA|MT|MS|MG|PA|PB|PR|PE|PI|RJ|RN|RS|RO|RR|SC|SP|SE|TO)$"))
-            {
-                // Define a cor de texto para vermelho
-                ComboBoxUF.ForeColor = Color.Red;
-
-                MessageBox.Show("Selecione uma UF válida.", "UF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                ufvalido = false;
-                this.ActiveControl = ComboBoxUF; // Define o foco para o ComboBoxUF
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                ComboBoxUF.ForeColor = Color.Black;
-                ufvalido = true;
-            }
+            
         }
 
         private void TextBoxCEP_Validating(object sender, CancelEventArgs e)
         {
-            // Remove todos os caracteres não numéricos do texto
-            string cepDigitsOnly = TextBoxCEP.Text.Replace("-", "");
-
-            // Verifica se o CEP tem exatamente 8 dígitos
-            if (cepDigitsOnly.Length != 8 || !cepDigitsOnly.All(char.IsDigit))
-            {
-                // Define a cor de texto para vermelho
-                TextBoxCEP.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo CEP corretamente. O CEP deve conter 8 números.", "CEP Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                cepvalido = false;
-                this.ActiveControl = TextBoxCEP; // Define o foco para o TextBoxCEP
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                TextBoxCEP.ForeColor = Color.Black;
-                cepvalido = true;
-            }
+            
         }
 
         private void TextBoxSenha1_Validating(object sender, CancelEventArgs e)
         {
-            if (TextBoxSenha1.Text == null)
-            {
-                MessageBox.Show("Preencha o campo Senha", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TextBoxSenha1.ForeColor = Color.Red;
-            }
-            else
-            {
-                string senha1 = TextBoxSenha1.Text;
-
-                // Verificar se a senha é forte o suficiente
-                bool senhaforte = VerificarSenhaForte(senha1);
-
-                if (senhaforte == false)
-                {
-                    senhavalida = false;
-                    TextBoxSenha1.ForeColor = Color.Red;
-                    TextBoxSenha2.ForeColor = Color.Red;
-                    this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
-                    return;
-                }
-                else
-                {
-                    TextBoxSenha1.ForeColor = Color.Black;
-                    TextBoxSenha2.ForeColor = Color.Black;
-                    this.ActiveControl = TextBoxSenha2; // Define o foco para o TextBoxSenha2
-                }
-            }
+            
         }
 
         private void TextBoxSenha2_Validating(object sender, CancelEventArgs e)
         {
-            if (TextBoxSenha1.Text == null)
-            {
-                MessageBox.Show("Preencha o campo Senha", "Senha Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TextBoxSenha1.ForeColor = Color.Red;
-            }
-            else
-            {
-                string senha1 = TextBoxSenha1.Text;
-                string senha2 = TextBoxSenha2.Text;
-
-                // Verificar se a senha é forte o suficiente
-                bool senhaforte = VerificarSenhaForte(senha1);
-
-                if (senhaforte == false)
-                {
-                    senhavalida = false;
-                    TextBoxSenha1.ForeColor = Color.Red;
-                    TextBoxSenha2.ForeColor = Color.Red;
-                    this.ActiveControl = TextBoxSenha1; // Define o foco para o TextBoxSenha1
-                    return;
-                }
-                else
-                {
-                    if (senha1 != senha2)
-                    {
-                        MessageBox.Show("As senhas são diferentes, confira e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        senhavalida = false;
-                        TextBoxSenha2.ForeColor = Color.Red;
-                        this.ActiveControl = TextBoxSenha2; // Define o foco para o TextBoxSenha1
-                    }
-                    else
-                    {
-                        senhavalida = true;
-                        TextBoxSenha1.ForeColor = Color.Black;
-                        TextBoxSenha2.ForeColor = Color.Black;
-                    }
-                }
-            }
+            
         }
 
         // Método dedicado para verificar se a senha é forte o suficiente
@@ -663,28 +738,7 @@ namespace PIMFazendaUrbanaForms
 
         private void MaskedTextBoxCPF_Validating(object sender, CancelEventArgs e)
         {
-            // Remove todos os caracteres não numéricos do texto
-            string cpfDigitsOnly = MaskedTextBoxCPF.Text.Replace(".", "").Replace("-", "");
-
-            // Verifica se o CPF tem exatamente 11 dígitos
-            if (cpfDigitsOnly.Length != 11 || !cpfDigitsOnly.All(char.IsDigit))
-            {
-                // Define a cor de texto para vermelho
-                MaskedTextBoxCPF.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                MessageBox.Show("Preencha o campo CPF corretamente. O CPF deve conter 11 números.", "CPF Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                cpfvalido = false;
-                this.ActiveControl = MaskedTextBoxCPF; // Define o foco para o TextBoxCNPJ
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                MaskedTextBoxCPF.ForeColor = Color.Black;
-
-                cpfvalido = true;
-            }
+            
         }
     }
 }

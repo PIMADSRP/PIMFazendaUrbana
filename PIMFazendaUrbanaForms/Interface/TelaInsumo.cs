@@ -76,7 +76,7 @@ namespace PIMFazendaUrbanaForms
             DataGridViewSaidaInsumos.Columns["CategoriaColumn"].Width = 100;
             DataGridViewSaidaInsumos.Columns["QtdColumn"].Width = 95;
             DataGridViewSaidaInsumos.Columns["UnidQtdColumn"].Width = 75;
-            DataGridViewSaidaInsumos.Columns["DataColumn"].Width = 145;
+            DataGridViewSaidaInsumos.Columns["DataColumn"].Width = 130;
 
             DataGridViewSaidaInsumos.Columns["NomeColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
@@ -132,8 +132,8 @@ namespace PIMFazendaUrbanaForms
                         si.CategoriaInsumo,
                         si.Qtd,
                         si.Unidqtd,
-                        si.Data,
-                        //Data = Program.utility.FormatarDataSemHora(si.Data), // Caso deseje exibir a data sem a hora
+                        //Data = si.Data.ToShortDateString(), // Para exibir só a data
+                        si.Data, // Para exibir a data e a hora
                     }).ToList();
 
                     DataGridViewSaidaInsumos.DataSource = data; // Preencher o DataGridView com os dados formatados

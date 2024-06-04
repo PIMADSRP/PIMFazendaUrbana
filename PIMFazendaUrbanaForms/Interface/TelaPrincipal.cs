@@ -191,7 +191,7 @@ namespace PIMFazendaUrbanaForms
 
         private void pictureBoxCompras_MouseHover(object sender, EventArgs e)
         {
-            toolTip5.SetToolTip(pictureBoxCompras, "Compras");
+            toolTip5.SetToolTip(PictureBoxCompras, "Compras");
         }
 
         private void PictureBoxClientes_MouseHover(object sender, EventArgs e)
@@ -354,18 +354,23 @@ namespace PIMFazendaUrbanaForms
 
         private void pictureBoxCompras_MouseHover_1(object sender, EventArgs e)
         {
-            toolTipCompra.SetToolTip(pictureBoxCompras, "Compra");
+            toolTipCompra.SetToolTip(PictureBoxCompras, "Compra");
         }
 
         private void pictureBoxVendas_MouseHover(object sender, EventArgs e)
         {
-            toolTipVenda.SetToolTip(pictureBoxVendas, "Venda");
+            toolTipVenda.SetToolTip(PictureBoxVendas, "Venda");
         }
 
         private void pictureBoxCompras_Click(object sender, EventArgs e)
         {
             TelaCompra telaCompra = new TelaCompra();
             telaCompra.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

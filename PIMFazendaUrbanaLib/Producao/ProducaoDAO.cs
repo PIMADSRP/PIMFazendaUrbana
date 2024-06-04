@@ -50,7 +50,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 2 - MÉTODO ALTERAR PRODUCAO NO BANCO
-        // NÃO FINALIZADO
+        // NÃO FUNCIONAL
         public void AlterarProducao(Producao producao)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -125,8 +125,7 @@ namespace PIMFazendaUrbanaLib
                 connection.Open();
 
                 string query = @"SELECT p.id_producao, p.qtd_producao, p.unidqtd_producao, 
-                                DATE_FORMAT(p.data_producao, '%Y-%m-%d %H:%i:%s') AS data_producao,
-                                DATE_FORMAT(p.datacolheita_producao, '%Y-%m-%d %H:%i:%s') AS datacolheita_producao,
+                                p.data_producao, p.datacolheita_producao, 
                                 p.ambientectrl_producao, p.finalizado_producao, p.id_cultivo,
                                 c.nome_cultivo, c.variedade_cultivo, c.categoria_cultivo, c.tempoprodtrad_cultivo, c.tempoprodctrl_cultivo
                                 FROM producao p
@@ -148,8 +147,8 @@ namespace PIMFazendaUrbanaLib
                                 TempoProdControlado = reader.GetInt32("tempoprodctrl_cultivo"),
                                 Qtd = reader.GetInt32("qtd_producao"),
                                 Unidqtd = reader.GetString("unidqtd_producao"),
-                                Data = reader.GetString("data_producao"),
-                                DataColheita = reader.GetString("datacolheita_producao"),
+                                Data = reader.GetDateTime("data_producao"),
+                                DataColheita = reader.GetDateTime("datacolheita_producao"),
                                 AmbienteControlado = reader.GetBoolean("ambientectrl_producao"),
                                 StatusFinalizado = reader.GetBoolean("finalizado_producao"),
                             };
@@ -195,8 +194,8 @@ namespace PIMFazendaUrbanaLib
                                 TempoProdControlado = reader.GetInt32("tempoprodctrl_cultivo"),
                                 Qtd = reader.GetInt32("qtd_producao"),
                                 Unidqtd = reader.GetString("unidqtd_producao"),
-                                Data = reader.GetString("data_producao"),
-                                DataColheita = reader.GetString("datacolheita_producao"),
+                                Data = reader.GetDateTime("data_producao"),
+                                DataColheita = reader.GetDateTime("datacolheita_producao"),
                                 AmbienteControlado = reader.GetBoolean("ambientectrl_producao"),
                                 StatusFinalizado = reader.GetBoolean("finalizado_producao"),
                             };
@@ -209,7 +208,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5 - MÉTODO CONSULTAR PRODUCAO POR ID NO BANCO
-        // NÃO FINALIZADO
+        // NÃO FUNCIONAL
         public Producao ConsultarProducaoID(int producaoId)
         {
             Producao producao = null;
@@ -232,7 +231,7 @@ namespace PIMFazendaUrbanaLib
                         {
                             Id = producaoId,
                             Qtd = reader.GetInt32(reader.GetString("qtd_producao")),
-                            Data = reader.GetString("dt_producao"),
+                            Data = reader.GetDateTime("data_producao"),
                             StatusFinalizado = reader.GetBoolean("finalizado_producao"),
                         };
                     }

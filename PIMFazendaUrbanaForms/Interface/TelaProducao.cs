@@ -88,12 +88,12 @@ namespace PIMFazendaUrbanaForms
             //DataGridViewProducao.Columns["NomeColumn"].Width = 200;
             DataGridViewProducao.Columns["VariedadeColumn"].Width = 150;
             //DataGridViewProducao.Columns["CategoriaColumn"].Width = 100;
-            DataGridViewProducao.Columns["QtdColumn"].Width = 75;
-            DataGridViewProducao.Columns["UnidQtdColumn"].Width = 60;
-            DataGridViewProducao.Columns["AmbienteControlado"].Width = 75;
-            DataGridViewProducao.Columns["DataColumn"].Width = 70;
-            DataGridViewProducao.Columns["DataColheitaColumn"].Width = 70;
-            DataGridViewProducao.Columns["Finalizada"].Width = 65;
+            DataGridViewProducao.Columns["QtdColumn"].Width = 95;
+            DataGridViewProducao.Columns["UnidQtdColumn"].Width = 75;
+            DataGridViewProducao.Columns["AmbienteControlado"].Width = 95;
+            DataGridViewProducao.Columns["DataColumn"].Width = 90;
+            DataGridViewProducao.Columns["DataColheitaColumn"].Width = 90;
+            DataGridViewProducao.Columns["Finalizada"].Width = 85;
 
             DataGridViewProducao.Columns["VariedadeColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -141,8 +141,8 @@ namespace PIMFazendaUrbanaForms
                         p.Qtd,
                         p.Unidqtd,
                         AmbienteControlado = p.AmbienteControlado ? "Sim" : "Não",
-                        Data = Program.utility.FormatarDataSemHora(p.Data), // Para exibir a data sem a hora
-                        DataColheita = Program.utility.FormatarDataSemHora(p.DataColheita), // Para exibir a data sem a hora
+                        Data = p.Data.ToShortDateString(), // Para exibir apenas a data
+                        DataColheita = p.DataColheita.ToShortDateString(), // Para exibir apenas a data
                         StatusFinalizado = p.StatusFinalizado ? "Sim" : "Não"
                     }).ToList();
 
@@ -350,19 +350,24 @@ namespace PIMFazendaUrbanaForms
             if (DataGridViewProducao.SelectedRows.Count == 1) // Verifica se alguma linha está selecionada no DataGridView
             {
                 int selectedIndex = DataGridViewProducao.SelectedRows[0].Index; // Obter o índice da linha selecionada
-                int producaoID = (int)DataGridViewProducao.Rows[selectedIndex].Cells["IDColumn"].Value; // Obter o ID da produção selecionada
-
-                try
+                if (DataGridViewProducao.Rows[selectedIndex].Cells["Finalizada"].Value.ToString() == "Sim")
                 {
-                    producaoService.FinalizarProducao(producaoID); // Finalizar a produção
-
-                    MessageBox.Show("Produção finalizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CarregarProducoes(); // Atualizar o DataGridView após a finalização
-
+                    MessageBox.Show("Esta produção já foi finalizada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    int producaoID = (int)DataGridViewProducao.Rows[selectedIndex].Cells["IDColumn"].Value; // Obter o ID da produção selecionada
+                    try
+                    {
+                        producaoService.FinalizarProducao(producaoID); // Finalizar a produção
+                        MessageBox.Show("Produção finalizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CarregarProducoes(); // Atualizar o DataGridView após a finalização
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else if (DataGridViewListaCultivos.SelectedRows.Count == 0)

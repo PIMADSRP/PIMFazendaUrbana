@@ -94,7 +94,7 @@ namespace PIMFazendaUrbanaForms
                 producao.Qtd = quantidade;
                 producao.Unidqtd = unidade;
 
-                producao.Data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                producao.Data = DateTime.Now;
                 producao.AmbienteControlado = checkBox1.Checked;
                 producao.DataColheita = producao.CalcularDataHoraColheita(producao);
                 producao.StatusFinalizado = false;

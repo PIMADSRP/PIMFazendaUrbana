@@ -12,8 +12,8 @@
         public int TempoProdControlado { get; set; }
         public int Qtd { get; set; }
         public string Unidqtd { get; set; }
-        public string Data { get; set; }
-        public string DataColheita { get; set; }
+        public DateTime Data { get; set; }
+        public DateTime DataColheita { get; set; }
         public bool AmbienteControlado { get; set; }
         public bool StatusFinalizado { get; set; }
 
@@ -38,9 +38,9 @@
             return dataColheita;
         }
 
-        public string CalcularDataHoraColheita(Producao producao)
+        public DateTime CalcularDataHoraColheita(Producao producao)
         {
-            string dataHoraColheita = "";
+            DateTime dataHoraColheita;
 
             DateTime data = DateTime.Now;
             int tempoProd;
@@ -53,7 +53,7 @@
                 tempoProd = producao.TempoProdTradicional;
             }
 
-            dataHoraColheita = data.AddDays(tempoProd).ToString("yyyy-MM-dd HH:mm:ss");
+            dataHoraColheita = data.AddDays(tempoProd);
 
             return dataHoraColheita;
         }

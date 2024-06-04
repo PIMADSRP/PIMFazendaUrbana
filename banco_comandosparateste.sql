@@ -19,3 +19,8 @@ SELECT id_insumo, nome_insumo, categoria_insumo, qtd_insumo, unidqtd_insumo, ati
                                 WHERE ativo_insumo = true AND qtd_insumo > 0;
 
 UPDATE producao SET finalizado_producao = true, datacolheita_producao = @data WHERE id_producao = @id;
+
+select * from estoqueproduto;
+
+select * from compraitem;
+select * from pedidocompra;

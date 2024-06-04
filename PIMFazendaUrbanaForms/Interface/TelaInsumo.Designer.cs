@@ -318,10 +318,10 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1350, 729);
+            Controls.Add(PanelFooter);
             Controls.Add(LabelRegistroSaida);
             Controls.Add(LabelEstoqueInsumos);
             Controls.Add(DataGridViewSaidaInsumos);
-            Controls.Add(PanelFooter);
             Controls.Add(DataGridViewListaInsumos);
             Controls.Add(PanelHeader);
             FormBorderStyle = FormBorderStyle.FixedSingle;
