@@ -93,6 +93,16 @@ namespace PIMFazendaUrbanaForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Compras {
+            get {
+                object obj = ResourceManager.GetObject("Compras", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Deletar {
             get {
                 object obj = ResourceManager.GetObject("Deletar", resourceCulture);
@@ -196,6 +206,16 @@ namespace PIMFazendaUrbanaForms.Properties {
         internal static System.Drawing.Bitmap Produtos {
             get {
                 object obj = ResourceManager.GetObject("Produtos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RecPlantio {
+            get {
+                object obj = ResourceManager.GetObject("RecPlantio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +353,9 @@ namespace PIMFazendaUrbanaForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Transacao {
+        internal static System.Drawing.Bitmap Usuarios {
             get {
-                object obj = ResourceManager.GetObject("Transacao", resourceCulture);
+                object obj = ResourceManager.GetObject("Usuarios", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +363,9 @@ namespace PIMFazendaUrbanaForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Usuarios {
+        internal static System.Drawing.Bitmap Vendas {
             get {
-                object obj = ResourceManager.GetObject("Usuarios", resourceCulture);
+                object obj = ResourceManager.GetObject("Vendas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

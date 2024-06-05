@@ -127,6 +127,19 @@
             }
         }
 
+        public List<SaidaInsumo> FiltrarSaidaInsumosNome(string insumoNome)
+        {
+            try
+            {
+                List<SaidaInsumo> saidainsumos = insumoDAO.FiltrarSaidaInsumosNome(insumoNome);
+                return saidainsumos;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de saída de insumos: " + ex.Message);
+            }
+        }
+
         // Método para filtrar insumos pela unidade
         public List<Insumo> FiltrarInsumosPorUnidade(string unidade)
         {

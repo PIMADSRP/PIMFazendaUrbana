@@ -442,7 +442,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TelaEditarFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Editar Usuários";
+            Text = "Editar Usuário";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

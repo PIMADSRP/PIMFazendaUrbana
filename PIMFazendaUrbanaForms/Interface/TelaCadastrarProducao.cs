@@ -143,12 +143,12 @@ namespace PIMFazendaUrbanaForms
             if (checkBox1.Checked)
             {
                 producao.AmbienteControlado = true;
-                MaskedTextBoxTempoProducao.Text = cultivo.TempoProdTradicional.ToString();
+                MaskedTextBoxTempoProducao.Text = cultivo.TempoProdControlado.ToString();
             }
             else
             {
                 producao.AmbienteControlado = false;
-                MaskedTextBoxTempoProducao.Text = cultivo.TempoProdControlado.ToString();
+                MaskedTextBoxTempoProducao.Text = cultivo.TempoProdTradicional.ToString();
             }
             TextBoxDataColheita.Text = producao.CalcularDataColheita(producao);
         }

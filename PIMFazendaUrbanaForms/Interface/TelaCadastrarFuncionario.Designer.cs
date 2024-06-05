@@ -477,7 +477,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TelaCadastrarFuncionario";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cadastrar Usuários";
+            Text = "Cadastrar Usuário";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxMostrarSenha).EndInit();

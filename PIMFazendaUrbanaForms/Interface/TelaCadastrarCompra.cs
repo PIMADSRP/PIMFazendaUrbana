@@ -70,11 +70,11 @@ namespace PIMFazendaUrbanaForms
             DataGridItensPedidoCompra.Columns.Add(valorTotalColumn);
 
             // Ajustar o tamanho das colunas
-            DataGridItensPedidoCompra.Columns["NomeInsumo"].Width = 200;
+            DataGridItensPedidoCompra.Columns["NomeInsumo"].Width = 260;
             DataGridItensPedidoCompra.Columns["Quantidade"].Width = 95;
             DataGridItensPedidoCompra.Columns["Unidade"].Width = 75;
-            DataGridItensPedidoCompra.Columns["ValorUnitario"].Width = 75;
-            DataGridItensPedidoCompra.Columns["ValorTotal"].Width = 95;
+            DataGridItensPedidoCompra.Columns["ValorUnitario"].Width = 127;
+            DataGridItensPedidoCompra.Columns["ValorTotal"].Width = 107;
 
             // Definir autofill para a coluna "Nome do Insumo"
             DataGridItensPedidoCompra.Columns["NomeInsumo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -123,17 +123,17 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxValorUnitario_TextChanged(object sender, EventArgs e)
         {
-            // Substitui "." por ","
-            if (TextBoxValorUnitario.Text.Contains('.'))
-            {
-                TextBoxValorUnitario.Text = TextBoxValorUnitario.Text.Replace('.', ',');
-                TextBoxValorUnitario.SelectionStart = TextBoxValorUnitario.Text.Length; // Move o cursor para o final do texto
-            }
             AtualizarValorTotal();
         }
 
         private void TextBoxQuantidade_Validating(object sender, CancelEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxQuantidade.Text))
+            {
+                TextBoxQuantidade.ForeColor = Color.Black;
+                return; // Ignora a validação se o campo estiver vazio
+            }
+
             if (!int.TryParse(TextBoxQuantidade.Text, out int quantidade) || quantidade <= 0)
             {
                 e.Cancel = true;
@@ -148,9 +148,15 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxValorUnitario_Validating(object sender, CancelEventArgs e)
         {
-            if (decimal.TryParse(TextBoxValorUnitario.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("pt-BR"), out decimal valor))
+            if (string.IsNullOrWhiteSpace(TextBoxValorUnitario.Text))
             {
-                TextBoxValorUnitario.Text = valor.ToString("N2");
+                TextBoxValorUnitario.ForeColor = Color.Black;
+                return; // Ignora a validação se o campo estiver vazio
+            }
+
+            if (decimal.TryParse(TextBoxValorUnitario.Text, NumberStyles.Number, CultureInfo.GetCultureInfo("pt-BR"), out decimal valor))
+            {
+                TextBoxValorUnitario.Text = valor.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
                 TextBoxValorUnitario.ForeColor = Color.Black;
             }
             else
@@ -416,6 +422,30 @@ namespace PIMFazendaUrbanaForms
                 }
             }
             AtualizarValorTotalPedido();
+        }
+
+        private void TextBoxQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle como backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxValorUnitario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números, vírgula e teclas de controle como backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+
+            // Permitir apenas uma vírgula
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace PIMFazendaUrbanaForms
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFornecedores));
             DataGridViewListaFornecedores = new DataGridView();
             fornecedorServiceBindingSource = new BindingSource(components);
             PictureBoxAtualizar = new PictureBox();
@@ -42,6 +43,8 @@ namespace PIMFazendaUrbanaForms
             PictureBoxDeletar = new PictureBox();
             PictureBoxEditar = new PictureBox();
             PanelHeader = new Panel();
+            PictureBoxRelatorio = new PictureBox();
+            LabelRelatorio = new Label();
             TextBoxPesquisar = new TextBox();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
@@ -55,6 +58,7 @@ namespace PIMFazendaUrbanaForms
             ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             PanelFooter.SuspendLayout();
             SuspendLayout();
@@ -168,6 +172,8 @@ namespace PIMFazendaUrbanaForms
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(PictureBoxRelatorio);
+            PanelHeader.Controls.Add(LabelRelatorio);
             PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
@@ -185,6 +191,28 @@ namespace PIMFazendaUrbanaForms
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(1350, 60);
             PanelHeader.TabIndex = 52;
+            // 
+            // PictureBoxRelatorio
+            // 
+            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Location = new Point(873, 12);
+            PictureBoxRelatorio.Name = "PictureBoxRelatorio";
+            PictureBoxRelatorio.Size = new Size(29, 25);
+            PictureBoxRelatorio.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxRelatorio.TabIndex = 70;
+            PictureBoxRelatorio.TabStop = false;
+            PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
+            // 
+            // LabelRelatorio
+            // 
+            LabelRelatorio.AutoSize = true;
+            LabelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRelatorio.ForeColor = Color.White;
+            LabelRelatorio.Location = new Point(859, 37);
+            LabelRelatorio.Name = "LabelRelatorio";
+            LabelRelatorio.Size = new Size(62, 17);
+            LabelRelatorio.TabIndex = 71;
+            LabelRelatorio.Text = "Relatório";
             // 
             // TextBoxPesquisar
             // 
@@ -265,7 +293,7 @@ namespace PIMFazendaUrbanaForms
             Controls.Add(DataGridViewListaFornecedores);
             Name = "TelaFornecedores";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Listar Fornecedores";
+            Text = "Fornecedores";
             WindowState = FormWindowState.Maximized;
             Load += TelaListarFornecedores_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaFornecedores).EndInit();
@@ -276,6 +304,7 @@ namespace PIMFazendaUrbanaForms
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
@@ -301,5 +330,7 @@ namespace PIMFazendaUrbanaForms
         private Panel PanelFooter;
         private Label label1;
         private TextBox TextBoxPesquisar;
+        private PictureBox PictureBoxRelatorio;
+        private Label LabelRelatorio;
     }
 }

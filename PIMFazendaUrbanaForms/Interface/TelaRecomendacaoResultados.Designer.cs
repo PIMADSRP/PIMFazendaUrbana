@@ -127,7 +127,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TelaRecomendacaoResultados";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TelaResultadosRecomendacao";
+            Text = "Resultados de Recomendação";
             ((System.ComponentModel.ISupportInitialize)DataGridViewResultados).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();

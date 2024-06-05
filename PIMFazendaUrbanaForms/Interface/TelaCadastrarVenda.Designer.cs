@@ -1,4 +1,4 @@
-﻿namespace PIMFazendaUrbanaForms.Interface
+﻿namespace PIMFazendaUrbanaForms
 {
     partial class TelaCadastrarVenda
     {
@@ -28,36 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
+            PanelHeader = new Panel();
+            LabelCadastrarVenda = new Label();
+            LabelCategoria = new Label();
+            ComboBoxProduto = new ComboBox();
+            LabelProduto = new Label();
+            LabelCliente = new Label();
             BotaoCancelar = new Button();
             BotaoConfirmar = new Button();
-            ComboBoxUnidade = new ComboBox();
-            LabelUnidade = new Label();
-            ComboBoxCategoria = new ComboBox();
-            LabelCategoria = new Label();
-            LabelNome = new Label();
-            PanelHeader = new Panel();
-            LabelCadastrarProdutos = new Label();
-            label1 = new Label();
-            comboBoxProduto = new ComboBox();
-            label2 = new Label();
-            label3 = new Label();
+            ComboBoxFornecedor = new ComboBox();
+            LabelQuantidade = new Label();
             TextBoxQuantidade = new TextBox();
-            textBoxValor = new TextBox();
-            textBoxValorTotal = new TextBox();
-            label4 = new Label();
-            comboBoxCliente = new ComboBox();
+            LabelValorUnitario = new Label();
+            TextBoxValorUnitario = new TextBox();
+            LabelValorTotal = new Label();
+            TextBoxValorTotal = new TextBox();
+            LabelUnidade = new Label();
+            TextBoxUnidade = new TextBox();
+            TextBoxCategoria = new TextBox();
+            DataGridItensPedidoCompra = new DataGridView();
+            PictureBoxEditar = new PictureBox();
+            PictureBoxDeletar = new PictureBox();
+            PictureBoxAdicionar = new PictureBox();
+            LabelDeletar = new Label();
+            LabelAdicionar = new Label();
+            LabelEditar = new Label();
+            LabelValorTotalPedido = new Label();
+            TextBoxValorTotalPedido = new TextBox();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridItensPedidoCompra).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAdicionar).BeginInit();
             SuspendLayout();
+            // 
+            // PanelHeader
+            // 
+            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(LabelCadastrarVenda);
+            PanelHeader.Dock = DockStyle.Top;
+            PanelHeader.Location = new Point(0, 0);
+            PanelHeader.Name = "PanelHeader";
+            PanelHeader.Size = new Size(774, 41);
+            PanelHeader.TabIndex = 61;
+            // 
+            // LabelCadastrarVenda
+            // 
+            LabelCadastrarVenda.AutoSize = true;
+            LabelCadastrarVenda.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelCadastrarVenda.ForeColor = SystemColors.ButtonHighlight;
+            LabelCadastrarVenda.Location = new Point(294, 9);
+            LabelCadastrarVenda.Name = "LabelCadastrarVenda";
+            LabelCadastrarVenda.Size = new Size(158, 25);
+            LabelCadastrarVenda.TabIndex = 55;
+            LabelCadastrarVenda.Text = "Cadastrar Venda";
+            // 
+            // LabelCategoria
+            // 
+            LabelCategoria.AutoSize = true;
+            LabelCategoria.Location = new Point(55, 125);
+            LabelCategoria.Name = "LabelCategoria";
+            LabelCategoria.Size = new Size(61, 15);
+            LabelCategoria.TabIndex = 71;
+            LabelCategoria.Text = "Categoria:";
+            // 
+            // ComboBoxProduto
+            // 
+            ComboBoxProduto.FormattingEnabled = true;
+            ComboBoxProduto.Location = new Point(122, 89);
+            ComboBoxProduto.Name = "ComboBoxProduto";
+            ComboBoxProduto.Size = new Size(182, 23);
+            ComboBoxProduto.TabIndex = 1;
+            ComboBoxProduto.SelectedIndexChanged += ComboBoxProduto_SelectedIndexChanged;
+            // 
+            // LabelProduto
+            // 
+            LabelProduto.AutoSize = true;
+            LabelProduto.Location = new Point(63, 92);
+            LabelProduto.Name = "LabelProduto";
+            LabelProduto.Size = new Size(53, 15);
+            LabelProduto.TabIndex = 70;
+            LabelProduto.Text = "Produto:";
+            // 
+            // LabelCliente
+            // 
+            LabelCliente.AutoSize = true;
+            LabelCliente.Location = new Point(69, 59);
+            LabelCliente.Name = "LabelCliente";
+            LabelCliente.Size = new Size(47, 15);
+            LabelCliente.TabIndex = 69;
+            LabelCliente.Text = "Cliente:";
             // 
             // BotaoCancelar
             // 
             BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
-            BotaoCancelar.Location = new Point(212, 295);
+            BotaoCancelar.Location = new Point(682, 299);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
-            BotaoCancelar.TabIndex = 61;
+            BotaoCancelar.TabIndex = 8;
             BotaoCancelar.Text = "Cancelar";
             BotaoCancelar.UseVisualStyleBackColor = false;
             BotaoCancelar.Click += BotaoCancelar_Click;
@@ -67,203 +137,278 @@
             BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
             BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoConfirmar.ForeColor = Color.White;
-            BotaoConfirmar.Location = new Point(52, 294);
+            BotaoConfirmar.Location = new Point(564, 299);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
-            BotaoConfirmar.TabIndex = 60;
+            BotaoConfirmar.TabIndex = 7;
             BotaoConfirmar.Text = "Confirmar";
             BotaoConfirmar.UseVisualStyleBackColor = false;
+            BotaoConfirmar.Click += BotaoConfirmar_Click;
             // 
-            // ComboBoxUnidade
+            // ComboBoxFornecedor
             // 
-            ComboBoxUnidade.FormattingEnabled = true;
-            ComboBoxUnidade.Items.AddRange(new object[] { "kg", "g", "l", "ml", "m", "cm", "mm", "unidade", "caixa", "tambor" });
-            ComboBoxUnidade.Location = new Point(101, 166);
-            ComboBoxUnidade.Name = "ComboBoxUnidade";
-            ComboBoxUnidade.Size = new Size(86, 23);
-            ComboBoxUnidade.TabIndex = 59;
+            ComboBoxFornecedor.FormattingEnabled = true;
+            ComboBoxFornecedor.Location = new Point(122, 56);
+            ComboBoxFornecedor.Name = "ComboBoxFornecedor";
+            ComboBoxFornecedor.Size = new Size(182, 23);
+            ComboBoxFornecedor.TabIndex = 0;
+            // 
+            // LabelQuantidade
+            // 
+            LabelQuantidade.AutoSize = true;
+            LabelQuantidade.Location = new Point(44, 190);
+            LabelQuantidade.Name = "LabelQuantidade";
+            LabelQuantidade.Size = new Size(72, 15);
+            LabelQuantidade.TabIndex = 76;
+            LabelQuantidade.Text = "Quantidade:";
+            // 
+            // TextBoxQuantidade
+            // 
+            TextBoxQuantidade.Location = new Point(122, 187);
+            TextBoxQuantidade.Name = "TextBoxQuantidade";
+            TextBoxQuantidade.Size = new Size(86, 23);
+            TextBoxQuantidade.TabIndex = 4;
+            TextBoxQuantidade.TextChanged += TextBoxQuantidade_TextChanged;
+            // 
+            // LabelValorUnitario
+            // 
+            LabelValorUnitario.AutoSize = true;
+            LabelValorUnitario.Location = new Point(37, 223);
+            LabelValorUnitario.Name = "LabelValorUnitario";
+            LabelValorUnitario.Size = new Size(80, 15);
+            LabelValorUnitario.TabIndex = 78;
+            LabelValorUnitario.Text = "Valor unitário:";
+            // 
+            // TextBoxValorUnitario
+            // 
+            TextBoxValorUnitario.Location = new Point(122, 220);
+            TextBoxValorUnitario.Name = "TextBoxValorUnitario";
+            TextBoxValorUnitario.Size = new Size(86, 23);
+            TextBoxValorUnitario.TabIndex = 5;
+            TextBoxValorUnitario.TextChanged += TextBoxValorUnitario_TextChanged;
+            TextBoxValorUnitario.Validating += TextBoxValorUnitario_Validating;
+            // 
+            // LabelValorTotal
+            // 
+            LabelValorTotal.AutoSize = true;
+            LabelValorTotal.Location = new Point(54, 255);
+            LabelValorTotal.Name = "LabelValorTotal";
+            LabelValorTotal.Size = new Size(64, 15);
+            LabelValorTotal.TabIndex = 80;
+            LabelValorTotal.Text = "Valor Total:";
+            // 
+            // TextBoxValorTotal
+            // 
+            TextBoxValorTotal.BackColor = SystemColors.ControlLightLight;
+            TextBoxValorTotal.Enabled = false;
+            TextBoxValorTotal.Location = new Point(122, 252);
+            TextBoxValorTotal.Name = "TextBoxValorTotal";
+            TextBoxValorTotal.ReadOnly = true;
+            TextBoxValorTotal.Size = new Size(86, 23);
+            TextBoxValorTotal.TabIndex = 6;
             // 
             // LabelUnidade
             // 
             LabelUnidade.AutoSize = true;
-            LabelUnidade.Location = new Point(43, 170);
+            LabelUnidade.Location = new Point(62, 158);
             LabelUnidade.Name = "LabelUnidade";
             LabelUnidade.Size = new Size(54, 15);
-            LabelUnidade.TabIndex = 65;
+            LabelUnidade.TabIndex = 82;
             LabelUnidade.Text = "Unidade:";
             // 
-            // ComboBoxCategoria
+            // TextBoxUnidade
             // 
-            ComboBoxCategoria.FormattingEnabled = true;
-            ComboBoxCategoria.Items.AddRange(new object[] { "Sementes", "Fertilizantes" });
-            ComboBoxCategoria.Location = new Point(101, 137);
-            ComboBoxCategoria.Name = "ComboBoxCategoria";
-            ComboBoxCategoria.Size = new Size(86, 23);
-            ComboBoxCategoria.TabIndex = 58;
+            TextBoxUnidade.BackColor = SystemColors.ControlLightLight;
+            TextBoxUnidade.Enabled = false;
+            TextBoxUnidade.Location = new Point(122, 154);
+            TextBoxUnidade.Name = "TextBoxUnidade";
+            TextBoxUnidade.ReadOnly = true;
+            TextBoxUnidade.Size = new Size(86, 23);
+            TextBoxUnidade.TabIndex = 3;
+            TextBoxUnidade.TextChanged += TextBoxUnidade_TextChanged;
             // 
-            // LabelCategoria
+            // TextBoxCategoria
             // 
-            LabelCategoria.AutoSize = true;
-            LabelCategoria.Location = new Point(36, 141);
-            LabelCategoria.Name = "LabelCategoria";
-            LabelCategoria.Size = new Size(61, 15);
-            LabelCategoria.TabIndex = 64;
-            LabelCategoria.Text = "Categoria:";
+            TextBoxCategoria.BackColor = SystemColors.ControlLightLight;
+            TextBoxCategoria.Enabled = false;
+            TextBoxCategoria.Location = new Point(122, 122);
+            TextBoxCategoria.Name = "TextBoxCategoria";
+            TextBoxCategoria.ReadOnly = true;
+            TextBoxCategoria.Size = new Size(86, 23);
+            TextBoxCategoria.TabIndex = 2;
             // 
-            // LabelNome
+            // DataGridItensPedidoCompra
             // 
-            LabelNome.AutoSize = true;
-            LabelNome.Location = new Point(44, 112);
-            LabelNome.Name = "LabelNome";
-            LabelNome.Size = new Size(53, 15);
-            LabelNome.TabIndex = 63;
-            LabelNome.Text = "Produto:";
+            DataGridItensPedidoCompra.AllowUserToAddRows = false;
+            DataGridItensPedidoCompra.AllowUserToDeleteRows = false;
+            DataGridItensPedidoCompra.BackgroundColor = SystemColors.Menu;
+            DataGridItensPedidoCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridItensPedidoCompra.Location = new Point(322, 56);
+            DataGridItensPedidoCompra.Name = "DataGridItensPedidoCompra";
+            DataGridItensPedidoCompra.ReadOnly = true;
+            DataGridItensPedidoCompra.RowHeadersWidth = 27;
+            DataGridItensPedidoCompra.Size = new Size(440, 234);
+            DataGridItensPedidoCompra.TabIndex = 83;
+            DataGridItensPedidoCompra.VirtualMode = true;
             // 
-            // PanelHeader
+            // PictureBoxEditar
             // 
-            PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
-            PanelHeader.Controls.Add(LabelCadastrarProdutos);
-            PanelHeader.Dock = DockStyle.Top;
-            PanelHeader.Location = new Point(0, 0);
-            PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(360, 41);
-            PanelHeader.TabIndex = 62;
+            PictureBoxEditar.Image = Properties.Resources.editar;
+            PictureBoxEditar.Location = new Point(136, 287);
+            PictureBoxEditar.Name = "PictureBoxEditar";
+            PictureBoxEditar.Size = new Size(29, 25);
+            PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxEditar.TabIndex = 84;
+            PictureBoxEditar.TabStop = false;
+            PictureBoxEditar.Click += PictureBoxEditar_Click;
             // 
-            // LabelCadastrarProdutos
+            // PictureBoxDeletar
             // 
-            LabelCadastrarProdutos.AutoSize = true;
-            LabelCadastrarProdutos.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelCadastrarProdutos.ForeColor = SystemColors.ButtonHighlight;
-            LabelCadastrarProdutos.Location = new Point(85, 8);
-            LabelCadastrarProdutos.Name = "LabelCadastrarProdutos";
-            LabelCadastrarProdutos.Size = new Size(158, 25);
-            LabelCadastrarProdutos.TabIndex = 52;
-            LabelCadastrarProdutos.Text = "Cadastrar Venda";
+            PictureBoxDeletar.Image = Properties.Resources.Deletar;
+            PictureBoxDeletar.Location = new Point(194, 287);
+            PictureBoxDeletar.Name = "PictureBoxDeletar";
+            PictureBoxDeletar.Size = new Size(29, 25);
+            PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxDeletar.TabIndex = 85;
+            PictureBoxDeletar.TabStop = false;
+            PictureBoxDeletar.Click += PictureBoxDeletar_Click;
             // 
-            // label1
+            // PictureBoxAdicionar
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(50, 83);
-            label1.Name = "label1";
-            label1.Size = new Size(47, 15);
-            label1.TabIndex = 67;
-            label1.Text = "Cliente:";
+            PictureBoxAdicionar.Image = Properties.Resources.Incluir;
+            PictureBoxAdicionar.Location = new Point(80, 287);
+            PictureBoxAdicionar.Name = "PictureBoxAdicionar";
+            PictureBoxAdicionar.Size = new Size(29, 25);
+            PictureBoxAdicionar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxAdicionar.TabIndex = 86;
+            PictureBoxAdicionar.TabStop = false;
+            PictureBoxAdicionar.Click += PictureBoxAdicionar_Click;
             // 
-            // comboBoxProduto
+            // LabelDeletar
             // 
-            comboBoxProduto.FormattingEnabled = true;
-            comboBoxProduto.Items.AddRange(new object[] { "Sementes", "Fertilizantes" });
-            comboBoxProduto.Location = new Point(101, 108);
-            comboBoxProduto.Name = "comboBoxProduto";
-            comboBoxProduto.Size = new Size(182, 23);
-            comboBoxProduto.TabIndex = 69;
+            LabelDeletar.AutoSize = true;
+            LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelDeletar.ForeColor = Color.Black;
+            LabelDeletar.Location = new Point(185, 312);
+            LabelDeletar.Name = "LabelDeletar";
+            LabelDeletar.Size = new Size(51, 17);
+            LabelDeletar.TabIndex = 89;
+            LabelDeletar.Text = "Deletar";
             // 
-            // label2
+            // LabelAdicionar
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(59, 227);
-            label2.Name = "label2";
-            label2.Size = new Size(36, 15);
-            label2.TabIndex = 70;
-            label2.Text = "Valor:";
+            LabelAdicionar.AutoSize = true;
+            LabelAdicionar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelAdicionar.ForeColor = Color.Black;
+            LabelAdicionar.Location = new Point(61, 312);
+            LabelAdicionar.Name = "LabelAdicionar";
+            LabelAdicionar.Size = new Size(65, 17);
+            LabelAdicionar.TabIndex = 87;
+            LabelAdicionar.Text = "Adicionar";
             // 
-            // label3
+            // LabelEditar
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(27, 198);
-            label3.Name = "label3";
-            label3.Size = new Size(72, 15);
-            label3.TabIndex = 71;
-            label3.Text = "Quantidade:";
+            LabelEditar.AutoSize = true;
+            LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
+            LabelEditar.ForeColor = Color.Black;
+            LabelEditar.Location = new Point(131, 312);
+            LabelEditar.Name = "LabelEditar";
+            LabelEditar.Size = new Size(43, 17);
+            LabelEditar.TabIndex = 88;
+            LabelEditar.Text = "Editar";
             // 
-            // TextBoxQuantidade
+            // LabelValorTotalPedido
             // 
-            TextBoxQuantidade.Location = new Point(101, 195);
-            TextBoxQuantidade.Name = "TextBoxQuantidade";
-            TextBoxQuantidade.Size = new Size(86, 23);
-            TextBoxQuantidade.TabIndex = 72;
+            LabelValorTotalPedido.AutoSize = true;
+            LabelValorTotalPedido.Location = new Point(321, 305);
+            LabelValorTotalPedido.Name = "LabelValorTotalPedido";
+            LabelValorTotalPedido.Size = new Size(121, 15);
+            LabelValorTotalPedido.TabIndex = 91;
+            LabelValorTotalPedido.Text = "Valor Total do Pedido:";
             // 
-            // textBoxValor
+            // TextBoxValorTotalPedido
             // 
-            textBoxValor.Location = new Point(101, 224);
-            textBoxValor.Name = "textBoxValor";
-            textBoxValor.Size = new Size(86, 23);
-            textBoxValor.TabIndex = 73;
-            // 
-            // textBoxValorTotal
-            // 
-            textBoxValorTotal.Location = new Point(101, 253);
-            textBoxValorTotal.Name = "textBoxValorTotal";
-            textBoxValorTotal.Size = new Size(86, 23);
-            textBoxValorTotal.TabIndex = 75;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(33, 256);
-            label4.Name = "label4";
-            label4.Size = new Size(64, 15);
-            label4.TabIndex = 74;
-            label4.Text = "Valor Total:";
-            // 
-            // comboBoxCliente
-            // 
-            comboBoxCliente.FormattingEnabled = true;
-            comboBoxCliente.Location = new Point(101, 79);
-            comboBoxCliente.Name = "comboBoxCliente";
-            comboBoxCliente.Size = new Size(182, 23);
-            comboBoxCliente.TabIndex = 68;
+            TextBoxValorTotalPedido.BackColor = SystemColors.ControlLightLight;
+            TextBoxValorTotalPedido.Enabled = false;
+            TextBoxValorTotalPedido.Location = new Point(447, 302);
+            TextBoxValorTotalPedido.Name = "TextBoxValorTotalPedido";
+            TextBoxValorTotalPedido.ReadOnly = true;
+            TextBoxValorTotalPedido.Size = new Size(86, 23);
+            TextBoxValorTotalPedido.TabIndex = 90;
             // 
             // TelaCadastrarVenda
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(360, 341);
-            Controls.Add(textBoxValorTotal);
-            Controls.Add(label4);
-            Controls.Add(textBoxValor);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(774, 338);
+            Controls.Add(LabelValorTotalPedido);
+            Controls.Add(TextBoxValorTotalPedido);
+            Controls.Add(PictureBoxEditar);
+            Controls.Add(PictureBoxDeletar);
+            Controls.Add(PictureBoxAdicionar);
+            Controls.Add(LabelDeletar);
+            Controls.Add(LabelAdicionar);
+            Controls.Add(LabelEditar);
+            Controls.Add(DataGridItensPedidoCompra);
+            Controls.Add(TextBoxCategoria);
+            Controls.Add(TextBoxUnidade);
+            Controls.Add(LabelUnidade);
+            Controls.Add(LabelValorTotal);
+            Controls.Add(TextBoxValorTotal);
+            Controls.Add(LabelValorUnitario);
+            Controls.Add(TextBoxValorUnitario);
+            Controls.Add(LabelQuantidade);
             Controls.Add(TextBoxQuantidade);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(comboBoxProduto);
-            Controls.Add(comboBoxCliente);
-            Controls.Add(label1);
+            Controls.Add(ComboBoxFornecedor);
             Controls.Add(BotaoCancelar);
             Controls.Add(BotaoConfirmar);
-            Controls.Add(ComboBoxUnidade);
-            Controls.Add(LabelUnidade);
-            Controls.Add(ComboBoxCategoria);
-            Controls.Add(LabelCategoria);
-            Controls.Add(LabelNome);
             Controls.Add(PanelHeader);
+            Controls.Add(LabelCategoria);
+            Controls.Add(ComboBoxProduto);
+            Controls.Add(LabelProduto);
+            Controls.Add(LabelCliente);
             Name = "TelaCadastrarVenda";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Venda";
+            Text = "Cadastrar Venda";
+            Load += TelaCadastrarCompra_Load;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridItensPedidoCompra).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxAdicionar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
+        private Panel PanelHeader;
+        private Label LabelCadastrarVenda;
+        private Label LabelCategoria;
+        private ComboBox ComboBoxProduto;
+        private Label LabelProduto;
+        private Label LabelCliente;
         private Button BotaoCancelar;
         private Button BotaoConfirmar;
-        private ComboBox ComboBoxUnidade;
-        private Label LabelUnidade;
-        private ComboBox ComboBoxCategoria;
-        private Label LabelCategoria;
-        private Label LabelNome;
-        private Panel PanelHeader;
-        private Label LabelCadastrarProdutos;
-        private Label label1;
-        private ComboBox comboBoxProduto;
-        private Label label2;
-        private Label label3;
+        private ComboBox ComboBoxFornecedor;
+        private Label LabelQuantidade;
         private TextBox TextBoxQuantidade;
-        private TextBox textBoxValor;
-        private TextBox textBoxValorTotal;
-        private Label label4;
-        private ComboBox comboBoxCliente;
+        private Label LabelValorUnitario;
+        private TextBox TextBoxValorUnitario;
+        private Label LabelValorTotal;
+        private TextBox TextBoxValorTotal;
+        private Label LabelUnidade;
+        private TextBox TextBoxUnidade;
+        private TextBox TextBoxCategoria;
+        private DataGridView DataGridItensPedidoCompra;
+        private PictureBox PictureBoxEditar;
+        private PictureBox PictureBoxDeletar;
+        private PictureBox PictureBoxAdicionar;
+        private Label LabelDeletar;
+        private Label LabelAdicionar;
+        private Label LabelEditar;
+        private Label LabelValorTotalPedido;
+        private TextBox TextBoxValorTotalPedido;
     }
 }

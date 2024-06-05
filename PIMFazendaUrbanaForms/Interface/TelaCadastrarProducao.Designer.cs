@@ -294,7 +294,7 @@
             Controls.Add(PanelHeader);
             Name = "TelaCadastrarProducao";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Editar Cultivo";
+            Text = "Cadastrar Produção";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

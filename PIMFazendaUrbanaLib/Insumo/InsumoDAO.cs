@@ -182,6 +182,7 @@ namespace PIMFazendaUrbanaLib
             return insumos;
         }
 
+        // Método para listar todas as saídas de insumos
         public List<SaidaInsumo> ListarSaidaInsumos()
         {
             List<SaidaInsumo> saidainsumos = new List<SaidaInsumo>();
@@ -196,6 +197,45 @@ namespace PIMFazendaUrbanaLib
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            SaidaInsumo saidainsumo = new SaidaInsumo
+                            {
+                                IdInsumo = reader.GetInt32("id_insumo"),
+                                NomeInsumo = reader.IsDBNull(reader.GetOrdinal("nome_insumo")) ? null : reader.GetString("nome_insumo"),
+                                CategoriaInsumo = reader.IsDBNull(reader.GetOrdinal("categoria_insumo")) ? null : reader.GetString("categoria_insumo"),
+                                Id = reader.GetInt32("id_saidainsumo"),
+                                Qtd = reader.GetInt32("qtd_saidainsumo"),
+                                Unidqtd = reader.GetString("unidqtd_saidainsumo"),
+                                Data = reader.GetDateTime("data_saidainsumo")
+                            };
+                            saidainsumos.Add(saidainsumo);
+                        }
+                    }
+                }
+            }
+            return saidainsumos;
+        }
+
+        // Método para filtrar saídas de insumos pelo nome do insumo
+        public List<SaidaInsumo> FiltrarSaidaInsumosNome(string insumoNome)
+        {
+            List<SaidaInsumo> saidainsumos = new List<SaidaInsumo>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT si.id_saidainsumo, si.qtd_saidainsumo, si.unidqtd_saidainsumo, si.data_saidainsumo, si.id_insumo,
+                        i.nome_insumo, i.categoria_insumo
+                        FROM saidainsumo si
+                        LEFT JOIN estoqueinsumo i ON si.id_insumo = i.id_insumo
+                        WHERE i.nome_insumo LIKE @nome";    
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nome", "%" + insumoNome + "%");
                     using (MySqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())

@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Interface\TelaCadastrarVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Interface\TelaCadastrarFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -27,6 +30,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Interface\TelaCadastrarProducao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Interface\TelaVenda.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Interface\TelaEditarFornecedor.cs">

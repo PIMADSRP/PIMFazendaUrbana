@@ -372,7 +372,7 @@
             Controls.Add(TextBoxEmail);
             Controls.Add(TextBoxNome);
             Name = "TelaEditarCliente";
-            Text = "EditarCliente";
+            Text = "Editar Cliente";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

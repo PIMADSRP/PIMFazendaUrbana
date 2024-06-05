@@ -82,6 +82,20 @@
             }
         }
 
+        // 4.3 - MÉTODO FILTRAR PRODUCOES POR NOME DE CULTIVO
+        public List<Producao> FiltrarProducoesNome(string nomeCultivo)
+        {
+            try
+            {
+                List<Producao> producoes = producaoDAO.FiltrarProducoesNome(nomeCultivo);
+                return producoes; // Retorna a lista de produções quando tudo corre bem
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar produções por nome de cultivo.", ex); // Lança uma exceção indicando que ocorreu um erro
+            }
+        }
+
         // 5 - MÉTODO CONSULTAR PRODUCAO POR ID
         public Producao ConsultarProducaoID(int producaoId)
         {

@@ -1,4 +1,6 @@
 ﻿using PIMFazendaUrbanaLib;
+using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -167,7 +169,7 @@ namespace PIMFazendaUrbanaForms
             {
                 CarregarInsumos();
                 CarregarSaidaInsumos();
-                MessageBox.Show("Listas de insumos e registros de saída atualizadas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Listas de insumos e registros de saída atualizadas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -278,6 +280,108 @@ namespace PIMFazendaUrbanaForms
                 DataGridViewListaInsumos.DataSource = data; // Preencher o DataGridView com os dados formatados
             }
         }
+
+        private void TextBoxPesquisarSaidaInsumo_TextChanged(object sender, EventArgs e)
+        {
+            string insumoNome = TextBoxPesquisarSaidaInsumo.Text;
+            List<SaidaInsumo> saidainsumos = insumoService.FiltrarSaidaInsumosNome(insumoNome);
+
+            if (saidainsumos != null && saidainsumos.Count > 0)
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = saidainsumos.Select(si => new
+                {
+                    si.IdInsumo,
+                    si.NomeInsumo,
+                    si.CategoriaInsumo,
+                    si.Qtd,
+                    si.Unidqtd,
+                    //Data = si.Data.ToShortDateString(), // Para exibir só a data
+                    si.Data, // Para exibir a data e a hora
+                }).ToList();
+
+                DataGridViewSaidaInsumos.DataSource = data; // Preencher o DataGridView com os dados formatados
+            }
+            else
+            {
+                DataGridViewSaidaInsumos.DataSource = null;
+            }
+        }
+
+        private void PictureBoxRelatorio_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Salvar Relatório de Estoque Insumos";
+            saveFileDialog.FileName = "Estoque_de_insumos_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewListaInsumos, saveFileDialog.FileName);
+            }
+        }
+
+        private void PictureBoxRelatorio2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Salvar Relatório de Saída de Insumos";
+            saveFileDialog.FileName = "Saída_de_insumos_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewListaInsumos, saveFileDialog.FileName);
+            }
+        }
+
+        private void ExportToCSV(DataGridView dataGridView, string fileName)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+                {
+                    // Escreve os cabeçalhos das colunas
+                    for (int i = 0; i < dataGridView.Columns.Count; i++)
+                    {
+                        writer.Write(dataGridView.Columns[i].HeaderText);
+                        if (i < dataGridView.Columns.Count - 1)
+                        {
+                            writer.Write(";");
+                        }
+                    }
+                    writer.WriteLine();
+
+                    // Escreve os dados das células
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        for (int i = 0; i < dataGridView.Columns.Count; i++)
+                        {
+                            // Obter o valor da célula e converter para string
+                            string cellValue = Convert.ToString(row.Cells[i].Value);
+
+                            // Substituir ponto e vírgula por vírgula, para evitar conflito com o delimitador
+                            cellValue = cellValue.Replace(";", ",");
+
+                            // Escrever o valor da célula
+                            writer.Write(cellValue);
+
+                            if (i < dataGridView.Columns.Count - 1)
+                            {
+                                writer.Write(";");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                }
+
+                MessageBox.Show("Dados exportados com sucesso para " + fileName, "Relatório Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exportar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
     }
 }

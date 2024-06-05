@@ -30,10 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaProducao));
             PanelHeader = new Panel();
+            MaskedTextBoxPeriodo2 = new MaskedTextBox();
+            PictureBoxRelatorio = new PictureBox();
+            LabelA = new Label();
+            LabelRelatorio = new Label();
+            MaskedTextBoxPeriodo1 = new MaskedTextBox();
             PictureBoxFinalizarProducao = new PictureBox();
             LabelFinalizarProducao = new Label();
+            LabelPeríodo = new Label();
+            PictureBoxPesquisar = new PictureBox();
             PictureBoxCadastrarProducao = new PictureBox();
+            TextBoxPesquisarProducoes = new TextBox();
             LabelCadastrarSaida = new Label();
+            LabelPesquisar = new Label();
+            LabelPesquisarProducoes = new Label();
             TextBoxPesquisar = new TextBox();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
@@ -53,7 +63,9 @@
             LabelRegistroSaida = new Label();
             DataGridViewProducao = new DataGridView();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFinalizarProducao).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarProducao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
@@ -68,10 +80,20 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(MaskedTextBoxPeriodo2);
+            PanelHeader.Controls.Add(PictureBoxRelatorio);
+            PanelHeader.Controls.Add(LabelA);
+            PanelHeader.Controls.Add(LabelRelatorio);
+            PanelHeader.Controls.Add(MaskedTextBoxPeriodo1);
             PanelHeader.Controls.Add(PictureBoxFinalizarProducao);
             PanelHeader.Controls.Add(LabelFinalizarProducao);
+            PanelHeader.Controls.Add(LabelPeríodo);
+            PanelHeader.Controls.Add(PictureBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxCadastrarProducao);
+            PanelHeader.Controls.Add(TextBoxPesquisarProducoes);
             PanelHeader.Controls.Add(LabelCadastrarSaida);
+            PanelHeader.Controls.Add(LabelPesquisar);
+            PanelHeader.Controls.Add(LabelPesquisarProducoes);
             PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxHome);
             PanelHeader.Controls.Add(LabelHome);
@@ -87,13 +109,66 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(1350, 60);
+            PanelHeader.Size = new Size(1533, 60);
             PanelHeader.TabIndex = 53;
+            // 
+            // MaskedTextBoxPeriodo2
+            // 
+            MaskedTextBoxPeriodo2.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxPeriodo2.Location = new Point(1027, 33);
+            MaskedTextBoxPeriodo2.Mask = "00/00/0000";
+            MaskedTextBoxPeriodo2.Name = "MaskedTextBoxPeriodo2";
+            MaskedTextBoxPeriodo2.Size = new Size(78, 23);
+            MaskedTextBoxPeriodo2.TabIndex = 73;
+            MaskedTextBoxPeriodo2.ValidatingType = typeof(DateTime);
+            // 
+            // PictureBoxRelatorio
+            // 
+            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Location = new Point(1357, 10);
+            PictureBoxRelatorio.Name = "PictureBoxRelatorio";
+            PictureBoxRelatorio.Size = new Size(29, 25);
+            PictureBoxRelatorio.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxRelatorio.TabIndex = 70;
+            PictureBoxRelatorio.TabStop = false;
+            PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
+            // 
+            // LabelA
+            // 
+            LabelA.AutoSize = true;
+            LabelA.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelA.ForeColor = Color.White;
+            LabelA.Location = new Point(1008, 34);
+            LabelA.Name = "LabelA";
+            LabelA.Size = new Size(15, 17);
+            LabelA.TabIndex = 78;
+            LabelA.Text = "a";
+            // 
+            // LabelRelatorio
+            // 
+            LabelRelatorio.AutoSize = true;
+            LabelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRelatorio.ForeColor = Color.White;
+            LabelRelatorio.Location = new Point(1343, 36);
+            LabelRelatorio.Name = "LabelRelatorio";
+            LabelRelatorio.Size = new Size(62, 17);
+            LabelRelatorio.TabIndex = 71;
+            LabelRelatorio.Text = "Relatório";
+            // 
+            // MaskedTextBoxPeriodo1
+            // 
+            MaskedTextBoxPeriodo1.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxPeriodo1.Location = new Point(926, 33);
+            MaskedTextBoxPeriodo1.Mask = "00/00/0000";
+            MaskedTextBoxPeriodo1.Name = "MaskedTextBoxPeriodo1";
+            MaskedTextBoxPeriodo1.Size = new Size(78, 23);
+            MaskedTextBoxPeriodo1.TabIndex = 72;
+            MaskedTextBoxPeriodo1.ValidatingType = typeof(DateTime);
             // 
             // PictureBoxFinalizarProducao
             // 
             PictureBoxFinalizarProducao.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxFinalizarProducao.Location = new Point(963, 9);
+            PictureBoxFinalizarProducao.Location = new Point(1281, 10);
             PictureBoxFinalizarProducao.Name = "PictureBoxFinalizarProducao";
             PictureBoxFinalizarProducao.Size = new Size(29, 25);
             PictureBoxFinalizarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -106,16 +181,37 @@
             LabelFinalizarProducao.AutoSize = true;
             LabelFinalizarProducao.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelFinalizarProducao.ForeColor = Color.White;
-            LabelFinalizarProducao.Location = new Point(917, 35);
+            LabelFinalizarProducao.Location = new Point(1269, 36);
             LabelFinalizarProducao.Name = "LabelFinalizarProducao";
-            LabelFinalizarProducao.Size = new Size(119, 17);
+            LabelFinalizarProducao.Size = new Size(57, 17);
             LabelFinalizarProducao.TabIndex = 64;
-            LabelFinalizarProducao.Text = "Finalizar produção";
+            LabelFinalizarProducao.Text = "Finalizar";
+            // 
+            // LabelPeríodo
+            // 
+            LabelPeríodo.AutoSize = true;
+            LabelPeríodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPeríodo.ForeColor = Color.White;
+            LabelPeríodo.Location = new Point(860, 34);
+            LabelPeríodo.Name = "LabelPeríodo";
+            LabelPeríodo.Size = new Size(60, 17);
+            LabelPeríodo.TabIndex = 77;
+            LabelPeríodo.Text = "Período:";
+            // 
+            // PictureBoxPesquisar
+            // 
+            PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
+            PictureBoxPesquisar.Location = new Point(1127, 10);
+            PictureBoxPesquisar.Name = "PictureBoxPesquisar";
+            PictureBoxPesquisar.Size = new Size(29, 25);
+            PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxPesquisar.TabIndex = 74;
+            PictureBoxPesquisar.TabStop = false;
             // 
             // PictureBoxCadastrarProducao
             // 
-            PictureBoxCadastrarProducao.Image = Properties.Resources.SaidaDeEstoque;
-            PictureBoxCadastrarProducao.Location = new Point(826, 9);
+            PictureBoxCadastrarProducao.Image = Properties.Resources.Incluir;
+            PictureBoxCadastrarProducao.Location = new Point(1204, 10);
             PictureBoxCadastrarProducao.Name = "PictureBoxCadastrarProducao";
             PictureBoxCadastrarProducao.Size = new Size(29, 25);
             PictureBoxCadastrarProducao.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -123,23 +219,54 @@
             PictureBoxCadastrarProducao.TabStop = false;
             PictureBoxCadastrarProducao.Click += PictureBoxCadastrarProducao_Click;
             // 
+            // TextBoxPesquisarProducoes
+            // 
+            TextBoxPesquisarProducoes.Location = new Point(926, 4);
+            TextBoxPesquisarProducoes.Name = "TextBoxPesquisarProducoes";
+            TextBoxPesquisarProducoes.PlaceholderText = "Digite o nome do cultivo";
+            TextBoxPesquisarProducoes.Size = new Size(179, 23);
+            TextBoxPesquisarProducoes.TabIndex = 71;
+            TextBoxPesquisarProducoes.TextChanged += TextBoxPesquisarProducoes_TextChanged;
+            // 
             // LabelCadastrarSaida
             // 
             LabelCadastrarSaida.AutoSize = true;
             LabelCadastrarSaida.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarSaida.ForeColor = Color.White;
-            LabelCadastrarSaida.Location = new Point(781, 35);
+            LabelCadastrarSaida.Location = new Point(1187, 36);
             LabelCadastrarSaida.Name = "LabelCadastrarSaida";
-            LabelCadastrarSaida.Size = new Size(128, 17);
+            LabelCadastrarSaida.Size = new Size(66, 17);
             LabelCadastrarSaida.TabIndex = 62;
-            LabelCadastrarSaida.Text = "Cadastrar produção";
+            LabelCadastrarSaida.Text = "Cadastrar";
+            // 
+            // LabelPesquisar
+            // 
+            LabelPesquisar.AutoSize = true;
+            LabelPesquisar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisar.ForeColor = Color.White;
+            LabelPesquisar.Location = new Point(1112, 35);
+            LabelPesquisar.Name = "LabelPesquisar";
+            LabelPesquisar.Size = new Size(66, 17);
+            LabelPesquisar.TabIndex = 75;
+            LabelPesquisar.Text = "Pesquisar";
+            // 
+            // LabelPesquisarProducoes
+            // 
+            LabelPesquisarProducoes.AutoSize = true;
+            LabelPesquisarProducoes.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarProducoes.ForeColor = Color.White;
+            LabelPesquisarProducoes.Location = new Point(781, 5);
+            LabelPesquisarProducoes.Name = "LabelPesquisarProducoes";
+            LabelPesquisarProducoes.Size = new Size(139, 17);
+            LabelPesquisarProducoes.TabIndex = 76;
+            LabelPesquisarProducoes.Text = "Pesquisar Produções:";
             // 
             // TextBoxPesquisar
             // 
             TextBoxPesquisar.Location = new Point(204, 19);
             TextBoxPesquisar.Name = "TextBoxPesquisar";
             TextBoxPesquisar.PlaceholderText = "Digite o nome do cultivo";
-            TextBoxPesquisar.Size = new Size(246, 23);
+            TextBoxPesquisar.Size = new Size(287, 23);
             TextBoxPesquisar.TabIndex = 2;
             TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
             // 
@@ -182,7 +309,7 @@
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = (Image)resources.GetObject("PictureBoxAtualizar.Image");
-            PictureBoxAtualizar.Location = new Point(637, 10);
+            PictureBoxAtualizar.Location = new Point(676, 10);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -193,7 +320,7 @@
             // PictureBoxEditarCultivo
             // 
             PictureBoxEditarCultivo.Image = (Image)resources.GetObject("PictureBoxEditarCultivo.Image");
-            PictureBoxEditarCultivo.Location = new Point(521, 10);
+            PictureBoxEditarCultivo.Location = new Point(560, 10);
             PictureBoxEditarCultivo.Name = "PictureBoxEditarCultivo";
             PictureBoxEditarCultivo.Size = new Size(29, 25);
             PictureBoxEditarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -204,7 +331,7 @@
             // PictureBoxDeletarCultivo
             // 
             PictureBoxDeletarCultivo.Image = (Image)resources.GetObject("PictureBoxDeletarCultivo.Image");
-            PictureBoxDeletarCultivo.Location = new Point(579, 10);
+            PictureBoxDeletarCultivo.Location = new Point(618, 10);
             PictureBoxDeletarCultivo.Name = "PictureBoxDeletarCultivo";
             PictureBoxDeletarCultivo.Size = new Size(29, 25);
             PictureBoxDeletarCultivo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -217,7 +344,7 @@
             LabelAtualizar.AutoSize = true;
             LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelAtualizar.ForeColor = Color.White;
-            LabelAtualizar.Location = new Point(623, 35);
+            LabelAtualizar.Location = new Point(662, 35);
             LabelAtualizar.Name = "LabelAtualizar";
             LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
@@ -226,7 +353,7 @@
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = (Image)resources.GetObject("PictureBoxIncluir.Image");
-            PictureBoxIncluir.Location = new Point(465, 10);
+            PictureBoxIncluir.Location = new Point(504, 10);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -239,7 +366,7 @@
             LabelDeletar.AutoSize = true;
             LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelDeletar.ForeColor = Color.White;
-            LabelDeletar.Location = new Point(570, 35);
+            LabelDeletar.Location = new Point(609, 35);
             LabelDeletar.Name = "LabelDeletar";
             LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 49;
@@ -250,7 +377,7 @@
             LabelIncluir.AutoSize = true;
             LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelIncluir.ForeColor = Color.White;
-            LabelIncluir.Location = new Point(458, 35);
+            LabelIncluir.Location = new Point(497, 35);
             LabelIncluir.Name = "LabelIncluir";
             LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
@@ -261,7 +388,7 @@
             LabelEditar.AutoSize = true;
             LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelEditar.ForeColor = Color.White;
-            LabelEditar.Location = new Point(516, 35);
+            LabelEditar.Location = new Point(555, 35);
             LabelEditar.Name = "LabelEditar";
             LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 48;
@@ -290,7 +417,7 @@
             PanelFooter.Location = new Point(0, 694);
             PanelFooter.Margin = new Padding(5);
             PanelFooter.Name = "PanelFooter";
-            PanelFooter.Size = new Size(1350, 35);
+            PanelFooter.Size = new Size(1533, 35);
             PanelFooter.TabIndex = 56;
             // 
             // label1
@@ -346,7 +473,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoValidate = AutoValidate.EnablePreventFocusChange;
-            ClientSize = new Size(1350, 729);
+            ClientSize = new Size(1533, 729);
             Controls.Add(PanelFooter);
             Controls.Add(DataGridViewProducao);
             Controls.Add(LabelRegistroSaida);
@@ -360,7 +487,9 @@
             WindowState = FormWindowState.Maximized;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFinalizarProducao).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarProducao).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
@@ -400,5 +529,15 @@
         private Label LabelCadastrarSaida;
         private PictureBox PictureBoxFinalizarProducao;
         private Label LabelFinalizarProducao;
+        private PictureBox PictureBoxRelatorio;
+        private Label LabelRelatorio;
+        private MaskedTextBox MaskedTextBoxPeriodo2;
+        private Label LabelA;
+        private MaskedTextBox MaskedTextBoxPeriodo1;
+        private Label LabelPeríodo;
+        private PictureBox PictureBoxPesquisar;
+        private TextBox TextBoxPesquisarProducoes;
+        private Label LabelPesquisar;
+        private Label LabelPesquisarProducoes;
     }
 }

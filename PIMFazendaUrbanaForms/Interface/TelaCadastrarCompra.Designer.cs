@@ -69,7 +69,7 @@
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
-            PanelHeader.Size = new Size(734, 41);
+            PanelHeader.Size = new Size(929, 41);
             PanelHeader.TabIndex = 61;
             // 
             // LabelCadastrarCompra
@@ -77,7 +77,7 @@
             LabelCadastrarCompra.AutoSize = true;
             LabelCadastrarCompra.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCadastrarCompra.ForeColor = SystemColors.ButtonHighlight;
-            LabelCadastrarCompra.Location = new Point(275, 9);
+            LabelCadastrarCompra.Location = new Point(386, 9);
             LabelCadastrarCompra.Name = "LabelCadastrarCompra";
             LabelCadastrarCompra.Size = new Size(173, 25);
             LabelCadastrarCompra.TabIndex = 55;
@@ -86,7 +86,7 @@
             // LabelCategoria
             // 
             LabelCategoria.AutoSize = true;
-            LabelCategoria.Location = new Point(55, 125);
+            LabelCategoria.Location = new Point(31, 125);
             LabelCategoria.Name = "LabelCategoria";
             LabelCategoria.Size = new Size(61, 15);
             LabelCategoria.TabIndex = 71;
@@ -95,16 +95,16 @@
             // ComboBoxProduto
             // 
             ComboBoxProduto.FormattingEnabled = true;
-            ComboBoxProduto.Location = new Point(122, 89);
+            ComboBoxProduto.Location = new Point(98, 89);
             ComboBoxProduto.Name = "ComboBoxProduto";
-            ComboBoxProduto.Size = new Size(182, 23);
+            ComboBoxProduto.Size = new Size(234, 23);
             ComboBoxProduto.TabIndex = 1;
             ComboBoxProduto.SelectedIndexChanged += ComboBoxProduto_SelectedIndexChanged;
             // 
             // LabelProduto
             // 
             LabelProduto.AutoSize = true;
-            LabelProduto.Location = new Point(63, 92);
+            LabelProduto.Location = new Point(39, 92);
             LabelProduto.Name = "LabelProduto";
             LabelProduto.Size = new Size(53, 15);
             LabelProduto.TabIndex = 70;
@@ -113,7 +113,7 @@
             // LabelFornecedor
             // 
             LabelFornecedor.AutoSize = true;
-            LabelFornecedor.Location = new Point(47, 59);
+            LabelFornecedor.Location = new Point(23, 59);
             LabelFornecedor.Name = "LabelFornecedor";
             LabelFornecedor.Size = new Size(70, 15);
             LabelFornecedor.TabIndex = 69;
@@ -124,7 +124,7 @@
             BotaoCancelar.BackColor = Color.FromArgb(255, 100, 100);
             BotaoCancelar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoCancelar.ForeColor = Color.White;
-            BotaoCancelar.Location = new Point(642, 299);
+            BotaoCancelar.Location = new Point(837, 299);
             BotaoCancelar.Name = "BotaoCancelar";
             BotaoCancelar.Size = new Size(80, 30);
             BotaoCancelar.TabIndex = 8;
@@ -137,7 +137,7 @@
             BotaoConfirmar.BackColor = Color.FromArgb(80, 200, 85);
             BotaoConfirmar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BotaoConfirmar.ForeColor = Color.White;
-            BotaoConfirmar.Location = new Point(546, 299);
+            BotaoConfirmar.Location = new Point(729, 299);
             BotaoConfirmar.Name = "BotaoConfirmar";
             BotaoConfirmar.Size = new Size(90, 30);
             BotaoConfirmar.TabIndex = 7;
@@ -148,15 +148,15 @@
             // ComboBoxFornecedor
             // 
             ComboBoxFornecedor.FormattingEnabled = true;
-            ComboBoxFornecedor.Location = new Point(122, 56);
+            ComboBoxFornecedor.Location = new Point(98, 56);
             ComboBoxFornecedor.Name = "ComboBoxFornecedor";
-            ComboBoxFornecedor.Size = new Size(182, 23);
+            ComboBoxFornecedor.Size = new Size(234, 23);
             ComboBoxFornecedor.TabIndex = 0;
             // 
             // LabelQuantidade
             // 
             LabelQuantidade.AutoSize = true;
-            LabelQuantidade.Location = new Point(44, 190);
+            LabelQuantidade.Location = new Point(20, 190);
             LabelQuantidade.Name = "LabelQuantidade";
             LabelQuantidade.Size = new Size(72, 15);
             LabelQuantidade.TabIndex = 76;
@@ -164,16 +164,17 @@
             // 
             // TextBoxQuantidade
             // 
-            TextBoxQuantidade.Location = new Point(122, 187);
+            TextBoxQuantidade.Location = new Point(98, 187);
             TextBoxQuantidade.Name = "TextBoxQuantidade";
-            TextBoxQuantidade.Size = new Size(86, 23);
+            TextBoxQuantidade.Size = new Size(130, 23);
             TextBoxQuantidade.TabIndex = 4;
             TextBoxQuantidade.TextChanged += TextBoxQuantidade_TextChanged;
+            TextBoxQuantidade.KeyPress += TextBoxQuantidade_KeyPress;
             // 
             // LabelValorUnitario
             // 
             LabelValorUnitario.AutoSize = true;
-            LabelValorUnitario.Location = new Point(37, 223);
+            LabelValorUnitario.Location = new Point(13, 223);
             LabelValorUnitario.Name = "LabelValorUnitario";
             LabelValorUnitario.Size = new Size(80, 15);
             LabelValorUnitario.TabIndex = 78;
@@ -181,17 +182,18 @@
             // 
             // TextBoxValorUnitario
             // 
-            TextBoxValorUnitario.Location = new Point(122, 220);
+            TextBoxValorUnitario.Location = new Point(98, 220);
             TextBoxValorUnitario.Name = "TextBoxValorUnitario";
-            TextBoxValorUnitario.Size = new Size(86, 23);
+            TextBoxValorUnitario.Size = new Size(130, 23);
             TextBoxValorUnitario.TabIndex = 5;
             TextBoxValorUnitario.TextChanged += TextBoxValorUnitario_TextChanged;
+            TextBoxValorUnitario.KeyPress += TextBoxValorUnitario_KeyPress;
             TextBoxValorUnitario.Validating += TextBoxValorUnitario_Validating;
             // 
             // LabelValorTotal
             // 
             LabelValorTotal.AutoSize = true;
-            LabelValorTotal.Location = new Point(54, 255);
+            LabelValorTotal.Location = new Point(30, 255);
             LabelValorTotal.Name = "LabelValorTotal";
             LabelValorTotal.Size = new Size(64, 15);
             LabelValorTotal.TabIndex = 80;
@@ -201,16 +203,16 @@
             // 
             TextBoxValorTotal.BackColor = SystemColors.ControlLightLight;
             TextBoxValorTotal.Enabled = false;
-            TextBoxValorTotal.Location = new Point(122, 252);
+            TextBoxValorTotal.Location = new Point(98, 252);
             TextBoxValorTotal.Name = "TextBoxValorTotal";
             TextBoxValorTotal.ReadOnly = true;
-            TextBoxValorTotal.Size = new Size(86, 23);
+            TextBoxValorTotal.Size = new Size(130, 23);
             TextBoxValorTotal.TabIndex = 6;
             // 
             // LabelUnidade
             // 
             LabelUnidade.AutoSize = true;
-            LabelUnidade.Location = new Point(62, 158);
+            LabelUnidade.Location = new Point(38, 158);
             LabelUnidade.Name = "LabelUnidade";
             LabelUnidade.Size = new Size(54, 15);
             LabelUnidade.TabIndex = 82;
@@ -220,10 +222,10 @@
             // 
             TextBoxUnidade.BackColor = SystemColors.ControlLightLight;
             TextBoxUnidade.Enabled = false;
-            TextBoxUnidade.Location = new Point(122, 154);
+            TextBoxUnidade.Location = new Point(98, 154);
             TextBoxUnidade.Name = "TextBoxUnidade";
             TextBoxUnidade.ReadOnly = true;
-            TextBoxUnidade.Size = new Size(86, 23);
+            TextBoxUnidade.Size = new Size(130, 23);
             TextBoxUnidade.TabIndex = 3;
             TextBoxUnidade.TextChanged += TextBoxUnidade_TextChanged;
             // 
@@ -231,10 +233,10 @@
             // 
             TextBoxCategoria.BackColor = SystemColors.ControlLightLight;
             TextBoxCategoria.Enabled = false;
-            TextBoxCategoria.Location = new Point(122, 122);
+            TextBoxCategoria.Location = new Point(98, 122);
             TextBoxCategoria.Name = "TextBoxCategoria";
             TextBoxCategoria.ReadOnly = true;
-            TextBoxCategoria.Size = new Size(86, 23);
+            TextBoxCategoria.Size = new Size(130, 23);
             TextBoxCategoria.TabIndex = 2;
             // 
             // DataGridItensPedidoCompra
@@ -243,18 +245,18 @@
             DataGridItensPedidoCompra.AllowUserToDeleteRows = false;
             DataGridItensPedidoCompra.BackgroundColor = SystemColors.Menu;
             DataGridItensPedidoCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridItensPedidoCompra.Location = new Point(322, 56);
+            DataGridItensPedidoCompra.Location = new Point(357, 56);
             DataGridItensPedidoCompra.Name = "DataGridItensPedidoCompra";
             DataGridItensPedidoCompra.ReadOnly = true;
             DataGridItensPedidoCompra.RowHeadersWidth = 27;
-            DataGridItensPedidoCompra.Size = new Size(400, 234);
+            DataGridItensPedidoCompra.Size = new Size(560, 234);
             DataGridItensPedidoCompra.TabIndex = 83;
             DataGridItensPedidoCompra.VirtualMode = true;
             // 
             // PictureBoxEditar
             // 
             PictureBoxEditar.Image = Properties.Resources.editar;
-            PictureBoxEditar.Location = new Point(136, 287);
+            PictureBoxEditar.Location = new Point(151, 287);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -265,7 +267,7 @@
             // PictureBoxDeletar
             // 
             PictureBoxDeletar.Image = Properties.Resources.Deletar;
-            PictureBoxDeletar.Location = new Point(194, 287);
+            PictureBoxDeletar.Location = new Point(223, 287);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -289,7 +291,7 @@
             LabelDeletar.AutoSize = true;
             LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelDeletar.ForeColor = Color.Black;
-            LabelDeletar.Location = new Point(185, 312);
+            LabelDeletar.Location = new Point(214, 312);
             LabelDeletar.Name = "LabelDeletar";
             LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 89;
@@ -311,7 +313,7 @@
             LabelEditar.AutoSize = true;
             LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelEditar.ForeColor = Color.Black;
-            LabelEditar.Location = new Point(131, 312);
+            LabelEditar.Location = new Point(146, 312);
             LabelEditar.Name = "LabelEditar";
             LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 88;
@@ -320,7 +322,7 @@
             // LabelValorTotalPedido
             // 
             LabelValorTotalPedido.AutoSize = true;
-            LabelValorTotalPedido.Location = new Point(321, 305);
+            LabelValorTotalPedido.Location = new Point(356, 305);
             LabelValorTotalPedido.Name = "LabelValorTotalPedido";
             LabelValorTotalPedido.Size = new Size(121, 15);
             LabelValorTotalPedido.TabIndex = 91;
@@ -330,17 +332,17 @@
             // 
             TextBoxValorTotalPedido.BackColor = SystemColors.ControlLightLight;
             TextBoxValorTotalPedido.Enabled = false;
-            TextBoxValorTotalPedido.Location = new Point(447, 302);
+            TextBoxValorTotalPedido.Location = new Point(482, 302);
             TextBoxValorTotalPedido.Name = "TextBoxValorTotalPedido";
             TextBoxValorTotalPedido.ReadOnly = true;
-            TextBoxValorTotalPedido.Size = new Size(86, 23);
+            TextBoxValorTotalPedido.Size = new Size(228, 23);
             TextBoxValorTotalPedido.TabIndex = 90;
             // 
             // TelaCadastrarCompra
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(734, 338);
+            ClientSize = new Size(929, 338);
             Controls.Add(LabelValorTotalPedido);
             Controls.Add(TextBoxValorTotalPedido);
             Controls.Add(PictureBoxEditar);

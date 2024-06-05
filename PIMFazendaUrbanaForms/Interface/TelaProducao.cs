@@ -1,4 +1,5 @@
 ﻿using PIMFazendaUrbanaLib;
+using System.Text;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -310,13 +311,41 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void TextBoxPesquisarProducoes_TextChanged(object sender, EventArgs e)
+        {
+            string cultivoNome = TextBoxPesquisarProducoes.Text;
+            List<Producao> producoes = producaoService.FiltrarProducoesNome(cultivoNome);
+
+            if (producoes != null && producoes.Count > 0)
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = producoes.Select(p => new
+                {
+                    p.Id,
+                    p.Variedade,
+                    p.Qtd,
+                    p.Unidqtd,
+                    AmbienteControlado = p.AmbienteControlado ? "Sim" : "Não",
+                    Data = p.Data.ToShortDateString(), // Para exibir apenas a data
+                    DataColheita = p.DataColheita.ToShortDateString(), // Para exibir apenas a data
+                    StatusFinalizado = p.StatusFinalizado ? "Sim" : "Não"
+                }).ToList();
+
+                DataGridViewProducao.DataSource = data;
+            }
+            else
+            {
+                DataGridViewProducao.DataSource = null;
+            }
+        }
+
         private void PictureBoxAtualizar_Click(object sender, EventArgs e)
         {
             try
             {
                 CarregarCultivos();
                 CarregarProducoes();
-                MessageBox.Show("Listas de cultivos e produções atualizadas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Listas de cultivos e produções atualizadas com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -361,6 +390,7 @@ namespace PIMFazendaUrbanaForms
                     try
                     {
                         producaoService.FinalizarProducao(producaoID); // Finalizar a produção
+
                         MessageBox.Show("Produção finalizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CarregarProducoes(); // Atualizar o DataGridView após a finalização
                     }
@@ -379,5 +409,68 @@ namespace PIMFazendaUrbanaForms
                 MessageBox.Show("Por favor, selecione apenas uma produção para finalizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void PictureBoxRelatorio_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Salvar Relatório de Produção";
+            saveFileDialog.FileName = "Produção_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewProducao, saveFileDialog.FileName);
+            }
+        }
+
+        private void ExportToCSV(DataGridView dataGridView, string fileName)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+                {
+                    // Escreve os cabeçalhos das colunas
+                    for (int i = 0; i < dataGridView.Columns.Count; i++)
+                    {
+                        writer.Write(dataGridView.Columns[i].HeaderText);
+                        if (i < dataGridView.Columns.Count - 1)
+                        {
+                            writer.Write(";");
+                        }
+                    }
+                    writer.WriteLine();
+
+                    // Escreve os dados das células
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        for (int i = 0; i < dataGridView.Columns.Count; i++)
+                        {
+                            // Obter o valor da célula e converter para string
+                            string cellValue = Convert.ToString(row.Cells[i].Value);
+
+                            // Substituir ponto e vírgula por vírgula, para evitar conflito com o delimitador
+                            cellValue = cellValue.Replace(";", ",");
+
+                            // Escrever o valor da célula
+                            writer.Write(cellValue);
+
+                            if (i < dataGridView.Columns.Count - 1)
+                            {
+                                writer.Write(";");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                }
+
+                MessageBox.Show("Dados exportados com sucesso para " + fileName, "Relatório Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exportar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
     }
 }

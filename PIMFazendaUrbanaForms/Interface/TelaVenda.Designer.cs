@@ -1,6 +1,6 @@
 ﻿namespace PIMFazendaUrbanaForms
 {
-    partial class TelaCompra
+    partial class TelaVenda
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCompra));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaVenda));
             LabelEstoqueInsumos = new Label();
-            DataGridViewListaInsumos = new DataGridView();
+            DataGridViewListaProdutos = new DataGridView();
             PanelHeader = new Panel();
             PictureBoxRelatorio2 = new PictureBox();
             LabelRelatorio2 = new Label();
@@ -39,11 +39,11 @@
             TextBoxPesquisar = new TextBox();
             LabelA = new Label();
             LabelHome = new Label();
-            LabelPesquisarInsumoEstoque = new Label();
+            LabelPesquisarProdutoEstoque = new Label();
             MaskedTextBoxPeriodo1 = new MaskedTextBox();
             PictureBoxAtualizar = new PictureBox();
             PictureBoxEditar = new PictureBox();
-            LabelPeríodo = new Label();
+            LabelPeriodo = new Label();
             PictureBoxDeletar = new PictureBox();
             LabelAtualizar = new Label();
             PictureBoxRelatorio = new PictureBox();
@@ -52,16 +52,16 @@
             LabelRelatorio = new Label();
             LabelEditar = new Label();
             PictureBoxIncluir = new PictureBox();
-            TextBoxInsumosComprados = new TextBox();
+            TextBoxProdutosComprados = new TextBox();
             LabelPesquisar = new Label();
             LabelIncluir = new Label();
-            LabelPesquisarCompras = new Label();
+            LabelPesquisarVendas = new Label();
             PanelFooter = new Panel();
             label3 = new Label();
             LabelEstoqueInsumo = new Label();
-            LabelRegistroDeCompras = new Label();
-            DataGridViewRegistroDeCompras = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).BeginInit();
+            LabelRegistroDeVendas = new Label();
+            DataGridViewRegistroDeVendas = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewListaProdutos).BeginInit();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
@@ -72,7 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
             PanelFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeCompras).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeVendas).BeginInit();
             SuspendLayout();
             // 
             // LabelEstoqueInsumos
@@ -86,19 +86,19 @@
             LabelEstoqueInsumos.TabIndex = 60;
             LabelEstoqueInsumos.Text = "Estoque de Insumos:";
             // 
-            // DataGridViewListaInsumos
+            // DataGridViewListaProdutos
             // 
-            DataGridViewListaInsumos.AllowUserToAddRows = false;
-            DataGridViewListaInsumos.AllowUserToDeleteRows = false;
-            DataGridViewListaInsumos.BackgroundColor = SystemColors.Menu;
-            DataGridViewListaInsumos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewListaInsumos.Location = new Point(41, 91);
-            DataGridViewListaInsumos.Name = "DataGridViewListaInsumos";
-            DataGridViewListaInsumos.ReadOnly = true;
-            DataGridViewListaInsumos.RowHeadersWidth = 27;
-            DataGridViewListaInsumos.Size = new Size(573, 645);
-            DataGridViewListaInsumos.TabIndex = 0;
-            DataGridViewListaInsumos.VirtualMode = true;
+            DataGridViewListaProdutos.AllowUserToAddRows = false;
+            DataGridViewListaProdutos.AllowUserToDeleteRows = false;
+            DataGridViewListaProdutos.BackgroundColor = SystemColors.Menu;
+            DataGridViewListaProdutos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewListaProdutos.Location = new Point(41, 91);
+            DataGridViewListaProdutos.Name = "DataGridViewListaProdutos";
+            DataGridViewListaProdutos.ReadOnly = true;
+            DataGridViewListaProdutos.RowHeadersWidth = 27;
+            DataGridViewListaProdutos.Size = new Size(573, 645);
+            DataGridViewListaProdutos.TabIndex = 0;
+            DataGridViewListaProdutos.VirtualMode = true;
             // 
             // PanelHeader
             // 
@@ -110,11 +110,11 @@
             PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(LabelA);
             PanelHeader.Controls.Add(LabelHome);
-            PanelHeader.Controls.Add(LabelPesquisarInsumoEstoque);
+            PanelHeader.Controls.Add(LabelPesquisarProdutoEstoque);
             PanelHeader.Controls.Add(MaskedTextBoxPeriodo1);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
             PanelHeader.Controls.Add(PictureBoxEditar);
-            PanelHeader.Controls.Add(LabelPeríodo);
+            PanelHeader.Controls.Add(LabelPeriodo);
             PanelHeader.Controls.Add(PictureBoxDeletar);
             PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(PictureBoxRelatorio);
@@ -123,10 +123,10 @@
             PanelHeader.Controls.Add(LabelRelatorio);
             PanelHeader.Controls.Add(LabelEditar);
             PanelHeader.Controls.Add(PictureBoxIncluir);
-            PanelHeader.Controls.Add(TextBoxInsumosComprados);
+            PanelHeader.Controls.Add(TextBoxProdutosComprados);
             PanelHeader.Controls.Add(LabelPesquisar);
             PanelHeader.Controls.Add(LabelIncluir);
-            PanelHeader.Controls.Add(LabelPesquisarCompras);
+            PanelHeader.Controls.Add(LabelPesquisarVendas);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
@@ -136,11 +136,11 @@
             // PictureBoxRelatorio2
             // 
             PictureBoxRelatorio2.Image = (Image)resources.GetObject("PictureBoxRelatorio2.Image");
-            PictureBoxRelatorio2.Location = new Point(1294, 11);
+            PictureBoxRelatorio2.Location = new Point(1290, 9);
             PictureBoxRelatorio2.Name = "PictureBoxRelatorio2";
             PictureBoxRelatorio2.Size = new Size(29, 25);
             PictureBoxRelatorio2.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxRelatorio2.TabIndex = 73;
+            PictureBoxRelatorio2.TabIndex = 71;
             PictureBoxRelatorio2.TabStop = false;
             PictureBoxRelatorio2.Click += PictureBoxRelatorio2_Click;
             // 
@@ -149,16 +149,16 @@
             LabelRelatorio2.AutoSize = true;
             LabelRelatorio2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelRelatorio2.ForeColor = Color.White;
-            LabelRelatorio2.Location = new Point(1280, 36);
+            LabelRelatorio2.Location = new Point(1276, 34);
             LabelRelatorio2.Name = "LabelRelatorio2";
             LabelRelatorio2.Size = new Size(62, 17);
-            LabelRelatorio2.TabIndex = 74;
+            LabelRelatorio2.TabIndex = 72;
             LabelRelatorio2.Text = "Relatório";
             // 
             // MaskedTextBoxPeriodo2
             // 
             MaskedTextBoxPeriodo2.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxPeriodo2.Location = new Point(896, 34);
+            MaskedTextBoxPeriodo2.Location = new Point(886, 33);
             MaskedTextBoxPeriodo2.Mask = "00/00/0000";
             MaskedTextBoxPeriodo2.Name = "MaskedTextBoxPeriodo2";
             MaskedTextBoxPeriodo2.Size = new Size(78, 23);
@@ -181,10 +181,10 @@
             // 
             // TextBoxPesquisar
             // 
-            TextBoxPesquisar.Location = new Point(272, 18);
+            TextBoxPesquisar.Location = new Point(276, 18);
             TextBoxPesquisar.Name = "TextBoxPesquisar";
-            TextBoxPesquisar.PlaceholderText = "Digite o nome do insumo";
-            TextBoxPesquisar.Size = new Size(274, 23);
+            TextBoxPesquisar.PlaceholderText = "Digite o nome do produto";
+            TextBoxPesquisar.Size = new Size(270, 23);
             TextBoxPesquisar.TabIndex = 2;
             TextBoxPesquisar.TextChanged += TextBoxPesquisar_TextChanged;
             // 
@@ -193,7 +193,7 @@
             LabelA.AutoSize = true;
             LabelA.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelA.ForeColor = Color.White;
-            LabelA.Location = new Point(875, 35);
+            LabelA.Location = new Point(865, 34);
             LabelA.Name = "LabelA";
             LabelA.Size = new Size(15, 17);
             LabelA.TabIndex = 70;
@@ -210,21 +210,21 @@
             LabelHome.TabIndex = 19;
             LabelHome.Text = "Home";
             // 
-            // LabelPesquisarInsumoEstoque
+            // LabelPesquisarProdutoEstoque
             // 
-            LabelPesquisarInsumoEstoque.AutoSize = true;
-            LabelPesquisarInsumoEstoque.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPesquisarInsumoEstoque.ForeColor = Color.White;
-            LabelPesquisarInsumoEstoque.Location = new Point(72, 19);
-            LabelPesquisarInsumoEstoque.Name = "LabelPesquisarInsumoEstoque";
-            LabelPesquisarInsumoEstoque.Size = new Size(194, 17);
-            LabelPesquisarInsumoEstoque.TabIndex = 53;
-            LabelPesquisarInsumoEstoque.Text = "Pesquisar Insumo no Estoque:";
+            LabelPesquisarProdutoEstoque.AutoSize = true;
+            LabelPesquisarProdutoEstoque.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarProdutoEstoque.ForeColor = Color.White;
+            LabelPesquisarProdutoEstoque.Location = new Point(72, 19);
+            LabelPesquisarProdutoEstoque.Name = "LabelPesquisarProdutoEstoque";
+            LabelPesquisarProdutoEstoque.Size = new Size(198, 17);
+            LabelPesquisarProdutoEstoque.TabIndex = 53;
+            LabelPesquisarProdutoEstoque.Text = "Pesquisar Produto no Estoque:";
             // 
             // MaskedTextBoxPeriodo1
             // 
             MaskedTextBoxPeriodo1.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxPeriodo1.Location = new Point(791, 34);
+            MaskedTextBoxPeriodo1.Location = new Point(781, 33);
             MaskedTextBoxPeriodo1.Mask = "00/00/0000";
             MaskedTextBoxPeriodo1.Name = "MaskedTextBoxPeriodo1";
             MaskedTextBoxPeriodo1.Size = new Size(78, 23);
@@ -234,7 +234,7 @@
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = Properties.Resources.Atualizar;
-            PictureBoxAtualizar.Location = new Point(1232, 11);
+            PictureBoxAtualizar.Location = new Point(1224, 10);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -245,28 +245,28 @@
             // PictureBoxEditar
             // 
             PictureBoxEditar.Image = Properties.Resources.editar;
-            PictureBoxEditar.Location = new Point(1116, 11);
+            PictureBoxEditar.Location = new Point(1108, 10);
             PictureBoxEditar.Name = "PictureBoxEditar";
             PictureBoxEditar.Size = new Size(29, 25);
             PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxEditar.TabIndex = 44;
             PictureBoxEditar.TabStop = false;
             // 
-            // LabelPeríodo
+            // LabelPeriodo
             // 
-            LabelPeríodo.AutoSize = true;
-            LabelPeríodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPeríodo.ForeColor = Color.White;
-            LabelPeríodo.Location = new Point(725, 37);
-            LabelPeríodo.Name = "LabelPeríodo";
-            LabelPeríodo.Size = new Size(60, 17);
-            LabelPeríodo.TabIndex = 68;
-            LabelPeríodo.Text = "Período:";
+            LabelPeriodo.AutoSize = true;
+            LabelPeriodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPeriodo.ForeColor = Color.White;
+            LabelPeriodo.Location = new Point(715, 36);
+            LabelPeriodo.Name = "LabelPeriodo";
+            LabelPeriodo.Size = new Size(60, 17);
+            LabelPeriodo.TabIndex = 68;
+            LabelPeriodo.Text = "Período:";
             // 
             // PictureBoxDeletar
             // 
             PictureBoxDeletar.Image = Properties.Resources.Deletar;
-            PictureBoxDeletar.Location = new Point(1174, 11);
+            PictureBoxDeletar.Location = new Point(1166, 10);
             PictureBoxDeletar.Name = "PictureBoxDeletar";
             PictureBoxDeletar.Size = new Size(29, 25);
             PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -278,7 +278,7 @@
             LabelAtualizar.AutoSize = true;
             LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelAtualizar.ForeColor = Color.White;
-            LabelAtualizar.Location = new Point(1217, 36);
+            LabelAtualizar.Location = new Point(1209, 35);
             LabelAtualizar.Name = "LabelAtualizar";
             LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
@@ -300,7 +300,7 @@
             LabelDeletar.AutoSize = true;
             LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelDeletar.ForeColor = Color.White;
-            LabelDeletar.Location = new Point(1162, 36);
+            LabelDeletar.Location = new Point(1154, 35);
             LabelDeletar.Name = "LabelDeletar";
             LabelDeletar.Size = new Size(51, 17);
             LabelDeletar.TabIndex = 49;
@@ -309,7 +309,7 @@
             // PictureBoxPesquisar
             // 
             PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
-            PictureBoxPesquisar.Location = new Point(1000, 11);
+            PictureBoxPesquisar.Location = new Point(992, 10);
             PictureBoxPesquisar.Name = "PictureBoxPesquisar";
             PictureBoxPesquisar.Size = new Size(29, 25);
             PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -332,7 +332,7 @@
             LabelEditar.AutoSize = true;
             LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelEditar.ForeColor = Color.White;
-            LabelEditar.Location = new Point(1109, 36);
+            LabelEditar.Location = new Point(1101, 35);
             LabelEditar.Name = "LabelEditar";
             LabelEditar.Size = new Size(43, 17);
             LabelEditar.TabIndex = 48;
@@ -341,7 +341,7 @@
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = Properties.Resources.Incluir;
-            PictureBoxIncluir.Location = new Point(1058, 11);
+            PictureBoxIncluir.Location = new Point(1050, 10);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -349,21 +349,21 @@
             PictureBoxIncluir.TabStop = false;
             PictureBoxIncluir.Click += PictureBoxIncluir_Click;
             // 
-            // TextBoxInsumosComprados
+            // TextBoxProdutosComprados
             // 
-            TextBoxInsumosComprados.Location = new Point(791, 5);
-            TextBoxInsumosComprados.Name = "TextBoxInsumosComprados";
-            TextBoxInsumosComprados.PlaceholderText = "Digite o nome do insumo";
-            TextBoxInsumosComprados.Size = new Size(183, 23);
-            TextBoxInsumosComprados.TabIndex = 3;
-            TextBoxInsumosComprados.TextChanged += TextBoxInsumosComprados_TextChanged;
+            TextBoxProdutosComprados.Location = new Point(781, 5);
+            TextBoxProdutosComprados.Name = "TextBoxProdutosComprados";
+            TextBoxProdutosComprados.PlaceholderText = "Digite o nome do produto";
+            TextBoxProdutosComprados.Size = new Size(183, 23);
+            TextBoxProdutosComprados.TabIndex = 3;
+            TextBoxProdutosComprados.TextChanged += TextBoxProdutosComprados_TextChanged;
             // 
             // LabelPesquisar
             // 
             LabelPesquisar.AutoSize = true;
             LabelPesquisar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelPesquisar.ForeColor = Color.White;
-            LabelPesquisar.Location = new Point(985, 36);
+            LabelPesquisar.Location = new Point(977, 35);
             LabelPesquisar.Name = "LabelPesquisar";
             LabelPesquisar.Size = new Size(66, 17);
             LabelPesquisar.TabIndex = 56;
@@ -374,22 +374,22 @@
             LabelIncluir.AutoSize = true;
             LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelIncluir.ForeColor = Color.White;
-            LabelIncluir.Location = new Point(1052, 36);
+            LabelIncluir.Location = new Point(1044, 35);
             LabelIncluir.Name = "LabelIncluir";
             LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
             LabelIncluir.Text = "Incluir";
             // 
-            // LabelPesquisarCompras
+            // LabelPesquisarVendas
             // 
-            LabelPesquisarCompras.AutoSize = true;
-            LabelPesquisarCompras.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPesquisarCompras.ForeColor = Color.White;
-            LabelPesquisarCompras.Location = new Point(656, 7);
-            LabelPesquisarCompras.Name = "LabelPesquisarCompras";
-            LabelPesquisarCompras.Size = new Size(129, 17);
-            LabelPesquisarCompras.TabIndex = 67;
-            LabelPesquisarCompras.Text = "Pesquisar Compras:";
+            LabelPesquisarVendas.AutoSize = true;
+            LabelPesquisarVendas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarVendas.ForeColor = Color.White;
+            LabelPesquisarVendas.Location = new Point(656, 7);
+            LabelPesquisarVendas.Name = "LabelPesquisarVendas";
+            LabelPesquisarVendas.Size = new Size(119, 17);
+            LabelPesquisarVendas.TabIndex = 67;
+            LabelPesquisarVendas.Text = "Pesquisar Vendas:";
             // 
             // PanelFooter
             // 
@@ -422,53 +422,53 @@
             LabelEstoqueInsumo.ForeColor = Color.DarkGreen;
             LabelEstoqueInsumo.Location = new Point(41, 71);
             LabelEstoqueInsumo.Name = "LabelEstoqueInsumo";
-            LabelEstoqueInsumo.Size = new Size(136, 17);
+            LabelEstoqueInsumo.Size = new Size(140, 17);
             LabelEstoqueInsumo.TabIndex = 62;
-            LabelEstoqueInsumo.Text = "Estoque de Insumos:";
+            LabelEstoqueInsumo.Text = "Estoque de Produtos:";
             // 
-            // LabelRegistroDeCompras
+            // LabelRegistroDeVendas
             // 
-            LabelRegistroDeCompras.AutoSize = true;
-            LabelRegistroDeCompras.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelRegistroDeCompras.ForeColor = Color.DarkGreen;
-            LabelRegistroDeCompras.Location = new Point(656, 71);
-            LabelRegistroDeCompras.Name = "LabelRegistroDeCompras";
-            LabelRegistroDeCompras.Size = new Size(209, 17);
-            LabelRegistroDeCompras.TabIndex = 64;
-            LabelRegistroDeCompras.Text = "Registro de Compra de Insumos:";
+            LabelRegistroDeVendas.AutoSize = true;
+            LabelRegistroDeVendas.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRegistroDeVendas.ForeColor = Color.DarkGreen;
+            LabelRegistroDeVendas.Location = new Point(656, 71);
+            LabelRegistroDeVendas.Name = "LabelRegistroDeVendas";
+            LabelRegistroDeVendas.Size = new Size(203, 17);
+            LabelRegistroDeVendas.TabIndex = 64;
+            LabelRegistroDeVendas.Text = "Registro de Venda de Produtos:";
             // 
-            // DataGridViewRegistroDeCompras
+            // DataGridViewRegistroDeVendas
             // 
-            DataGridViewRegistroDeCompras.AllowUserToAddRows = false;
-            DataGridViewRegistroDeCompras.AllowUserToDeleteRows = false;
-            DataGridViewRegistroDeCompras.BackgroundColor = SystemColors.Menu;
-            DataGridViewRegistroDeCompras.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            DataGridViewRegistroDeCompras.Location = new Point(656, 91);
-            DataGridViewRegistroDeCompras.Name = "DataGridViewRegistroDeCompras";
-            DataGridViewRegistroDeCompras.ReadOnly = true;
-            DataGridViewRegistroDeCompras.RowHeadersWidth = 27;
-            DataGridViewRegistroDeCompras.Size = new Size(840, 645);
-            DataGridViewRegistroDeCompras.TabIndex = 1;
-            DataGridViewRegistroDeCompras.VirtualMode = true;
+            DataGridViewRegistroDeVendas.AllowUserToAddRows = false;
+            DataGridViewRegistroDeVendas.AllowUserToDeleteRows = false;
+            DataGridViewRegistroDeVendas.BackgroundColor = SystemColors.Menu;
+            DataGridViewRegistroDeVendas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewRegistroDeVendas.Location = new Point(656, 91);
+            DataGridViewRegistroDeVendas.Name = "DataGridViewRegistroDeVendas";
+            DataGridViewRegistroDeVendas.ReadOnly = true;
+            DataGridViewRegistroDeVendas.RowHeadersWidth = 27;
+            DataGridViewRegistroDeVendas.Size = new Size(840, 645);
+            DataGridViewRegistroDeVendas.TabIndex = 1;
+            DataGridViewRegistroDeVendas.VirtualMode = true;
             // 
-            // TelaCompra
+            // TelaVenda
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(1350, 729);
             Controls.Add(PanelFooter);
-            Controls.Add(LabelRegistroDeCompras);
-            Controls.Add(DataGridViewRegistroDeCompras);
+            Controls.Add(LabelRegistroDeVendas);
+            Controls.Add(DataGridViewRegistroDeVendas);
             Controls.Add(LabelEstoqueInsumo);
             Controls.Add(LabelEstoqueInsumos);
-            Controls.Add(DataGridViewListaInsumos);
+            Controls.Add(DataGridViewListaProdutos);
             Controls.Add(PanelHeader);
-            Name = "TelaCompra";
+            Name = "TelaVenda";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Compras";
+            Text = "Vendas";
             WindowState = FormWindowState.Maximized;
-            Load += TelaCompra_Load;
-            ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).EndInit();
+            Load += TelaVenda_Load;
+            ((System.ComponentModel.ISupportInitialize)DataGridViewListaProdutos).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).EndInit();
@@ -481,7 +481,7 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeCompras).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewRegistroDeVendas).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -489,14 +489,14 @@
         #endregion
 
         private Label LabelEstoqueInsumos;
-        private DataGridView DataGridViewListaInsumos;
+        private DataGridView DataGridViewListaProdutos;
         private Panel PanelHeader;
         private PictureBox PictureBoxPesquisar;
         private Label LabelPesquisar;
         private PictureBox PictureBoxHome;
         private TextBox TextBoxPesquisar;
         private Label LabelHome;
-        private Label LabelPesquisarInsumoEstoque;
+        private Label LabelPesquisarProdutoEstoque;
         private PictureBox PictureBoxAtualizar;
         private PictureBox PictureBoxEditar;
         private PictureBox PictureBoxDeletar;
@@ -512,12 +512,12 @@
         private MaskedTextBox MaskedTextBoxPeriodo2;
         private Label LabelA;
         private MaskedTextBox MaskedTextBoxPeriodo1;
-        private Label LabelPeríodo;
-        private TextBox TextBoxInsumosComprados;
-        private Label LabelPesquisarCompras;
+        private Label LabelPeriodo;
+        private TextBox TextBoxProdutosComprados;
+        private Label LabelPesquisarVendas;
         private Label LabelEstoqueInsumo;
-        private Label LabelRegistroDeCompras;
-        private DataGridView DataGridViewRegistroDeCompras;
+        private Label LabelRegistroDeVendas;
+        private DataGridView DataGridViewRegistroDeVendas;
         private PictureBox PictureBoxRelatorio2;
         private Label LabelRelatorio2;
     }

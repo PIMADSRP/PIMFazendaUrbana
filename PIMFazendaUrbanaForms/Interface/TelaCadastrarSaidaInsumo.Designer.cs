@@ -223,7 +223,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TelaCadastrarSaidaInsumo";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cadastrar Insumo";
+            Text = "Cadastrar Saída de Insumo";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

@@ -176,7 +176,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "TelaRecomendacao";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "IndicarPlantio";
+            Text = "Gerar Recomendações";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             PanelMargem.ResumeLayout(false);

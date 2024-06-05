@@ -1,4 +1,3 @@
-using PIMFazendaUrbanaForms.Interface;
 using System.Drawing.Imaging;
 
 namespace PIMFazendaUrbanaForms
@@ -169,62 +168,10 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
-        private void PictureBoxFuncionarios_MouseHover(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(PictureBoxFuncionarios, "Usuários");
-        }
-
-        private void PictureBoxInsumos_MouseHover(object sender, EventArgs e)
-        {
-            toolTip2.SetToolTip(PictureBoxInsumos, "Insumos");
-        }
-
-        private void PictureBoxProducao_MouseHover(object sender, EventArgs e)
-        {
-            toolTip3.SetToolTip(PictureBoxProducao, "Produção");
-        }
-
-        private void PictureBoxInventario_MouseHover(object sender, EventArgs e)
-        {
-            toolTip4.SetToolTip(PictureBoxInventario, "Inventário");
-        }
-
-        private void pictureBoxCompras_MouseHover(object sender, EventArgs e)
-        {
-            toolTip5.SetToolTip(PictureBoxCompras, "Compras");
-        }
-
-        private void PictureBoxClientes_MouseHover(object sender, EventArgs e)
-        {
-            toolTip6.SetToolTip(PictureBoxClientes, "Clientes");
-        }
-
-        private void PictureBoxFornecedores_MouseHover(object sender, EventArgs e)
-        {
-            toolTip7.SetToolTip(PictureBoxFornecedores, "Fornecedores");
-        }
-
         private void PictureBoxClientes_Click(object sender, EventArgs e)
         {
             TelaClientes telaListarClientes = new TelaClientes();
             telaListarClientes.Show();
-        }
-
-        private void PictureBoxSair_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void PictureBoxProducao_Click(object sender, EventArgs e)
-        {
-            TelaProducao telaCultivo = new TelaProducao();
-            telaCultivo.Show();
-        }
-
-        private void PictureBoxInsumos_Click(object sender, EventArgs e)
-        {
-            TelaInsumo telaInsumo = new TelaInsumo();
-            telaInsumo.Show();
         }
 
         private void PictureBoxFornecedores_Click(object sender, EventArgs e)
@@ -233,7 +180,40 @@ namespace PIMFazendaUrbanaForms
             telaListarFornecedores.Show();
         }
 
+        private void PictureBoxInsumos_Click(object sender, EventArgs e)
+        {
+            TelaInsumo telaInsumo = new TelaInsumo();
+            telaInsumo.Show();
+        }
 
+        private void PictureBoxProducao_Click(object sender, EventArgs e)
+        {
+            TelaProducao telaCultivo = new TelaProducao();
+            telaCultivo.Show();
+        }
+
+        private void PictureBoxCompras_Click(object sender, EventArgs e)
+        {
+            TelaCompra telaCompra = new TelaCompra();
+            telaCompra.Show();
+        }
+
+        private void PictureBoxVendas_Click(object sender, EventArgs e)
+        {
+            TelaVenda telaVenda = new TelaVenda();
+            telaVenda.Show();
+        }
+
+        private void PictureBoxRecomendarPlantio_Click(object sender, EventArgs e)
+        {
+            TelaRecomendacao telaRecomendacao = new TelaRecomendacao();
+            telaRecomendacao.Show();
+        }
+
+        private void PictureBoxSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
         private void PictureBoxLogoff_Click(object sender, EventArgs e)
         {
@@ -345,32 +325,50 @@ namespace PIMFazendaUrbanaForms
             e.DrawFocusRectangle();
         }
 
-
-        private void pictureBoxRecomendarPlantio_Click(object sender, EventArgs e)
+        private void PictureBoxFuncionarios_MouseHover(object sender, EventArgs e)
         {
-            TelaRecomendacao telaRecomendacao = new TelaRecomendacao();
-            telaRecomendacao.Show();
+            ToolTipUsuarios.SetToolTip(PictureBoxFuncionarios, "Funcionários");
         }
 
-        private void pictureBoxCompras_MouseHover_1(object sender, EventArgs e)
+        private void PictureBoxClientes_MouseHover(object sender, EventArgs e)
         {
-            toolTipCompra.SetToolTip(PictureBoxCompras, "Compra");
+            ToolTipClientes.SetToolTip(PictureBoxClientes, "Clientes");
         }
 
-        private void pictureBoxVendas_MouseHover(object sender, EventArgs e)
+        private void PictureBoxFornecedores_MouseHover(object sender, EventArgs e)
         {
-            toolTipVenda.SetToolTip(PictureBoxVendas, "Venda");
+            ToolTipFornecedores.SetToolTip(PictureBoxFornecedores, "Fornecedores");
         }
 
-        private void pictureBoxCompras_Click(object sender, EventArgs e)
+        private void PictureBoxInsumos_MouseHover(object sender, EventArgs e)
         {
-            TelaCompra telaCompra = new TelaCompra();
-            telaCompra.Show();
+            ToolTipInsumos.SetToolTip(PictureBoxInsumos, "Insumos");
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void PictureBoxProducao_MouseHover(object sender, EventArgs e)
         {
-
+            ToolTipProducao.SetToolTip(PictureBoxProducao, "Produção");
         }
+
+        private void PictureBoxInventario_MouseHover(object sender, EventArgs e)
+        {
+            ToolTipInventario.SetToolTip(PictureBoxInventario, "Inventário");
+        }
+
+        private void PictureBoxCompras_MouseHover(object sender, EventArgs e)
+        {
+            ToolTipCompras.SetToolTip(PictureBoxCompras, "Compras");
+        }
+
+        private void PictureBoxVendas_MouseHover(object sender, EventArgs e)
+        {
+            ToolTipVendas.SetToolTip(PictureBoxVendas, "Vendas");
+        }
+
+        private void PictureBoxRecomendarPlantio_MouseHover(object sender, EventArgs e)
+        {
+            ToolTipRecomendarPlantio.SetToolTip(PictureBoxRecomendarPlantio, "Recomendar Plantio");
+        }
+
     }
 }

@@ -352,7 +352,7 @@
             Controls.Add(TextBoxNome);
             Name = "TelaCadastrarCliente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CadastrarCliente";
+            Text = "Cadastrar Cliente";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

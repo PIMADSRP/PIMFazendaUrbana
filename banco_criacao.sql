@@ -355,7 +355,6 @@ CREATE TABLE `compraitem` (
 
 -- Criar Trigger para atualizar qtd_insumo após inserir em compraitem
 DELIMITER //
-
 CREATE TRIGGER after_insert_compraitem
 AFTER INSERT ON compraitem
 FOR EACH ROW
@@ -364,7 +363,6 @@ BEGIN
     SET qtd_insumo = qtd_insumo + NEW.qtd_compraitem
     WHERE id_insumo = NEW.id_insumo;
 END //
-
 DELIMITER ;
 
 ## SaidaInsumo
@@ -406,6 +404,19 @@ CREATE TABLE `estoqueproduto` (
 	KEY `id_producao` (`id_producao`),
 	CONSTRAINT `estoqueproduto_ibfk_1` FOREIGN KEY (`id_producao`) REFERENCES `producao` (`id_producao`)
 );
+
+-- Criar Trigger para atualizar estoqueproduto após finalizar produção
+DELIMITER //
+CREATE TRIGGER after_update_producao
+AFTER UPDATE ON producao
+FOR EACH ROW
+BEGIN
+    IF NEW.finalizado_producao = true AND OLD.finalizado_producao = false THEN
+        INSERT INTO estoqueproduto (qtd_estoqueproduto, unidqtd_estoqueproduto, id_producao)
+        VALUES (NEW.qtd_producao, NEW.unidqtd_producao, NEW.id_producao);
+    END IF;
+END //
+DELIMITER ;
 
 ## PedidoVenda
 CREATE TABLE `pedidovenda` (

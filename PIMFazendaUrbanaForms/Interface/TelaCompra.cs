@@ -1,4 +1,5 @@
 ﻿using PIMFazendaUrbanaLib;
+using System.Text;
 
 namespace PIMFazendaUrbanaForms
 {
@@ -91,7 +92,7 @@ namespace PIMFazendaUrbanaForms
             try
             {
                 CarregarInsumos();
-                MessageBox.Show("Lista de insumos atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Lista de insumos atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -100,7 +101,7 @@ namespace PIMFazendaUrbanaForms
             try
             {
                 CarregarRegistroDeCompras();
-                MessageBox.Show("Lista de compras atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Lista de compras atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -201,10 +202,40 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void TextBoxInsumosComprados_TextChanged(object sender, EventArgs e)
+        {
+            string insumoNome = TextBoxInsumosComprados.Text;
+
+            List<PedidoCompraItem> compraItens = compraService.FiltrarRegistrosDeCompraNome(insumoNome);
+
+            if (compraItens != null && compraItens.Count > 0)
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = compraItens.Select(i => new
+                {
+                    i.NomeInsumo,
+                    i.Qtd,
+                    i.UnidQtd,
+                    Valor = "R$ " + i.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                    // Data = i.Data.ToShortDateString(), // Para exibir apenas a data
+                    i.Data, // Para exibir a data e a hora
+                    i.NomeFornecedor,
+                    i.IdPedidoCompra
+                }).ToList();
+
+                DataGridViewRegistroDeCompras.DataSource = data; // Preencher o DataGridView com os dados formatados
+            }
+            else
+            {
+                DataGridViewRegistroDeCompras.DataSource = null;
+            }
+        }
+
         private void PictureBoxIncluir_Click(object sender, EventArgs e)
         {
             TelaCadastrarCompra telaCadastrarCompra = new TelaCadastrarCompra();
             telaCadastrarCompra.Show();
+            telaCadastrarCompra.CompraCadastradaSucesso += TelaCadastrarCompra_CompraCadastradaSucesso;
         }
 
         private void PictureBoxHome_Click(object sender, EventArgs e)
@@ -216,5 +247,85 @@ namespace PIMFazendaUrbanaForms
         {
             AtualizarDataGridView();
         }
+
+        private void TelaCadastrarCompra_CompraCadastradaSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
+        }
+
+        private void PictureBoxRelatorio_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Salvar Relatório de Estoque Insumos";
+            saveFileDialog.FileName = "Estoque_de_insumos_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewListaInsumos, saveFileDialog.FileName);
+            }
+        }
+
+        private void PictureBoxRelatorio2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Arquivos CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Salvar Relatório de Compra de Insumos";
+            saveFileDialog.FileName = "Compra_de_insumos_" + DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss") + ".csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ExportToCSV(DataGridViewRegistroDeCompras, saveFileDialog.FileName);
+            }
+        }
+
+        private void ExportToCSV(DataGridView dataGridView, string fileName)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.UTF8))
+                {
+                    // Escreve os cabeçalhos das colunas
+                    for (int i = 0; i < dataGridView.Columns.Count; i++)
+                    {
+                        writer.Write(dataGridView.Columns[i].HeaderText);
+                        if (i < dataGridView.Columns.Count - 1)
+                        {
+                            writer.Write(";");
+                        }
+                    }
+                    writer.WriteLine();
+
+                    // Escreve os dados das células
+                    foreach (DataGridViewRow row in dataGridView.Rows)
+                    {
+                        for (int i = 0; i < dataGridView.Columns.Count; i++)
+                        {
+                            // Obter o valor da célula e converter para string
+                            string cellValue = Convert.ToString(row.Cells[i].Value);
+
+                            // Substituir ponto e vírgula por vírgula, para evitar conflito com o delimitador
+                            cellValue = cellValue.Replace(";", ",");
+
+                            // Escrever o valor da célula
+                            writer.Write(cellValue);
+
+                            if (i < dataGridView.Columns.Count - 1)
+                            {
+                                writer.Write(";");
+                            }
+                        }
+                        writer.WriteLine();
+                    }
+                }
+
+                MessageBox.Show("Dados exportados com sucesso para " + fileName, "Relatório Exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao exportar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

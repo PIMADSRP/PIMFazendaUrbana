@@ -45,6 +45,8 @@
             LabelAtualizar = new Label();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
+            PictureBoxRelatorio = new PictureBox();
+            LabelRelatorio = new Label();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaFuncionarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
@@ -53,6 +55,7 @@
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             SuspendLayout();
             // 
             // PanelFooter
@@ -171,6 +174,8 @@
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
+            PanelHeader.Controls.Add(PictureBoxRelatorio);
+            PanelHeader.Controls.Add(LabelRelatorio);
             PanelHeader.Controls.Add(TextBoxPesquisar);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
             PanelHeader.Controls.Add(LabelAtualizar);
@@ -245,6 +250,28 @@
             LabelHome.TabIndex = 19;
             LabelHome.Text = "Home";
             // 
+            // PictureBoxRelatorio
+            // 
+            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Location = new Point(873, 12);
+            PictureBoxRelatorio.Name = "PictureBoxRelatorio";
+            PictureBoxRelatorio.Size = new Size(29, 25);
+            PictureBoxRelatorio.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxRelatorio.TabIndex = 72;
+            PictureBoxRelatorio.TabStop = false;
+            PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
+            // 
+            // LabelRelatorio
+            // 
+            LabelRelatorio.AutoSize = true;
+            LabelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRelatorio.ForeColor = Color.White;
+            LabelRelatorio.Location = new Point(859, 37);
+            LabelRelatorio.Name = "LabelRelatorio";
+            LabelRelatorio.Size = new Size(62, 17);
+            LabelRelatorio.TabIndex = 73;
+            LabelRelatorio.Text = "Relatório";
+            // 
             // TelaFuncionarios
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -255,7 +282,7 @@
             Controls.Add(DataGridViewListaFuncionarios);
             Name = "TelaFuncionarios";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Usuarios";
+            Text = "Usuários";
             WindowState = FormWindowState.Maximized;
             Load += TelaFuncionarios_Load;
             PanelFooter.ResumeLayout(false);
@@ -268,6 +295,7 @@
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ResumeLayout(false);
         }
 
@@ -289,5 +317,7 @@
         private Label LabelAtualizar;
         private PictureBox PictureBoxAtualizar;
         private TextBox TextBoxPesquisar;
+        private PictureBox PictureBoxRelatorio;
+        private Label LabelRelatorio;
     }
 }

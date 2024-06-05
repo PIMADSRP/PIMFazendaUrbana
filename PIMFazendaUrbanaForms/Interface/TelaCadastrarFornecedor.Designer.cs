@@ -303,7 +303,7 @@
             LabelCadastrarUsuarios.ForeColor = SystemColors.ButtonHighlight;
             LabelCadastrarUsuarios.Location = new Point(127, 7);
             LabelCadastrarUsuarios.Name = "LabelCadastrarUsuarios";
-            LabelCadastrarUsuarios.Size = new Size(163, 25);
+            LabelCadastrarUsuarios.Size = new Size(205, 25);
             LabelCadastrarUsuarios.TabIndex = 0;
             LabelCadastrarUsuarios.Text = "Cadastrar Fornecedor";
             // 
@@ -352,7 +352,7 @@
             Controls.Add(TextBoxNome);
             Name = "TelaCadastrarFornecedor";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CadastrarFornecedor";
+            Text = "Cadastrar Fornecedor";
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
             ResumeLayout(false);

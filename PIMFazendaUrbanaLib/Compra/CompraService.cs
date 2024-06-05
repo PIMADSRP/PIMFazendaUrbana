@@ -32,7 +32,6 @@ namespace PIMFazendaUrbanaLib
                             item.IdPedidoCompra = pedidoCompra.Id;
                             pedidoCompraDAO.CadastrarCompraItem(item, transaction);
                         }
-
                         transaction.Commit();
                     }
                     catch (Exception)
@@ -93,6 +92,19 @@ namespace PIMFazendaUrbanaLib
             catch (Exception ex)
             {
                 throw new Exception("Erro ao listar registros de compra: " + ex.Message);
+            }
+        }
+
+        public List<PedidoCompraItem> FiltrarRegistrosDeCompraNome(string insumoNome)
+        {
+            try
+            {
+                List<PedidoCompraItem> compraItems = pedidoCompraDAO.FiltrarRegistrosDeCompraNome(insumoNome);
+                return compraItems;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de compra por nome de insumo: " + ex.Message);
             }
         }
 
