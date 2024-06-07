@@ -17,7 +17,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar cultivos.", ex);
+                throw new Exception("Erro ao listar cultivos: " + ex.Message);
             }
         }
 

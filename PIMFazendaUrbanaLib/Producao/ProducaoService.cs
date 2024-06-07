@@ -10,17 +10,15 @@
         }
 
         // 1 - MÉTODO CADASTRAR PRODUCAO
-        public bool CadastrarProducao(Producao producao)
+        public void CadastrarProducao(Producao producao)
         {
             try
             {
                 producaoDAO.CadastrarProducao(producao);
-                return true;
             }
             catch (Exception ex)
             {
                 throw new Exception("Erro ao cadastrar produção: " + ex.Message);
-                //return false;
             }
         }
 
@@ -34,7 +32,7 @@
             }
             catch (Exception ex)
             {
-                return false;
+                throw new Exception("Erro ao alterar produção: " + ex.Message);
             }
         }
 
@@ -49,7 +47,6 @@
             catch (Exception ex)
             {
                 throw new Exception("Erro ao finalizar produção: " + ex.Message);
-                //return false;
             }
         }
 
@@ -78,7 +75,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar produções.", ex); // Lança uma exceção indicando que ocorreu um erro
+                throw new Exception("Erro ao listar produções: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro
             }
         }
 
@@ -92,7 +89,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao filtrar produções por nome de cultivo.", ex); // Lança uma exceção indicando que ocorreu um erro
+                throw new Exception("Erro ao filtrar produções por nome de cultivo: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro
             }
         }
 
@@ -106,9 +103,21 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar produção: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar produção: " + ex.Message);
             }
         }
+
+        public List<Producao> FiltrarProducoesPorNomeEPeriodo(string cultivoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            try
+            {
+                return producaoDAO.FiltrarProducoesPorNomeEPeriodo(cultivoNome, dataInicio, dataFim);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar produções por nome de cultivo e período: " + ex.Message);
+            }
+        }
+
     }
 }

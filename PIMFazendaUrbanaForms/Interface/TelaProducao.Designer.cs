@@ -124,7 +124,7 @@
             // 
             // PictureBoxRelatorio
             // 
-            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Image = Properties.Resources.ExportarRelatorio;
             PictureBoxRelatorio.Location = new Point(1357, 10);
             PictureBoxRelatorio.Name = "PictureBoxRelatorio";
             PictureBoxRelatorio.Size = new Size(29, 25);
@@ -200,13 +200,14 @@
             // 
             // PictureBoxPesquisar
             // 
-            PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
+            PictureBoxPesquisar.Image = Properties.Resources.Pesquisar;
             PictureBoxPesquisar.Location = new Point(1127, 10);
             PictureBoxPesquisar.Name = "PictureBoxPesquisar";
             PictureBoxPesquisar.Size = new Size(29, 25);
             PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxPesquisar.TabIndex = 74;
             PictureBoxPesquisar.TabStop = false;
+            PictureBoxPesquisar.Click += PictureBoxPesquisar_Click;
             // 
             // PictureBoxCadastrarProducao
             // 
@@ -226,6 +227,7 @@
             TextBoxPesquisarProducoes.PlaceholderText = "Digite o nome do cultivo";
             TextBoxPesquisarProducoes.Size = new Size(179, 23);
             TextBoxPesquisarProducoes.TabIndex = 71;
+            TextBoxPesquisarProducoes.Click += TextBoxPesquisarProducoes_Click;
             TextBoxPesquisarProducoes.TextChanged += TextBoxPesquisarProducoes_TextChanged;
             // 
             // LabelCadastrarSaida
@@ -467,6 +469,7 @@
             DataGridViewProducao.Size = new Size(700, 645);
             DataGridViewProducao.TabIndex = 1;
             DataGridViewProducao.VirtualMode = true;
+            DataGridViewProducao.DataBindingComplete += DataGridViewProducao_DataBindingComplete;
             // 
             // TelaProducao
             // 

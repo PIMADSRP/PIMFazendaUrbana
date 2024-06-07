@@ -382,6 +382,81 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void DataGridViewListaInsumos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in DataGridViewListaInsumos.Rows)
+            {
+                bool qtdEstoque = Convert.ToInt32(row.Cells["QtdColumn"].Value) < 1;
+                if (qtdEstoque)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(237, 237, 237);
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                }
+            }
+        }
+
+        private void TextBoxPesquisarSaidaInsumo_Click(object sender, EventArgs e)
+        {
+            TextBoxPesquisarSaidaInsumo.Clear();
+            MaskedTextBoxPeriodo1.Clear();
+            MaskedTextBoxPeriodo2.Clear();
+        }
+
+        private void PictureBoxPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string insumoNome = TextBoxPesquisarSaidaInsumo.Text;
+
+                DateTime dataInicio;
+                DateTime dataFim;
+
+                if (DateTime.TryParseExact(MaskedTextBoxPeriodo1.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataInicio) &&
+                    DateTime.TryParseExact(MaskedTextBoxPeriodo2.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataFim))
+                {
+                    if (dataFim < dataInicio)
+                    {
+                        MessageBox.Show("A data final deve ser maior ou igual à data inicial.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    List<SaidaInsumo> saidainsumos = insumoService.FiltrarSaidaInsumosPorNomeEPeriodo(insumoNome, dataInicio, dataFim);
+
+                    if (saidainsumos != null && saidainsumos.Count > 0)
+                    {
+                        // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                        var data = saidainsumos.Select(si => new
+                        {
+                            si.IdInsumo,
+                            si.NomeInsumo,
+                            si.CategoriaInsumo,
+                            si.Qtd,
+                            si.Unidqtd,
+                            //Data = si.Data.ToShortDateString(), // Para exibir só a data
+                            si.Data, // Para exibir a data e a hora
+                        }).ToList();
+
+                        DataGridViewSaidaInsumos.DataSource = data; // Preencher o DataGridView com os dados formatados
+                    }
+                    else
+                    {
+                        DataGridViewSaidaInsumos.DataSource = null;
+                        MessageBox.Show("Nenhum registro de saída encontrado no período especificado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Datas inválidas. Por favor, insira datas no formato dd/MM/yyyy.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }

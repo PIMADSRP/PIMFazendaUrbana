@@ -371,7 +371,7 @@
             Controls.Add(LabelFornecedor);
             Name = "TelaCadastrarCompra";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TelaCadastrarCompra";
+            Text = "Cadastrar Compra";
             Load += TelaCadastrarCompra_Load;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();

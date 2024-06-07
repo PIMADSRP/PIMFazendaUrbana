@@ -96,54 +96,48 @@
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a alteração da senha falhou
+                throw new Exception("Erro ao alterar senha do funcionário: " + ex.Message);
             }
         }
 
         // 5- Método para cadastrar novo funcionário
-        public bool CadastrarFuncionario(Funcionario funcionario)
+        public void CadastrarFuncionario(Funcionario funcionario)
         {
             try
             {
                 // Aqui você pode realizar validações dos dados do funcionário antes de chamara o DAO
                 
                 funcionarioDAO.CadastrarFuncionario(funcionario);
-
-                return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que o cadastro falhou
+                throw new Exception("Erro ao cadastrar funcionário: " + ex.Message);
             }
         }
 
         // 6- Método para alterar dados do funcionário
-        public bool AlterarFuncionario(Funcionario funcionario)
+        public void AlterarFuncionario(Funcionario funcionario)
         {
             try
             {
                 funcionarioDAO.AlterarFuncionario(funcionario);
-
-                return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a alteração falhou
+                throw new Exception("Erro ao editar funcionário: " + ex.Message);
             }
         }
 
         // 7- Método para excluir (desativar) funcionário
-        public bool ExcluirFuncionario(int funcionarioId)
+        public void ExcluirFuncionario(int funcionarioId)
         {
             try
             {
                 funcionarioDAO.ExcluirFuncionario(funcionarioId);
-
-                return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a exclusão falhou
+                throw new Exception("Erro ao excluir funcionário: " + ex.Message);
             }
         }
 
@@ -159,9 +153,7 @@
             catch (Exception ex)
             {
                 // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios ativos
-                throw new Exception("Erro ao listar funcionários ativos.", ex);
-                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
-                // return new List<Funcionario>(); // Retorna uma lista vazia
+                throw new Exception("Erro ao listar funcionários ativos: " + ex.Message);
             }
         }
 
@@ -176,9 +168,7 @@
             catch (Exception ex)
             {
                 // Lança uma exceção indicando que ocorreu um erro ao listar funcionarios inativos
-                throw new Exception("Erro ao listar funcionários inativos.", ex);
-                // Ou, se preferir, poderia retornar uma lista vazia ou nula em vez de lançar uma exceção
-                // return new List<Funcionario>(); // Retorna uma lista vazia
+                throw new Exception("Erro ao listar funcionários inativos: " + ex.Message);
             }
         }
 
@@ -193,8 +183,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar funcionário: " + ex.Message);
             }
         }
 
@@ -208,8 +197,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar funcionário: " + ex.Message);
             }
         }
 
@@ -223,8 +211,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar funcionário: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar funcionário: " + ex.Message);
             }
         }
 
@@ -238,7 +225,7 @@
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception("Erro ao filtrar funcionários por nome: " + ex.Message);
             }
         }
 

@@ -123,6 +123,16 @@ namespace PIMFazendaUrbanaForms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExportarRelatorio {
+            get {
+                object obj = ResourceManager.GetObject("ExportarRelatorio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FazendaUrbanaIcone {
             get {
                 object obj = ResourceManager.GetObject("FazendaUrbanaIcone", resourceCulture);
@@ -196,6 +206,16 @@ namespace PIMFazendaUrbanaForms.Properties {
         internal static System.Drawing.Bitmap mostrarSenha {
             get {
                 object obj = ResourceManager.GetObject("mostrarSenha", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pesquisar {
+            get {
+                object obj = ResourceManager.GetObject("Pesquisar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

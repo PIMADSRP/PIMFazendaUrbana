@@ -34,10 +34,10 @@ namespace PIMFazendaUrbanaLib
                         }
                         transaction.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw;
+                        throw new Exception("Erro ao cadastrar pedido de compra: " + ex.Message);
                     }
                 }
             }
@@ -118,6 +118,18 @@ namespace PIMFazendaUrbanaLib
             catch (Exception ex)
             {
                 throw new Exception("Erro ao consultar item de compra: " + ex.Message);
+            }
+        }
+
+        public List<PedidoCompraItem> FiltrarRegistrosDeCompraPorNomeEPeriodo(string insumoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            try
+            {
+                return pedidoCompraDAO.FiltrarRegistrosDeCompraPorNomeEPeriodo(insumoNome, dataInicio, dataFim);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de compra por nome de insumo e período: " + ex.Message);
             }
         }
 

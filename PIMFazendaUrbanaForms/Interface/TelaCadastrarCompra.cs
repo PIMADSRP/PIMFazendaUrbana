@@ -196,6 +196,42 @@ namespace PIMFazendaUrbanaForms
             this.Close();
         }
 
+        private void PictureBoxAdicionar_Click(object sender, EventArgs e)
+        {
+            ComboBoxFornecedor.Enabled = false;
+
+            if (ComboBoxProduto.SelectedItem == null || string.IsNullOrEmpty(TextBoxQuantidade.Text) || string.IsNullOrEmpty(TextBoxValorUnitario.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos antes de adicionar ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string nomeInsumoSelecionado = ComboBoxProduto.SelectedItem.ToString();
+            Insumo insumoSelecionado = insumos.FirstOrDefault(i => i.Nome == nomeInsumoSelecionado);
+
+            if (insumoSelecionado != null)
+            {
+                // Verificação para evitar itens duplicados
+                if (compraItems.Any(item => item.IdInsumo == insumoSelecionado.Id))
+                {
+                    MessageBox.Show("O produto já foi adicionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                PedidoCompraItem item = new PedidoCompraItem
+                {
+                    IdInsumo = insumoSelecionado.Id,
+                    NomeInsumo = insumoSelecionado.Nome,
+                    Qtd = int.Parse(TextBoxQuantidade.Text),
+                    Valor = decimal.Parse(TextBoxValorUnitario.Text, CultureInfo.GetCultureInfo("pt-BR")),
+                    UnidQtd = TextBoxUnidade.Text
+                };
+
+                compraItems.Add(item);
+                AtualizarValorTotalDataGrid();
+            }
+        }
+
         private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
             bool quantidadeValida = int.TryParse(TextBoxQuantidade.Text, out int quantidade) && quantidade > 0;
@@ -231,53 +267,62 @@ namespace PIMFazendaUrbanaForms
 
             if (quantidadeValida && valorunitarioValido && fornecedorValido && insumoValido)
             {
-                int idPedidoCompra = 0;
-                try
+                if (DataGridItensPedidoCompra.Rows.Count == 0)
                 {
-                    int? ultimoId = compraService.ObterUltimoIdPedidoCompra();
-                    idPedidoCompra = ultimoId.HasValue ? ultimoId.Value + 1 : 1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao obter último ID de pedido de compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Adicione pelo menos um item ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                List<PedidoCompraItem> compraItemsList = new List<PedidoCompraItem>();
-                foreach (DataGridViewRow row in DataGridItensPedidoCompra.Rows)
+                else
                 {
-                    if (row.Cells["NomeInsumo"].Value != null && row.Cells["Quantidade"].Value != null && row.Cells["ValorUnitario"].Value != null)
+                    int idPedidoCompra = 0;
+                    try
                     {
-                        compraItemsList.Add(new PedidoCompraItem
+                        int? ultimoId = compraService.ObterUltimoIdPedidoCompra();
+                        idPedidoCompra = ultimoId.HasValue ? ultimoId.Value + 1 : 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao obter último ID de pedido de compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    List<PedidoCompraItem> compraItemsList = new List<PedidoCompraItem>();
+                    foreach (DataGridViewRow row in DataGridItensPedidoCompra.Rows)
+                    {
+                        if (row.Cells["NomeInsumo"].Value != null && row.Cells["Quantidade"].Value != null && row.Cells["ValorUnitario"].Value != null)
                         {
-                            NomeInsumo = row.Cells["NomeInsumo"].Value.ToString(),
-                            Qtd = Convert.ToInt32(row.Cells["Quantidade"].Value),
-                            UnidQtd = row.Cells["Unidade"].Value.ToString(),
-                            Valor = Convert.ToDecimal(row.Cells["ValorUnitario"].Value, CultureInfo.GetCultureInfo("pt-BR")),
-                            IdPedidoCompra = idPedidoCompra,
-                            IdInsumo = insumos.First(i => i.Nome == row.Cells["NomeInsumo"].Value.ToString()).Id
-                        });
+                            compraItemsList.Add(new PedidoCompraItem
+                            {
+                                NomeInsumo = row.Cells["NomeInsumo"].Value.ToString(),
+                                Qtd = Convert.ToInt32(row.Cells["Quantidade"].Value),
+                                UnidQtd = row.Cells["Unidade"].Value.ToString(),
+                                Valor = Convert.ToDecimal(row.Cells["ValorUnitario"].Value, CultureInfo.GetCultureInfo("pt-BR")),
+                                IdPedidoCompra = idPedidoCompra,
+                                IdInsumo = insumos.First(i => i.Nome == row.Cells["NomeInsumo"].Value.ToString()).Id
+                            });
+                        }
+                    }
+
+                    try
+                    {
+                        PedidoCompra pedidoCompra = new PedidoCompra
+                        {
+                            Data = DateTime.Now,
+                            IdFornecedor = fornecedorService.ConsultarFornecedorNome(ComboBoxFornecedor.SelectedItem.ToString()).ID
+                        };
+
+                        compraService.CadastrarPedidoCompraComItens(pedidoCompra, compraItemsList);
+
+                        MessageBox.Show("Compra cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CompraCadastradaSucesso?.Invoke(this, EventArgs.Empty);
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
-                try
-                {
-                    PedidoCompra pedidoCompra = new PedidoCompra
-                    {
-                        Data = DateTime.Now,
-                        IdFornecedor = fornecedorService.ConsultarFornecedorNome(ComboBoxFornecedor.SelectedItem.ToString()).ID
-                    };
-
-                    compraService.CadastrarPedidoCompraComItens(pedidoCompra, compraItemsList);
-
-                    MessageBox.Show("Compra cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    CompraCadastradaSucesso?.Invoke(this, EventArgs.Empty);
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
@@ -304,42 +349,6 @@ namespace PIMFazendaUrbanaForms
             else
             {
                 MessageBox.Show("Insumo não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void PictureBoxAdicionar_Click(object sender, EventArgs e)
-        {
-            ComboBoxFornecedor.Enabled = false;
-
-            if (ComboBoxProduto.SelectedItem == null || string.IsNullOrEmpty(TextBoxQuantidade.Text) || string.IsNullOrEmpty(TextBoxValorUnitario.Text))
-            {
-                MessageBox.Show("Por favor, preencha todos os campos antes de adicionar ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string nomeInsumoSelecionado = ComboBoxProduto.SelectedItem.ToString();
-            Insumo insumoSelecionado = insumos.FirstOrDefault(i => i.Nome == nomeInsumoSelecionado);
-
-            if (insumoSelecionado != null)
-            {
-                // Verificação para evitar itens duplicados
-                if (compraItems.Any(item => item.IdInsumo == insumoSelecionado.Id))
-                {
-                    MessageBox.Show("O produto já foi adicionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                PedidoCompraItem item = new PedidoCompraItem
-                {
-                    IdInsumo = insumoSelecionado.Id,
-                    NomeInsumo = insumoSelecionado.Nome,
-                    Qtd = int.Parse(TextBoxQuantidade.Text),
-                    Valor = decimal.Parse(TextBoxValorUnitario.Text, CultureInfo.GetCultureInfo("pt-BR")),
-                    UnidQtd = TextBoxUnidade.Text
-                };
-
-                compraItems.Add(item);
-                AtualizarValorTotalDataGrid();
             }
         }
 

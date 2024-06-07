@@ -198,18 +198,19 @@ namespace PIMFazendaUrbanaForms
                 funcionario1.Telefone.DDD = TextBoxDDD.Text;
                 funcionario1.Telefone.Numero = TextBoxTelefone.Text;
 
-                bool sucesso = funcionarioService.AlterarFuncionario(funcionario1); // Chamando o método AlterarFuncionario da instância funcionarioService
-                if (sucesso == true)
+                try
                 {
+                    funcionarioService.AlterarFuncionario(funcionario1); // Chamando o método AlterarFuncionario da instância funcionarioService
                     MessageBox.Show("Usuário alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FuncionarioEditadoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao editar usuário. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
             }
         }
 

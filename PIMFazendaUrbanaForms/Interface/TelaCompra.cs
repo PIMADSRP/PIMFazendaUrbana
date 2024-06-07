@@ -49,21 +49,23 @@ namespace PIMFazendaUrbanaForms
             // Define AutoGenerateColumns como false para evitar a geração automática de colunas
             DataGridViewRegistroDeCompras.AutoGenerateColumns = false;
             // Adicionar manualmente as colunas necessárias
+            DataGridViewRegistroDeCompras.Columns.Add("IdPedidoCompraColumn", "ID do Pedido");
             DataGridViewRegistroDeCompras.Columns.Add("NomeInsumoColumn", "Insumo");
             DataGridViewRegistroDeCompras.Columns.Add("QtdColumn", "Quantidade");
             DataGridViewRegistroDeCompras.Columns.Add("UnidQtdColumn", "Unidade");
-            DataGridViewRegistroDeCompras.Columns.Add("ValorColumn", "Valor");
             DataGridViewRegistroDeCompras.Columns.Add("DataColumn", "Data");
             DataGridViewRegistroDeCompras.Columns.Add("NomeFornecedorColumn", "Fornecedor");
-            DataGridViewRegistroDeCompras.Columns.Add("IdPedidoCompraColumn", "ID do Pedido");
+            DataGridViewRegistroDeCompras.Columns.Add("ValorUnitColumn", "Valor Unitário");
+            DataGridViewRegistroDeCompras.Columns.Add("ValorTotalColumn", "Valor Total");
             // Configurar as propriedades DataPropertyName das colunas
+            DataGridViewRegistroDeCompras.Columns["IdPedidoCompraColumn"].DataPropertyName = "IdPedidoCompra";
             DataGridViewRegistroDeCompras.Columns["NomeInsumoColumn"].DataPropertyName = "NomeInsumo";
             DataGridViewRegistroDeCompras.Columns["QtdColumn"].DataPropertyName = "Qtd";
             DataGridViewRegistroDeCompras.Columns["UnidQtdColumn"].DataPropertyName = "UnidQtd";
-            DataGridViewRegistroDeCompras.Columns["ValorColumn"].DataPropertyName = "Valor";
             DataGridViewRegistroDeCompras.Columns["DataColumn"].DataPropertyName = "Data";
             DataGridViewRegistroDeCompras.Columns["NomeFornecedorColumn"].DataPropertyName = "NomeFornecedor";
-            DataGridViewRegistroDeCompras.Columns["IdPedidoCompraColumn"].DataPropertyName = "IdPedidoCompra";
+            DataGridViewRegistroDeCompras.Columns["ValorUnitColumn"].DataPropertyName = "ValorUnit";
+            DataGridViewRegistroDeCompras.Columns["ValorTotalColumn"].DataPropertyName = "ValorTotal";
             // Configurar o modo de redimensionamento das colunas
             /*
             foreach (DataGridViewColumn column in DataGridViewRegistroDeCompras.Columns)
@@ -75,7 +77,8 @@ namespace PIMFazendaUrbanaForms
             DataGridViewRegistroDeCompras.Columns["NomeInsumoColumn"].Width = 180;
             DataGridViewRegistroDeCompras.Columns["QtdColumn"].Width = 95;
             DataGridViewRegistroDeCompras.Columns["UnidQtdColumn"].Width = 75;
-            DataGridViewRegistroDeCompras.Columns["ValorColumn"].Width = 75;
+            DataGridViewRegistroDeCompras.Columns["ValorUnitColumn"].Width = 85;
+            DataGridViewRegistroDeCompras.Columns["ValorTotalColumn"].Width = 95;
             DataGridViewRegistroDeCompras.Columns["DataColumn"].Width = 130;
             DataGridViewRegistroDeCompras.Columns["NomeFornecedorColumn"].Width = 280;
             DataGridViewRegistroDeCompras.Columns["IdPedidoCompraColumn"].Width = 65;
@@ -158,7 +161,8 @@ namespace PIMFazendaUrbanaForms
                         i.NomeInsumo,
                         i.Qtd,
                         i.UnidQtd,
-                        Valor = "R$ " + i.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                        ValorUnit = "R$ " + i.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                        ValorTotal = "R$ " + (i.Valor * i.Qtd).ToString("N2"), // Formatar o valor como "R$ valor,centavos"
                         // Data = i.Data.ToShortDateString(), // Para exibir apenas a data
                         i.Data, // Para exibir a data e a hora
                         i.NomeFornecedor,
@@ -204,6 +208,8 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxInsumosComprados_TextChanged(object sender, EventArgs e)
         {
+            //MaskedTextBoxPeriodo1.Text = null;
+            //MaskedTextBoxPeriodo2.Text = null;
             string insumoNome = TextBoxInsumosComprados.Text;
 
             List<PedidoCompraItem> compraItens = compraService.FiltrarRegistrosDeCompraNome(insumoNome);
@@ -323,9 +329,84 @@ namespace PIMFazendaUrbanaForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao exportar dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private void DataGridViewListaInsumos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in DataGridViewListaInsumos.Rows)
+            {
+                bool qtdEstoque = Convert.ToInt32(row.Cells["QtdColumn"].Value) < 1;
+                if (qtdEstoque)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(237, 237, 237);
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(255, 255, 255);
+                }
+            }
+        }
+
+        private void PictureBoxPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string insumoNome = TextBoxInsumosComprados.Text;
+
+                DateTime dataInicio;
+                DateTime dataFim;
+
+                if (DateTime.TryParseExact(MaskedTextBoxPeriodo1.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataInicio) &&
+                    DateTime.TryParseExact(MaskedTextBoxPeriodo2.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataFim))
+                {
+                    if (dataFim < dataInicio)
+                    {
+                        MessageBox.Show("A data final deve ser maior ou igual à data inicial.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    List<PedidoCompraItem> compraItens = compraService.FiltrarRegistrosDeCompraPorNomeEPeriodo(insumoNome, dataInicio, dataFim);
+
+                    if (compraItens != null && compraItens.Count > 0)
+                    {
+                        var data = compraItens.Select(i => new
+                        {
+                            i.NomeInsumo,
+                            i.Qtd,
+                            i.UnidQtd,
+                            ValorUnit = "R$ " + i.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                            ValorTotal = "R$ " + (i.Valor * i.Qtd).ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                            i.Data, // Para exibir a data e a hora
+                            i.NomeFornecedor,
+                            i.IdPedidoCompra
+                        }).ToList();
+
+                        DataGridViewRegistroDeCompras.DataSource = data; // Preencher o DataGridView com os dados formatados
+                    }
+                    else
+                    {
+                        DataGridViewRegistroDeCompras.DataSource = null;
+                        MessageBox.Show("Nenhum registro de compra encontrado no período especificado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Datas inválidas. Por favor, insira datas no formato dd/MM/yyyy.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TextBoxInsumosComprados_Click(object sender, EventArgs e)
+        {
+            TextBoxInsumosComprados.Clear();
+            MaskedTextBoxPeriodo1.Clear();
+            MaskedTextBoxPeriodo2.Clear();
+        }
     }
 }

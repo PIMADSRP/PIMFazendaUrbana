@@ -31,7 +31,6 @@ namespace PIMFazendaUrbanaForms
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFornecedores));
             DataGridViewListaFornecedores = new DataGridView();
             fornecedorServiceBindingSource = new BindingSource(components);
             PictureBoxAtualizar = new PictureBox();
@@ -194,7 +193,7 @@ namespace PIMFazendaUrbanaForms
             // 
             // PictureBoxRelatorio
             // 
-            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Image = Properties.Resources.ExportarRelatorio;
             PictureBoxRelatorio.Location = new Point(873, 12);
             PictureBoxRelatorio.Name = "PictureBoxRelatorio";
             PictureBoxRelatorio.Size = new Size(29, 25);

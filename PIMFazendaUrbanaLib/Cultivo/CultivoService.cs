@@ -10,32 +10,28 @@
         }
 
         // 1- Cadastrar Cultivo
-        public bool CadastrarCultivo(Cultivo cultivo)
+        public void CadastrarCultivo(Cultivo cultivo)
         {
             try
             {
                 cultivoDAO.CadastrarCultivo(cultivo); // Chama o método CadastrarCultivo do DAO para inserir o novo cultivo no banco de dados, passando o objeto cultivo como argumento
-                return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return false; // Retorna false para indicar que o cadastro falhou
+                throw new Exception("Erro ao cadastrar cultivo: " + ex.Message);
             }
         }
 
         // 2- Alterar Cultivo
-        public bool AlterarCultivo(Cultivo cultivo)
+        public void AlterarCultivo(Cultivo cultivo)
         {
             try
             {
                 cultivoDAO.AlterarCultivo(cultivo); // Chama o método AlterarCultivo do DAO para atualizar os dados do cultivo no banco de dados
-                return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return false; // Retorna false para indicar que a alteração falhou
+                throw new Exception("Erro ao editar cultivo: " + ex.Message);
             }
         }
 
@@ -49,8 +45,7 @@
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return false; // Retorna false para indicar que a exclusão falhou
+                throw new Exception("Erro ao excluir cultivo: " + ex.Message);
             }
         }
 
@@ -65,7 +60,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar cultivos ativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar cultivos ativos
+                throw new Exception("Erro ao listar cultivos ativos: " + ex.Message);
             }
         }
 
@@ -79,7 +74,21 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar cultivos inativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar cultivos inativos
+                throw new Exception("Erro ao listar cultivos inativos: " + ex.Message);
+            }
+        }
+
+        // 4.3 - Listar Categorias
+        public List<string> ListarCategorias()
+        {
+            try
+            {
+                return cultivoDAO.ListarCategorias();
+            }
+            catch (Exception ex)
+            {
+                return new List<string>();
+                throw new Exception("Erro ao listar categorias: " + ex.Message);
             }
         }
 
@@ -94,8 +103,7 @@
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return null; // Retorna null para indicar que a consulta falhou
+                throw new Exception("Erro ao consultar cultivo: " + ex.Message);
             }
         }
 
@@ -109,27 +117,24 @@
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return null; // Retorna null para indicar que a consulta falhou
+                throw new Exception("Erro ao consultar cultivo: " + ex.Message);
             }
         }
 
+        // 6- Filtragem
+        // 6.1 - Filtrar lista de cultivos por nome
         public List<Cultivo> FiltrarCultivosNome(string cultivoNome)
-        {
-            return cultivoDAO.FiltrarCultivosNome(cultivoNome);
-        }
-
-        public List<string> ListarCategorias()
         {
             try
             {
-                return cultivoDAO.ListarCategorias();
+                return cultivoDAO.FiltrarCultivosNome(cultivoNome);
             }
             catch (Exception ex)
             {
-                // Log exception details for debugging
-                return new List<string>();
+                return new List<Cultivo>();
+                throw new Exception("Erro ao filtrar cultivos por nome: " + ex.Message);
             }
+            
         }
 
     }

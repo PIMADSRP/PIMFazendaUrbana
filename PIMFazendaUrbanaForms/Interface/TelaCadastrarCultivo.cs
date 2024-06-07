@@ -129,21 +129,14 @@ namespace PIMFazendaUrbanaForms
 
                 try
                 {
-                    bool sucesso = cultivoService.CadastrarCultivo(cultivo);
-                    if (sucesso == true)
-                    {
-                        MessageBox.Show("Cultivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CultivoCadastradoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao cadastrar cultivo. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    cultivoService.CadastrarCultivo(cultivo);
+                    MessageBox.Show("Cultivo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CultivoCadastradoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar cultivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

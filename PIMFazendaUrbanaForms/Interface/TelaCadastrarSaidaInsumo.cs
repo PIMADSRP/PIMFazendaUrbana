@@ -82,18 +82,16 @@ namespace PIMFazendaUrbanaForms
                 saidainsumo.NomeInsumo = insumo.Nome;
                 saidainsumo.CategoriaInsumo = insumo.Categoria;
 
-                bool sucesso = insumoService.CadastrarSaidaInsumo(saidainsumo, insumo);
-
-                if (sucesso == true)
+                try
                 {
+                    insumoService.CadastrarSaidaInsumo(saidainsumo, insumo);
                     MessageBox.Show("Saída de insumo cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     SaidaInsumoCadastradoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar saída de insumo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

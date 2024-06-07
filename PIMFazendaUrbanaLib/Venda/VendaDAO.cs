@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 
 namespace PIMFazendaUrbanaLib
 {
@@ -130,12 +131,14 @@ namespace PIMFazendaUrbanaLib
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 connection.Open();
-                string query = @"SELECT vi.id_vendaitem, vi.qtd_vendaitem, vi.unidqtd_vendaitem, vi.valor_vendaitem, vi.id_pedidovenda, vi.id_produto, 
-                                p.nome_produto, pv.data_pedidovenda, c.nome_cliente
+                string query = @"SELECT vi.id_vendaitem, vi.qtd_vendaitem, vi.unidqtd_vendaitem, vi.valor_vendaitem, vi.id_pedidovenda, vi.id_estoqueproduto, 
+                                cul.variedade_cultivo, pv.data_pedidovenda, cli.nome_cliente
                                 FROM vendaitem vi
-                                LEFT JOIN estoqueproduto p ON vi.id_produto = p.id_produto
+                                LEFT JOIN estoqueproduto ep ON vi.id_estoqueproduto = ep.id_estoqueproduto
+                                LEFT JOIN producao pr ON ep.id_producao = pr.id_producao
+                                LEFT JOIN cultivo cul ON pr.id_cultivo = cul.id_cultivo
                                 LEFT JOIN pedidovenda pv ON vi.id_pedidovenda = pv.id_pedidovenda
-                                LEFT JOIN cliente c ON pv.id_cliente = c.id_cliente";
+                                LEFT JOIN cliente cli ON pv.id_cliente = cli.id_cliente";
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
@@ -151,7 +154,7 @@ namespace PIMFazendaUrbanaLib
                                 Valor = reader.GetDecimal("valor_vendaitem"),
                                 IdPedidoVenda = reader.GetInt32("id_pedidovenda"),
                                 IdProduto = reader.GetInt32("id_estoqueproduto"),
-                                NomeProduto = reader.GetString("nome_produto"),
+                                NomeProduto = reader.GetString("variedade_cultivo"),
                                 Data = reader.GetDateTime("data_pedidovenda"),
                                 NomeCliente = reader.GetString("nome_cliente")
                             };
@@ -193,5 +196,98 @@ namespace PIMFazendaUrbanaLib
             }
             return vendaItem;
         }
+
+        public List<PedidoVendaItem> FiltrarRegistrosDeVendaNome(string produtoNome)
+        {
+            List<PedidoVendaItem> vendaItens = new List<PedidoVendaItem>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT vi.id_vendaitem, vi.qtd_vendaitem, vi.unidqtd_vendaitem, vi.valor_vendaitem, vi.id_pedidovenda, vi.id_estoqueproduto, 
+                                cul.variedade_cultivo, pv.data_pedidovenda, cli.nome_cliente
+                                FROM vendaitem vi
+                                LEFT JOIN estoqueproduto ep ON vi.id_estoqueproduto = ep.id_estoqueproduto
+                                LEFT JOIN producao pr ON ep.id_producao = pr.id_producao
+                                LEFT JOIN cultivo cul ON pr.id_cultivo = cul.id_cultivo
+                                LEFT JOIN pedidovenda pv ON vi.id_pedidovenda = pv.id_pedidovenda
+                                LEFT JOIN cliente cli ON pv.id_cliente = cli.id_cliente
+                                WHERE cul.variedade_cultivo LIKE @nome";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nome", "%" + produtoNome + "%");
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PedidoVendaItem vendaItem = new PedidoVendaItem
+                            {
+                                Id = reader.GetInt32("id_vendaitem"),
+                                Qtd = reader.GetInt32("qtd_vendaitem"),
+                                UnidQtd = reader.GetString("unidqtd_vendaitem"),
+                                Valor = reader.GetDecimal("valor_vendaitem"),
+                                IdPedidoVenda = reader.GetInt32("id_pedidovenda"),
+                                IdProduto = reader.GetInt32("id_estoqueproduto"),
+                                NomeProduto = reader.GetString("variedade_cultivo"),
+                                Data = reader.GetDateTime("data_pedidovenda"),
+                                NomeCliente = reader.GetString("nome_cliente")
+                            };
+                            vendaItens.Add(vendaItem);
+                        }
+                    }
+                }
+            }
+            return vendaItens;
+        }
+
+        public List<PedidoVendaItem> FiltrarRegistrosDeVendaPorNomeEPeriodo(string produtoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            List<PedidoVendaItem> vendaItens = new List<PedidoVendaItem>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT vi.id_vendaitem, vi.qtd_vendaitem, vi.unidqtd_vendaitem, vi.valor_vendaitem, vi.id_pedidovenda, vi.id_estoqueproduto, 
+                                cul.variedade_cultivo, pv.data_pedidovenda, cli.nome_cliente
+                                FROM vendaitem vi
+                                LEFT JOIN estoqueproduto ep ON vi.id_estoqueproduto = ep.id_estoqueproduto
+                                LEFT JOIN producao pr ON ep.id_producao = pr.id_producao
+                                LEFT JOIN cultivo cul ON pr.id_cultivo = cul.id_cultivo
+                                LEFT JOIN pedidovenda pv ON vi.id_pedidovenda = pv.id_pedidovenda
+                                LEFT JOIN cliente cli ON pv.id_cliente = cli.id_cliente
+                                WHERE cul.variedade_cultivo LIKE @nome AND pv.data_pedidovenda BETWEEN @dataInicio AND @dataFim";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nome", "%" + produtoNome + "%");
+                    command.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyy-MM-dd 00:00:00"));
+                    command.Parameters.AddWithValue("@dataFim", dataFim.ToString("yyyy-MM-dd 23:59:59"));
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PedidoVendaItem vendaItem = new PedidoVendaItem
+                            {
+                                Id = reader.GetInt32("id_vendaitem"),
+                                Qtd = reader.GetInt32("qtd_vendaitem"),
+                                UnidQtd = reader.GetString("unidqtd_vendaitem"),
+                                Valor = reader.GetDecimal("valor_vendaitem"),
+                                IdPedidoVenda = reader.GetInt32("id_pedidovenda"),
+                                IdProduto = reader.GetInt32("id_estoqueproduto"),
+                                NomeProduto = reader.GetString("variedade_cultivo"),
+                                Data = reader.GetDateTime("data_pedidovenda"),
+                                NomeCliente = reader.GetString("nome_cliente")
+                            };
+                            vendaItens.Add(vendaItem);
+                        }
+                    }
+                }
+            }
+            return vendaItens;
+        }
+
+
     }
 }

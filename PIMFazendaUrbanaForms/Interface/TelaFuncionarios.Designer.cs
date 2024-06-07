@@ -40,22 +40,22 @@
             LabelEditar = new Label();
             LabelDeletar = new Label();
             PanelHeader = new Panel();
+            PictureBoxRelatorio = new PictureBox();
+            LabelRelatorio = new Label();
             TextBoxPesquisar = new TextBox();
             PictureBoxAtualizar = new PictureBox();
             LabelAtualizar = new Label();
             PictureBoxHome = new PictureBox();
             LabelHome = new Label();
-            PictureBoxRelatorio = new PictureBox();
-            LabelRelatorio = new Label();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaFuncionarios).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
             PanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             SuspendLayout();
             // 
             // PanelFooter
@@ -194,6 +194,28 @@
             PanelHeader.Size = new Size(1370, 60);
             PanelHeader.TabIndex = 52;
             // 
+            // PictureBoxRelatorio
+            // 
+            PictureBoxRelatorio.Image = Properties.Resources.ExportarRelatorio;
+            PictureBoxRelatorio.Location = new Point(873, 12);
+            PictureBoxRelatorio.Name = "PictureBoxRelatorio";
+            PictureBoxRelatorio.Size = new Size(29, 25);
+            PictureBoxRelatorio.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxRelatorio.TabIndex = 72;
+            PictureBoxRelatorio.TabStop = false;
+            PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
+            // 
+            // LabelRelatorio
+            // 
+            LabelRelatorio.AutoSize = true;
+            LabelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelRelatorio.ForeColor = Color.White;
+            LabelRelatorio.Location = new Point(859, 37);
+            LabelRelatorio.Name = "LabelRelatorio";
+            LabelRelatorio.Size = new Size(62, 17);
+            LabelRelatorio.TabIndex = 73;
+            LabelRelatorio.Text = "Relatório";
+            // 
             // TextBoxPesquisar
             // 
             TextBoxPesquisar.Location = new Point(205, 20);
@@ -250,28 +272,6 @@
             LabelHome.TabIndex = 19;
             LabelHome.Text = "Home";
             // 
-            // PictureBoxRelatorio
-            // 
-            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
-            PictureBoxRelatorio.Location = new Point(873, 12);
-            PictureBoxRelatorio.Name = "PictureBoxRelatorio";
-            PictureBoxRelatorio.Size = new Size(29, 25);
-            PictureBoxRelatorio.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxRelatorio.TabIndex = 72;
-            PictureBoxRelatorio.TabStop = false;
-            PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
-            // 
-            // LabelRelatorio
-            // 
-            LabelRelatorio.AutoSize = true;
-            LabelRelatorio.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelRelatorio.ForeColor = Color.White;
-            LabelRelatorio.Location = new Point(859, 37);
-            LabelRelatorio.Name = "LabelRelatorio";
-            LabelRelatorio.Size = new Size(62, 17);
-            LabelRelatorio.TabIndex = 73;
-            LabelRelatorio.Text = "Relatório";
-            // 
             // TelaFuncionarios
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -293,9 +293,9 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ResumeLayout(false);
         }
 

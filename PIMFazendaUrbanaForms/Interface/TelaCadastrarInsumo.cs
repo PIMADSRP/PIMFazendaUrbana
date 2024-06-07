@@ -90,18 +90,16 @@ namespace PIMFazendaUrbanaForms
                 insumo.Unidqtd = unidade;
                 insumo.Ativo = true;
 
-                bool sucesso = insumoService.CadastrarInsumo(insumo);
-
-                if (sucesso == true)
+                try
                 {
+                    insumoService.CadastrarInsumo(insumo);
                     MessageBox.Show("Insumo cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     InsumoCadastradoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar insumo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }

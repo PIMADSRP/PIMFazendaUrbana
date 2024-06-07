@@ -10,31 +10,29 @@
 
         // 1- Cadastrar Cliente
         // O método CadastrarCliente é responsável por cadastrar um novo cliente. Antes de chamar o DAO para inserir um cliente no banco de dados, este método pode realizar validações dos dados, se necessário.
-        public bool CadastrarCliente(Cliente cliente)
+        public void CadastrarCliente(Cliente cliente)
         {
             try
             {
                 clienteDAO.CadastrarCliente(cliente); // Chama o método CadastrarCliente do DAO para inserir o novo cliente no banco de dados, passando o objeto cliente como argumento
-                return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que o cadastro falhou
+                throw new Exception("Erro ao cadastrar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao cadastrar o cliente
             }
         }
 
         // 2- Alterar Cliente
         // O método AlterarCliente é responsável por alterar os dados de um cliente existente. Antes de chamar o DAO para atualizar os dados no banco de dados, este método pode realizar validações dos dados, se necessário.
-        public bool AlterarCliente(Cliente cliente)
+        public void AlterarCliente(Cliente cliente)
         {
             try
             {
                 clienteDAO.AlterarCliente(cliente);
-                return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a alteração falhou
+                throw new Exception("Erro ao editar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao alterar o cliente
             }
         }
 
@@ -49,8 +47,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao excluir cliente.", ex); // Lança uma exceção indicando que ocorreu um erro ao excluir o cliente
-                //return false; // Retorna false para indicar que a exclusão falhou
+                throw new Exception("Erro ao excluir cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao excluir o cliente
             }
         }
 
@@ -66,7 +63,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar clientes ativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar clientes ativos
+                throw new Exception("Erro ao listar clientes ativos: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao listar clientes ativos
             }
         }
 
@@ -81,7 +78,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar clientes inativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar clientes inativos
+                throw new Exception("Erro ao listar clientes inativos: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao listar clientes inativos
             }
         }
 
@@ -96,8 +93,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o cliente
             }
         }
 
@@ -111,8 +107,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o cliente
             }
         }
 
@@ -126,13 +121,12 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar cliente: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o cliente
             }
         }
 
-
-        // 6 - Filtrar lista de clientes por nome
+        // 6 - Filtragem
+        // 6.1 - Filtrar lista de clientes por nome
         public List<Cliente> FiltrarClientesNome(string clienteNome)
         {
             try
@@ -142,7 +136,8 @@
             }
             catch (Exception ex)
             {
-                return null;
+                return new List<Cliente>();
+                throw new Exception("Erro ao filtrar clientes por nome: " + ex.Message);
             }
         }
 

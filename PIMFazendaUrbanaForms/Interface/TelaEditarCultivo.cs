@@ -143,21 +143,14 @@ namespace PIMFazendaUrbanaForms
 
                 try
                 {
-                    bool sucesso = cultivoService.AlterarCultivo(cultivo);
-                    if (sucesso == true)
-                    {
-                        MessageBox.Show("Cultivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        CultivoEditadoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao alterar cultivo. Tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    cultivoService.AlterarCultivo(cultivo);
+                    MessageBox.Show("Cultivo alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    CultivoEditadoSucesso?.Invoke(this, EventArgs.Empty); // Disparar o evento
+                    this.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao alterar cultivo: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

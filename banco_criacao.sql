@@ -443,5 +443,18 @@ CREATE TABLE `vendaitem` (
 	KEY `id_estoqueproduto` (`id_estoqueproduto`),
 	CONSTRAINT `vendaitem_ibfk_2` FOREIGN KEY (`id_estoqueproduto`) REFERENCES `estoqueproduto` (`id_estoqueproduto`)
 );
+
+-- Criar Trigger para atualizar estoqueproduto após cadastrar venda
+DELIMITER //
+CREATE TRIGGER after_insert_vendaitem
+AFTER INSERT ON vendaitem
+FOR EACH ROW
+BEGIN
+    UPDATE estoqueproduto
+    SET qtd_estoqueproduto = qtd_estoqueproduto - NEW.qtd_vendaitem
+    WHERE id_estoqueproduto = NEW.id_estoqueproduto;
+END //
+DELIMITER ;
+
 commit;
 

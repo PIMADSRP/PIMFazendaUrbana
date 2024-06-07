@@ -254,6 +254,55 @@ namespace PIMFazendaUrbanaLib
             return producoes;
         }
 
+        public List<Producao> FiltrarProducoesPorNomeEPeriodo(string cultivoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            List<Producao> producoes = new List<Producao>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = @"SELECT p.id_producao, p.qtd_producao, p.unidqtd_producao, 
+                                p.data_producao, p.datacolheita_producao, 
+                                p.ambientectrl_producao, p.finalizado_producao, p.id_cultivo,
+                                c.nome_cultivo, c.variedade_cultivo, c.categoria_cultivo, c.tempoprodtrad_cultivo, c.tempoprodctrl_cultivo
+                                FROM producao p
+                                LEFT JOIN cultivo c ON p.id_cultivo = c.id_cultivo 
+                                WHERE c.nome_cultivo LIKE @NomeCultivo AND p.data_producao BETWEEN @dataInicio AND @dataFim";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@NomeCultivo", "%" + cultivoNome + "%");
+                    command.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyy-MM-dd 00:00:00"));
+                    command.Parameters.AddWithValue("@dataFim", dataFim.ToString("yyyy-MM-dd 23:59:59"));
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Producao producao = new Producao
+                            {
+                                Id = reader.GetInt32("id_producao"),
+                                Nome = reader.GetString("nome_cultivo"),
+                                Variedade = reader.GetString("variedade_cultivo"),
+                                Categoria = reader.GetString("categoria_cultivo"),
+                                TempoProdTradicional = reader.GetInt32("tempoprodtrad_cultivo"),
+                                TempoProdControlado = reader.GetInt32("tempoprodctrl_cultivo"),
+                                Qtd = reader.GetInt32("qtd_producao"),
+                                Unidqtd = reader.GetString("unidqtd_producao"),
+                                Data = reader.GetDateTime("data_producao"),
+                                DataColheita = reader.GetDateTime("datacolheita_producao"),
+                                AmbienteControlado = reader.GetBoolean("ambientectrl_producao"),
+                                StatusFinalizado = reader.GetBoolean("finalizado_producao"),
+                            };
+                            producoes.Add(producao);
+                        }
+                    }
+                }
+            }
+            return producoes;
+        }
+
         // 5 - MÉTODO CONSULTAR PRODUCAO POR ID NO BANCO
         // NÃO FUNCIONAL
         public Producao ConsultarProducaoID(int producaoId)

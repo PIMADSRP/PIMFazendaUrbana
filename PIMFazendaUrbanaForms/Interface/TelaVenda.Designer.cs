@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaVenda));
             LabelEstoqueInsumos = new Label();
             DataGridViewListaProdutos = new DataGridView();
             PanelHeader = new Panel();
@@ -42,17 +41,13 @@
             LabelPesquisarProdutoEstoque = new Label();
             MaskedTextBoxPeriodo1 = new MaskedTextBox();
             PictureBoxAtualizar = new PictureBox();
-            PictureBoxEditar = new PictureBox();
             LabelPeriodo = new Label();
-            PictureBoxDeletar = new PictureBox();
             LabelAtualizar = new Label();
             PictureBoxRelatorio = new PictureBox();
-            LabelDeletar = new Label();
             PictureBoxPesquisar = new PictureBox();
             LabelRelatorio = new Label();
-            LabelEditar = new Label();
             PictureBoxIncluir = new PictureBox();
-            TextBoxProdutosComprados = new TextBox();
+            TextBoxProdutosVendidos = new TextBox();
             LabelPesquisar = new Label();
             LabelIncluir = new Label();
             LabelPesquisarVendas = new Label();
@@ -66,8 +61,6 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).BeginInit();
@@ -113,17 +106,13 @@
             PanelHeader.Controls.Add(LabelPesquisarProdutoEstoque);
             PanelHeader.Controls.Add(MaskedTextBoxPeriodo1);
             PanelHeader.Controls.Add(PictureBoxAtualizar);
-            PanelHeader.Controls.Add(PictureBoxEditar);
             PanelHeader.Controls.Add(LabelPeriodo);
-            PanelHeader.Controls.Add(PictureBoxDeletar);
             PanelHeader.Controls.Add(LabelAtualizar);
             PanelHeader.Controls.Add(PictureBoxRelatorio);
-            PanelHeader.Controls.Add(LabelDeletar);
             PanelHeader.Controls.Add(PictureBoxPesquisar);
             PanelHeader.Controls.Add(LabelRelatorio);
-            PanelHeader.Controls.Add(LabelEditar);
             PanelHeader.Controls.Add(PictureBoxIncluir);
-            PanelHeader.Controls.Add(TextBoxProdutosComprados);
+            PanelHeader.Controls.Add(TextBoxProdutosVendidos);
             PanelHeader.Controls.Add(LabelPesquisar);
             PanelHeader.Controls.Add(LabelIncluir);
             PanelHeader.Controls.Add(LabelPesquisarVendas);
@@ -135,8 +124,8 @@
             // 
             // PictureBoxRelatorio2
             // 
-            PictureBoxRelatorio2.Image = (Image)resources.GetObject("PictureBoxRelatorio2.Image");
-            PictureBoxRelatorio2.Location = new Point(1290, 9);
+            PictureBoxRelatorio2.Image = Properties.Resources.ExportarRelatorio;
+            PictureBoxRelatorio2.Location = new Point(1179, 10);
             PictureBoxRelatorio2.Name = "PictureBoxRelatorio2";
             PictureBoxRelatorio2.Size = new Size(29, 25);
             PictureBoxRelatorio2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -149,7 +138,7 @@
             LabelRelatorio2.AutoSize = true;
             LabelRelatorio2.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelRelatorio2.ForeColor = Color.White;
-            LabelRelatorio2.Location = new Point(1276, 34);
+            LabelRelatorio2.Location = new Point(1165, 35);
             LabelRelatorio2.Name = "LabelRelatorio2";
             LabelRelatorio2.Size = new Size(62, 17);
             LabelRelatorio2.TabIndex = 72;
@@ -234,23 +223,13 @@
             // PictureBoxAtualizar
             // 
             PictureBoxAtualizar.Image = Properties.Resources.Atualizar;
-            PictureBoxAtualizar.Location = new Point(1224, 10);
+            PictureBoxAtualizar.Location = new Point(1113, 10);
             PictureBoxAtualizar.Name = "PictureBoxAtualizar";
             PictureBoxAtualizar.Size = new Size(29, 25);
             PictureBoxAtualizar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxAtualizar.TabIndex = 51;
             PictureBoxAtualizar.TabStop = false;
             PictureBoxAtualizar.Click += PictureBoxAtualizar_Click;
-            // 
-            // PictureBoxEditar
-            // 
-            PictureBoxEditar.Image = Properties.Resources.editar;
-            PictureBoxEditar.Location = new Point(1108, 10);
-            PictureBoxEditar.Name = "PictureBoxEditar";
-            PictureBoxEditar.Size = new Size(29, 25);
-            PictureBoxEditar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxEditar.TabIndex = 44;
-            PictureBoxEditar.TabStop = false;
             // 
             // LabelPeriodo
             // 
@@ -263,22 +242,12 @@
             LabelPeriodo.TabIndex = 68;
             LabelPeriodo.Text = "Período:";
             // 
-            // PictureBoxDeletar
-            // 
-            PictureBoxDeletar.Image = Properties.Resources.Deletar;
-            PictureBoxDeletar.Location = new Point(1166, 10);
-            PictureBoxDeletar.Name = "PictureBoxDeletar";
-            PictureBoxDeletar.Size = new Size(29, 25);
-            PictureBoxDeletar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxDeletar.TabIndex = 45;
-            PictureBoxDeletar.TabStop = false;
-            // 
             // LabelAtualizar
             // 
             LabelAtualizar.AutoSize = true;
             LabelAtualizar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             LabelAtualizar.ForeColor = Color.White;
-            LabelAtualizar.Location = new Point(1209, 35);
+            LabelAtualizar.Location = new Point(1099, 35);
             LabelAtualizar.Name = "LabelAtualizar";
             LabelAtualizar.Size = new Size(61, 17);
             LabelAtualizar.TabIndex = 50;
@@ -286,7 +255,7 @@
             // 
             // PictureBoxRelatorio
             // 
-            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Image = Properties.Resources.ExportarRelatorio;
             PictureBoxRelatorio.Location = new Point(566, 10);
             PictureBoxRelatorio.Name = "PictureBoxRelatorio";
             PictureBoxRelatorio.Size = new Size(29, 25);
@@ -295,26 +264,16 @@
             PictureBoxRelatorio.TabStop = false;
             PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
             // 
-            // LabelDeletar
-            // 
-            LabelDeletar.AutoSize = true;
-            LabelDeletar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            LabelDeletar.ForeColor = Color.White;
-            LabelDeletar.Location = new Point(1154, 35);
-            LabelDeletar.Name = "LabelDeletar";
-            LabelDeletar.Size = new Size(51, 17);
-            LabelDeletar.TabIndex = 49;
-            LabelDeletar.Text = "Deletar";
-            // 
             // PictureBoxPesquisar
             // 
-            PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
+            PictureBoxPesquisar.Image = Properties.Resources.Pesquisar;
             PictureBoxPesquisar.Location = new Point(992, 10);
             PictureBoxPesquisar.Name = "PictureBoxPesquisar";
             PictureBoxPesquisar.Size = new Size(29, 25);
             PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxPesquisar.TabIndex = 55;
             PictureBoxPesquisar.TabStop = false;
+            PictureBoxPesquisar.Click += PictureBoxPesquisar_Click;
             // 
             // LabelRelatorio
             // 
@@ -327,21 +286,10 @@
             LabelRelatorio.TabIndex = 65;
             LabelRelatorio.Text = "Relatório";
             // 
-            // LabelEditar
-            // 
-            LabelEditar.AutoSize = true;
-            LabelEditar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            LabelEditar.ForeColor = Color.White;
-            LabelEditar.Location = new Point(1101, 35);
-            LabelEditar.Name = "LabelEditar";
-            LabelEditar.Size = new Size(43, 17);
-            LabelEditar.TabIndex = 48;
-            LabelEditar.Text = "Editar";
-            // 
             // PictureBoxIncluir
             // 
             PictureBoxIncluir.Image = Properties.Resources.Incluir;
-            PictureBoxIncluir.Location = new Point(1050, 10);
+            PictureBoxIncluir.Location = new Point(1054, 10);
             PictureBoxIncluir.Name = "PictureBoxIncluir";
             PictureBoxIncluir.Size = new Size(29, 25);
             PictureBoxIncluir.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -349,21 +297,22 @@
             PictureBoxIncluir.TabStop = false;
             PictureBoxIncluir.Click += PictureBoxIncluir_Click;
             // 
-            // TextBoxProdutosComprados
+            // TextBoxProdutosVendidos
             // 
-            TextBoxProdutosComprados.Location = new Point(781, 5);
-            TextBoxProdutosComprados.Name = "TextBoxProdutosComprados";
-            TextBoxProdutosComprados.PlaceholderText = "Digite o nome do produto";
-            TextBoxProdutosComprados.Size = new Size(183, 23);
-            TextBoxProdutosComprados.TabIndex = 3;
-            TextBoxProdutosComprados.TextChanged += TextBoxProdutosComprados_TextChanged;
+            TextBoxProdutosVendidos.Location = new Point(781, 5);
+            TextBoxProdutosVendidos.Name = "TextBoxProdutosVendidos";
+            TextBoxProdutosVendidos.PlaceholderText = "Digite o nome do produto";
+            TextBoxProdutosVendidos.Size = new Size(183, 23);
+            TextBoxProdutosVendidos.TabIndex = 3;
+            TextBoxProdutosVendidos.Click += TextBoxProdutosVendidos_Click;
+            TextBoxProdutosVendidos.TextChanged += TextBoxProdutosVendidos_TextChanged;
             // 
             // LabelPesquisar
             // 
             LabelPesquisar.AutoSize = true;
             LabelPesquisar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelPesquisar.ForeColor = Color.White;
-            LabelPesquisar.Location = new Point(977, 35);
+            LabelPesquisar.Location = new Point(976, 35);
             LabelPesquisar.Name = "LabelPesquisar";
             LabelPesquisar.Size = new Size(66, 17);
             LabelPesquisar.TabIndex = 56;
@@ -374,7 +323,7 @@
             LabelIncluir.AutoSize = true;
             LabelIncluir.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelIncluir.ForeColor = Color.White;
-            LabelIncluir.Location = new Point(1044, 35);
+            LabelIncluir.Location = new Point(1047, 35);
             LabelIncluir.Name = "LabelIncluir";
             LabelIncluir.Size = new Size(45, 17);
             LabelIncluir.TabIndex = 47;
@@ -474,8 +423,6 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxEditar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxDeletar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxIncluir).EndInit();
@@ -498,13 +445,9 @@
         private Label LabelHome;
         private Label LabelPesquisarProdutoEstoque;
         private PictureBox PictureBoxAtualizar;
-        private PictureBox PictureBoxEditar;
-        private PictureBox PictureBoxDeletar;
         private Label LabelAtualizar;
         private PictureBox PictureBoxIncluir;
-        private Label LabelDeletar;
         private Label LabelIncluir;
-        private Label LabelEditar;
         private PictureBox PictureBoxRelatorio;
         private Label LabelRelatorio;
         private Panel PanelFooter;
@@ -513,7 +456,7 @@
         private Label LabelA;
         private MaskedTextBox MaskedTextBoxPeriodo1;
         private Label LabelPeriodo;
-        private TextBox TextBoxProdutosComprados;
+        private TextBox TextBoxProdutosVendidos;
         private Label LabelPesquisarVendas;
         private Label LabelEstoqueInsumo;
         private Label LabelRegistroDeVendas;

@@ -9,12 +9,11 @@
             this.insumoDAO = new InsumoDAO();
         }
 
-        public bool CadastrarInsumo(Insumo insumo)
+        public void CadastrarInsumo(Insumo insumo)
         {
             try
             {
                 insumoDAO.CadastrarInsumo(insumo);
-                return true;
             }
             catch (Exception ex)
             {
@@ -22,17 +21,15 @@
             }
         }
 
-        public bool AlterarInsumo(Insumo insumo)
+        public void AlterarInsumo(Insumo insumo)
         {
             try
             {
                 insumoDAO.AlterarInsumo(insumo);
-                return true;
             }
             catch (Exception ex)
             {
                 throw new Exception("Erro ao alterar insumo: " + ex.Message);
-                return false;
             }
         }
 
@@ -110,7 +107,6 @@
             catch (Exception ex)
             {
                 throw new Exception("Erro ao filtrar insumos por nome: " + ex.Message);
-                //return null;
             }
         }
 
@@ -166,12 +162,11 @@
             }
         }
 
-        public bool CadastrarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)
+        public void CadastrarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)
         {
             try
             {
                 insumoDAO.CadastrarSaidaInsumo(saidainsumo, insumo);
-                return true;
             }
             catch (Exception ex)
             {
@@ -189,7 +184,18 @@
             catch (Exception ex)
             {
                 throw new Exception("Erro ao alterar quantidade do insumo: " + ex.Message);
-                return false;
+            }
+        }
+
+        public List<SaidaInsumo> FiltrarSaidaInsumosPorNomeEPeriodo(string insumoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            try
+            {
+                return insumoDAO.FiltrarSaidaInsumosPorNomeEPeriodo(insumoNome, dataInicio, dataFim);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de saída por nome de insumo e período: " + ex.Message);
             }
         }
 

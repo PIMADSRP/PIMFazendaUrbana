@@ -22,5 +22,22 @@ UPDATE producao SET finalizado_producao = true, datacolheita_producao = @data WH
 
 select * from estoqueproduto;
 
+select * from cultivo;
+
 select * from compraitem;
 select * from pedidocompra;
+
+select * from vendaitem;
+select * from pedidovenda;
+update pedidovenda set data_pedidovenda = '2024-06-07 20:49:46' where id_pedidovenda = 3;
+
+SET @nome = 'alho';
+SELECT vi.id_vendaitem, vi.qtd_vendaitem, vi.unidqtd_vendaitem, vi.valor_vendaitem, vi.id_pedidovenda, vi.id_estoqueproduto, 
+                                cul.variedade_cultivo, pv.data_pedidovenda, cli.nome_cliente
+                                FROM vendaitem vi
+                                LEFT JOIN estoqueproduto ep ON vi.id_estoqueproduto = ep.id_estoqueproduto
+                                LEFT JOIN producao pr ON ep.id_producao = pr.id_producao
+                                LEFT JOIN cultivo cul ON pr.id_cultivo = cul.id_cultivo
+                                LEFT JOIN pedidovenda pv ON vi.id_pedidovenda = pv.id_pedidovenda
+                                LEFT JOIN cliente cli ON pv.id_cliente = cli.id_cliente
+                                WHERE cul.variedade_cultivo = @nome;

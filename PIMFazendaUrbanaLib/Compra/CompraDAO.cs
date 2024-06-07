@@ -236,5 +236,51 @@ namespace PIMFazendaUrbanaLib
             }
             return compraItem;
         }
+
+        public List<PedidoCompraItem> FiltrarRegistrosDeCompraPorNomeEPeriodo(string insumoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            List<PedidoCompraItem> compraItens = new List<PedidoCompraItem>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT ci.id_compraitem, ci.qtd_compraitem, ci.unidqtd_compraitem, ci.valor_compraitem, ci.id_pedidocompra, ci.id_insumo, 
+                        i.nome_insumo, pc.data_pedidocompra, f.nome_fornecedor
+                        FROM compraitem ci
+                        LEFT JOIN estoqueinsumo i ON ci.id_insumo = i.id_insumo
+                        LEFT JOIN pedidocompra pc ON ci.id_pedidocompra = pc.id_pedidocompra
+                        LEFT JOIN fornecedor f ON pc.id_fornecedor = f.id_fornecedor
+                        WHERE i.nome_insumo LIKE @nome AND pc.data_pedidocompra BETWEEN @dataInicio AND @dataFim";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nome", "%" + insumoNome + "%");
+                    command.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyy-MM-dd 00:00:00"));
+                    command.Parameters.AddWithValue("@dataFim", dataFim.ToString("yyyy-MM-dd 23:59:59"));
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            PedidoCompraItem compraItem = new PedidoCompraItem
+                            {
+                                Id = reader.GetInt32("id_compraitem"),
+                                Qtd = reader.GetInt32("qtd_compraitem"),
+                                UnidQtd = reader.GetString("unidqtd_compraitem"),
+                                Valor = reader.GetDecimal("valor_compraitem"),
+                                IdPedidoCompra = reader.GetInt32("id_pedidocompra"),
+                                IdInsumo = reader.GetInt32("id_insumo"),
+                                NomeInsumo = reader.GetString("nome_insumo"),
+                                Data = reader.GetDateTime("data_pedidocompra"),
+                                NomeFornecedor = reader.GetString("nome_fornecedor")
+                            };
+                            compraItens.Add(compraItem);
+                        }
+                    }
+                }
+            }
+            return compraItens;
+        }
+
     }
 }

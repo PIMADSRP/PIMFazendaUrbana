@@ -167,18 +167,19 @@ namespace PIMFazendaUrbanaForms
                 fornecedor1.Telefone.DDD = TextBoxDDD.Text;
                 fornecedor1.Telefone.Numero = TextBoxTelefone.Text;
 
-                bool sucesso = fornecedorService.AlterarFornecedor(fornecedor1); // Chamando o método AlterarFornecedor da instância fornecedorService
-                if (sucesso == true)
+                try
                 {
+                    fornecedorService.AlterarFornecedor(fornecedor1); // Chamando o método AlterarFornecedor da instância fornecedorService
                     MessageBox.Show("Fornecedor alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FornecedorEditadoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao editar fornecedor. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
             }
         }
 

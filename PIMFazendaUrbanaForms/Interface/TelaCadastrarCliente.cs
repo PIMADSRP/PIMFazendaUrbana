@@ -277,16 +277,17 @@ namespace PIMFazendaUrbanaForms
             cliente1.Telefone.Numero = TextBoxTelefone.Text;
             cliente1.Telefone.StatusAtivo = true;
 
-            bool sucesso = clienteService.CadastrarCliente(cliente1); // Chamando o método CadastrarCliente da instância clienteService
-            if (sucesso)
+            try
             {
+                clienteService.CadastrarCliente(cliente1); // Chamando o método CadastrarCliente da instância clienteService
                 MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClienteCadastradoSucesso?.Invoke(this, EventArgs.Empty);
                 Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadastrar cliente. Verifique se o cliente já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

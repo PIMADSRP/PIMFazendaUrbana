@@ -507,16 +507,16 @@ namespace PIMFazendaUrbanaForms
                 funcionario1.Telefone.Numero = TextBoxTelefone.Text;
                 funcionario1.Telefone.StatusAtivo = true;
 
-                bool sucesso = funcionarioService.CadastrarFuncionario(funcionario1); // Chamando o método CadastrarFuncionario da instância funcionarioService
-                if (sucesso == true)
+                try
                 {
+                    funcionarioService.CadastrarFuncionario(funcionario1); // Chamando o método CadastrarFuncionario da instância funcionarioService
                     MessageBox.Show("Usuário cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FuncionarioCadastradoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao cadastrar usuário. Verifique se o usuário já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

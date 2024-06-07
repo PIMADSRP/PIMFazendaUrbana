@@ -28,14 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaInsumo));
             PanelHeader = new Panel();
+            MaskedTextBoxPeriodo2 = new MaskedTextBox();
             PictureBoxRelatorio2 = new PictureBox();
+            LabelA = new Label();
             LabelRelatorio2 = new Label();
+            MaskedTextBoxPeriodo1 = new MaskedTextBox();
             PictureBoxRelatorio = new PictureBox();
+            LabelPeríodo = new Label();
             LabelRelatorio = new Label();
+            PictureBoxPesquisar = new PictureBox();
+            TextBoxPesquisarSaidaInsumo = new TextBox();
             PictureBoxCadastrarSaida = new PictureBox();
+            LabelPesquisar = new Label();
             LabelCadastrarSaida = new Label();
+            LabelPesquisarSaidaInsumos = new Label();
             PictureBoxHome = new PictureBox();
             TextBoxPesquisar = new TextBox();
             LabelHome = new Label();
@@ -54,17 +61,10 @@
             DataGridViewSaidaInsumos = new DataGridView();
             LabelEstoqueInsumos = new Label();
             LabelRegistroSaida = new Label();
-            MaskedTextBoxPeriodo2 = new MaskedTextBox();
-            LabelA = new Label();
-            MaskedTextBoxPeriodo1 = new MaskedTextBox();
-            LabelPeríodo = new Label();
-            PictureBoxPesquisar = new PictureBox();
-            TextBoxPesquisarSaidaInsumo = new TextBox();
-            LabelPesquisar = new Label();
-            LabelPesquisarSaidaInsumos = new Label();
             PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).BeginInit();
@@ -74,7 +74,6 @@
             ((System.ComponentModel.ISupportInitialize)DataGridViewListaInsumos).BeginInit();
             PanelFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).BeginInit();
             SuspendLayout();
             // 
             // PanelHeader
@@ -112,9 +111,19 @@
             PanelHeader.Size = new Size(1511, 60);
             PanelHeader.TabIndex = 53;
             // 
+            // MaskedTextBoxPeriodo2
+            // 
+            MaskedTextBoxPeriodo2.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxPeriodo2.Location = new Point(1049, 33);
+            MaskedTextBoxPeriodo2.Mask = "00/00/0000";
+            MaskedTextBoxPeriodo2.Name = "MaskedTextBoxPeriodo2";
+            MaskedTextBoxPeriodo2.Size = new Size(78, 23);
+            MaskedTextBoxPeriodo2.TabIndex = 81;
+            MaskedTextBoxPeriodo2.ValidatingType = typeof(DateTime);
+            // 
             // PictureBoxRelatorio2
             // 
-            PictureBoxRelatorio2.Image = (Image)resources.GetObject("PictureBoxRelatorio2.Image");
+            PictureBoxRelatorio2.Image = Properties.Resources.ExportarRelatorio;
             PictureBoxRelatorio2.Location = new Point(1329, 11);
             PictureBoxRelatorio2.Name = "PictureBoxRelatorio2";
             PictureBoxRelatorio2.Size = new Size(29, 25);
@@ -122,6 +131,17 @@
             PictureBoxRelatorio2.TabIndex = 68;
             PictureBoxRelatorio2.TabStop = false;
             PictureBoxRelatorio2.Click += PictureBoxRelatorio2_Click;
+            // 
+            // LabelA
+            // 
+            LabelA.AutoSize = true;
+            LabelA.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelA.ForeColor = Color.White;
+            LabelA.Location = new Point(1030, 34);
+            LabelA.Name = "LabelA";
+            LabelA.Size = new Size(15, 17);
+            LabelA.TabIndex = 86;
+            LabelA.Text = "a";
             // 
             // LabelRelatorio2
             // 
@@ -134,9 +154,19 @@
             LabelRelatorio2.TabIndex = 69;
             LabelRelatorio2.Text = "Relatório";
             // 
+            // MaskedTextBoxPeriodo1
+            // 
+            MaskedTextBoxPeriodo1.Culture = new System.Globalization.CultureInfo("");
+            MaskedTextBoxPeriodo1.Location = new Point(948, 33);
+            MaskedTextBoxPeriodo1.Mask = "00/00/0000";
+            MaskedTextBoxPeriodo1.Name = "MaskedTextBoxPeriodo1";
+            MaskedTextBoxPeriodo1.Size = new Size(78, 23);
+            MaskedTextBoxPeriodo1.TabIndex = 80;
+            MaskedTextBoxPeriodo1.ValidatingType = typeof(DateTime);
+            // 
             // PictureBoxRelatorio
             // 
-            PictureBoxRelatorio.Image = (Image)resources.GetObject("PictureBoxRelatorio.Image");
+            PictureBoxRelatorio.Image = Properties.Resources.ExportarRelatorio;
             PictureBoxRelatorio.Location = new Point(701, 11);
             PictureBoxRelatorio.Name = "PictureBoxRelatorio";
             PictureBoxRelatorio.Size = new Size(29, 25);
@@ -144,6 +174,17 @@
             PictureBoxRelatorio.TabIndex = 66;
             PictureBoxRelatorio.TabStop = false;
             PictureBoxRelatorio.Click += PictureBoxRelatorio_Click;
+            // 
+            // LabelPeríodo
+            // 
+            LabelPeríodo.AutoSize = true;
+            LabelPeríodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPeríodo.ForeColor = Color.White;
+            LabelPeríodo.Location = new Point(882, 33);
+            LabelPeríodo.Name = "LabelPeríodo";
+            LabelPeríodo.Size = new Size(60, 17);
+            LabelPeríodo.TabIndex = 85;
+            LabelPeríodo.Text = "Período:";
             // 
             // LabelRelatorio
             // 
@@ -156,6 +197,27 @@
             LabelRelatorio.TabIndex = 67;
             LabelRelatorio.Text = "Relatório";
             // 
+            // PictureBoxPesquisar
+            // 
+            PictureBoxPesquisar.Image = Properties.Resources.Pesquisar;
+            PictureBoxPesquisar.Location = new Point(1149, 11);
+            PictureBoxPesquisar.Name = "PictureBoxPesquisar";
+            PictureBoxPesquisar.Size = new Size(29, 25);
+            PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
+            PictureBoxPesquisar.TabIndex = 82;
+            PictureBoxPesquisar.TabStop = false;
+            PictureBoxPesquisar.Click += PictureBoxPesquisar_Click;
+            // 
+            // TextBoxPesquisarSaidaInsumo
+            // 
+            TextBoxPesquisarSaidaInsumo.Location = new Point(948, 4);
+            TextBoxPesquisarSaidaInsumo.Name = "TextBoxPesquisarSaidaInsumo";
+            TextBoxPesquisarSaidaInsumo.PlaceholderText = "Digite o nome do insumo";
+            TextBoxPesquisarSaidaInsumo.Size = new Size(179, 23);
+            TextBoxPesquisarSaidaInsumo.TabIndex = 79;
+            TextBoxPesquisarSaidaInsumo.Click += TextBoxPesquisarSaidaInsumo_Click;
+            TextBoxPesquisarSaidaInsumo.TextChanged += TextBoxPesquisarSaidaInsumo_TextChanged;
+            // 
             // PictureBoxCadastrarSaida
             // 
             PictureBoxCadastrarSaida.Image = Properties.Resources.SaidaDeEstoque;
@@ -167,6 +229,17 @@
             PictureBoxCadastrarSaida.TabStop = false;
             PictureBoxCadastrarSaida.Click += PictureBoxCadastrarSaida_Click;
             // 
+            // LabelPesquisar
+            // 
+            LabelPesquisar.AutoSize = true;
+            LabelPesquisar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisar.ForeColor = Color.White;
+            LabelPesquisar.Location = new Point(1134, 36);
+            LabelPesquisar.Name = "LabelPesquisar";
+            LabelPesquisar.Size = new Size(66, 17);
+            LabelPesquisar.TabIndex = 83;
+            LabelPesquisar.Text = "Pesquisar";
+            // 
             // LabelCadastrarSaida
             // 
             LabelCadastrarSaida.AutoSize = true;
@@ -177,6 +250,17 @@
             LabelCadastrarSaida.Size = new Size(101, 17);
             LabelCadastrarSaida.TabIndex = 56;
             LabelCadastrarSaida.Text = "Cadastrar saída";
+            // 
+            // LabelPesquisarSaidaInsumos
+            // 
+            LabelPesquisarSaidaInsumos.AutoSize = true;
+            LabelPesquisarSaidaInsumos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LabelPesquisarSaidaInsumos.ForeColor = Color.White;
+            LabelPesquisarSaidaInsumos.Location = new Point(828, 5);
+            LabelPesquisarSaidaInsumos.Name = "LabelPesquisarSaidaInsumos";
+            LabelPesquisarSaidaInsumos.Size = new Size(114, 17);
+            LabelPesquisarSaidaInsumos.TabIndex = 84;
+            LabelPesquisarSaidaInsumos.Text = "Pesquisar Saídas:";
             // 
             // PictureBoxHome
             // 
@@ -324,6 +408,7 @@
             DataGridViewListaInsumos.Size = new Size(676, 647);
             DataGridViewListaInsumos.TabIndex = 0;
             DataGridViewListaInsumos.VirtualMode = true;
+            DataGridViewListaInsumos.DataBindingComplete += DataGridViewListaInsumos_DataBindingComplete;
             // 
             // PanelFooter
             // 
@@ -385,89 +470,6 @@
             LabelRegistroSaida.TabIndex = 58;
             LabelRegistroSaida.Text = "Registro de Saída de Insumos:";
             // 
-            // MaskedTextBoxPeriodo2
-            // 
-            MaskedTextBoxPeriodo2.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxPeriodo2.Location = new Point(1049, 33);
-            MaskedTextBoxPeriodo2.Mask = "00/00/0000";
-            MaskedTextBoxPeriodo2.Name = "MaskedTextBoxPeriodo2";
-            MaskedTextBoxPeriodo2.Size = new Size(78, 23);
-            MaskedTextBoxPeriodo2.TabIndex = 81;
-            MaskedTextBoxPeriodo2.ValidatingType = typeof(DateTime);
-            // 
-            // LabelA
-            // 
-            LabelA.AutoSize = true;
-            LabelA.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelA.ForeColor = Color.White;
-            LabelA.Location = new Point(1030, 34);
-            LabelA.Name = "LabelA";
-            LabelA.Size = new Size(15, 17);
-            LabelA.TabIndex = 86;
-            LabelA.Text = "a";
-            // 
-            // MaskedTextBoxPeriodo1
-            // 
-            MaskedTextBoxPeriodo1.Culture = new System.Globalization.CultureInfo("");
-            MaskedTextBoxPeriodo1.Location = new Point(948, 33);
-            MaskedTextBoxPeriodo1.Mask = "00/00/0000";
-            MaskedTextBoxPeriodo1.Name = "MaskedTextBoxPeriodo1";
-            MaskedTextBoxPeriodo1.Size = new Size(78, 23);
-            MaskedTextBoxPeriodo1.TabIndex = 80;
-            MaskedTextBoxPeriodo1.ValidatingType = typeof(DateTime);
-            // 
-            // LabelPeríodo
-            // 
-            LabelPeríodo.AutoSize = true;
-            LabelPeríodo.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPeríodo.ForeColor = Color.White;
-            LabelPeríodo.Location = new Point(882, 33);
-            LabelPeríodo.Name = "LabelPeríodo";
-            LabelPeríodo.Size = new Size(60, 17);
-            LabelPeríodo.TabIndex = 85;
-            LabelPeríodo.Text = "Período:";
-            // 
-            // PictureBoxPesquisar
-            // 
-            PictureBoxPesquisar.Image = (Image)resources.GetObject("PictureBoxPesquisar.Image");
-            PictureBoxPesquisar.Location = new Point(1149, 11);
-            PictureBoxPesquisar.Name = "PictureBoxPesquisar";
-            PictureBoxPesquisar.Size = new Size(29, 25);
-            PictureBoxPesquisar.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxPesquisar.TabIndex = 82;
-            PictureBoxPesquisar.TabStop = false;
-            // 
-            // TextBoxPesquisarSaidaInsumo
-            // 
-            TextBoxPesquisarSaidaInsumo.Location = new Point(948, 4);
-            TextBoxPesquisarSaidaInsumo.Name = "TextBoxPesquisarSaidaInsumo";
-            TextBoxPesquisarSaidaInsumo.PlaceholderText = "Digite o nome do insumo";
-            TextBoxPesquisarSaidaInsumo.Size = new Size(179, 23);
-            TextBoxPesquisarSaidaInsumo.TabIndex = 79;
-            TextBoxPesquisarSaidaInsumo.TextChanged += TextBoxPesquisarSaidaInsumo_TextChanged;
-            // 
-            // LabelPesquisar
-            // 
-            LabelPesquisar.AutoSize = true;
-            LabelPesquisar.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPesquisar.ForeColor = Color.White;
-            LabelPesquisar.Location = new Point(1134, 36);
-            LabelPesquisar.Name = "LabelPesquisar";
-            LabelPesquisar.Size = new Size(66, 17);
-            LabelPesquisar.TabIndex = 83;
-            LabelPesquisar.Text = "Pesquisar";
-            // 
-            // LabelPesquisarSaidaInsumos
-            // 
-            LabelPesquisarSaidaInsumos.AutoSize = true;
-            LabelPesquisarSaidaInsumos.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelPesquisarSaidaInsumos.ForeColor = Color.White;
-            LabelPesquisarSaidaInsumos.Location = new Point(828, 5);
-            LabelPesquisarSaidaInsumos.Name = "LabelPesquisarSaidaInsumos";
-            LabelPesquisarSaidaInsumos.Size = new Size(114, 17);
-            LabelPesquisarSaidaInsumos.TabIndex = 84;
-            LabelPesquisarSaidaInsumos.Text = "Pesquisar Saídas:";
-            // 
             // TelaInsumo
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -488,6 +490,7 @@
             PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio2).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxRelatorio).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCadastrarSaida).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxAtualizar).EndInit();
@@ -498,7 +501,6 @@
             PanelFooter.ResumeLayout(false);
             PanelFooter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DataGridViewSaidaInsumos).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxPesquisar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

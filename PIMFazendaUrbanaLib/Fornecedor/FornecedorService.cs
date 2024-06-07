@@ -10,46 +10,43 @@
 
         // 1- Cadastrar Fornecedor
         // O método CadastrarFornecedor é responsável por cadastrar um novo fornecedor. Antes de chamar o DAO para inserir um fornecedor no banco de dados, este método pode realizar validações dos dados, se necessário.
-        public bool CadastrarFornecedor(Fornecedor fornecedor)
+        public void CadastrarFornecedor(Fornecedor fornecedor)
         {
             try
             {
                 fornecedorDAO.CadastrarFornecedor(fornecedor); // Chama o método CadastrarFornecedor do DAO para inserir o novo fornecedor no banco de dados, passando o objeto fornecedor como argumento
-                return true; // Retorna true para indicar que o cadastro foi bem-sucedido
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que o cadastro falhou
+                throw new Exception("Erro ao cadastrar fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao cadastrar o fornecedor
             }
         }
 
         // 2- Alterar Fornecedor
         // O método AlterarFornecedor é responsável por alterar os dados de um fornecedor existente. Antes de chamar o DAO para atualizar os dados no banco de dados, este método pode realizar validações dos dados, se necessário.
-        public bool AlterarFornecedor(Fornecedor fornecedor)
+        public void AlterarFornecedor(Fornecedor fornecedor)
         {
             try
             {
                 fornecedorDAO.AlterarFornecedor(fornecedor);
-                return true; // Retorna true para indicar que a alteração foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a alteração falhou
+                throw new Exception("Erro ao editar fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao alterar o fornecedor
             }
         }
 
         // 3- Excluir (DESATIVAR) Fornecedor
         // O método ExcluirFornecedor é responsável por excluir (DESATIVAR) um fornecedor do banco de dados. Antes de chamar o DAO para realizar a exclusão, este método pode realizar validações ou outras operações necessárias.
-        public bool ExcluirFornecedor(int fornecedorId)
+        public void ExcluirFornecedor(int fornecedorId)
         {
             try
             {
                 fornecedorDAO.ExcluirFornecedor(fornecedorId); // Chama o método ExcluirFornecedor da classe FornecedorDAO, passando o ID do fornecedor como argumento
-                return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
             catch (Exception ex)
             {
-                return false; // Retorna false para indicar que a exclusão falhou
+                throw new Exception("Erro ao excluir fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao excluir o fornecedor
             }
         }
 
@@ -65,7 +62,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar fornecedores ativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores ativos
+                throw new Exception("Erro ao listar fornecedores ativos: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores ativos
             }
         }
 
@@ -80,7 +77,7 @@
             }
             catch (Exception ex)
             {
-                throw new Exception("Erro ao listar fornecedores inativos.", ex); // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores
+                throw new Exception("Erro ao listar fornecedores inativos: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao listar fornecedores
             }
         }
 
@@ -95,8 +92,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o fornecedor
             }
         }
 
@@ -110,8 +106,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o fornecedor
             }
         }
 
@@ -125,8 +120,7 @@
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Erro ao consultar fornecedor: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                throw new Exception("Erro ao consultar fornecedor: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao consultar o fornecedor
             }
         }
 
@@ -140,7 +134,7 @@
             }
             catch (Exception ex)
             {
-                return null;
+                throw new Exception("Erro ao filtrar fornecedores por nome: " + ex.Message);
             }
         }
 

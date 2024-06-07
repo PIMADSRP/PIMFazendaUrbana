@@ -109,19 +109,6 @@ namespace PIMFazendaUrbanaForms
                 {
                     MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                /*
-                bool sucesso = producaoService.CadastrarProducao(producao);
-
-                if (sucesso == true)
-                {
-                    ProducaoCadastradaSucesso?.Invoke(this, EventArgs.Empty);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao cadastrar produção. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                */
             }
         }
 

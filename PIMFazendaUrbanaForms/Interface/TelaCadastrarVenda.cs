@@ -6,38 +6,38 @@ namespace PIMFazendaUrbanaForms
 {
     public partial class TelaCadastrarVenda : Form
     {
-        private FornecedorService fornecedorService;
-        private InsumoService insumoService;
-        private CompraService compraService;
-        private List<Fornecedor> fornecedores;
-        private List<Insumo> insumos;
-        private BindingList<PedidoCompraItem> compraItems; // BindingList para armazenar os itens do pedido
-        private decimal valorUnitario; // Valor unitário do insumo selecionado
-        Insumo insumo = new Insumo();
+        private ClienteService clienteService;
+        private EstoqueProdutoService produtoService;
+        private VendaService vendaService;
+        private List<Cliente> clientes;
+        private List<EstoqueProduto> produtos;
+        private BindingList<PedidoVendaItem> vendaItems; // BindingList para armazenar os itens do pedido
+        private decimal valorUnitario; // Valor unitário do produto selecionado
+        private EstoqueProduto produtoSelecionado = new EstoqueProduto();
         public event EventHandler VendaCadastradaSucesso;
 
         public TelaCadastrarVenda()
         {
             InitializeComponent();
-            fornecedorService = new FornecedorService();
-            insumoService = new InsumoService();
-            compraService = new CompraService();
-            compraItems = new BindingList<PedidoCompraItem>(); // Inicializa a BindingList
+            clienteService = new ClienteService();
+            produtoService = new EstoqueProdutoService();
+            vendaService = new VendaService();
+            vendaItems = new BindingList<PedidoVendaItem>(); // Inicializa a BindingList
 
             // Configura o DataGridView para usar a BindingList
-            DataGridItensPedidoCompra.AutoGenerateColumns = false;
-            DataGridItensPedidoCompra.DataSource = compraItems;
+            DataGridItensPedidoVenda.AutoGenerateColumns = false;
+            DataGridItensPedidoVenda.DataSource = vendaItems;
 
             // Adiciona as colunas manualmente
-            DataGridItensPedidoCompra.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridItensPedidoVenda.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = "NomeInsumo",
-                HeaderText = "Nome do Insumo",
-                Name = "NomeInsumo",
+                DataPropertyName = "NomeProduto",
+                HeaderText = "Nome do Produto",
+                Name = "NomeProduto",
                 ReadOnly = true,
             });
 
-            DataGridItensPedidoCompra.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridItensPedidoVenda.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Qtd",
                 HeaderText = "Quantidade",
@@ -45,7 +45,7 @@ namespace PIMFazendaUrbanaForms
                 ReadOnly = true
             });
 
-            DataGridItensPedidoCompra.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridItensPedidoVenda.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "UnidQtd",
                 HeaderText = "Unidade",
@@ -53,7 +53,7 @@ namespace PIMFazendaUrbanaForms
                 ReadOnly = true
             });
 
-            DataGridItensPedidoCompra.Columns.Add(new DataGridViewTextBoxColumn
+            DataGridItensPedidoVenda.Columns.Add(new DataGridViewTextBoxColumn
             {
                 DataPropertyName = "Valor",
                 HeaderText = "Valor Unitário",
@@ -67,20 +67,20 @@ namespace PIMFazendaUrbanaForms
             valorTotalColumn.Name = "ValorTotal"; // Define um nome único para a coluna
             valorTotalColumn.HeaderText = "Valor Total";
             valorTotalColumn.ReadOnly = true;
-            DataGridItensPedidoCompra.Columns.Add(valorTotalColumn);
+            DataGridItensPedidoVenda.Columns.Add(valorTotalColumn);
 
             // Ajustar o tamanho das colunas
-            DataGridItensPedidoCompra.Columns["NomeInsumo"].Width = 200;
-            DataGridItensPedidoCompra.Columns["Quantidade"].Width = 95;
-            DataGridItensPedidoCompra.Columns["Unidade"].Width = 75;
-            DataGridItensPedidoCompra.Columns["ValorUnitario"].Width = 75;
-            DataGridItensPedidoCompra.Columns["ValorTotal"].Width = 95;
+            DataGridItensPedidoVenda.Columns["NomeProduto"].Width = 260;
+            DataGridItensPedidoVenda.Columns["Quantidade"].Width = 95;
+            DataGridItensPedidoVenda.Columns["Unidade"].Width = 75;
+            DataGridItensPedidoVenda.Columns["ValorUnitario"].Width = 127;
+            DataGridItensPedidoVenda.Columns["ValorTotal"].Width = 107;
 
-            // Definir autofill para a coluna "Nome do Insumo"
-            DataGridItensPedidoCompra.Columns["NomeInsumo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            // Definir autofill para a coluna "Nome do Produto"
+            DataGridItensPedidoVenda.Columns["NomeProduto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Configura o evento de formatação de células
-            DataGridItensPedidoCompra.CellFormatting += DataGridItensPedidoCompra_CellFormatting;
+            DataGridItensPedidoVenda.CellFormatting += DataGridItensPedidoVenda_CellFormatting;
 
             // Adiciona eventos de validação para os TextBoxes
             TextBoxQuantidade.Validating += TextBoxQuantidade_Validating;
@@ -88,30 +88,30 @@ namespace PIMFazendaUrbanaForms
             TextBoxValorUnitario.TextChanged += TextBoxValorUnitario_TextChanged;
 
             // Atualiza o valor total do pedido
-            compraItems.ListChanged += CompraItems_ListChanged;
+            vendaItems.ListChanged += VendaItems_ListChanged;
         }
 
-        private void TelaCadastrarCompra_Load(object sender, EventArgs e)
+        private void TelaCadastrarVenda_Load(object sender, EventArgs e)
         {
-            // Carregar fornecedores e insumos nos ComboBoxes
-            fornecedores = fornecedorService.ListarFornecedoresAtivos();
-            insumos = insumoService.ListarInsumosAtivos();
+            // Carregar clientes e produtos nos ComboBoxes
+            clientes = clienteService.ListarClientesAtivos();
+            produtos = produtoService.ListarEstoqueProdutoAtivos();
 
-            if (fornecedores != null && fornecedores.Count > 0)
+            if (clientes != null && clientes.Count > 0)
             {
-                ComboBoxFornecedor.Items.Clear();
-                foreach (var fornecedor in fornecedores)
+                ComboBoxCliente.Items.Clear();
+                foreach (var cliente in clientes)
                 {
-                    ComboBoxFornecedor.Items.Add(fornecedor.Nome);
+                    ComboBoxCliente.Items.Add(cliente.Nome);
                 }
             }
 
-            if (insumos != null && insumos.Count > 0)
+            if (produtos != null && produtos.Count > 0)
             {
                 ComboBoxProduto.Items.Clear();
-                foreach (var insumo in insumos)
+                foreach (var produto in produtos)
                 {
-                    ComboBoxProduto.Items.Add(insumo.Nome);
+                    ComboBoxProduto.Items.Add(produto.VariedadeCultivo);
                 }
             }
         }
@@ -123,22 +123,28 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxValorUnitario_TextChanged(object sender, EventArgs e)
         {
-            // Substitui "." por ","
-            if (TextBoxValorUnitario.Text.Contains('.'))
-            {
-                TextBoxValorUnitario.Text = TextBoxValorUnitario.Text.Replace('.', ',');
-                TextBoxValorUnitario.SelectionStart = TextBoxValorUnitario.Text.Length; // Move o cursor para o final do texto
-            }
             AtualizarValorTotal();
         }
 
         private void TextBoxQuantidade_Validating(object sender, CancelEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxQuantidade.Text))
+            {
+                TextBoxQuantidade.ForeColor = Color.Black;
+                return; // Ignora a validação se o campo estiver vazio
+            }
+
             if (!int.TryParse(TextBoxQuantidade.Text, out int quantidade) || quantidade <= 0)
             {
                 e.Cancel = true;
                 TextBoxQuantidade.ForeColor = Color.Red;
                 MessageBox.Show("A quantidade deve ser um número inteiro maior que zero.", "Quantidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (quantidade > produtoSelecionado.Qtd)
+            {
+                e.Cancel = true;
+                TextBoxQuantidade.ForeColor = Color.Red;
+                MessageBox.Show("A quantidade informada é maior que a quantidade em estoque.", "Quantidade Inválida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -148,9 +154,15 @@ namespace PIMFazendaUrbanaForms
 
         private void TextBoxValorUnitario_Validating(object sender, CancelEventArgs e)
         {
-            if (decimal.TryParse(TextBoxValorUnitario.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("pt-BR"), out decimal valor))
+            if (string.IsNullOrWhiteSpace(TextBoxValorUnitario.Text))
             {
-                TextBoxValorUnitario.Text = valor.ToString("N2");
+                TextBoxValorUnitario.ForeColor = Color.Black;
+                return; // Ignora a validação se o campo estiver vazio
+            }
+
+            if (decimal.TryParse(TextBoxValorUnitario.Text, NumberStyles.Number, CultureInfo.GetCultureInfo("pt-BR"), out decimal valor))
+            {
+                TextBoxValorUnitario.Text = valor.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
                 TextBoxValorUnitario.ForeColor = Color.Black;
             }
             else
@@ -176,11 +188,11 @@ namespace PIMFazendaUrbanaForms
 
         private void AtualizarValorTotalPedido()
         {
-            decimal totalPedido = compraItems.Sum(item => item.Qtd * item.Valor);
+            decimal totalPedido = vendaItems.Sum(item => item.Qtd * item.Valor);
             TextBoxValorTotalPedido.Text = totalPedido.ToString("C2", CultureInfo.GetCultureInfo("pt-BR"));
         }
 
-        private void CompraItems_ListChanged(object sender, ListChangedEventArgs e)
+        private void VendaItems_ListChanged(object sender, ListChangedEventArgs e)
         {
             AtualizarValorTotalPedido();
         }
@@ -190,22 +202,58 @@ namespace PIMFazendaUrbanaForms
             this.Close();
         }
 
+        private void PictureBoxAdicionar_Click(object sender, EventArgs e)
+        {
+            ComboBoxCliente.Enabled = false;
+
+            if (ComboBoxProduto.SelectedItem == null || string.IsNullOrEmpty(TextBoxQuantidade.Text) || string.IsNullOrEmpty(TextBoxValorUnitario.Text))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos antes de adicionar ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string nomeProdutoSelecionado = ComboBoxProduto.SelectedItem.ToString();
+            produtoSelecionado = produtos.FirstOrDefault(p => p.VariedadeCultivo == nomeProdutoSelecionado);
+
+            if (produtoSelecionado != null)
+            {
+                // Verificação para evitar itens duplicados
+                if (vendaItems.Any(item => item.IdProduto == produtoSelecionado.Id))
+                {
+                    MessageBox.Show("O produto já foi adicionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                PedidoVendaItem item = new PedidoVendaItem
+                {
+                    IdProduto = produtoSelecionado.Id,
+                    NomeProduto = produtoSelecionado.VariedadeCultivo,
+                    Qtd = int.Parse(TextBoxQuantidade.Text),
+                    Valor = decimal.Parse(TextBoxValorUnitario.Text, CultureInfo.GetCultureInfo("pt-BR")),
+                    UnidQtd = TextBoxUnidade.Text
+                };
+
+                vendaItems.Add(item);
+                AtualizarValorTotalDataGrid();
+            }
+        }
+
         private void BotaoConfirmar_Click(object sender, EventArgs e)
         {
             bool quantidadeValida = int.TryParse(TextBoxQuantidade.Text, out int quantidade) && quantidade > 0;
             bool valorunitarioValido = decimal.TryParse(TextBoxValorUnitario.Text, NumberStyles.Currency, CultureInfo.GetCultureInfo("pt-BR"), out valorUnitario) && valorUnitario > 0;
-            bool fornecedorValido = ComboBoxFornecedor.SelectedItem != null;
-            bool insumoValido = ComboBoxProduto.SelectedItem != null;
+            bool clienteValido = ComboBoxCliente.SelectedItem != null;
+            bool produtoValido = ComboBoxProduto.SelectedItem != null;
 
-            if (!fornecedorValido)
+            if (!clienteValido)
             {
-                MessageBox.Show("Fornecedor inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cliente inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (!insumoValido)
+            if (!produtoValido)
             {
-                MessageBox.Show("Insumo inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Produto inválido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -223,55 +271,64 @@ namespace PIMFazendaUrbanaForms
                 return;
             }
 
-            if (quantidadeValida && valorunitarioValido && fornecedorValido && insumoValido)
+            if (quantidadeValida && valorunitarioValido && clienteValido && produtoValido)
             {
-                int idPedidoCompra = 0;
-                try
+                if (DataGridItensPedidoVenda.Rows.Count == 0)
                 {
-                    int? ultimoId = compraService.ObterUltimoIdPedidoCompra();
-                    idPedidoCompra = ultimoId.HasValue ? ultimoId.Value + 1 : 1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erro ao obter último ID de pedido de compra: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Adicione pelo menos um item ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                List<PedidoCompraItem> compraItemsList = new List<PedidoCompraItem>();
-                foreach (DataGridViewRow row in DataGridItensPedidoCompra.Rows)
+                else
                 {
-                    if (row.Cells["NomeInsumo"].Value != null && row.Cells["Quantidade"].Value != null && row.Cells["ValorUnitario"].Value != null)
+                    int idPedidoVenda = 0;
+                    try
                     {
-                        compraItemsList.Add(new PedidoCompraItem
+                        int? ultimoId = vendaService.ObterUltimoIdPedidoVenda();
+                        idPedidoVenda = ultimoId.HasValue ? ultimoId.Value + 1 : 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erro ao obter último ID de pedido de venda: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    List<PedidoVendaItem> vendaItemsList = new List<PedidoVendaItem>();
+                    foreach (DataGridViewRow row in DataGridItensPedidoVenda.Rows)
+                    {
+                        if (row.Cells["NomeProduto"].Value != null && row.Cells["Quantidade"].Value != null && row.Cells["ValorUnitario"].Value != null)
                         {
-                            NomeInsumo = row.Cells["NomeInsumo"].Value.ToString(),
-                            Qtd = Convert.ToInt32(row.Cells["Quantidade"].Value),
-                            UnidQtd = row.Cells["Unidade"].Value.ToString(),
-                            Valor = Convert.ToDecimal(row.Cells["ValorUnitario"].Value, CultureInfo.GetCultureInfo("pt-BR")),
-                            IdPedidoCompra = idPedidoCompra,
-                            IdInsumo = insumos.First(i => i.Nome == row.Cells["NomeInsumo"].Value.ToString()).Id
-                        });
+                            vendaItemsList.Add(new PedidoVendaItem
+                            {
+                                NomeProduto = row.Cells["NomeProduto"].Value.ToString(),
+                                Qtd = Convert.ToInt32(row.Cells["Quantidade"].Value),
+                                UnidQtd = row.Cells["Unidade"].Value.ToString(),
+                                Valor = Convert.ToDecimal(row.Cells["ValorUnitario"].Value, CultureInfo.GetCultureInfo("pt-BR")),
+                                IdPedidoVenda = idPedidoVenda,
+                                IdProduto = produtos.First(p => p.VariedadeCultivo == row.Cells["NomeProduto"].Value.ToString()).Id
+                            });
+                        }
+                    }
+
+                    try
+                    {
+                        PedidoVenda pedidoVenda = new PedidoVenda
+                        {
+                            Data = DateTime.Now,
+                            IdCliente = clienteService.ConsultarClienteNome(ComboBoxCliente.SelectedItem.ToString()).ID
+                        };
+
+                        vendaService.CadastrarPedidoVendaComItens(pedidoVenda, vendaItemsList);
+
+                        MessageBox.Show("Venda cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        VendaCadastradaSucesso?.Invoke(this, EventArgs.Empty);
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
-                try
-                {
-                    PedidoCompra pedidoCompra = new PedidoCompra
-                    {
-                        Data = DateTime.Now,
-                        IdFornecedor = fornecedorService.ConsultarFornecedorNome(ComboBoxFornecedor.SelectedItem.ToString()).ID
-                    };
-
-                    compraService.CadastrarPedidoCompraComItens(pedidoCompra, compraItemsList);
-
-                    MessageBox.Show("Compra cadastrada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    VendaCadastradaSucesso?.Invoke(this, EventArgs.Empty);
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
@@ -280,124 +337,88 @@ namespace PIMFazendaUrbanaForms
             string unidade = TextBoxUnidade.Text;
             if (!string.IsNullOrEmpty(unidade))
             {
-                var insumosFiltrados = insumoService.FiltrarInsumosPorUnidade(unidade);
-                string insumosNomes = string.Join(", ", insumosFiltrados.Select(i => i.Nome));
+                var produtosFiltrados = produtoService.FiltrarProdutosPorUnidade(unidade);
+                string produtosNomes = string.Join(", ", produtosFiltrados.Select(p => p.VariedadeCultivo));
             }
         }
 
         private void ComboBoxProduto_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nomeInsumoSelecionado = ComboBoxProduto.SelectedItem.ToString();
-            Insumo insumoSelecionado = insumos.FirstOrDefault(i => i.Nome == nomeInsumoSelecionado);
+            string nomeProdutoSelecionado = ComboBoxProduto.SelectedItem.ToString();
+            produtoSelecionado = produtos.FirstOrDefault(p => p.VariedadeCultivo == nomeProdutoSelecionado);
 
-            if (insumoSelecionado != null)
+            if (produtoSelecionado != null)
             {
-                TextBoxCategoria.Text = insumoSelecionado.Categoria;
-                TextBoxUnidade.Text = insumoSelecionado.Unidqtd;
+                TextBoxCategoria.Text = produtoSelecionado.CategoriaCultivo;
+                TextBoxUnidade.Text = produtoSelecionado.Unidqtd;
             }
             else
             {
-                MessageBox.Show("Insumo não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void PictureBoxAdicionar_Click(object sender, EventArgs e)
-        {
-            ComboBoxFornecedor.Enabled = false;
-
-            if (ComboBoxProduto.SelectedItem == null || string.IsNullOrEmpty(TextBoxQuantidade.Text) || string.IsNullOrEmpty(TextBoxValorUnitario.Text))
-            {
-                MessageBox.Show("Por favor, preencha todos os campos antes de adicionar ao carrinho.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string nomeInsumoSelecionado = ComboBoxProduto.SelectedItem.ToString();
-            Insumo insumoSelecionado = insumos.FirstOrDefault(i => i.Nome == nomeInsumoSelecionado);
-
-            if (insumoSelecionado != null)
-            {
-                // Verificação para evitar itens duplicados
-                if (compraItems.Any(item => item.IdInsumo == insumoSelecionado.Id))
-                {
-                    MessageBox.Show("O produto já foi adicionado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                PedidoCompraItem item = new PedidoCompraItem
-                {
-                    IdInsumo = insumoSelecionado.Id,
-                    NomeInsumo = insumoSelecionado.Nome,
-                    Qtd = int.Parse(TextBoxQuantidade.Text),
-                    Valor = decimal.Parse(TextBoxValorUnitario.Text, CultureInfo.GetCultureInfo("pt-BR")),
-                    UnidQtd = TextBoxUnidade.Text
-                };
-
-                compraItems.Add(item);
-                AtualizarValorTotalDataGrid();
+                MessageBox.Show("Produto não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void PictureBoxDeletar_Click(object sender, EventArgs e)
         {
-            if (DataGridItensPedidoCompra.SelectedRows.Count > 0)
+            if (DataGridItensPedidoVenda.SelectedRows.Count > 0)
             {
-                foreach (DataGridViewRow row in DataGridItensPedidoCompra.SelectedRows)
+                foreach (DataGridViewRow row in DataGridItensPedidoVenda.SelectedRows)
                 {
-                    string nomeInsumo = row.Cells[0].Value.ToString();
-                    PedidoCompraItem item = compraItems.FirstOrDefault(i => insumos.First(insumo => insumo.Id == i.IdInsumo).Nome == nomeInsumo);
+                    string nomeProduto = row.Cells[0].Value.ToString();
+                    PedidoVendaItem item = vendaItems.FirstOrDefault(p => produtos.First(produto => produto.Id == p.IdProduto).VariedadeCultivo == nomeProduto);
 
                     if (item != null)
                     {
-                        compraItems.Remove(item);
+                        vendaItems.Remove(item);
                     }
                 }
                 AtualizarValorTotalDataGrid();
             }
 
-            if (compraItems.Count == 0)
+            if (vendaItems.Count == 0)
             {
-                ComboBoxFornecedor.Enabled = true;
+                ComboBoxCliente.Enabled = true;
             }
         }
 
         private void PictureBoxEditar_Click(object sender, EventArgs e)
         {
-            if (DataGridItensPedidoCompra.SelectedRows.Count == 1)
+            if (DataGridItensPedidoVenda.SelectedRows.Count == 1)
             {
-                DataGridViewRow row = DataGridItensPedidoCompra.SelectedRows[0];
-                string nomeInsumo = row.Cells[0].Value.ToString();
-                PedidoCompraItem item = compraItems.FirstOrDefault(i => insumos.First(insumo => insumo.Id == i.IdInsumo).Nome == nomeInsumo);
+                DataGridViewRow row = DataGridItensPedidoVenda.SelectedRows[0];
+                string nomeProduto = row.Cells[0].Value.ToString();
+                PedidoVendaItem item = vendaItems.FirstOrDefault(p => produtos.First(produto => produto.Id == p.IdProduto).VariedadeCultivo == nomeProduto);
 
                 if (item != null)
                 {
-                    ComboBoxProduto.SelectedItem = nomeInsumo;
+                    ComboBoxProduto.SelectedItem = nomeProduto;
                     TextBoxQuantidade.Text = item.Qtd.ToString();
                     TextBoxValorUnitario.Text = item.Valor.ToString("N2", CultureInfo.GetCultureInfo("pt-BR"));
                     TextBoxUnidade.Text = item.UnidQtd;
 
-                    compraItems.Remove(item);
+                    vendaItems.Remove(item);
                     AtualizarValorTotalDataGrid();
                 }
             }
         }
 
-        private void DataGridItensPedidoCompra_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridItensPedidoVenda_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Verifique se a coluna "ValorTotal" está sendo formatada
-            if (e.ColumnIndex == DataGridItensPedidoCompra.Columns["ValorTotal"].Index)
+            if (e.ColumnIndex == DataGridItensPedidoVenda.Columns["ValorTotal"].Index)
             {
-                DataGridViewRow row = DataGridItensPedidoCompra.Rows[e.RowIndex];
+                DataGridViewRow row = DataGridItensPedidoVenda.Rows[e.RowIndex];
 
                 // Obtém os valores de "Quantidade" e "Valor Unitário"
-                int quantidade = (int)row.Cells[DataGridItensPedidoCompra.Columns["Quantidade"].Index].Value;
-                decimal valorUnitario = (decimal)row.Cells[DataGridItensPedidoCompra.Columns["ValorUnitario"].Index].Value;
+                int quantidade = (int)row.Cells[DataGridItensPedidoVenda.Columns["Quantidade"].Index].Value;
+                decimal valorUnitario = (decimal)row.Cells[DataGridItensPedidoVenda.Columns["ValorUnitario"].Index].Value;
 
                 // Calcula o valor total
                 e.Value = (quantidade * valorUnitario).ToString("C2", CultureInfo.GetCultureInfo("pt-BR"));
             }
 
             // Verifique se a coluna "ValorUnitario" está sendo formatada
-            if (e.ColumnIndex == DataGridItensPedidoCompra.Columns["ValorUnitario"].Index)
+            if (e.ColumnIndex == DataGridItensPedidoVenda.Columns["ValorUnitario"].Index)
             {
                 decimal valorUnitario = (decimal)e.Value;
                 e.Value = valorUnitario.ToString("C2", CultureInfo.GetCultureInfo("pt-BR"));
@@ -406,7 +427,7 @@ namespace PIMFazendaUrbanaForms
 
         private void AtualizarValorTotalDataGrid()
         {
-            foreach (DataGridViewRow row in DataGridItensPedidoCompra.Rows)
+            foreach (DataGridViewRow row in DataGridItensPedidoVenda.Rows)
             {
                 if (row.Cells["Quantidade"].Value != null && row.Cells["ValorUnitario"].Value != null)
                 {
@@ -416,6 +437,30 @@ namespace PIMFazendaUrbanaForms
                 }
             }
             AtualizarValorTotalPedido();
+        }
+
+        private void TextBoxQuantidade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle como backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxValorUnitario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir apenas números, vírgula e teclas de controle como backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+            }
+
+            // Permitir apenas uma vírgula
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

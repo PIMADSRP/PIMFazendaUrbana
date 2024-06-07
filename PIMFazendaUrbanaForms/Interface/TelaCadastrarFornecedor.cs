@@ -277,16 +277,17 @@ namespace PIMFazendaUrbanaForms
             fornecedor1.Telefone.Numero = TextBoxTelefone.Text;
             fornecedor1.Telefone.StatusAtivo = true;
 
-            bool sucesso = fornecedorService.CadastrarFornecedor(fornecedor1); // Chamando o método CadastrarFornecedor da instância fornecedorService
-            if (sucesso)
+            try
             {
+                fornecedorService.CadastrarFornecedor(fornecedor1);
                 MessageBox.Show("Fornecedor cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FornecedorCadastradoSucesso?.Invoke(this, EventArgs.Empty);
                 Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao cadastrar fornecedor. Verifique se o fornecedor já está cadastrado, ou entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 

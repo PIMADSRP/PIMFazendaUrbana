@@ -34,10 +34,10 @@ namespace PIMFazendaUrbanaLib
                         }
                         transaction.Commit();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
-                        throw;
+                        throw new Exception("Erro ao cadastrar pedido de venda: " + ex.Message);
                     }
                 }
             }
@@ -107,6 +107,38 @@ namespace PIMFazendaUrbanaLib
                 throw new Exception("Erro ao consultar item de venda: " + ex.Message);
             }
         }
+
+        
+        public List<PedidoVendaItem> FiltrarRegistrosDeVendaPorNomeEPeriodo(string produtoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            
+            try
+            {
+                return pedidoVendaDAO.FiltrarRegistrosDeVendaPorNomeEPeriodo(produtoNome, dataInicio, dataFim);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de venda por nome de produto e período: " + ex.Message);
+            }
+            
+            
+        }
+        
+
+        public List<PedidoVendaItem> FiltrarRegistrosDeVendaNome(string produtoNome)
+        {
+            try
+            {
+                List<PedidoVendaItem> vendaItems = pedidoVendaDAO.FiltrarRegistrosDeVendaNome(produtoNome);
+                return vendaItems;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao filtrar registros de venda por nome de insumo: " + ex.Message);
+            }
+            
+        }
+        
 
     }
 }

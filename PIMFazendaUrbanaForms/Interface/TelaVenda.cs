@@ -54,23 +54,25 @@ namespace PIMFazendaUrbanaForms
 
             // ------------------------------------------------------------------------------------------------
 
-            /*
+
             // Formatação do DataGridViewRegistroDeCompras:
             // Define AutoGenerateColumns como false para evitar a geração automática de colunas
             DataGridViewRegistroDeVendas.AutoGenerateColumns = false;
             // Adicionar manualmente as colunas necessárias
+            DataGridViewRegistroDeVendas.Columns.Add("IdPedidoVendaColumn", "ID do Pedido");
             DataGridViewRegistroDeVendas.Columns.Add("NomeProdutoColumn", "Produto");
             DataGridViewRegistroDeVendas.Columns.Add("QtdColumn", "Quantidade");
             DataGridViewRegistroDeVendas.Columns.Add("UnidQtdColumn", "Unidade");
-            DataGridViewRegistroDeVendas.Columns.Add("ValorColumn", "Valor");
             DataGridViewRegistroDeVendas.Columns.Add("DataColumn", "Data");
             DataGridViewRegistroDeVendas.Columns.Add("NomeClienteColumn", "Cliente");
-            DataGridViewRegistroDeVendas.Columns.Add("IdPedidoVendaColumn", "ID do Pedido");
+            DataGridViewRegistroDeVendas.Columns.Add("ValorUnitColumn", "Valor Unitário");
+            DataGridViewRegistroDeVendas.Columns.Add("ValorTotalColumn", "Valor Total");
             // Configurar as propriedades DataPropertyName das colunas
-            DataGridViewRegistroDeVendas.Columns["NomeInsumoColumn"].DataPropertyName = "NomeProduto";
+            DataGridViewRegistroDeVendas.Columns["NomeProdutoColumn"].DataPropertyName = "NomeProduto";
             DataGridViewRegistroDeVendas.Columns["QtdColumn"].DataPropertyName = "Qtd";
             DataGridViewRegistroDeVendas.Columns["UnidQtdColumn"].DataPropertyName = "UnidQtd";
-            DataGridViewRegistroDeVendas.Columns["ValorColumn"].DataPropertyName = "Valor";
+            DataGridViewRegistroDeVendas.Columns["ValorUnitColumn"].DataPropertyName = "ValorUnit";
+            DataGridViewRegistroDeVendas.Columns["ValorTotalColumn"].DataPropertyName = "ValorTotal";
             DataGridViewRegistroDeVendas.Columns["DataColumn"].DataPropertyName = "Data";
             DataGridViewRegistroDeVendas.Columns["NomeClienteColumn"].DataPropertyName = "NomeCliente";
             DataGridViewRegistroDeVendas.Columns["IdPedidoVendaColumn"].DataPropertyName = "IdPedidoVenda";
@@ -82,16 +84,17 @@ namespace PIMFazendaUrbanaForms
             }
             */
             // Definir o tamanho padrão das colunas
-            /*
-            DataGridViewRegistroDeVendas.Columns["NomeInsumoColumn"].Width = 180;
+
+            DataGridViewRegistroDeVendas.Columns["NomeProdutoColumn"].Width = 180;
             DataGridViewRegistroDeVendas.Columns["QtdColumn"].Width = 95;
             DataGridViewRegistroDeVendas.Columns["UnidQtdColumn"].Width = 75;
-            DataGridViewRegistroDeVendas.Columns["ValorColumn"].Width = 75;
+            DataGridViewRegistroDeVendas.Columns["ValorUnitColumn"].Width = 85;
+            DataGridViewRegistroDeVendas.Columns["ValorTotalColumn"].Width = 95;
             DataGridViewRegistroDeVendas.Columns["DataColumn"].Width = 130;
-            DataGridViewRegistroDeVendas.Columns["NomeFornecedorColumn"].Width = 280;
-            DataGridViewRegistroDeVendas.Columns["IdPedidoCompraColumn"].Width = 65;
-            DataGridViewRegistroDeVendas.Columns["NomeInsumoColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            */
+            DataGridViewRegistroDeVendas.Columns["NomeClienteColumn"].Width = 280;
+            DataGridViewRegistroDeVendas.Columns["IdPedidoVendaColumn"].Width = 65;
+            DataGridViewRegistroDeVendas.Columns["NomeProdutoColumn"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         }
 
         private void TelaVenda_Load(object sender, EventArgs e)
@@ -104,7 +107,7 @@ namespace PIMFazendaUrbanaForms
             try
             {
                 CarregarProdutos();
-                MessageBox.Show("Lista de produtos atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Lista de produtos atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -113,7 +116,7 @@ namespace PIMFazendaUrbanaForms
             try
             {
                 CarregarRegistroDeVendas();
-                MessageBox.Show("Lista de vendas atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Lista de vendas atualizada com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -159,7 +162,7 @@ namespace PIMFazendaUrbanaForms
 
         private void CarregarRegistroDeVendas()
         {
-            /*
+
             try
             {
                 DataGridViewRegistroDeVendas.DataSource = null; // Limpa a DataSource do DataGridView
@@ -169,30 +172,30 @@ namespace PIMFazendaUrbanaForms
                 if (vendaItens != null && vendaItens.Count > 0)
                 {
                     // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
-                    var data = vendaItens.Select(i => new
+                    var data = vendaItens.Select(p => new
                     {
-                        i.NomeInsumo,
-                        i.Qtd,
-                        i.UnidQtd,
-                        Valor = "R$ " + i.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
-                        // Data = i.Data.ToShortDateString(), // Para exibir apenas a data
-                        i.Data, // Para exibir a data e a hora
-                        i.NomeFornecedor,
-                        i.IdPedidoCompra
+                        p.NomeProduto,
+                        p.Qtd,
+                        p.UnidQtd,
+                        ValorUnit = "R$ " + p.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                        ValorTotal = "R$ " + (p.Valor * p.Qtd).ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                        p.Data, // Para exibir a data e a hora
+                        p.NomeCliente,
+                        p.IdPedidoVenda
                     }).ToList();
 
                     DataGridViewRegistroDeVendas.DataSource = data; // Preencher o DataGridView com os dados formatados
                 }
                 else
                 {
-                    MessageBox.Show("Nenhum registro de compra encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Nenhum registro de venda encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            */
+
         }
 
         private void TextBoxPesquisar_TextChanged(object sender, EventArgs e)
@@ -224,16 +227,49 @@ namespace PIMFazendaUrbanaForms
 
         }
 
-        private void TextBoxProdutosComprados_TextChanged(object sender, EventArgs e)
+        private void TextBoxProdutosVendidos_TextChanged(object sender, EventArgs e)
         {
+            
+            //MaskedTextBoxPeriodo1.Text = null;
+            //MaskedTextBoxPeriodo2.Text = null;
+            string produtoNome = TextBoxProdutosVendidos.Text;
 
+            List<PedidoVendaItem> vendaItens = vendaService.FiltrarRegistrosDeVendaNome(produtoNome);
+
+            if (vendaItens != null && vendaItens.Count > 0)
+            {
+                // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                var data = vendaItens.Select(p => new
+                {
+                    p.NomeProduto,
+                    p.Qtd,
+                    p.UnidQtd,
+                    ValorUnit = "R$ " + p.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                    ValorTotal = "R$ " + (p.Valor * p.Qtd).ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                    p.Data, // Para exibir a data e a hora
+                    p.NomeCliente,
+                    p.IdPedidoVenda
+                }).ToList();
+
+                DataGridViewRegistroDeVendas.DataSource = data; // Preencher o DataGridView com os dados formatados
+            }
+            else
+            {
+                DataGridViewRegistroDeVendas.DataSource = null;
+            }
+            
         }
 
         private void PictureBoxIncluir_Click(object sender, EventArgs e)
         {
             TelaCadastrarVenda telaCadastrarVenda = new TelaCadastrarVenda();
             telaCadastrarVenda.Show();
-            //telaCadastrarVenda.VendaCadastradaSucesso += TelaCadastrarVenda_VendaCadastradaSucesso;
+            telaCadastrarVenda.VendaCadastradaSucesso += TelaCadastrarVenda_VendaCadastradaSucesso;
+        }
+
+        private void TelaCadastrarVenda_VendaCadastradaSucesso(object sender, EventArgs e)
+        {
+            AtualizarDataGridView();
         }
 
         private void PictureBoxHome_Click(object sender, EventArgs e)
@@ -320,6 +356,65 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void PictureBoxPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string produtoNome = TextBoxProdutosVendidos.Text;
 
+                DateTime dataInicio;
+                DateTime dataFim;
+
+                if (DateTime.TryParseExact(MaskedTextBoxPeriodo1.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataInicio) &&
+                    DateTime.TryParseExact(MaskedTextBoxPeriodo2.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataFim))
+                {
+                    if (dataFim < dataInicio)
+                    {
+                        MessageBox.Show("A data final deve ser maior ou igual à data inicial.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    List<PedidoVendaItem> vendaItens = vendaService.FiltrarRegistrosDeVendaPorNomeEPeriodo(produtoNome, dataInicio, dataFim);
+
+                    if (vendaItens != null && vendaItens.Count > 0)
+                    {
+                        // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                        var data = vendaItens.Select(p => new
+                        {
+                            p.NomeProduto,
+                            p.Qtd,
+                            p.UnidQtd,
+                            ValorUnit = "R$ " + p.Valor.ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                            ValorTotal = "R$ " + (p.Valor * p.Qtd).ToString("N2"), // Formatar o valor como "R$ valor,centavos"
+                            p.Data, // Para exibir a data e a hora
+                            p.NomeCliente,
+                            p.IdPedidoVenda
+                        }).ToList();
+
+                        DataGridViewRegistroDeVendas.DataSource = data; // Preencher o DataGridView com os dados formatados
+                    }
+                    else
+                    {
+                        DataGridViewRegistroDeVendas.DataSource = null;
+                        MessageBox.Show("Nenhum registro de venda encontrado no período especificado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Datas inválidas. Por favor, insira datas no formato dd/MM/yyyy.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void TextBoxProdutosVendidos_Click(object sender, EventArgs e)
+        {
+            TextBoxProdutosVendidos.Clear();
+            MaskedTextBoxPeriodo1.Clear();
+            MaskedTextBoxPeriodo2.Clear();
+        }
     }
 }

@@ -496,5 +496,48 @@ namespace PIMFazendaUrbanaLib
             }
         }
 
+        public List<SaidaInsumo> FiltrarSaidaInsumosPorNomeEPeriodo(string insumoNome, DateTime dataInicio, DateTime dataFim)
+        {
+            List<SaidaInsumo> saidainsumos = new List<SaidaInsumo>();
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT si.id_saidainsumo, si.qtd_saidainsumo, si.unidqtd_saidainsumo, si.data_saidainsumo, si.id_insumo,
+                        i.nome_insumo, i.categoria_insumo
+                        FROM saidainsumo si
+                        LEFT JOIN estoqueinsumo i ON si.id_insumo = i.id_insumo
+                        WHERE i.nome_insumo LIKE @nome AND si.data_saidainsumo BETWEEN @dataInicio AND @dataFim";
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@nome", "%" + insumoNome + "%");
+                    command.Parameters.AddWithValue("@dataInicio", dataInicio.ToString("yyyy-MM-dd 00:00:00"));
+                    command.Parameters.AddWithValue("@dataFim", dataFim.ToString("yyyy-MM-dd 23:59:59"));
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            SaidaInsumo saidainsumo = new SaidaInsumo
+                            {
+                                IdInsumo = reader.GetInt32("id_insumo"),
+                                NomeInsumo = reader.IsDBNull(reader.GetOrdinal("nome_insumo")) ? null : reader.GetString("nome_insumo"),
+                                CategoriaInsumo = reader.IsDBNull(reader.GetOrdinal("categoria_insumo")) ? null : reader.GetString("categoria_insumo"),
+                                Id = reader.GetInt32("id_saidainsumo"),
+                                Qtd = reader.GetInt32("qtd_saidainsumo"),
+                                Unidqtd = reader.GetString("unidqtd_saidainsumo"),
+                                Data = reader.GetDateTime("data_saidainsumo")
+                            };
+                            saidainsumos.Add(saidainsumo);
+                        }
+                    }
+                }
+            }
+            return saidainsumos;
+        }
+
+
+
+
     }
 }

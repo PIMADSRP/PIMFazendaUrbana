@@ -238,7 +238,7 @@ namespace PIMFazendaUrbanaForms
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Erro ao excluir usuário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

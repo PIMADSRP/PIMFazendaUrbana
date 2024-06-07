@@ -167,16 +167,16 @@ namespace PIMFazendaUrbanaForms
                 cliente1.Telefone.DDD = TextBoxDDD.Text;
                 cliente1.Telefone.Numero = TextBoxTelefone.Text;
 
-                bool sucesso = clienteService.AlterarCliente(cliente1); // Chamando o método AlterarCliente da instância clienteService
-                if (sucesso == true)
+                try
                 {
+                    clienteService.AlterarCliente(cliente1); // Chamando o método AlterarCliente da instância clienteService
                     MessageBox.Show("Cliente alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClienteEditadoSucesso?.Invoke(this, EventArgs.Empty);
                     this.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao editar cliente. Se o erro persistir, entre em contato com o administrador do banco de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
             }

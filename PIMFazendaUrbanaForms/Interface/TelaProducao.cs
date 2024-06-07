@@ -471,6 +471,81 @@ namespace PIMFazendaUrbanaForms
             }
         }
 
+        private void DataGridViewProducao_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in DataGridViewProducao.Rows)
+            {
+                bool finalizado = row.Cells["Finalizada"].Value.ToString() == "Sim";
+                if (finalizado)
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(203, 255, 201);
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.FromArgb(251, 252, 220);
+                }
+            }
+        }
 
+        private void TextBoxPesquisarProducoes_Click(object sender, EventArgs e)
+        {
+            TextBoxPesquisarProducoes.Clear();
+            MaskedTextBoxPeriodo1.Clear();
+            MaskedTextBoxPeriodo2.Clear();
+        }
+
+        private void PictureBoxPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string cultivoNome = TextBoxPesquisarProducoes.Text;
+
+                DateTime dataInicio;
+                DateTime dataFim;
+
+                if (DateTime.TryParseExact(MaskedTextBoxPeriodo1.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataInicio) &&
+                    DateTime.TryParseExact(MaskedTextBoxPeriodo2.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out dataFim))
+                {
+                    if (dataFim < dataInicio)
+                    {
+                        MessageBox.Show("A data final deve ser maior ou igual à data inicial.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    
+                    List<Producao> producoes = producaoService.FiltrarProducoesPorNomeEPeriodo(cultivoNome, dataInicio, dataFim);
+
+                    if (producoes != null && producoes.Count > 0)
+                    {
+                        // Criar uma lista temporária de objetos anônimos para armazenar os dados formatados
+                        var data = producoes.Select(p => new
+                        {
+                            p.Id,
+                            p.Variedade,
+                            p.Qtd,
+                            p.Unidqtd,
+                            AmbienteControlado = p.AmbienteControlado ? "Sim" : "Não",
+                            Data = p.Data.ToShortDateString(), // Para exibir apenas a data
+                            DataColheita = p.DataColheita.ToShortDateString(), // Para exibir apenas a data
+                            StatusFinalizado = p.StatusFinalizado ? "Sim" : "Não"
+                        }).ToList();
+
+                        DataGridViewProducao.DataSource = data;
+                    }
+                    else
+                    {
+                        DataGridViewProducao.DataSource = null;
+                        MessageBox.Show("Nenhum registro de produção encontrado no período especificado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Datas inválidas. Por favor, insira datas no formato dd/MM/yyyy.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
