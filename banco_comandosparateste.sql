@@ -12,6 +12,8 @@ update estoqueinsumo set qtd_insumo = 10 where id_insumo = 1;
 
 SELECT id_saidainsumo, qtd_saidainsumo, unidqtd_saidainsumo, data_saidainsumo FROM saidainsumo;
 
+update saidainsumo set data_saidainsumo = '2024-06-07 20:49:46' where id_saidainsumo = 2;
+
 select * from producao;
 
 SELECT id_insumo, nome_insumo, categoria_insumo, qtd_insumo, unidqtd_insumo, ativo_insumo 

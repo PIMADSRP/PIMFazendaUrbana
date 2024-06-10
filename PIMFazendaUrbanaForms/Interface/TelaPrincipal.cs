@@ -350,11 +350,6 @@ namespace PIMFazendaUrbanaForms
             ToolTipProducao.SetToolTip(PictureBoxProducao, "Produção");
         }
 
-        private void PictureBoxInventario_MouseHover(object sender, EventArgs e)
-        {
-            ToolTipInventario.SetToolTip(PictureBoxInventario, "Inventário");
-        }
-
         private void PictureBoxCompras_MouseHover(object sender, EventArgs e)
         {
             ToolTipCompras.SetToolTip(PictureBoxCompras, "Compras");

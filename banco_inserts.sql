@@ -27,16 +27,16 @@ INSERT INTO `enderecofuncionario` (`logradouro_endfuncionario`, `numero_endfunci
 ('Rua João Penteado', '107', 'Casa', 'Jardim América', 'Ribeirão Preto', 'SP', '14020-110', true, 10);
 
 INSERT INTO `telefonefuncionario` (`ddd_telfuncionario`, `numero_telfuncionario`, `ativo_telfuncionario`, `id_funcionario`) VALUES
-('16', '98765-4321', true, 1),
-('16', '97654-3210', true, 2),
-('16', '96543-2109', true, 3),
-('16', '95432-1098', true, 4),
-('16', '94321-0987', true, 5),
-('16', '93210-9876', true, 6),
-('16', '92109-8765', true, 7),
-('16', '91098-7654', true, 8),
-('16', '90987-6543', true, 9),
-('16', '89876-5432', true, 10);
+('16', '987654321', true, 1),
+('16', '976543210', true, 2),
+('16', '965432109', true, 3),
+('16', '954321098', true, 4),
+('16', '943210987', true, 5),
+('16', '932109876', true, 6),
+('16', '921098765', true, 7),
+('16', '910987654', true, 8),
+('16', '909876543', true, 9),
+('16', '898765432', true, 10);
 
 ## Cliente
 INSERT INTO `cliente` (`nome_cliente`, `email_cliente`, `cnpj_cliente`, `ativo_cliente`) VALUES
@@ -64,16 +64,16 @@ INSERT INTO `enderecocliente` (`logradouro_endcliente`, `numero_endcliente`, `co
 ('Rua Tocantins', '1000', 'Loja 3', 'Centro', 'Serrana', 'SP', '14150-000', true, 10);
 
 INSERT INTO `telefonecliente` (`ddd_telcliente`, `numero_telcliente`, `ativo_telcliente`, `id_cliente`) VALUES
-('16', '91234-5678', true, 1),
-('16', '92345-6789', true, 2),
-('16', '93456-7890', true, 3),
-('17', '94567-8901', true, 4),
-('16', '95678-9012', true, 5),
-('19', '96789-0123', true, 6),
-('19', '97890-1234', true, 7),
-('16', '98901-2345', true, 8),
-('16', '99012-3456', true, 9),
-('16', '90123-4567', true, 10);
+('16', '912345678', true, 1),
+('16', '923456789', true, 2),
+('16', '934567890', true, 3),
+('17', '945678901', true, 4),
+('16', '956789012', true, 5),
+('19', '967890123', true, 6),
+('19', '978901234', true, 7),
+('16', '989012345', true, 8),
+('16', '990123456', true, 9),
+('16', '901234567', true, 10);
 
 ## Fornecedor
 INSERT INTO `fornecedor` (`nome_fornecedor`, `email_fornecedor`, `cnpj_fornecedor`, `ativo_fornecedor`) VALUES
@@ -101,16 +101,16 @@ INSERT INTO `enderecofornecedor` (`logradouro_endfornecedor`, `numero_endfornece
 ('Rua 13 de Maio', '1000', NULL, 'Distrito Industrial', 'Serrana', 'SP', '14150-000', true, 10);
 
 INSERT INTO `telefonefornecedor` (`ddd_telfornecedor`, `numero_telfornecedor`, `ativo_telfornecedor`, `id_fornecedor`) VALUES
-('16', '91234-5678', true, 1),
-('16', '92345-6789', true, 2),
-('16', '93456-7890', true, 3),
-('17', '94567-8901', true, 4),
-('16', '95678-9012', true, 5),
-('19', '96789-0123', true, 6),
-('19', '97890-1234', true, 7),
-('16', '98901-2345', true, 8),
-('16', '99012-3456', true, 9),
-('16', '90123-4567', true, 10);
+('16', '912345678', true, 1),
+('16', '923456789', true, 2),
+('16', '934567890', true, 3),
+('17', '945678901', true, 4),
+('16', '956789012', true, 5),
+('19', '967890123', true, 6),
+('19', '978901234', true, 7),
+('16', '989012345', true, 8),
+('16', '990123456', true, 9),
+('16', '901234567', true, 10);
 
 INSERT INTO `estoqueinsumo` (`nome_insumo`, `categoria_insumo`, `qtd_insumo`, `unidqtd_insumo`, `ativo_insumo`) VALUES
 ('Nitrato de amônio', 'Fertilizantes', 0, 'kg', true),

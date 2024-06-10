@@ -39,8 +39,6 @@
             LabelBemVindo = new Label();
             LabelCompras = new Label();
             PictureBoxCompras = new PictureBox();
-            LabelInventario = new Label();
-            PictureBoxInventario = new PictureBox();
             LabelProducao = new Label();
             PictureBoxProducao = new PictureBox();
             LabelInsumos = new Label();
@@ -77,7 +75,6 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxRecomendarPlantio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCompras).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).BeginInit();
@@ -100,8 +97,6 @@
             PanelHeader.Controls.Add(LabelBemVindo);
             PanelHeader.Controls.Add(LabelCompras);
             PanelHeader.Controls.Add(PictureBoxCompras);
-            PanelHeader.Controls.Add(LabelInventario);
-            PanelHeader.Controls.Add(PictureBoxInventario);
             PanelHeader.Controls.Add(LabelProducao);
             PanelHeader.Controls.Add(PictureBoxProducao);
             PanelHeader.Controls.Add(LabelInsumos);
@@ -123,7 +118,7 @@
             LabelVendas.AutoSize = true;
             LabelVendas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelVendas.ForeColor = SystemColors.ControlLightLight;
-            LabelVendas.Location = new Point(635, 46);
+            LabelVendas.Location = new Point(550, 46);
             LabelVendas.Name = "LabelVendas";
             LabelVendas.Size = new Size(46, 15);
             LabelVendas.TabIndex = 27;
@@ -132,7 +127,7 @@
             // PictureBoxVendas
             // 
             PictureBoxVendas.Image = Properties.Resources.Vendas;
-            PictureBoxVendas.Location = new Point(637, 6);
+            PictureBoxVendas.Location = new Point(552, 6);
             PictureBoxVendas.Name = "PictureBoxVendas";
             PictureBoxVendas.Size = new Size(40, 37);
             PictureBoxVendas.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -144,7 +139,7 @@
             // PictureBoxRecomendarPlantio
             // 
             PictureBoxRecomendarPlantio.Image = Properties.Resources.RecPlantio;
-            PictureBoxRecomendarPlantio.Location = new Point(731, 6);
+            PictureBoxRecomendarPlantio.Location = new Point(646, 6);
             PictureBoxRecomendarPlantio.Name = "PictureBoxRecomendarPlantio";
             PictureBoxRecomendarPlantio.Size = new Size(40, 37);
             PictureBoxRecomendarPlantio.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -157,7 +152,7 @@
             LabelRecomendarPlantio.AutoSize = true;
             LabelRecomendarPlantio.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelRecomendarPlantio.ForeColor = SystemColors.ControlLightLight;
-            LabelRecomendarPlantio.Location = new Point(696, 46);
+            LabelRecomendarPlantio.Location = new Point(611, 46);
             LabelRecomendarPlantio.Name = "LabelRecomendarPlantio";
             LabelRecomendarPlantio.Size = new Size(119, 15);
             LabelRecomendarPlantio.TabIndex = 24;
@@ -201,7 +196,7 @@
             LabelCompras.AutoSize = true;
             LabelCompras.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LabelCompras.ForeColor = SystemColors.ControlLightLight;
-            LabelCompras.Location = new Point(546, 46);
+            LabelCompras.Location = new Point(461, 46);
             LabelCompras.Name = "LabelCompras";
             LabelCompras.Size = new Size(55, 15);
             LabelCompras.TabIndex = 13;
@@ -210,7 +205,7 @@
             // PictureBoxCompras
             // 
             PictureBoxCompras.Image = Properties.Resources.Compras;
-            PictureBoxCompras.Location = new Point(553, 6);
+            PictureBoxCompras.Location = new Point(468, 6);
             PictureBoxCompras.Name = "PictureBoxCompras";
             PictureBoxCompras.Size = new Size(40, 37);
             PictureBoxCompras.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -218,28 +213,6 @@
             PictureBoxCompras.TabStop = false;
             PictureBoxCompras.Click += PictureBoxCompras_Click;
             PictureBoxCompras.MouseHover += PictureBoxCompras_MouseHover;
-            // 
-            // LabelInventario
-            // 
-            LabelInventario.AutoSize = true;
-            LabelInventario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LabelInventario.ForeColor = SystemColors.ControlLightLight;
-            LabelInventario.Location = new Point(457, 46);
-            LabelInventario.Name = "LabelInventario";
-            LabelInventario.Size = new Size(65, 15);
-            LabelInventario.TabIndex = 12;
-            LabelInventario.Text = "Inventário";
-            // 
-            // PictureBoxInventario
-            // 
-            PictureBoxInventario.Image = Properties.Resources.Inventario;
-            PictureBoxInventario.Location = new Point(469, 6);
-            PictureBoxInventario.Name = "PictureBoxInventario";
-            PictureBoxInventario.Size = new Size(40, 37);
-            PictureBoxInventario.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxInventario.TabIndex = 4;
-            PictureBoxInventario.TabStop = false;
-            PictureBoxInventario.MouseHover += PictureBoxInventario_MouseHover;
             // 
             // LabelProducao
             // 
@@ -504,7 +477,6 @@
             ((System.ComponentModel.ISupportInitialize)PictureBoxRecomendarPlantio).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxLogoff).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxCompras).EndInit();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxInventario).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxProducao).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxInsumos).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxFornecedores).EndInit();
@@ -539,14 +511,12 @@
         private Label LabelProducao;
         private Label LabelCompras;
         private Label LabelVendas;
-        private Label LabelInventario;
         private Label LabelRecomendarPlantio;
         private PictureBox PictureBoxFuncionarios;
         private PictureBox PictureBoxClientes;
         private PictureBox PictureBoxFornecedores;
         private PictureBox PictureBoxInsumos;
         private PictureBox PictureBoxProducao;
-        private PictureBox PictureBoxInventario;
         private PictureBox PictureBoxCompras;
         private PictureBox PictureBoxVendas;
         private PictureBox PictureBoxRecomendarPlantio;
