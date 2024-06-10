@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             PanelHeader = new Panel();
-            PictureBoxX = new PictureBox();
             LabelLogin = new Label();
             LabelUsuario = new Label();
             TextBoxUsuario = new TextBox();
@@ -39,31 +38,18 @@
             BotaoEntrar = new Button();
             PictureBoxMostrarSenha = new PictureBox();
             PanelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxX).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxMostrarSenha).BeginInit();
             SuspendLayout();
             // 
             // PanelHeader
             // 
             PanelHeader.BackColor = Color.FromArgb(55, 185, 65);
-            PanelHeader.Controls.Add(PictureBoxX);
             PanelHeader.Controls.Add(LabelLogin);
             PanelHeader.Dock = DockStyle.Top;
             PanelHeader.Location = new Point(0, 0);
             PanelHeader.Name = "PanelHeader";
             PanelHeader.Size = new Size(476, 55);
             PanelHeader.TabIndex = 56;
-            // 
-            // PictureBoxX
-            // 
-            PictureBoxX.Image = Properties.Resources.cancelar;
-            PictureBoxX.Location = new Point(430, 13);
-            PictureBoxX.Name = "PictureBoxX";
-            PictureBoxX.Size = new Size(30, 27);
-            PictureBoxX.SizeMode = PictureBoxSizeMode.StretchImage;
-            PictureBoxX.TabIndex = 24;
-            PictureBoxX.TabStop = false;
-            PictureBoxX.Click += PictureBoxX_Click;
             // 
             // LabelLogin
             // 
@@ -171,7 +157,6 @@
             TopMost = true;
             PanelHeader.ResumeLayout(false);
             PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)PictureBoxX).EndInit();
             ((System.ComponentModel.ISupportInitialize)PictureBoxMostrarSenha).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -187,7 +172,6 @@
         private Label LabelSenha;
         private Button BotaoCancelar;
         private Button BotaoEntrar;
-        private PictureBox PictureBoxX;
         private PictureBox PictureBoxMostrarSenha;
     }
 }
