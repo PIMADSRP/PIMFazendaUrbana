@@ -3,7 +3,7 @@ using System.Data;
 
 namespace PIMFazendaUrbanaLib
 {
-    public class ClienteDAO // Classe DAO (Data Access Object) para manipulação de dados de clientes no banco de dados
+    public class ClienteDAO : IClienteDAO // Classe DAO (Data Access Object) para manipulação de dados de clientes no banco de dados
     {
         private string connectionString;
         public ClienteDAO()
@@ -36,7 +36,7 @@ namespace PIMFazendaUrbanaLib
 
                             int clienteId = (int)insertClienteCommand.LastInsertedId; // Recupera o ID do cliente recém-cadastrado
 
-                            EnderecoCliente endereco = cliente.Endereco; // Instancia um objeto EnderecoCliente com os dados do endereço do cliente
+                            Endereco endereco = cliente.Endereco; // Instancia um objeto EnderecoCliente com os dados do endereço do cliente
 
                             string insertEnderecoQuery = @"INSERT INTO enderecocliente (id_cliente, logradouro_endcliente, numero_endcliente, complemento_endcliente, 
                                                         bairro_endcliente, cidade_endcliente, uf_endcliente, cep_endcliente, ativo_endcliente) 
@@ -57,7 +57,7 @@ namespace PIMFazendaUrbanaLib
                                 insertEnderecoCommand.ExecuteNonQuery(); // Executa a consulta SQL para cadastrar o endereço do cliente
                             }
 
-                            TelefoneCliente telefone = cliente.Telefone; // Instancia um objeto TelefoneCliente com os dados do telefone do cliente
+                            Telefone telefone = cliente.Telefone; // Instancia um objeto TelefoneCliente com os dados do telefone do cliente
 
                             string insertTelefoneQuery = @"INSERT INTO telefonecliente (id_cliente, ddd_telcliente, numero_telcliente, ativo_telcliente) 
                                                         VALUES (@clienteId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do cliente
@@ -110,7 +110,7 @@ namespace PIMFazendaUrbanaLib
                             updateClienteCommand.ExecuteNonQuery();
                         }
 
-                        EnderecoCliente endereco = cliente.Endereco;
+                        Endereco endereco = cliente.Endereco;
 
                         string updateEnderecoQuery = @"UPDATE enderecocliente SET 
                                                 logradouro_endcliente = @Logradouro,
@@ -135,7 +135,7 @@ namespace PIMFazendaUrbanaLib
                             updateEnderecoCommand.ExecuteNonQuery();
                         }
 
-                        TelefoneCliente telefone = cliente.Telefone;
+                        Telefone telefone = cliente.Telefone;
 
                         string updateTelefoneQuery = @"UPDATE telefonecliente SET 
                                                 ddd_telcliente = @DDD,
@@ -245,13 +245,13 @@ namespace PIMFazendaUrbanaLib
                                 Email = reader.GetString("email_cliente"),
                                 CNPJ = reader.GetString("cnpj_cliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                                Telefone = new TelefoneCliente
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telcliente"),
                                     Numero = reader.GetString("numero_telcliente"),
                                     StatusAtivo = reader.GetBoolean("ativo_telcliente")
                                 },
-                                Endereco = new EnderecoCliente
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endcliente"),
                                     Numero = reader.GetString("numero_endcliente"),
@@ -306,13 +306,13 @@ namespace PIMFazendaUrbanaLib
                                 Email = reader.GetString("email_cliente"),
                                 CNPJ = reader.GetString("cnpj_cliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                                Telefone = new TelefoneCliente
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telcliente"),
                                     Numero = reader.GetString("numero_telcliente"),
                                     StatusAtivo = reader.GetBoolean("ativo_telcliente")
                                 },
-                                Endereco = new EnderecoCliente
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endcliente"),
                                     Numero = reader.GetString("numero_endcliente"),
@@ -335,7 +335,7 @@ namespace PIMFazendaUrbanaLib
         // 5- Consulta
         // 5.1- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR ID (somente clientes ativos)
         // ********** FUNCIONAL **********
-        public Cliente ConsultarClienteID(int clienteId)
+        public Cliente ConsultarClientePorID(int clienteId)
         {
             Cliente cliente = null;
 
@@ -366,13 +366,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = reader.GetString("cnpj_cliente"),
                             Email = reader.GetString("email_cliente"),
                             StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                            Telefone = new TelefoneCliente
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telcliente"),
                                 Numero = reader.GetString("numero_telcliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_telcliente")
                             },
-                            Endereco = new EnderecoCliente
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endcliente"),
                                 Numero = reader.GetString("numero_endcliente"),
@@ -391,7 +391,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.2- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR NOME (somente clientes ativos)
-        public Cliente ConsultarClienteNome(string clienteNome)
+        public Cliente ConsultarClientePorNome(string clienteNome)
         {
             Cliente cliente = null;
 
@@ -422,13 +422,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = reader.GetString("cnpj_cliente"),
                             Email = reader.GetString("email_cliente"),
                             StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                            Telefone = new TelefoneCliente
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telcliente"),
                                 Numero = reader.GetString("numero_telcliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_telcliente")
                             },
-                            Endereco = new EnderecoCliente
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endcliente"),
                                 Numero = reader.GetString("numero_endcliente"),
@@ -447,7 +447,7 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5.3- MÉTODO CONSULTAR (PESQUISAR) CLIENTE NO BANCO POR CNPJ (somente clientes ativos)
-        public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
+        public Cliente ConsultarClientePorCNPJ(string clienteCNPJ)
         {
             Cliente cliente = null;
 
@@ -478,13 +478,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = clienteCNPJ,
                             Email = reader.GetString("email_cliente"),
                             StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                            Telefone = new TelefoneCliente
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telcliente"),
                                 Numero = reader.GetString("numero_telcliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_telcliente")
                             },
-                            Endereco = new EnderecoCliente
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endcliente"),
                                 Numero = reader.GetString("numero_endcliente"),
@@ -504,7 +504,7 @@ namespace PIMFazendaUrbanaLib
 
         // 6- MÉTODO FILTRAR LISTA DE CLIENTES POR NOME
         // ********** FUNCIONAL **********
-        public List<Cliente> FiltrarClientesNome(string clienteNome)
+        public List<Cliente> FiltrarClientesPorNome(string clienteNome)
         {
             List<Cliente> clientes = new List<Cliente>();
 
@@ -534,13 +534,13 @@ namespace PIMFazendaUrbanaLib
                             Email = reader.GetString("email_cliente"),
                             CNPJ = reader.GetString("cnpj_cliente"),
                             StatusAtivo = reader.GetBoolean("ativo_cliente"),
-                            Telefone = new TelefoneCliente
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telcliente"),
                                 Numero = reader.GetString("numero_telcliente"),
                                 StatusAtivo = reader.GetBoolean("ativo_telcliente")
                             },
-                            Endereco = new EnderecoCliente
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endcliente"),
                                 Numero = reader.GetString("numero_endcliente"),

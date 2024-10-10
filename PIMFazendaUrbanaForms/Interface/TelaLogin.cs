@@ -6,12 +6,28 @@ namespace PIMFazendaUrbanaForms
     {
         internal Funcionario UsuarioLogado { get; private set; }
 
-        FuncionarioService funcionarioService; // Declaração de uma instância de FuncionarioService
+        internal FuncionarioService funcionarioService; // Declaração de uma instância de FuncionarioService
+
+        private ToolTip toolTip;
+        private const string tooltipMostrarSenha = "Clique para mostrar ou esconder a senha.";
+
         public TelaLogin()
         {
             InitializeComponent();
 
             funcionarioService = new FuncionarioService(); // Cria uma instância de FuncionarioService
+
+            toolTip = new ToolTip(); // Inicializar tooltip genérica
+
+            // Configurações gerais de tooltip
+            toolTip.ToolTipTitle = "Informação";  // Título do balão
+            toolTip.ToolTipIcon = ToolTipIcon.Info; // Ícone de informação
+            toolTip.IsBalloon = false; // Mostrar como balão
+            toolTip.AutoPopDelay = 5000; // Tempo que o balão ficará visível (em milissegundos)
+            toolTip.InitialDelay = 250;  // Tempo antes de aparecer
+            toolTip.ReshowDelay = 500;   // Tempo antes de reaparecer
+
+            toolTip.SetToolTip(this.PictureBoxMostrarSenha, tooltipMostrarSenha); // Adicionar tooltip ao PictureBoxMostrarSenha
         }
 
         private void BotaoEntrar_Click(object sender, EventArgs e)
@@ -42,7 +58,6 @@ namespace PIMFazendaUrbanaForms
         }
 
         // Método dedicado para autenticar login do funcionário
-        // ********** FUNCIONAL **********
         private bool AutenticarFuncionario(string usuario, string senha)
         {
             string autenticarfuncionario = funcionarioService.AutenticarFuncionario(usuario, senha); // Chamando o método AutenticarFuncionario da instância funcionarioService
@@ -101,8 +116,16 @@ namespace PIMFazendaUrbanaForms
 
         private void PictureBoxMostrarSenha_Click(object sender, EventArgs e)
         {
-            // Alterna a visibilidade da senha
-            TextBoxSenha.UseSystemPasswordChar = !TextBoxSenha.UseSystemPasswordChar;
+            if (TextBoxSenha.UseSystemPasswordChar == true)
+            {
+                TextBoxSenha.UseSystemPasswordChar = false; // Alterna a visibilidade da senha
+                PictureBoxMostrarSenha.Image = Properties.Resources.esconderSenha; // Altera o ícone do PictureBox
+            }
+            else
+            {
+                TextBoxSenha.UseSystemPasswordChar = true;
+                PictureBoxMostrarSenha.Image = Properties.Resources.mostrarSenha;
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ namespace PIMFazendaUrbanaLib
 
                             int fornecedorId = (int)insertFornecedorCommand.LastInsertedId; // Recupera o ID do fornecedor recém-cadastrado
 
-                            EnderecoFornecedor endereco = fornecedor.Endereco; // Instancia um objeto EnderecoFornecedor com os dados do endereço do fornecedor
+                            Endereco endereco = fornecedor.Endereco; // Instancia um objeto EnderecoFornecedor com os dados do endereço do fornecedor
 
                             string insertEnderecoQuery = @"INSERT INTO enderecofornecedor (id_fornecedor, logradouro_endfornecedor, numero_endfornecedor, complemento_endfornecedor, 
                                                         bairro_endfornecedor, cidade_endfornecedor, uf_endfornecedor, cep_endfornecedor, ativo_endfornecedor) 
@@ -57,7 +57,7 @@ namespace PIMFazendaUrbanaLib
                                 insertEnderecoCommand.ExecuteNonQuery(); // Executa a consulta SQL para cadastrar o endereço do fornecedor
                             }
 
-                            TelefoneFornecedor telefone = fornecedor.Telefone; // Instancia um objeto TelefoneFornecedor com os dados do telefone do fornecedor
+                            Telefone telefone = fornecedor.Telefone; // Instancia um objeto TelefoneFornecedor com os dados do telefone do fornecedor
 
                             string insertTelefoneQuery = @"INSERT INTO telefonefornecedor (id_fornecedor, ddd_telfornecedor, numero_telfornecedor, ativo_telfornecedor) 
                                                         VALUES (@fornecedorId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do fornecedor
@@ -110,7 +110,7 @@ namespace PIMFazendaUrbanaLib
                             updateFornecedorCommand.ExecuteNonQuery();
                         }
 
-                        EnderecoFornecedor endereco = fornecedor.Endereco;
+                        Endereco endereco = fornecedor.Endereco;
 
                         string updateEnderecoQuery = @"UPDATE enderecofornecedor SET 
                                                 logradouro_endfornecedor = @Logradouro,
@@ -135,7 +135,7 @@ namespace PIMFazendaUrbanaLib
                             updateEnderecoCommand.ExecuteNonQuery();
                         }
 
-                        TelefoneFornecedor telefone = fornecedor.Telefone;
+                        Telefone telefone = fornecedor.Telefone;
 
                         string updateTelefoneQuery = @"UPDATE telefonefornecedor SET 
                                                 ddd_telfornecedor = @DDD,
@@ -245,13 +245,13 @@ namespace PIMFazendaUrbanaLib
                                 Email = reader.GetString("email_fornecedor"),
                                 CNPJ = reader.GetString("cnpj_fornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                                Telefone = new TelefoneFornecedor
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telfornecedor"),
                                     Numero = reader.GetString("numero_telfornecedor"),
                                     StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                                 },
-                                Endereco = new EnderecoFornecedor
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endfornecedor"),
                                     Numero = reader.GetString("numero_endfornecedor"),
@@ -305,13 +305,13 @@ namespace PIMFazendaUrbanaLib
                                 Email = reader.GetString("email_fornecedor"),
                                 CNPJ = reader.GetString("cnpj_fornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                                Telefone = new TelefoneFornecedor
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telfornecedor"),
                                     Numero = reader.GetString("numero_telfornecedor"),
                                     StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                                 },
-                                Endereco = new EnderecoFornecedor
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endfornecedor"),
                                     Numero = reader.GetString("numero_endfornecedor"),
@@ -365,13 +365,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = reader.GetString("cnpj_fornecedor"),
                             Email = reader.GetString("email_fornecedor"),
                             StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                            Telefone = new TelefoneFornecedor
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfornecedor"),
                                 Numero = reader.GetString("numero_telfornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                             },
-                            Endereco = new EnderecoFornecedor
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfornecedor"),
                                 Numero = reader.GetString("numero_endfornecedor"),
@@ -421,13 +421,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = reader.GetString("cnpj_fornecedor"),
                             Email = reader.GetString("email_fornecedor"),
                             StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                            Telefone = new TelefoneFornecedor
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfornecedor"),
                                 Numero = reader.GetString("numero_telfornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                             },
-                            Endereco = new EnderecoFornecedor
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfornecedor"),
                                 Numero = reader.GetString("numero_endfornecedor"),
@@ -477,13 +477,13 @@ namespace PIMFazendaUrbanaLib
                             CNPJ = fornecedorCNPJ,
                             Email = reader.GetString("email_fornecedor"),
                             StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                            Telefone = new TelefoneFornecedor
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfornecedor"),
                                 Numero = reader.GetString("numero_telfornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                             },
-                            Endereco = new EnderecoFornecedor
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfornecedor"),
                                 Numero = reader.GetString("numero_endfornecedor"),
@@ -533,13 +533,13 @@ namespace PIMFazendaUrbanaLib
                             Email = reader.GetString("email_fornecedor"),
                             CNPJ = reader.GetString("cnpj_fornecedor"),
                             StatusAtivo = reader.GetBoolean("ativo_fornecedor"),
-                            Telefone = new TelefoneFornecedor
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfornecedor"),
                                 Numero = reader.GetString("numero_telfornecedor"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfornecedor")
                             },
-                            Endereco = new EnderecoFornecedor
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfornecedor"),
                                 Numero = reader.GetString("numero_endfornecedor"),

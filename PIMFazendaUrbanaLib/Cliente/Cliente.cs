@@ -9,7 +9,7 @@
         public string Email { get; set; }
         public string CNPJ { get; set; }
         public bool StatusAtivo { get; set; }
-        public EnderecoCliente Endereco { get; set; }
-        public TelefoneCliente Telefone { get; set; }
+        public Endereco Endereco { get; set; }
+        public Telefone Telefone { get; set; }
     }
 }

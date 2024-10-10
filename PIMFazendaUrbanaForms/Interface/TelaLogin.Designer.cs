@@ -128,9 +128,9 @@
             // PictureBoxMostrarSenha
             // 
             PictureBoxMostrarSenha.Image = Properties.Resources.mostrarSenha;
-            PictureBoxMostrarSenha.Location = new Point(299, 150);
+            PictureBoxMostrarSenha.Location = new Point(299, 152);
             PictureBoxMostrarSenha.Name = "PictureBoxMostrarSenha";
-            PictureBoxMostrarSenha.Size = new Size(26, 23);
+            PictureBoxMostrarSenha.Size = new Size(23, 18);
             PictureBoxMostrarSenha.SizeMode = PictureBoxSizeMode.StretchImage;
             PictureBoxMostrarSenha.TabIndex = 25;
             PictureBoxMostrarSenha.TabStop = false;

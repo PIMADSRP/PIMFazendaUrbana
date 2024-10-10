@@ -9,7 +9,6 @@
         }
 
         // 1- Cadastrar Fornecedor
-        // O método CadastrarFornecedor é responsável por cadastrar um novo fornecedor. Antes de chamar o DAO para inserir um fornecedor no banco de dados, este método pode realizar validações dos dados, se necessário.
         public void CadastrarFornecedor(Fornecedor fornecedor)
         {
             try
@@ -23,7 +22,6 @@
         }
 
         // 2- Alterar Fornecedor
-        // O método AlterarFornecedor é responsável por alterar os dados de um fornecedor existente. Antes de chamar o DAO para atualizar os dados no banco de dados, este método pode realizar validações dos dados, se necessário.
         public void AlterarFornecedor(Fornecedor fornecedor)
         {
             try
@@ -37,7 +35,6 @@
         }
 
         // 3- Excluir (DESATIVAR) Fornecedor
-        // O método ExcluirFornecedor é responsável por excluir (DESATIVAR) um fornecedor do banco de dados. Antes de chamar o DAO para realizar a exclusão, este método pode realizar validações ou outras operações necessárias.
         public void ExcluirFornecedor(int fornecedorId)
         {
             try

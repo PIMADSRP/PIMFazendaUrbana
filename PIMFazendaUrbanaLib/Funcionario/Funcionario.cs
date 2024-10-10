@@ -12,7 +12,7 @@
         public string Usuario { get; set; }
         public string Senha { get; set; }
         public bool StatusAtivo { get; set; }
-        public EnderecoFuncionario Endereco { get; set; }
-        public TelefoneFuncionario Telefone { get; set; }
+        public Endereco Endereco { get; set; }
+        public Telefone Telefone { get; set; }
     }
 }

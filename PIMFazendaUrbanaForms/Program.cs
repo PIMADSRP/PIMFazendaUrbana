@@ -17,6 +17,12 @@ namespace PIMFazendaUrbanaForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            TelaSplash telaSplash = new TelaSplash();
+            telaSplash.Show();
+            Application.DoEvents(); // Faz com que o form seja totalmente renderizado antes do delay
+            Thread.Sleep(3000);
+            telaSplash.Close();
+
             TelaLogin telaLogin = new TelaLogin();
             if (telaLogin.ShowDialog() == DialogResult.OK)
             {

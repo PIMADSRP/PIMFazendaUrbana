@@ -1,49 +1,75 @@
-﻿namespace PIMFazendaUrbanaLib
+﻿using System.Text.RegularExpressions;
+
+namespace PIMFazendaUrbanaLib
 {
-    public class ClienteService // A classe ClienteService é responsável por implementar a lógica de negócio relacionada a clientes
+    // A classe ClienteService é acessada publicamente e é responsável por intermediar as requisições do front end com o banco de dados
+    // ou ver se é melhor ser internal e o controller do asp.net sim ser publico
+    public class ClienteService : IClienteService // ver se é publico msm ou a interface ou o controller
     {
-        private ClienteDAO clienteDAO;
+        private readonly ClienteDAO clienteDAO;
         public ClienteService()
         {
             this.clienteDAO = new ClienteDAO();
         }
 
-        // 1- Cadastrar Cliente
-        // O método CadastrarCliente é responsável por cadastrar um novo cliente. Antes de chamar o DAO para inserir um cliente no banco de dados, este método pode realizar validações dos dados, se necessário.
         public void CadastrarCliente(Cliente cliente)
         {
+            // 1- ver se fica melhor:
+            // front passa json com os dados, que são convertidos para objeto cliente por uma api (controller asp.net), que é passado para o service
+            // front passa json com os dados, que são convertidos para objeto cliente pelo service
+            // front passa os dados separados, que são passados para o service
+            // front passa os dados separados, que são convertidos para objeto cliente, que é passado para o service
+
+            // aparentemente:
+            // o front passaria um json quando o usuario clicar em enviar,
+            // que é convertido para um objeto cliente pelo controller asp.net,
+            // que é passado para o método service
+            // que é passado para o método de validação
+            // se der erro de validação, lança exceção para o service, que lança para o controller, que manda para o front
+
+            // 2- ver se fica melhor:
+            // método service passar os dados separados para o método de validação
+            // método service passar o objeto cliente para o método de validação
+
+            // os retornos e try catch e etc
+
             try
             {
+                ValidarCliente(cliente); // Chama o método dedicado para validar os dados do cliente
                 clienteDAO.CadastrarCliente(cliente); // Chama o método CadastrarCliente do DAO para inserir o novo cliente no banco de dados, passando o objeto cliente como argumento
             }
-            catch (Exception ex)
+            catch (ValidationException ex) // Se ocorrer uma exceção do tipo ValidationException
             {
-                throw new Exception("Erro ao cadastrar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao cadastrar o cliente
+                throw; // Repassa a exceção de validação para o Controller manipular
+            }
+            catch (Exception ex) // Se ocorrer uma exceção de qualquer outro tipo
+            {
+                throw new Exception("Erro ao cadastrar cliente: " + ex.Message);
             }
         }
 
-        // 2- Alterar Cliente
-        // O método AlterarCliente é responsável por alterar os dados de um cliente existente. Antes de chamar o DAO para atualizar os dados no banco de dados, este método pode realizar validações dos dados, se necessário.
         public void AlterarCliente(Cliente cliente)
         {
             try
             {
-                clienteDAO.AlterarCliente(cliente);
+                ValidarCliente(cliente); // Chama o método dedicado para validar os dados do cliente
+                clienteDAO.AlterarCliente(cliente); // Chama o método AlterarCliente do DAO para alterar os dados do cliente no banco de dados, passando o objeto cliente como argumento
             }
-            catch (Exception ex)
+            catch (ValidationException ex) // Se ocorrer uma exceção do tipo ValidationException
+            {
+                throw; // Repassa a exceção de validação para o Controller manipular
+            }
+            catch (Exception ex) // Se ocorrer uma exceção de qualquer outro tipo
             {
                 throw new Exception("Erro ao editar cliente: " + ex.Message); // Lança uma exceção indicando que ocorreu um erro ao alterar o cliente
             }
         }
 
-        // 3- Excluir (DESATIVAR) Cliente
-        // O método ExcluirCliente é responsável por excluir (DESATIVAR) um cliente do banco de dados. Antes de chamar o DAO para realizar a exclusão, este método pode realizar validações ou outras operações necessárias.
         public void ExcluirCliente(int clienteId)
         {
             try
             {
                 clienteDAO.ExcluirCliente(clienteId); // Chama o método ExcluirCliente da classe ClienteDAO, passando o ID do cliente como argumento
-                //return true; // Retorna true para indicar que a exclusão foi bem-sucedida
             }
             catch (Exception ex)
             {
@@ -51,10 +77,7 @@
             }
         }
 
-        // 4- Listagem
-        // 4.1- Listar Clientes Ativos
-        // O método ListarClientesAtivos é responsável por obter a lista de todos os clientes com a flag "ativo_cliente = true" cadastrados no banco de dados e exibir esses dados na tela.
-        public List<Cliente> ListarClientesAtivos()
+         public List<Cliente> ListarClientesAtivos()
         {
             try
             {
@@ -67,8 +90,6 @@
             }
         }
 
-        // 4.2- Listar Clientes Inativos
-        // O método ListarClientesInativos é responsável por obter a lista de todos os clientes inativos cadastrados no banco de dados e exibir esses dados na tela.
         public List<Cliente> ListarClientesInativos()
         {
             try
@@ -82,13 +103,11 @@
             }
         }
 
-        // 5- Consulta
-        // 5.1 - Consultar Cliente por ID
-        public Cliente ConsultarClienteID(int clienteId)
+        public Cliente ConsultarClientePorID(int clienteId)
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteID(clienteId); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo ID
+                Cliente cliente = clienteDAO.ConsultarClientePorID(clienteId); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo ID
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
@@ -97,12 +116,11 @@
             }
         }
 
-        // 5.2 - Consultar Cliente por nome
-        public Cliente ConsultarClienteNome(string clienteNome)
+        public Cliente ConsultarClientePorNome(string clienteNome)
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteNome(clienteNome); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo nome
+                Cliente cliente = clienteDAO.ConsultarClientePorNome(clienteNome); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo nome
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
@@ -111,12 +129,11 @@
             }
         }
 
-        // 5.3 - Consultar Cliente por CNPJ
-        public Cliente ConsultarClienteCNPJ(string clienteCNPJ)
+        public Cliente ConsultarClientePorCNPJ(string clienteCNPJ)
         {
             try
             {
-                Cliente cliente = clienteDAO.ConsultarClienteCNPJ(clienteCNPJ); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo cnpj
+                Cliente cliente = clienteDAO.ConsultarClientePorCNPJ(clienteCNPJ); // Chama o método ConsultarCliente da classe ClienteDAO para obter os dados de um cliente pelo cnpj
                 return cliente; // Retorna o cliente encontrado
             }
             catch (Exception ex)
@@ -125,13 +142,11 @@
             }
         }
 
-        // 6 - Filtragem
-        // 6.1 - Filtrar lista de clientes por nome
-        public List<Cliente> FiltrarClientesNome(string clienteNome)
+        public List<Cliente> FiltrarClientesPorNome(string clienteNome)
         {
             try
             {
-                List<Cliente> clientes = clienteDAO.FiltrarClientesNome(clienteNome);
+                List<Cliente> clientes = clienteDAO.FiltrarClientesPorNome(clienteNome);
                 return clientes;
             }
             catch (Exception ex)
@@ -141,6 +156,30 @@
             }
         }
 
+        public void ValidarCliente(Cliente cliente) // método para validação dos dados do cliente contendo as regras de negócio e mensagens de erro
+        {
+            var erros = new List<ValidationError>();
 
-    }
+            if (string.IsNullOrEmpty(cliente.Nome) || cliente.Nome.Length < 3)
+            {
+                erros.Add(new ValidationError("Nome", "O nome deve ter pelo menos 3 caracteres"));
+            }
+            if (!Regex.IsMatch(cliente.CNPJ, @"^\d{14}$") || !cliente.CNPJ.All(char.IsDigit))
+            {
+                erros.Add(new ValidationError("CNPJ", "O CNPJ deve conter 14 dígitos"));
+            }
+            if (!Regex.IsMatch(cliente.Email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+            {
+                erros.Add(new ValidationError("Email", "Email inválido. O email deve ter o formato exemplo@exemplo.exeplo"));
+            }
+            TelefoneValidation telefoneValidation = new TelefoneValidation();
+            telefoneValidation.ValidarTelefone(cliente.Telefone, erros);
+            EnderecoValidation enderecoValidation = new EnderecoValidation();
+            enderecoValidation.ValidarEndereco(cliente.Endereco, erros);
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
+        }
 }

@@ -20,28 +20,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Interface\TelaCadastrarVenda.cs">
+    <Compile Update="Interface\Venda\TelaCadastrarVenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaCadastrarFornecedor.cs">
+    <Compile Update="Interface\Fornecedor\TelaCadastrarFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaCadastrarSaidaInsumo.cs">
+    <Compile Update="Interface\Insumo\TelaCadastrarSaidaInsumo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaCadastrarProducao.cs">
+    <Compile Update="Interface\Producao\TelaCadastrarProducao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaVenda.cs">
+    <Compile Update="Interface\Venda\TelaVenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaEditarFornecedor.cs">
+    <Compile Update="Interface\Fornecedor\TelaEditarFornecedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaFornecedores.cs">
+    <Compile Update="Interface\Fornecedor\TelaFornecedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Interface\TelaEditarCliente.cs">
+    <Compile Update="Interface\Cliente\TelaEditarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">

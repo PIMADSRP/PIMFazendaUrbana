@@ -55,10 +55,7 @@ namespace PIMFazendaUrbanaLib
             }
         }
 
-
-
         // 2- Método para autenticar se funcionário é gerente
-        // ********** FUNCIONAL **********
         public bool AutenticarGerente(string funcionarioUsuario)
         {
             // Verificar se o funcionário é um gerente
@@ -88,7 +85,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 3- Método para verificar se um nome de usuário já está em uso
-        // ********** FUNCIONAL **********
         public bool VerificarUsuarioDisponivel(string funcionarioUsuario)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -117,7 +113,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 4- Método para alterar senha do funcionário
-        // ********** FUNCIONAL **********
         public void AlterarSenhaFuncionario(string funcionarioUsuario, string novaSenha)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -133,7 +128,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 5- Método para cadastrar novo funcionário
-        // ********** FUNCIONAL **********
         public void CadastrarFuncionario(Funcionario funcionario)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados usando a classe MySqlConnection
@@ -162,7 +156,7 @@ namespace PIMFazendaUrbanaLib
 
                             int funcionarioId = (int)insertFuncionarioCommand.LastInsertedId; // Recupera o ID do funcionario recém-cadastrado
 
-                            EnderecoFuncionario endereco = funcionario.Endereco; // Instancia um objeto EnderecoFuncionario com os dados do endereço do funcionario
+                            Endereco endereco = funcionario.Endereco; // Instancia um objeto EnderecoFuncionario com os dados do endereço do funcionario
 
                             string insertEnderecoQuery = @"INSERT INTO enderecofuncionario (id_funcionario, logradouro_endfuncionario, numero_endfuncionario, complemento_endfuncionario, 
                                                         bairro_endfuncionario, cidade_endfuncionario, uf_endfuncionario, cep_endfuncionario, ativo_endfuncionario) 
@@ -183,7 +177,7 @@ namespace PIMFazendaUrbanaLib
                                 insertEnderecoCommand.ExecuteNonQuery(); // Executa a consulta SQL para cadastrar o endereço do funcionario
                             }
 
-                            TelefoneFuncionario telefone = funcionario.Telefone; // Instancia um objeto TelefoneFuncionario com os dados do telefone do funcionario
+                            Telefone telefone = funcionario.Telefone; // Instancia um objeto TelefoneFuncionario com os dados do telefone do funcionario
 
                             string insertTelefoneQuery = @"INSERT INTO telefonefuncionario (id_funcionario, ddd_telfuncionario, numero_telfuncionario, ativo_telfuncionario) 
                                                         VALUES (@funcionarioId, @ddd, @numero, @status)"; // Define a consulta SQL para cadastrar o telefone do funcionario
@@ -211,7 +205,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 6- Método para alterar dados do funcionário
-        // ********** FUNCIONAL **********
         public void AlterarFuncionario(Funcionario funcionario)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString)) // Cria uma nova conexão com o banco de dados
@@ -243,7 +236,7 @@ namespace PIMFazendaUrbanaLib
                             updateFuncionarioCommand.ExecuteNonQuery(); // Executa a consulta SQL para atualizar os dados do funcionário
 
                             // Agora, vamos atualizar o endereço do funcionário
-                            EnderecoFuncionario endereco = funcionario.Endereco;
+                            Endereco endereco = funcionario.Endereco;
 
                             string updateEnderecoQuery = @"UPDATE enderecofuncionario SET 
                                                 logradouro_endfuncionario = @Logradouro,
@@ -270,7 +263,7 @@ namespace PIMFazendaUrbanaLib
                             }
 
                             // Por fim, vamos atualizar o telefone do funcionário
-                            TelefoneFuncionario telefone = funcionario.Telefone;
+                            Telefone telefone = funcionario.Telefone;
 
                             string updateTelefoneQuery = @"UPDATE telefonefuncionario SET 
                                                 ddd_telfuncionario = @DDD,
@@ -300,7 +293,6 @@ namespace PIMFazendaUrbanaLib
 
 
         // 7- Método para excluir (desativar) funcionário
-        // ********** FUNCIONAL **********
         public void ExcluirFuncionario(int funcionarioId)
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
@@ -350,7 +342,6 @@ namespace PIMFazendaUrbanaLib
 
         // 8- Listagem
         // 8.1- Método para listar funcionários ativos
-        // ********** FUNCIONAL **********
         public List<Funcionario> ListarFuncionariosAtivos()
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
@@ -387,13 +378,13 @@ namespace PIMFazendaUrbanaLib
                                 Cargo = reader.GetString("cargo_funcionario"),
                                 Usuario = reader.GetString("usuario_funcionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                                Telefone = new TelefoneFuncionario
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telfuncionario"),
                                     Numero = reader.GetString("numero_telfuncionario"),
                                     StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                                 },
-                                Endereco = new EnderecoFuncionario
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endfuncionario"),
                                     Numero = reader.GetString("numero_endfuncionario"),
@@ -415,7 +406,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 8.2- Método para listar funcionários inativos
-        // ********** FUNCIONAL **********
         public List<Funcionario> ListarFuncionariosInativos()
         {
             List<Funcionario> funcionariosInativos = new List<Funcionario>();
@@ -452,13 +442,13 @@ namespace PIMFazendaUrbanaLib
                                 Cargo = reader.GetString("cargo_funcionario"),
                                 Usuario = reader.GetString("usuario_funcionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                                Telefone = new TelefoneFuncionario
+                                Telefone = new Telefone
                                 {
                                     DDD = reader.GetString("ddd_telfuncionario"),
                                     Numero = reader.GetString("numero_telfuncionario"),
                                     StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                                 },
-                                Endereco = new EnderecoFuncionario
+                                Endereco = new Endereco
                                 {
                                     Logradouro = reader.GetString("logradouro_endfuncionario"),
                                     Numero = reader.GetString("numero_endfuncionario"),
@@ -481,7 +471,6 @@ namespace PIMFazendaUrbanaLib
 
         // 9- Consulta
         // 9.1- Método para consultar funcionário por ID (somente funcionários ativos)
-        // ********** FUNCIONAL **********
         public Funcionario ConsultarFuncionarioID(int funcionarioId)
         {
             Funcionario funcionario = null;
@@ -516,13 +505,13 @@ namespace PIMFazendaUrbanaLib
                             Cargo = reader.GetString("cargo_funcionario"),
                             Usuario = reader.GetString("usuario_funcionario"),
                             StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                            Telefone = new TelefoneFuncionario
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfuncionario"),
                                 Numero = reader.GetString("numero_telfuncionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                             },
-                            Endereco = new EnderecoFuncionario
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfuncionario"),
                                 Numero = reader.GetString("numero_endfuncionario"),
@@ -575,13 +564,13 @@ namespace PIMFazendaUrbanaLib
                             Cargo = reader.GetString("cargo_funcionario"),
                             Usuario = reader.GetString("usuario_funcionario"),
                             StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                            Telefone = new TelefoneFuncionario
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfuncionario"),
                                 Numero = reader.GetString("numero_telfuncionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                             },
-                            Endereco = new EnderecoFuncionario
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfuncionario"),
                                 Numero = reader.GetString("numero_endfuncionario"),
@@ -634,13 +623,13 @@ namespace PIMFazendaUrbanaLib
                             Cargo = reader.GetString("cargo_funcionario"),
                             Usuario = funcionarioUsuario,
                             StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                            Telefone = new TelefoneFuncionario
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfuncionario"),
                                 Numero = reader.GetString("numero_telfuncionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                             },
-                            Endereco = new EnderecoFuncionario
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfuncionario"),
                                 Numero = reader.GetString("numero_endfuncionario"),
@@ -659,7 +648,6 @@ namespace PIMFazendaUrbanaLib
         }
 
         // 10- Método para filtrar lista de funcionários por nome
-        // ********** FUNCIONAL **********
         public List<Funcionario> FiltrarFuncionariosNome(string funcionarioNome)
         {
             List<Funcionario> funcionarios = new List<Funcionario>();
@@ -696,13 +684,13 @@ namespace PIMFazendaUrbanaLib
                             Cargo = reader.GetString("cargo_funcionario"),
                             Usuario = reader.GetString("usuario_funcionario"),
                             StatusAtivo = reader.GetBoolean("ativo_funcionario"),
-                            Telefone = new TelefoneFuncionario
+                            Telefone = new Telefone
                             {
                                 DDD = reader.GetString("ddd_telfuncionario"),
                                 Numero = reader.GetString("numero_telfuncionario"),
                                 StatusAtivo = reader.GetBoolean("ativo_telfuncionario")
                             },
-                            Endereco = new EnderecoFuncionario
+                            Endereco = new Endereco
                             {
                                 Logradouro = reader.GetString("logradouro_endfuncionario"),
                                 Numero = reader.GetString("numero_endfuncionario"),
