@@ -1,8 +1,9 @@
 ﻿namespace PIMFazendaUrbanaLib
 {
+    // EXEMPLO DE COMO SERIA A IMPLEMENTAÇÃO DO CONTROLLER COM ASP.NET
     [ApiController]
     [Route("api/[controller]")]
-    public class ClienteController : ControllerBase // Controller com ASP.NET
+    public class ClienteController : ControllerBase
     {
         private readonly IClienteService _clienteService;
 

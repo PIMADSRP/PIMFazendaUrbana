@@ -23,6 +23,8 @@ namespace PIMFazendaUrbanaLib
                 {
                     try
                     {
+                        ValidarCompra(pedidoCompra, compraItems);
+
                         // Cadastrar PedidoCompra
                         pedidoCompraDAO.CadastrarPedidoCompra(pedidoCompra, transaction);
 
@@ -131,6 +133,37 @@ namespace PIMFazendaUrbanaLib
             {
                 throw new Exception("Erro ao filtrar registros de compra por nome de insumo e período: " + ex.Message);
             }
+        }
+
+        /*
+         * =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO COMPRA =-=-=-=-=-=-=-=-=-=-=-=-
+         */
+
+        public void ValidarCompra(PedidoCompra pedidoCompra, List<PedidoCompraItem> compraItems)
+        {
+            var erros = new List<ValidationError>();
+
+            //Código anterior: (!int.TryParse(TextBoxQuantidade.Text, out int quantidade) || quantidade <= 0). Removi a primeira validação do texbox e mantiva só se o valor é maior que 0
+            if (compraItems.Count <= 0) //Verifica se a quantidade de itens é maior que 0
+            {
+                erros.Add((new ValidationError("Quantidade", "A quantidade deve ser um número inteiro maior que zero.")));
+            }
+
+            // Valida cada item da compra
+            foreach (var item in compraItems)
+            {
+                // Verifica se a quantidade do item de cada compra é menor ou igual a zero
+                if (item.Qtd <= 0)
+                {
+                    erros.Add(new ValidationError("Quantidade", $"A quantidade do item '{item.NomeInsumo}' deve ser um número inteiro maior que zero."));
+                }
+            }
+
+            /* Métodos de referência da classe TelaCadastrarCompra:
+               - TextBoxQuantidade_Validating
+               - TextBoxValorUnitario_Validating
+             */
+
         }
 
     }

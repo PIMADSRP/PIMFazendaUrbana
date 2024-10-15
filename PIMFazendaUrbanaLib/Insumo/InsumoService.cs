@@ -13,6 +13,7 @@
         {
             try
             {
+                this.ValidarInsumo(insumo); // <--- Validação para cadastrar um insumo <---
                 insumoDAO.CadastrarInsumo(insumo);
             }
             catch (Exception ex)
@@ -25,6 +26,7 @@
         {
             try
             {
+                this.ValidarInsumo(insumo); // <--- Validação para alterar um insumo (Geralmente são os mesmos) <---
                 insumoDAO.AlterarInsumo(insumo);
             }
             catch (Exception ex)
@@ -162,10 +164,14 @@
             }
         }
 
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
         public void CadastrarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)
         {
             try
             {
+                this.ValidarSaidaInsumo(saidainsumo, insumo); // <--- Validação para cadastrar insumo <---
                 insumoDAO.CadastrarSaidaInsumo(saidainsumo, insumo);
             }
             catch (Exception ex)
@@ -197,6 +203,68 @@
             {
                 throw new Exception("Erro ao filtrar registros de saída por nome de insumo e período: " + ex.Message);
             }
+        }
+
+        // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO INSUMO =-=-=-=-=-=-=-=-=-=-=-=-
+        public void ValidarInsumo(Insumo insumo)
+        {
+            var erros = new List<ValidationError>();
+            if (string.IsNullOrEmpty(insumo.Nome) || insumo.Nome.Length < 3) //Valida se o nome é maior que 3 caracteres
+            {
+                erros.Add(new ValidationError("Nome", "O nome deve ter pelo menos 3 caracteres"));
+            }
+
+            List<string> categoriasPermitidas = new List<string> { "Sementes", "Fertilizantes" };
+            if (insumo.Categoria == null || !categoriasPermitidas.Contains(insumo.Categoria)) //Valida se a categoria é "Sementes" ou "Fertilizantes"
+            {
+                erros.Add(new ValidationError("Categoria", "Selecione uma categoria válida (Sementes ou Fertilizantes)."));
+            }
+
+            // Lista de unidades permitidas
+            List<string> unidadesPermitidas = new List<string>
+            {
+                "kg", "g", "l", "ml", "m", "cm", "mm", "unidade", "caixa", "tambor"
+            };
+            if (insumo.Unidqtd == null || !unidadesPermitidas.Contains(insumo.Unidqtd)) //Valida se a unidade está na lista de permitidas
+            {
+                erros.Add(new ValidationError("Unidade", "Selecione uma unidade válida."));
+            }
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
+
+            /* Métodos de referência da classe TelaCadastrarInsumo:
+               - ValidarNome
+               - ValidarCategoria
+               - ValidarUnidade
+             */
+
+        }
+
+        // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO SAIDA INSUMO =-=-=-=-=-=-=-=-=-=-=-=-
+        public void ValidarSaidaInsumo(SaidaInsumo saidainsumo, Insumo insumo)
+        {
+            var erros = new List<ValidationError>();
+            if (saidainsumo.Qtd <= 0)
+            {
+                erros.Add(new ValidationError("Quantidade", "A quantidade deve ser um número inteiro maior que zero."));
+            }
+
+            if (saidainsumo.Qtd > insumo.Qtd)
+            {
+                erros.Add(new ValidationError("Quantidade", "A quantidade de saída deve ser menor ou igual à quantidade atual no estoque."));
+            }
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
+
+            /* Métodos de referência da classe TelaCadastrarSaidaInsumo:
+               - Tem 2 condições dentro do "BotaoConfirmar_Click"
+             */
         }
 
     }

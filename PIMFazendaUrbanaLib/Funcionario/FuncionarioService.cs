@@ -88,6 +88,7 @@ namespace PIMFazendaUrbanaLib
         {
             try
             {
+                VerificarSenhaForte(novaSenha); // Verifica se a senha é forte o suficiente (método a ser chamado pelo front
                 funcionarioDAO.AlterarSenhaFuncionario(usuario, novaSenha);
 
                 return true; // Retorna true para indicar que a alteração da senha foi bem-sucedida
@@ -95,6 +96,88 @@ namespace PIMFazendaUrbanaLib
             catch (Exception ex)
             {
                 throw new Exception("Erro ao alterar senha do funcionário: " + ex.Message);
+            }
+        }
+
+        // Método para verificar se a senha é forte o suficiente, a ser chamado pelo front
+        public bool VerificarSenhaForte(string senha)
+        {
+            var erros = new List<ValidationError>();
+
+            // Verifica se a senha tem pelo menos 8 caracteres
+            if (senha.Length < 8)
+            {
+                erros.Add(new ValidationError("Senha", "a senha tem pelo menos 8 caracteres"));
+            }
+
+            // Verifica se a senha contém pelo menos um número
+            bool contemNumero = false;
+            foreach (char c in senha)
+            {
+                if (char.IsDigit(c))
+                {
+                    contemNumero = true;
+                    break;
+                }
+            }
+            if (!contemNumero)
+            {
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos um número."));
+            }
+
+            // Verifica se a senha contém pelo menos uma letra maiúscula
+            bool contemMaiuscula = false;
+            foreach (char c in senha)
+            {
+                if (char.IsUpper(c))
+                {
+                    contemMaiuscula = true;
+                    break;
+                }
+            }
+            if (!contemMaiuscula)
+            {
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos uma letra maiúscula."));
+            }
+
+            // Verifica se a senha contém pelo menos uma letra minúscula
+            bool contemMinuscula = false;
+            foreach (char c in senha)
+            {
+                if (char.IsLower(c))
+                {
+                    contemMinuscula = true;
+                    break;
+                }
+            }
+            if (!contemMinuscula)
+            {
+
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos uma letra minúscula."));
+            }
+
+            // Verifica se a senha contém pelo menos um caractere especial
+            bool contemEspecial = false;
+            foreach (char c in senha)
+            {
+                if (!char.IsLetterOrDigit(c))
+                {
+                    contemEspecial = true;
+                    break;
+                }
+            }
+            if (!contemEspecial)
+            {
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos um caractere especial."));
+            }
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -115,6 +198,7 @@ namespace PIMFazendaUrbanaLib
         {
             try
             {
+                ValidarFuncionario(funcionario);
                 funcionarioDAO.AlterarFuncionario(funcionario);
             }
             catch (Exception ex)
@@ -215,6 +299,8 @@ namespace PIMFazendaUrbanaLib
             }
         }
 
+        // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO FUNCIONÁRIO =-=-=-=-=-=-=-=-=-=-=-=-
+
         public void ValidarFuncionario(Funcionario funcionario)  // método para validação dos dados do funcionario contendo as regras de negócio e mensagens de erro
         {
             var erros = new List<ValidationError>();
@@ -236,9 +322,22 @@ namespace PIMFazendaUrbanaLib
                 erros.Add(new ValidationError("Cargo", "O cargo deve ser 'Funcionário' ou 'Gerente'"));
             }
 
-            // deixar validação se os dos campos de senha são iguais no front mesmo
+            // Lista de sexosPermitidos permitidas
+            List<string> sexosPermitidos = new List<string>
+            {
+                "M", "F", "Outro"
+            };
+            if (funcionario.Sexo == null || !sexosPermitidos.Contains(funcionario.Sexo)) //Valida se a unidade está na lista de permitidas
+            {
+                erros.Add(new ValidationError("Sexo", "O sexo deve ser 'M', 'F' ou '-'"));
+            }
 
-            
+            if(VerificarUsuarioDisponivel(funcionario.Usuario) == false)
+            {
+                erros.Add(new ValidationError("Usuário", "O nome de usuário está indisponível"));
+            }
+            // deixar validação se os dos campos de senha são iguais no front mesmo
+            ValidarSenha(funcionario.Senha, erros);
 
             TelefoneValidation telefoneValidation = new TelefoneValidation();
             erros = telefoneValidation.ValidarTelefone(funcionario.Telefone, erros);
@@ -251,104 +350,12 @@ namespace PIMFazendaUrbanaLib
             }
         }
 
-        private void ValidarSexo(List<string> camposInvalidos)
-        {
-            string textSexo = ComboBoxSexo.Text.Trim(); // Remover espaços em branco extras     // Valida Sexo
-            if (textSexo != "M" && textSexo != "F" && textSexo != "-")
-            {
-                camposInvalidos.Add("Sexo");
-
-                // Define a cor de texto para vermelho
-                ComboBoxSexo.ForeColor = Color.Red;
-
-                //MessageBox.Show("O sexo deve ser 'M', 'F' ou '-'.", "Sexo Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                toolTip.Show(tooltipSexo, ComboBoxSexo, 0, -50, 5000); // Mostrar a tooltip
-
-                sexovalido = false;
-            }
-            else
-            {
-                // Define a cor de texto para preto
-                ComboBoxSexo.ForeColor = Color.Black;
-                sexovalido = true;
-            }
-        }
-
-        private void ValidarUsuario(List<string> camposInvalidos)
-        {
-            string usuario = TextBoxUsuario.Text; // Valida Usuario
-
-            if (TextBoxUsuario.Text.Length < 3)
-            {
-                camposInvalidos.Add("Usuário");
-
-                TextBoxUsuario.ForeColor = Color.Red;
-
-                // Exibe a mensagem de erro
-                //MessageBox.Show("Preencha o campo Usuário corretamente. O nome de usuário deve ter ao menos 3 caracteres", "Nome de Usuário Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                toolTip.Show(tooltipUsuario, TextBoxUsuario, 0, -50, 5000); // Mostrar a tooltip
-
-                usuariovalido = false;
-            }
-            else
-            {
-                if (VerificarUsuarioDisponivel(usuario) == true)
-                {
-                    TextBoxUsuario.ForeColor = Color.Black;
-                    usuariovalido = true;
-                }
-                else
-                {
-                    TextBoxUsuario.ForeColor = Color.Red;
-                    usuariovalido = false;
-                }
-            }
-        }
-
-        private void TextBoxUsuario_Validating(object sender, CancelEventArgs e)
-        {
-            if (TextBoxUsuario.Text.Length >= 3)
-            {
-                VerificarUsuarioDisponivel(TextBoxUsuario.Text);
-            }
-        }
-
-        // Verificar se um nome de usuário já está em uso
-        private bool VerificarUsuarioDisponivel(string usuario)
-        {
-            string verificarUsuarioDisponivel = funcionarioService.VerificarUsuarioDisponivel(usuario); // Chamando o método VerificarUsuarioDisponivel da instância funcionarioService
-            if (verificarUsuarioDisponivel == "disponivel")
-            {
-                MessageBox.Show("Nome de usuário disponível.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return true;
-            }
-            else if (verificarUsuarioDisponivel == "indisponivel")
-            {
-                MessageBox.Show("Nome de usuário indisponível.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else if (verificarUsuarioDisponivel == "erro")
-            {
-                MessageBox.Show("Erro ao verificar disponibilidade do nome de usuário.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        // Método dedicado para verificar se a senha é forte o suficiente
-        private bool VerificarSenhaForte(string senha)
+        private List<ValidationError> ValidarSenha(string senha, List<ValidationError> erros)
         {
             // Verifica se a senha tem pelo menos 8 caracteres
             if (senha.Length < 8)
             {
-                //MessageBox.Show("A senha deve conter no mínimo 8 caracteres.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                toolTip.Show(tooltipErrSenhaTamanho, TextBoxSenha1, 0, -50, 5000); // Mostrar a tooltip
-                return false;
+                erros.Add(new ValidationError("Senha", "a senha tem pelo menos 8 caracteres"));
             }
 
             // Verifica se a senha contém pelo menos um número
@@ -363,9 +370,7 @@ namespace PIMFazendaUrbanaLib
             }
             if (!contemNumero)
             {
-                //MessageBox.Show("A senha deve conter pelo menos um número.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                toolTip.Show(tooltipErrSenhaNumeros, TextBoxSenha1, 0, -50, 5000); // Mostrar a tooltip
-                return false;
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos um número."));
             }
 
             // Verifica se a senha contém pelo menos uma letra maiúscula
@@ -380,9 +385,7 @@ namespace PIMFazendaUrbanaLib
             }
             if (!contemMaiuscula)
             {
-                //MessageBox.Show("A senha deve conter pelo menos uma letra maiúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                toolTip.Show(tooltipErrSenhaMaiuscula, TextBoxSenha1, 0, -50, 5000); // Mostrar a tooltip
-                return false;
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos uma letra maiúscula."));
             }
 
             // Verifica se a senha contém pelo menos uma letra minúscula
@@ -397,9 +400,8 @@ namespace PIMFazendaUrbanaLib
             }
             if (!contemMinuscula)
             {
-                //MessageBox.Show("A senha deve conter pelo menos uma letra minúscula.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                toolTip.Show(tooltipErrSenhaMinuscula, TextBoxSenha1, 0, -50, 5000); // Mostrar a tooltip
-                return false;
+
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos uma letra minúscula."));
             }
 
             // Verifica se a senha contém pelo menos um caractere especial
@@ -414,14 +416,12 @@ namespace PIMFazendaUrbanaLib
             }
             if (!contemEspecial)
             {
-                //MessageBox.Show("A senha deve conter pelo menos um caractere especial.", "Senha Fraca", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                toolTip.Show(tooltipErrSenhaCaracEsp, TextBoxSenha1, 0, -50, 5000); // Mostrar a tooltip
-                return false;
+                erros.Add(new ValidationError("Senha", "A senha deve conter pelo menos um caractere especial."));
             }
 
-            // Se a senha passar por todas as verificações, é considerada forte
-            return true;
-            //MessageBox.Show("Senha forte.", "Senha Forte", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return erros;
         }
+
+
     }
 }
