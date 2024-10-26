@@ -143,26 +143,44 @@ namespace PIMFazendaUrbanaLib
         {
             var erros = new List<ValidationError>();
 
-            //Código anterior: (!int.TryParse(TextBoxQuantidade.Text, out int quantidade) || quantidade <= 0). Removi a primeira validação do texbox e mantiva só se o valor é maior que 0
-            if (compraItems.Count <= 0) //Verifica se a quantidade de itens é maior que 0
+            // validar quantidade, valor unitario, fornecedor e produto
+
+            if (compraItems.Count <= 0) // Verifica se a quantidade de itens é maior que 0
             {
-                erros.Add((new ValidationError("Quantidade", "A quantidade deve ser um número inteiro maior que zero.")));
+                erros.Add((new ValidationError("Quantidade", "A compra deve conter pelo menos um item.")));
+            }
+
+            // valida fornecedor
+            if (pedidoCompra.IdFornecedor <= 0)
+            {
+                erros.Add(new ValidationError("Fornecedor", "O fornecedor deve ser informado."));
             }
 
             // Valida cada item da compra
             foreach (var item in compraItems)
             {
+                // valida nome do produto
+                if (string.IsNullOrWhiteSpace(item.NomeInsumo))
+                {
+                    erros.Add(new ValidationError("Insumo", "Insumo inválido."));
+                }
+
                 // Verifica se a quantidade do item de cada compra é menor ou igual a zero
                 if (item.Qtd <= 0)
                 {
                     erros.Add(new ValidationError("Quantidade", $"A quantidade do item '{item.NomeInsumo}' deve ser um número inteiro maior que zero."));
                 }
+                // Verifica se o valor unitário do item de cada compra é menor ou igual a zero
+                if (item.Valor <= 0)
+                {
+                    erros.Add(new ValidationError("Valor", $"O valor unitário do item '{item.NomeInsumo}' deve ser um número decimal maior que zero."));
+                }
             }
 
-            /* Métodos de referência da classe TelaCadastrarCompra:
-               - TextBoxQuantidade_Validating
-               - TextBoxValorUnitario_Validating
-             */
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
 
         }
 

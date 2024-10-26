@@ -14,6 +14,7 @@
         {
             try
             {
+                ValidarProducao(producao); // <--- Validação da Produção <---
                 producaoDAO.CadastrarProducao(producao);
             }
             catch (Exception ex)
@@ -27,6 +28,7 @@
         {
             try
             {
+                ValidarProducao(producao); // <--- Validação da Produção <---
                 producaoDAO.AlterarProducao(producao);
                 return true;
             }
@@ -116,6 +118,31 @@
             catch (Exception ex)
             {
                 throw new Exception("Erro ao filtrar produções por nome de cultivo e período: " + ex.Message);
+            }
+        }
+
+        // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇAÕ PRODUÇÃO =-=-=-=-=-=-=-=-=-=-=-=-
+
+        public void ValidarProducao(Producao producao)
+        {
+            var erros = new List<ValidationError>();
+
+            // Lista de unidades permitidas
+            List<string> unidadesPermitidas = new List<string>
+            {
+                "kg", "g", "unidade"
+            };
+
+            // Verifica se a unidade está na lista de permitidas
+            if (producao.Unidqtd == null || !unidadesPermitidas.Contains(producao.Unidqtd))
+            {
+                erros.Add(new ValidationError("Unidade", "Por favor, selecione uma unidade válida."));
+            }
+
+            // Verifica se a quantidade é válida
+            if (producao.Qtd <= 0)
+            {
+                erros.Add(new ValidationError("Quantidade", "A quantidade deve ser um número inteiro maior que zero."));
             }
         }
 

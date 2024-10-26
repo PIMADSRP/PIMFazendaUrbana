@@ -23,6 +23,8 @@ namespace PIMFazendaUrbanaLib
                 {
                     try
                     {
+                        ValidarVenda(pedidoVenda, vendaItems);
+
                         // Cadastrar PedidoVenda
                         pedidoVendaDAO.CadastrarPedidoVenda(pedidoVenda, transaction);
 
@@ -138,7 +140,56 @@ namespace PIMFazendaUrbanaLib
             }
             
         }
-        
+
+
+        /*
+         * =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO VENDA =-=-=-=-=-=-=-=-=-=-=-=-
+         */
+
+        public void ValidarVenda(PedidoVenda pedidoVenda, List<PedidoVendaItem> vendaItems)
+        {
+            var erros = new List<ValidationError>();
+
+            // validar quantidade, valor unitario, cliente e produto
+
+            if (vendaItems.Count <= 0) // Verifica se a quantidade de itens é maior que 0
+            {
+                erros.Add((new ValidationError("Quantidade", "A venda deve conter pelo menos um item.")));
+            }
+
+            // Validar cliente
+            if (pedidoVenda.IdCliente <= 0)
+            {
+                erros.Add(new ValidationError("Cliente", "O cliente deve ser informado."));
+            }
+
+            // Valida cada item da compra
+            foreach (var item in vendaItems)
+            {
+                // valida nome do produto
+                if (string.IsNullOrEmpty(item.NomeProduto))
+                {
+                    erros.Add(new ValidationError("Produto", "Produto inválido."));
+                }
+
+                // Verifica se a quantidade do item de cada compra é menor ou igual a zero
+                if (item.Qtd <= 0)
+                {
+                    erros.Add(new ValidationError("Quantidade", $"A quantidade do item '{item.NomeProduto}' deve ser um número inteiro maior que zero."));
+                }
+                // Verifica se o valor do item de cada compra é menor ou igual a zero
+                if (item.Valor <= 0)
+                {
+                    erros.Add(new ValidationError("Valor", $"O valor do item '{item.NomeProduto}' deve ser um número decimal maior que zero."));
+                }
+            }
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
+
+        }
 
     }
 }

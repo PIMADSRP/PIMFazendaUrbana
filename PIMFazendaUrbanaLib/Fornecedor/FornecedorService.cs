@@ -1,4 +1,7 @@
-﻿namespace PIMFazendaUrbanaLib
+﻿using MySqlX.XDevAPI;
+using System.Text.RegularExpressions;
+
+namespace PIMFazendaUrbanaLib
 {
     public class FornecedorService // A classe FornecedorService é responsável por implementar a lógica de negócio relacionada a fornecedores
     {
@@ -13,6 +16,7 @@
         {
             try
             {
+                ValidarFornecedor(fornecedor); // <--- Validação do Fornecedor <---
                 fornecedorDAO.CadastrarFornecedor(fornecedor); // Chama o método CadastrarFornecedor do DAO para inserir o novo fornecedor no banco de dados, passando o objeto fornecedor como argumento
             }
             catch (Exception ex)
@@ -26,6 +30,7 @@
         {
             try
             {
+                ValidarFornecedor(fornecedor); // <--- Validação do Fornecedor <---
                 fornecedorDAO.AlterarFornecedor(fornecedor);
             }
             catch (Exception ex)
@@ -132,6 +137,35 @@
             catch (Exception ex)
             {
                 throw new Exception("Erro ao filtrar fornecedores por nome: " + ex.Message);
+            }
+        }
+
+        // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAR FORNECEDOR =-=-=-=-=-=-=-=-=-=-=-=-
+
+        public void ValidarFornecedor(Fornecedor fornecedor) // método para validação dos dados do fornecedor contendo as regras de negócio e mensagens de erro
+        {
+            var erros = new List<ValidationError>();
+
+            if (string.IsNullOrEmpty(fornecedor.Nome) || fornecedor.Nome.Length < 3)
+            {
+                erros.Add(new ValidationError("Nome", "O nome deve ter pelo menos 3 caracteres"));
+            }
+            if (!Regex.IsMatch(fornecedor.CNPJ, @"^\d{14}$") || !fornecedor.CNPJ.All(char.IsDigit))
+            {
+                erros.Add(new ValidationError("CNPJ", "O CNPJ deve conter 14 dígitos"));
+            }
+            if (!Regex.IsMatch(fornecedor.Email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+            {
+                erros.Add(new ValidationError("Email", "Email inválido. O email deve ter o formato exemplo@exemplo.exeplo"));
+            }
+            TelefoneValidation telefoneValidation = new TelefoneValidation();
+            telefoneValidation.ValidarTelefone(fornecedor.Telefone, erros);
+            EnderecoValidation enderecoValidation = new EnderecoValidation();
+            enderecoValidation.ValidarEndereco(fornecedor.Endereco, erros);
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
             }
         }
 

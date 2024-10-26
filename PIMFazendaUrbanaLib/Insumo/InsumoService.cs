@@ -235,12 +235,6 @@
                 throw new ValidationException(erros);
             }
 
-            /* Métodos de referência da classe TelaCadastrarInsumo:
-               - ValidarNome
-               - ValidarCategoria
-               - ValidarUnidade
-             */
-
         }
 
         // =-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO SAIDA INSUMO =-=-=-=-=-=-=-=-=-=-=-=-
@@ -261,10 +255,6 @@
             {
                 throw new ValidationException(erros);
             }
-
-            /* Métodos de referência da classe TelaCadastrarSaidaInsumo:
-               - Tem 2 condições dentro do "BotaoConfirmar_Click"
-             */
         }
 
     }

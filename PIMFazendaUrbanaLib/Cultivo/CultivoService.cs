@@ -14,6 +14,7 @@
         {
             try
             {
+                ValidarCultivo(cultivo); // <--- Validação do Cultivo <---
                 cultivoDAO.CadastrarCultivo(cultivo); // Chama o método CadastrarCultivo do DAO para inserir o novo cultivo no banco de dados, passando o objeto cultivo como argumento
             }
             catch (Exception ex)
@@ -27,6 +28,7 @@
         {
             try
             {
+                ValidarCultivo(cultivo); // <--- Validação do Cultivo <---
                 cultivoDAO.AlterarCultivo(cultivo); // Chama o método AlterarCultivo do DAO para atualizar os dados do cultivo no banco de dados
             }
             catch (Exception ex)
@@ -134,7 +136,53 @@
                 return new List<Cultivo>();
                 throw new Exception("Erro ao filtrar cultivos por nome: " + ex.Message);
             }
-            
+
+        }
+
+        //=-=-=-=-=-=-=-=-=-=-=-=- VALIDAÇÃO CULTIVO =-=-=-=-=-=-=-=-=-=-=-=-
+
+        public void ValidarCultivo(Cultivo cultivo)
+        {
+            var erros = new List<ValidationError>();
+            if (cultivo.Nome.Length < 3)
+            {
+                erros.Add((new ValidationError("Nome", "O nome do produto deve conter pelo menos 3 caracteres.")));
+            }
+            if (cultivo.Variedade.Length < 3)
+            {
+                erros.Add((new ValidationError("Variedade", "A variedade deve conter pelo menos 3 caracteres.")));
+            }
+
+            // Lista de categorias permitidas
+            List<string> categoriasPermitidas = new List<string>
+            {
+                "Verdura",
+                "Legume",
+                "Fruta",
+                "Outro"
+            };
+            // Verifica se a categoria está na lista de permitidas
+            if (cultivo.Categoria == null || !categoriasPermitidas.Contains(cultivo.Categoria))
+            {
+                erros.Add((new ValidationError("Categoria", "Por favor, selecione uma categoria válida.")));
+            }
+
+            string tempoTradicional = cultivo.TempoProdTradicional.ToString();
+            if (string.IsNullOrWhiteSpace(tempoTradicional) || !int.TryParse(tempoTradicional, out _) || int.Parse(tempoTradicional) <= 0)
+            {
+                erros.Add((new ValidationError("Tempo Prod. Tradicional", "Por favor, insira um valor válido para o tempo de plantio tradicional (número inteiro).")));
+            }
+
+            string tempoControlado = cultivo.TempoProdControlado.ToString();
+            if (string.IsNullOrWhiteSpace(tempoControlado) || !int.TryParse(tempoControlado, out _) || int.Parse(tempoControlado) <= 0)
+            {
+                erros.Add((new ValidationError("Tempo Prod. Controlado", "Por favor, insira um valor válido para o tempo de plantio controlado (número inteiro).")));
+            }
+
+            if (erros.Any()) // se teve algum erro, lança exceção com a lista de erros
+            {
+                throw new ValidationException(erros);
+            }
         }
 
     }
